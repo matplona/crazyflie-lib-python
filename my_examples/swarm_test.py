@@ -17,12 +17,26 @@ go.clear()
 DEFAULT_HEIGHT = 0.5
 URI0 = 'radio://0/80/2M/E7E7E7E700'
 URI1 = 'radio://0/80/2M/E7E7E7E701'
+URI2 = 'radio://0/80/2M/E7E7E7E702'
+URI3 = 'radio://0/80/2M/E7E7E7E703'
+URI4 = 'radio://0/80/2M/E7E7E7E704'
+URI5 = 'radio://0/80/2M/E7E7E7E705'
+URI6 = 'radio://0/80/2M/E7E7E7E706'
+URI7 = 'radio://0/80/2M/E7E7E7E707'
 
 uris = {
     URI0,
-    URI1
+    URI1,
+    URI2,
+    URI3,
+    
 }
-
+"""
+    URI4,
+    URI5,
+    URI6,
+    URI7,
+"""
 def print_battery_level(scf: SyncCrazyflie):
     lg = LogConfig(name='Battery', period_in_ms=10)
     lg.add_variable('pm.vbat', 'float')
@@ -66,7 +80,19 @@ def sequence1_motion(scf):
         time.sleep(1)
         mc.turn_left(90)
         time.sleep(2)
-
+def sequence_all_motion(scf):
+    with MotionCommander(scf, default_height=DEFAULT_HEIGHT) as mc:
+        time.sleep(2)
+        mc.forward(0.5)
+        mc.turn_left(90)
+        mc.forward(0.5)
+        mc.turn_left(90)
+        mc.forward(0.5)
+        mc.turn_left(90)
+        mc.forward(0.5)
+        mc.turn_left(90)
+        time.sleep(2)
+        #landing
 """USING COMMANDER"""
 def take_off(cf, position):
     take_off_time = 1.0
@@ -189,9 +215,18 @@ def do_nothing(scf):
     time.sleep(1)
 
 tasks = {
-    URI0 : [do_nothing],
-    URI1 : [sequence1_hl_commander]
+    URI0 : [sequence_all_motion],
+    URI1 : [sequence_all_motion],
+    URI2 : [sequence_all_motion],
+    URI3 : [sequence_all_motion],
 }
+
+"""
+    URI4 : [sequence_all_motion],
+    URI5 : [sequence_all_motion],
+    URI6 : [sequence_all_motion],
+    URI7 : [sequence_all_motion],
+"""
 
 def run_independent(scf, function):
     print("Executing task for {}".format(scf.cf.link_uri))
@@ -225,4 +260,3 @@ if __name__ == '__main__':
         #swarm.parallel(run_sequence)
         time.sleep(3)
         print_positions(swarm)
-

@@ -6,7 +6,7 @@ from cflib.crazyflie import Crazyflie
 from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
 from cflib.positioning.motion_commander import MotionCommander
 from calibration import *
-URI = 'radio://0/80/2M/E7E7E7E701'
+URI = 'radio://0/40/2M/1'
 DEFAULT_HEIGHT = 0.5
 is_ready = False
 
@@ -62,7 +62,7 @@ if __name__ == '__main__':
     with SyncCrazyflie(URI, cf=Crazyflie(rw_cache='./cache')) as scf:
         try:
             connect_and_calibrate(scf.cf)
-            take_off_simple(scf, 10)
+            #take_off_simple(scf, 10)
             #trajectory_one(scf)
         except Exception as e:
             print(str(e))
