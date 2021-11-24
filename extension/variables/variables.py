@@ -1,3 +1,4 @@
+from cflib import crazyflie
 from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
 from cflib.crazyflie.log import LogConfig
 import time
@@ -8,7 +9,7 @@ STARTED = 1
 
 class Logger:
     def __init__(self, scf : SyncCrazyflie) -> None:
-        self._cf : Crazyflie = scf.cf
+        self._cf : crazyflie.Crazyflie = scf.cf
         self._variables = {}
         self._logs = []
     
@@ -161,7 +162,7 @@ class Logger:
 
 class Setter:
     def __init__(self, scf : SyncCrazyflie) -> None:
-        self._cf : Crazyflie = scf.cf
+        self._cf : crazyflie = scf.cf
         self._variables = {}
 
     def _cb(self, name, value):

@@ -47,8 +47,8 @@ if(args.swarm_master):
         for i in range(0, items):
             URIS.add('{}://{}/{}/{}/{}{:02d}'.format(args.type, args.id, args.channel, args.speed, args.address, i))
     elif(args.swarm_range):
-        min = int(args.swarm_range[0],16)
-        max = int(args.swarm_range[1],16)
+        min = int(args.swarm_range[0])
+        max = int(args.swarm_range[1])
         if(min > max):
             temp = max
             max = min
