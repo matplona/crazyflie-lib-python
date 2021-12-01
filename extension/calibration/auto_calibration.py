@@ -19,36 +19,50 @@ def connect_and_calibrate(cf):
 
 
 parser = argparse.ArgumentParser()
+subparser = parser.add_subparsers()
+single = subparser.add_parser("single", help="Estimate and write geometry for a single drone")
+swarm = subparser.add_parser("swarm", help="Estimate and write geometry for a swarm of drones")
 # Required positional argument
-parser.add_argument('--number', help='CrazyFlie Address (only final bytes) eg 00 or 01 ...', required=True)
-parser.add_argument('--type', help='Interface type for URI (default radio)', default='radio')
-parser.add_argument('--id', help='Interface ID for URI (default 0)', default='0')
-parser.add_argument('--channel', help='Interface channel for URI (default 80)', default='80')
-parser.add_argument('--speed', help='Interface speed for URI (default 2M)', default='2M')
-parser.add_argument('--address', help='Interface type for URI (default E7E7E7E7)', default='E7E7E7E7')
-parser.add_argument('--swarm', type=int, help="Calibrate a swarm of crazyflie. Expect number of crazyflie in the swarm as argument. this will be used as range to compute URIs")
-parser.add_argument('--swarm_master', help="Crazyflie Address (only final bytes) eg 00 or 01 ... This address will be the master of the swarm", default='00')
-parser.add_argument('--swarm_range', type=int, nargs=2, help="Calibrate a swarm, the numbers of the crazyflie are incremental inside the range (min,max) where both min and maz ar parameter for this command")
+single.add_argument('--number', help='CrazyFlie Address (only final bytes) eg 00 or 01 ...', required=True)
+single.add_argument('--type', help='Interface type for URI (default radio)', default='radio')
+single.add_argument('--id', help='Interface ID for URI (default 0)', default='0')
+single.add_argument('--channel', help='Interface channel for URI (default 80)', default='80')
+single.add_argument('--speed', help='Interface speed for URI (default 2M)', default='2M')
+single.add_argument('--address', help='Interface type for URI (default E7E7E7E7)', default='E7E7E7E7')
+swarm.add_argument('--master_number', help="Crazyflie Address (only final bytes) eg 00 or 01 for the master of the swarm", required=True)
+swarm.add_argument('--master_type', help='Interface type for URI (default radio) for the master of the swarm', default='radio')
+swarm.add_argument('--master_id', help='Interface ID for URI (default 0) for the master of the swarm', default='0')
+swarm.add_argument('--master_channel', help='Interface channel for URI (default 80) for the master of the swarm', default='80')
+swarm.add_argument('--master_speed', help='Interface speed for URI (default 2M) for the master of the swarm', default='2M')
+swarm.add_argument('--master_address', help='Interface type for URI (default E7E7E7E7) for the master of the swarm', default='E7E7E7E7')
+swarm_identifiers = swarm.add_mutually_exclusive_group(required=True)
+swarm_identifiers.add_argument('--swarm_dimension', type=int, help="Calibrate a swarm of crazyflie. Expect number of crazyflie in the swarm as argument. this will be used as range to compute URIs")
+swarm_identifiers.add_argument('--swarm_range', nargs=2, help="Calibrate a swarm, the numbers of the crazyflie are incremental inside the range (min,max) where both min and maz ar parameter for this command")
 args : argparse.Namespace = parser.parse_args()
-URI = '{}://{}/{}/{}/{}{}'.format(args.type, args.id, args.channel, args.speed, args.address, args.number)
 SWARM = False
-if(args.swarm_master):
-    MASTER_URI = '{}://{}/{}/{}/{}{}'.format(args.type, args.id, args.channel, args.speed, args.address, args.swarm_master)
+if(args.master_number):
+    number = format(int(args.master_number,16), '02x').upper()
+    MASTER_URI = '{}://{}/{}/{}/{}{}'.format(args.master_type, args.master_id, args.master_channel, args.master_speed, args.master_address, number)
     URIS = set()
     SWARM = True
-    if(args.swarm):
-        items = int(args.swarm)
+    if(args.swarm_dimension):
+        items = int(args.swarm_dimension)
         if(items < 2 or items > 0xff):
             print('[{}!{}]\t'.format(CRED, CEND) + "Invalid number of crazyflie in the swarm")
             exit(-1)
-        if(items < int(args.swarm_master, 16)):
+        if(items < int(args.master_number, 16)):
             print('[{}!{}]\t'.format(CRED, CEND) + "Master is not in the range")
             exit(-1)
         for i in range(0, items):
-            URIS.add('{}://{}/{}/{}/{}{:02d}'.format(args.type, args.id, args.channel, args.speed, args.address, i))
+            number = format(i, '02x').upper()
+            URIS.add('{}://{}/{}/{}/{}{}'.format(args.master_type, args.master_id, args.master_channel, args.master_speed, args.master_address, number))
     elif(args.swarm_range):
-        min = int(args.swarm_range[0])
-        max = int(args.swarm_range[1])
+        try:
+            min = int(args.swarm_range[0], 16)
+            max = int(args.swarm_range[1], 16)
+        except Exception as e1:
+            print('[{}!{}]\t'.format(CRED, CEND) + "--swarm_range expect two arguments in HEX from")
+            exit(-1)
         if(min > max):
             temp = max
             max = min
@@ -56,13 +70,14 @@ if(args.swarm_master):
         if(min < 0 or max > 0xff):
             print('[{}!{}]\t'.format(CRED, CEND) + "Invalid MIN or MAX in the range")
             exit(-1)
-        if(int(args.swarm_master, 16) < min or int(args.swarm_master, 16) > max):
+        if(int(args.master_number, 16) < min or int(args.master_number, 16) > max):
             print('[{}!{}]\t'.format(CRED, CEND) + "Master is not in the range")
             exit(-1)
         for i in range(min, max+1):
-            URIS.add('{}://{}/{}/{}/{}{:02d}'.format(args.type, args.id, args.channel, args.speed, args.address, i))
+            number = format(i, '02x').upper()
+            URIS.add('{}://{}/{}/{}/{}{}'.format(args.master_type, args.master_id, args.master_channel, args.master_speed, args.master_address, number))
     else:
-        print('[{}!{}]\t'.format(CRED, CEND) + "Missing argument --swarm or --swarm_range")
+        print('[{}!{}]\t'.format(CRED, CEND) + "Missing argument --swarm_dimension or --swarm_range")
         exit(-1)
 if __name__ == '__main__':
     cflib.crtp.init_drivers()
@@ -82,6 +97,7 @@ if __name__ == '__main__':
         except Exception as e:
             print('[{}!{}]\t'.format(CRED, CEND) + str(e))
     else:
+        URI = '{}://{}/{}/{}/{}{}'.format(args.type, args.id, args.channel, args.speed, args.address, args.number)
         print("[{}+{}]\tEstimate geometry for URI {}{}{}".format(CYELLOW, CEND, CBLUE, URI, CEND))
         try:
             with SyncCrazyflie(URI, cf=Crazyflie(rw_cache='./cache')) as scf:
