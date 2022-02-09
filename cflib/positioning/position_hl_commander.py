@@ -17,10 +17,8 @@
 #  but WITHOUT ANY WARRANTY; without even the implied warranty of
 #  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #  GNU General Public License for more details.
-#  You should have received a copy of the GNU General Public License
-#  along with this program; if not, write to the Free Software
-#  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
-#  MA  02110-1301, USA.
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <https://www.gnu.org/licenses/>.
 """
 The PositionHlCommander is used to make it easy to write scripts that moves the
 Crazyflie around. Some sort of positioning support is required, for
@@ -52,7 +50,7 @@ class PositionHlCommander:
                  x=0.0, y=0.0, z=0.0,
                  default_velocity=0.5,
                  default_height=0.5,
-                 controller=CONTROLLER_PID,
+                 controller=None,
                  default_landing_height=0.0):
         """
         Construct an instance of a PositionHlCommander
@@ -284,8 +282,9 @@ class PositionHlCommander:
         self._cf.param.set_value('commander.enHighLevel', '1')
 
     def _activate_controller(self):
-        value = str(self._controller)
-        self._cf.param.set_value('stabilizer.controller', value)
+        if self._controller is not None:
+            value = str(self._controller)
+            self._cf.param.set_value('stabilizer.controller', value)
 
     def _velocity(self, velocity):
         if velocity is self.DEFAULT:

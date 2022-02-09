@@ -20,10 +20,8 @@
 #  but WITHOUT ANY WARRANTY; without even the implied warranty of
 #  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #  GNU General Public License for more details.
-#  You should have received a copy of the GNU General Public License
-#  along with this program; if not, write to the Free Software
-#  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
-#  MA  02110-1301, USA.
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <https://www.gnu.org/licenses/>.
 """
 Bootloading utilities for the Crazyflie.
 """
@@ -390,7 +388,7 @@ class Bootloader:
         flash_all_targets = len(targets) == 0
 
         if self.progress_cb:
-            self.progress_cb('Detecting deck to be updated', int(25))
+            self.progress_cb('Detecting deck to be updated', 0)
 
         with SyncCrazyflie(self.clink, cf=Crazyflie()) as scf:
             deck_mems = scf.cf.mem.get_mems(MemoryElement.TYPE_DECK_MEMORY)
@@ -419,8 +417,7 @@ class Bootloader:
                 deck_artifact = deck_artifacts[0]
 
                 if self.progress_cb:
-                    self.progress_cb(f'Updating deck {deck.name}', int(50))
-                print(f'Handling {deck.name}')
+                    self.progress_cb(f'Updating deck {deck.name}', 0)
 
                 # Test and wait for the deck to be started
                 while not deck.is_started:
@@ -441,11 +438,17 @@ class Bootloader:
                     print(f'Error: Deck {deck.name} bootloader not active, skipping!')
                     continue
 
-                # ToDo, white the correct file there ...
-                result = deck.write_sync(0, deck_artifact.content)
+                progress_cb = self.progress_cb
+                if not progress_cb:
+                    def progress_cb(msg: str, percent: int):
+                        frames = ['◢', '◣', '◤', '◥']
+                        frame = frames[int(percent) % 4]
+                        print('{} {}% {}'.format(frame, percent, msg))
+
+                result = deck.write_sync(0, deck_artifact.content, progress_cb)
                 if result:
                     if self.progress_cb:
-                        self.progress_cb(f'Deck {deck.name} updated succesfully!', int(75))
+                        self.progress_cb(f'Deck {deck.name} updated succesfully!', 100)
                 else:
                     if self.progress_cb:
                         self.progress_cb(f'Failed to update deck {deck.name}', int(0))
