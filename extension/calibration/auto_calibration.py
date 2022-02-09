@@ -19,7 +19,7 @@ def connect_and_calibrate(cf):
 
 
 parser = argparse.ArgumentParser()
-subparser = parser.add_subparsers()
+subparser = parser.add_subparsers(dest='command')
 single = subparser.add_parser("single", help="Estimate and write geometry for a single drone")
 swarm = subparser.add_parser("swarm", help="Estimate and write geometry for a swarm of drones")
 # Required positional argument
@@ -40,7 +40,7 @@ swarm_identifiers.add_argument('--swarm_dimension', type=int, help="Calibrate a 
 swarm_identifiers.add_argument('--swarm_range', nargs=2, help="Calibrate a swarm, the numbers of the crazyflie are incremental inside the range (min,max) where both min and maz ar parameter for this command")
 args : argparse.Namespace = parser.parse_args()
 SWARM = False
-if(args.master_number):
+if(args.command=='swarm'):
     number = format(int(args.master_number,16), '02x').upper()
     MASTER_URI = '{}://{}/{}/{}/{}{}'.format(args.master_type, args.master_id, args.master_channel, args.master_speed, args.master_address, number)
     URIS = set()

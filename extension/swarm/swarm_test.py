@@ -42,99 +42,18 @@ def print_positions(swarm):
 def wait_for_param_download(scf):
     while not scf.cf.param.is_updated:
         time.sleep(0.5)
-        
-"""USING MOTION COMMANDER"""
+
+"""SYNCHRONIZATION"""
 barrier = Event()
 barrier.clear()
-
 def target_position(ts, name, value):
     #the cf reached the target so emit event barrier to let pass who was waiting
     print("URI1 reached the target x={:2f}".format(value))
     barrier.set()
 
-"""USING COMMANDER"""
-def take_off(cf, position):
-    take_off_time = 1.0
-    sleep_time = 0.1
-    steps = int(take_off_time / sleep_time)
-    vz = position[2] / take_off_time
-    for i in range(steps):
-        cf.commander.send_velocity_world_setpoint(0, 0, vz, 0)
-        time.sleep(sleep_time)
-def land(cf, position):
-    landing_time = 1.0
-    sleep_time = 0.1
-    steps = int(landing_time / sleep_time)
-    vz = -position[2] / landing_time
-    for _ in range(steps):
-        cf.commander.send_velocity_world_setpoint(0, 0, vz, 0)
-        time.sleep(sleep_time)
-    cf.commander.send_stop_setpoint()
-    # Make sure that the last packet leaves before the link is closed
-    # since the message queue is not flushed before closing
-    time.sleep(0.1)
-def sequence0_commander(scf : SyncCrazyflie):
-    sequence = [
-        #x, y, z, time
-        (0, 0, DEFAULT_HEIGHT, 5.0),
-        (1, 0, DEFAULT_HEIGHT, 5.0),
-        (0, 0, DEFAULT_HEIGHT, 5.0)
-    ]
-    try:
-        cf = scf.cf
-        take_off(cf, sequence[0])
-        for position in sequence:
-            print('Setting position {}'.format(position))
-            end_time = time.time() + position[3]
-            while time.time() < end_time:
-                cf.commander.send_position_setpoint(position[0],
-                                                    position[1],
-                                                    position[2], 0)
-                time.sleep(0.1)
-        land(cf, sequence[-1])
-    except Exception as e:
-        print(e)
-def sequence1_commander(scf : SyncCrazyflie):
-    sequence = [
-        #x, y, z, time
-        (0, -1, DEFAULT_HEIGHT, 5.0),
-        (0, 0, DEFAULT_HEIGHT , 5.0),
-        (0, -1, DEFAULT_HEIGHT, 5.0)
-    ]
-    try:
-        cf = scf.cf
-        take_off(cf, sequence[0])
-        for position in sequence:
-            print('Setting position {}'.format(position))
-            end_time = time.time() + position[3]
-            while time.time() < end_time:
-                cf.commander.send_position_setpoint(position[0],
-                                                    position[1],
-                                                    position[2], 0)
-                time.sleep(0.1)
-        land(cf, sequence[-1])
-    except Exception as e:
-        print(e)
-def sequence_commander(scf : SyncCrazyflie, sequence):
-    #sequence = [(x0, y0, z0, yaw0, time0), ... ]
-    try:
-        cf = scf.cf
-        take_off(cf, sequence[0])
-        for position in sequence:
-            end_time = time.time() + position[4]
-            while time.time() < end_time:
-                cf.commander.send_position_setpoint(position[0],
-                                                    position[1],
-                                                    position[2],
-                                                    position[3])
-                time.sleep(0.1)
-        land(cf, sequence[-1])
-    except Exception as e:
-        print(e)
-"""USING HL COMMANDER"""
+"""USING POSITION HL COMMANDER"""
 def activate_high_level_commander(scf):
     scf.cf.param.set_value('commander.enHighLevel', '1')
-
 def sequence0_hl_commander(scf : SyncCrazyflie):
     x = 0.0
     y = 0.0
@@ -158,15 +77,34 @@ def sequence1_hl_commander(scf : SyncCrazyflie):
         commander.go_to(x+0.5,y,1)
         barrier.wait(timeout=10)
         commander.go_to(x,y,z)
-def sequence_hl_commander(scf :SyncCrazyflie, sequence):
+def sequence_pos_hl_commander(scf :SyncCrazyflie, sequence):
     x = sequence[0][0]
     y = sequence[0][1]
     z = sequence[0][2]
-    print("POS for {}: ({:2f},{:2f},{:2f})".format(scf.cf.link_uri,x,y,z))
+    print("[o] {} starts at ({:2f},{:2f},{:2f})".format(scf.cf.link_uri,x,y,z))
     with PositionHlCommander(scf, x=x, y=y, z=z, default_height=DEFAULT_HEIGHT) as commander:
         for point in sequence[1:]:
+            print("[*] {} go to ({:2f},{:2f},{:2f})".format(scf.cf.link_uri, point[0], point[1], point[2]))
             #for each point except the first that is the initial
             commander.go_to(point[0], point[1], point[2])
+            time.sleep(3)
+
+"""USING HL COMMANDER"""
+def sequence_hl_commander(scf : SyncCrazyflie, sequence):
+    log = LogConfig(name='State', period_in_ms=1000)
+    log.add_variable('stateEstimate.x', 'float')
+    log.add_variable('stateEstimate.y', 'float')
+    log.add_variable('stateEstimate.z', 'float')
+    with SyncLogger(scf, log) as logger:
+        for log_entry in logger:
+            print("{} : [x={:.2f}\t, y={:.2f}\t, z={:.2f}\t]".format(scf.cf.link_uri, log_entry[1]["stateEstimate.x"], log_entry[1]["stateEstimate.y"], log_entry[1]["stateEstimate.z"]))
+            break
+    commander = scf.cf.high_level_commander
+    commander.takeoff(DEFAULT_HEIGHT, 3)
+    time.sleep(3)
+    commander.land(0, 3)
+    time.sleep(3)
+    commander.stop()
 
 def do_nothing(scf):
     time.sleep(1)
@@ -177,51 +115,56 @@ tasks = {
 }
 
 sequences_hl = {
+    #    x,     y,      z
     URI2 : [[
-        (0,0,0),
-        (0.3,0,1),
-        (0,0,DEFAULT_HEIGHT)
+        (0,     0,      0),
+        (0,     0,      DEFAULT_HEIGHT),
+        (0.3,   0,      DEFAULT_HEIGHT),
+        (0,     0,      DEFAULT_HEIGHT)
     ]],
     URI3 : [[
-        (0,0.5,0),
-        (0.3,0.5,1),
-        (0,0.5,DEFAULT_HEIGHT)
+        (0,     0.5,    0),
+        (0,     0.5,    DEFAULT_HEIGHT),
+        (0.3,   0.5,    DEFAULT_HEIGHT),
+        (0,     0.5,    DEFAULT_HEIGHT)
     ]],
     URI4 : [[
-        (0,1,0),
-        (0.3,1,1),
-        (0,1,DEFAULT_HEIGHT)
+        (0,     1,      0),
+        (0,     1,      DEFAULT_HEIGHT),
+        (0.3,   1,      DEFAULT_HEIGHT),
+        (0,     1,      DEFAULT_HEIGHT)
     ]],
     URI5 : [[
-        (0,1.5,0),
-        (0.3,1.5,1),
-        (0,1.5,DEFAULT_HEIGHT)
-    ]],
-}
+        (0,     1.5,    0),
+        (0,     1.5,    DEFAULT_HEIGHT),
+        (0.3,   1.5,    DEFAULT_HEIGHT),
+        (0,     1.5,    DEFAULT_HEIGHT)
+    ]],}
 
+"""
 sequences = {
+    #    x,     y,      z,                  yaw,    time
     URI2 : [[
-        (0,0,DEFAULT_HEIGHT,0,3),
-        (0.3,0,1,0,3),
-        (0,0,DEFAULT_HEIGHT,0,3)
+        (0,     0,      DEFAULT_HEIGHT,     0,      3),
+        (0.3,   0,      DEFAULT_HEIGHT,     0,      3),
+        (0,     0,      DEFAULT_HEIGHT,     0,      3)
     ]],
     URI3 : [[
-        (0,0.5,DEFAULT_HEIGHT,0,3),
-        (0.3,0.5,1,0,3),
-        (0,0.5,DEFAULT_HEIGHT,0,3)
+        (0,     0.5,    DEFAULT_HEIGHT,     0,      3),
+        (0.3,   0.5,    DEFAULT_HEIGHT,     0,      3),
+        (0,     0.5,    DEFAULT_HEIGHT,     0,      3)
     ]],
     URI4 : [[
-        (0,1,DEFAULT_HEIGHT,0,3),
-        (0.3,1,1,0,3),
-        (0,1,DEFAULT_HEIGHT,0,3)
+        (0,     1,      DEFAULT_HEIGHT,     0,      3),
+        (0.3,   1,      DEFAULT_HEIGHT,     0,      3),
+        (0,     1,      DEFAULT_HEIGHT,     0,      3)
     ]],
     URI5 : [[
-        (0.5,0,DEFAULT_HEIGHT,0,3),
-        (0.8,0,1,0,3),
-        (0.5,0,DEFAULT_HEIGHT,0,3)
-    ]],
-}
-
+        (0.5,   0,      DEFAULT_HEIGHT,     0,      3),
+        (0.8,   0,      DEFAULT_HEIGHT,     0,      3),
+        (0.5,   0,      DEFAULT_HEIGHT,     0,      3)
+    ]],}
+"""
 def reset_estimator(scf):
     cf = scf.cf
     cf.param.set_value('kalman.resetEstimation', '1')
@@ -275,9 +218,11 @@ def run_hl_common(scf, sequence):
     print("Executing common hl task with independent sequence for {}".format(scf.cf.link_uri))
     sequence_hl_commander(scf, sequence)
 
-def run_common(scf, sequence):
-    print("Executing common task with independent sequence for {}".format(scf.cf.link_uri))
-    sequence_commander(scf, sequence)
+def run_pos_hl_common(scf, sequence):
+    activate_high_level_commander(scf)
+    print("Executing common pos hl task with independent sequence for {}".format(scf.cf.link_uri))
+    sequence_pos_hl_commander(scf, sequence)
+
 
 def run_independent(scf, function):
     activate_high_level_commander(scf)
@@ -296,8 +241,8 @@ if __name__ == '__main__':
         print_positions(swarm)
         input("press to fly..")
         time.sleep(3)
-        swarm.parallel_safe(run_hl_common, args_dict=sequences_hl)
-        #swarm.parallel_safe(run_common, args_dict=sequences)
-        #swarm.parallel_safe(run_independent, args_dict=tasks)
+        #swarm.parallel_safe(run_hl_common, args_dict=sequences_hl)
+        swarm.parallel_safe(run_pos_hl_common, args_dict=sequences_hl)
+        #swarm.parallel_safe(run_independent, args_dict=tasks) THIS USES SYNCHRONIZATION with 2 drones
         time.sleep(3)
         print_positions(swarm)
