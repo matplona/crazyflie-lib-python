@@ -170,7 +170,7 @@ def upload_geometry(scf, bs_poses):
 logging.basicConfig(level=logging.ERROR)
 
 if __name__ == '__main__':
-    uri = uri_helper.uri_from_env(default='radio://0/80/2M/E7E7E7E7E7')
+    uri = uri_helper.uri_from_env(default='radio://0/80/2M/E7E7E7E706')
 
     # Initialize the low-level drivers
     cflib.crtp.init_drivers()

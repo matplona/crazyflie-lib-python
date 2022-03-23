@@ -79,7 +79,7 @@ def keep_distance_test(action_value, action_period):
     vz = max(action_value / action_period, -VelocityLimit.MAX) # bounding down velocity to LIMIT
     print("{} / {} = {}".format(action_value, action_period, vz))
 URI = 'radio://0/80/2M/E7E7E7E706'
-DEFAULT_HEIGHT = 1
+DEFAULT_HEIGHT = 0.7
 radious = 0.5
 spiral_height = 0.1
 step_duration = 3
@@ -96,8 +96,6 @@ if __name__ == '__main__':
     # Initialize the low-level drivers
     cflib.crtp.init_drivers()
     with SyncCrazyflie(URI, cf=Crazyflie(rw_cache='./cache')) as scf:
-        ranger : MultiRanger = MultiRanger(scf)
-        zranger : ZRanger = ZRanger(scf)
         reset_estimator(scf)
         print_battery_level(scf)
         input("go..")
@@ -116,13 +114,15 @@ if __name__ == '__main__':
         with MotionCommander(scf, DEFAULT_HEIGHT) as mc:
             time.sleep(3)
             try:
-                id = zranger.keep_distance(keep_distance, 400, mc)
-                barrier.wait(timeout=30)
-                zranger.stop_action(id)
+                scf.cf.param.set_value("deck_estimate_contribution.zRange2Contribution", 0)
+                mc.forward(1)
+                scf.cf.param.set_value("deck_estimate_contribution.zRange2Contribution", 1)
+                time.sleep(5)
+                mc.back(1)
+                scf.cf.param.set_value("deck_estimate_contribution.zRange2Contribution", 0)
             except Exception as e:
                 print(e)
             finally:
                 time.sleep(1)
                 mc.land()
-                time.sleep(2)
 
