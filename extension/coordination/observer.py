@@ -1,17 +1,17 @@
 from coordination import Action # import Action Type
 from coordination import Condition # import Codition Type
 
-class Subscription:
-    def __init__(self, action : Action, condition : Condition, parameters : list) -> None:
+class Observer:
+    def __init__(self, action : Action, condition : Condition, context : list) -> None:
         self.__action : Action = action
         self.__condition : Condition = condition
-        self.__parameters : list = parameters
+        self.__context : list = context
     
-    def update_subscriber(self, new_state : dict) -> None:
+    def notify(self, new_state : dict) -> None:
         #if the condition is true on the new state
         if self.__condition(new_state) :
-            # callback the subscriber with the new state and the additional parameters
-            self.__action(new_state, self.__parameters)
+            # callback the observer with the new state and its context
+            self.__action(new_state, self.__context)
 
     def set_condition(self, condition : Condition) -> None:
         self.__condition = condition
@@ -19,5 +19,5 @@ class Subscription:
     def set_action(self, action : Action) -> None:
         self.__action = action
 
-    def set_parameters(self, parameters : list) -> None:
-        self.__parameters = parameters
+    def set_context(self, context : list) -> None:
+        self.__context = context
