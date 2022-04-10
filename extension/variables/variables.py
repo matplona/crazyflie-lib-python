@@ -56,7 +56,7 @@ class Logger:
         variable_log = None
         if(group in self.__variables and name in self.__variables[group]):
             #if variable already exist raise exception
-            raise Exception("Duplicate variable in logger.")
+            raise Exception("Variable {}.{} already exist in logger.".format(group,name))
         size = self.__get_size(type)
         #search a log with exact period that can host the variable
         added = False
@@ -96,8 +96,12 @@ class Logger:
             "is_running": False, # initially not running
             "predicate" : lambda _ : True, # by default no predicate constraint
             "cb": None, # by default None cb
-            "clock" : 0, # initialize lamport clock
         }
+
+    def remove_variable(self, group, name):
+        if group not in self.__variables or name not in self.__variables[group]:
+            #if variable already exist raise exception
+            raise Exception("Variable {}.{} not exist in logger".format(group,name))
 
     def __add_log(self, period_in_ms) -> LogConfig:
         # [!] log must be <= 26 Bytes (e.g., 6 floats + 1 FP16)
@@ -122,22 +126,20 @@ class Logger:
             group_name : str = name.split(".")[1]
             group_ref = self.__variables[group_name]
             var_ref = self.__variables[group_name][var_name]
-            clock : int = var_ref['clock']
-            var_ref['clock'] += 1 # increment the lamport clock
 
-            # if is the first variable in the group with this clock
-            if clock not in group_ref['history']:
-                # create the entry in the history
-                group_ref['history'][clock] = {}
+            # if is the first variable in the group setting the value
+            if 'data' not in group_ref:
+                # create the entry in the group
+                group_ref['data'] = {}
             
             # add the value in the history
-            group_ref['history'][clock][var_name] = value
+            group_ref['data'][var_name] = value
 
-            # if is the last of the group with this clock
-            if len(group_ref['history'][clock]) == group_ref['count']:
+            # if is the last of the group setting the value
+            if len(group_ref['data']) == group_ref['count']:
                 # remove from history and call group callback if needed
                 if group_ref['group_cb'] is not None:
-                    data = group_ref['history'].pop(clock) # remove from dict
+                    data = group_ref.pop('data') # remove from dict
                     if(group_ref['group_predicate'](data)): # if predicate is SAT
                         group_ref['group_cb'](timestamp, group_name, data) # callback with data
 
