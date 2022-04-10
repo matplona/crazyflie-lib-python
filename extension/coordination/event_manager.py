@@ -28,13 +28,27 @@ class EventManager:
         else:
             raise('Event "{}" already exist!'.format(event_name))
     
+    def remove_event(self, event_name : str) -> dict:
+        # check that the event exist
+        if event_name in self.__events:
+            # remove event and return its last state 
+            return self.__event.pop(event_name)
+        else:
+            raise('Event "{}" doesn\' exist!'.format(event_name))
+    
+    def get_event_state(self, event_name: str):
+        if event_name in self.__events :
+            self.__events[event_name].get_state()
+        else:
+            raise('Event "{}" doesn\'t exist!'.format(event_name))
+
     def update_event_state(self, event_name : str, new_state : dict) -> None:
         if event_name in self.__events :
             self.__events[event_name].update_event_state(new_state)
         else:
             raise('Event "{}" doesn\'t exist!'.format(event_name))
 
-    def subscribe(self, event_name : str, action : Action, condition : Condition = lambda *_ : True, context : list = []):
+    def observe(self, event_name : str, action : Action, condition : Condition = lambda *_ : True, context : list = []):
         if event_name in self.__events :
             obs = Observer(action, condition, context)
             self.__events[event_name].add_observer(obs)

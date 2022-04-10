@@ -1,11 +1,12 @@
+from typing import Any
 from coordination import Action # import Action Type
 from coordination import Condition # import Codition Type
 
 class Observer:
-    def __init__(self, action : Action, condition : Condition, context : list) -> None:
+    def __init__(self, action : Action, condition : Condition, context : Any) -> None:
         self.__action : Action = action
         self.__condition : Condition = condition
-        self.__context : list = context
+        self.__context : Any = context
     
     def notify(self, new_state : dict) -> None:
         #if the condition is true on the new state
@@ -19,5 +20,5 @@ class Observer:
     def set_action(self, action : Action) -> None:
         self.__action = action
 
-    def set_context(self, context : list) -> None:
+    def set_context(self, context : Any) -> None:
         self.__context = context

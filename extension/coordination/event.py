@@ -15,3 +15,6 @@ class Event:
             # notify observer of the change
             for s in self.__observer:
                 s.notify(self.__state)
+    
+    def get_state(self):
+        return self.__state
