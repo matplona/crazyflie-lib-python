@@ -1,13 +1,14 @@
 from cflib import crazyflie
 from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
 from cflib.crazyflie.log import LogConfig
-from enum import Enum
 import time
+from typing import Any, Callable
 
-
-class RunningState(Enum):
-    STOPPED = 0
-    RUNNING = 1
+# type aliases
+Callback = Callable[[int, str, Any], None]
+GroupCallback = Callable[[int, str, dict], None]
+Predicate = Callable[[Any], bool]
+GroupPredicate = Callable[[dict], bool]
 
 class Logger:
     __instances = {}
@@ -53,7 +54,7 @@ class Logger:
         [!] variables must be in the ToC
         """
         variable_log = None
-        if("{}.{}".format(group,name) in self.__variables):
+        if(group in self.__variables and name in self.__variables[group]):
             #if variable already exist raise exception
             raise Exception("Duplicate variable in logger.")
         size = self.__get_size(type)
@@ -78,14 +79,25 @@ class Logger:
             log["size"] += size
             self.__cf.log.add_config(log["log"])
             variable_log = log
-        #add variable to dict of variables
-        self.__variables["{}.{}".format(group,name)] = {
-                "type": type,
-                "period" : period_in_ms,
-                "log": variable_log,
-                "predicate" : lambda _ : True, #by default no predicate constraint
-                "cb": lambda timestamp, name, value : None # by default cb just returns
+        
+        # if is the first of the group
+        if(group not in self.__variables):
+            # add group because
+            self.__variables[group] = {
+                "group_predicate" : lambda _ : True, # by default no predicate constraint
+                "group_cb": None, # by default None cb
+                "count": 0, # indicates the num of var in the group that are currently logging
             }
+        # add the variable to the group
+        self.__variables[group][name] = {
+            "type": type,
+            "period" : period_in_ms,
+            "log": variable_log,
+            "is_running": False, # initially not running
+            "predicate" : lambda _ : True, # by default no predicate constraint
+            "cb": None, # by default None cb
+            "clock" : 0, # initialize lamport clock
+        }
 
     def __add_log(self, period_in_ms) -> LogConfig:
         # [!] log must be <= 26 Bytes (e.g., 6 floats + 1 FP16)
@@ -94,89 +106,120 @@ class Logger:
             period_in_ms = 10
         log = LogConfig(name=name, period_in_ms=period_in_ms)
         new_entry = {
-                "log":log,
-                "period":period_in_ms,
-                "size": 0,
-                "status" : RunningState.STOPPED
-            }
+            "log":log,
+            "period":period_in_ms,
+            "size": 0,
+            "count": 0, # num of variable that have started logging
+        }
         self.__logs.append(new_entry)
         log.data_received_cb.add_callback(self.__cb)
         return new_entry
 
-    def __cb (self, timestamp, data, logconf):
-        """
-        When log data are ready we check if the predicate of the variable is satisfied and if so, we call it's cb
-        """
-        #for each line of the log
+    def __cb(self, timestamp, data : dict, logconfig):
         for name, value in data.items():
-            variable = self.__variables[name]
-            #check if the predicate is true
-            if variable["predicate"](value):
-                #call the callback with the following parameter:
-                #   -   timestamp
-                #   -   group.name
-                #   -   value
-                variable["cb"](timestamp, name, value)
+            # get the name and the group
+            var_name : str = name.split(".")[0]
+            group_name : str = name.split(".")[1]
+            group_ref = self.__variables[group_name]
+            var_ref = self.__variables[group_name][var_name]
+            clock : int = var_ref['clock']
+            var_ref['clock'] += 1 # increment the lamport clock
+
+            # if is the first variable in the group with this clock
+            if clock not in group_ref['history']:
+                # create the entry in the history
+                group_ref['history'][clock] = {}
+            
+            # add the value in the history
+            group_ref['history'][clock][var_name] = value
+
+            # if is the last of the group with this clock
+            if len(group_ref['history'][clock]) == group_ref['count']:
+                # remove from history and call group callback if needed
+                if group_ref['group_cb'] is not None:
+                    data = group_ref['history'].pop(clock) # remove from dict
+                    if(group_ref['group_predicate'](data)): # if predicate is SAT
+                        group_ref['group_cb'](timestamp, group_name, data) # callback with data
+
+            # call variable callback if needed
+            if var_ref['cb'] is not None:
+                if var_ref['predicate'](value):
+                    var_ref['cb'](timestamp, name, value)
 
     def start_logging_variable(self, group, name):
         """Start logging the variable specified"""
-        log : LogConfig = self.__variables["{}.{}".format(group,name)]["log"]
-        if(log["status"] == RunningState.STOPPED):
-            log["log"].start()
-            log["status"] = RunningState.RUNNING  
+        if not self.__variables[group][name]['is_running']:
+            log : LogConfig = self.__variables[group][name]["log"]
+            self.__variables[group][name]['is_running'] = True
+            log['count'] += 1 # increment count of variable that has been started
+            if(log['count'] == 1):
+                log["log"].start()
+
     def stop_logging_variable(self, group, name):
         """Stop logging the variable specified"""
-        log : LogConfig = self.__variables["{}.{}".format(group,name)]["log"]
-        if(log["status"] == RunningState.RUNNING):
-            log["log"].stop()
-            log["status"] = RunningState.STOPPED
+        if self.__variables[group][name]['is_running']:
+            log : LogConfig = self.__variables[group][name]["log"]
+            self.__variables[group][name]['is_running'] = False
+            log['count'] -= 1 # decrement count of variable that has been started
+            if(log['count'] == 0):
+                log["log"].stop()
 
     def start_logging_group(self, group):
         """Start logging all the variable in the group specified"""
-        for name, var in self.__variables.items():
-            if(name.startswith(group) and var["log"]["status"]== RunningState.STOPPED):
-                var["log"]["log"].start()
-                var["log"]["status"] = RunningState.RUNNING
+        for name in self.__variables[group].keys():
+            self.start_logging_variable(group, name)
+
     def stop_logging_group(self, group):
         """Stop logging all the variable in the group specified"""
-        for name, var in self.__variables.items():
-            if(name.startswith(group) and var["log"]["status"]== RunningState.RUNNING):
-                var["log"]["log"].stop()
-                var["log"]["status"] = RunningState.STOPPED
+        for name in self.__variables[group].keys():
+            self.stop_logging_variable(group, name)
     
     def start_logging_all(self):
         """Start logging all the variable added"""
-        for log in self.__logs:
-            if(log["status"]==RunningState.STOPPED):
-                log["log"].start()
-                log["status"] = RunningState.RUNNING
+        for group in self.__variables.keys():
+            self.start_logging_group(group)
     def stop_logging_all(self):
         """Stop logging all the variable added"""
-        for log in self.__logs:
-            if(log["status"]==RunningState.RUNNING):
-                log["log"].stop()
-                log["status"] = RunningState.STOPPED
+        for group in self.__variables.keys():
+            self.stop_logging_group(group)
 
-    def set_watcher(self, group, name, cb):
+    def set_group_watcher(self, group, cb : GroupCallback):
+        """
+        Add a callback to the group specified, when start logging this function will be called
+        with 3 parameter: timestamp (of the last logged), group name and data. Where data is a 
+        dict containing the association name:value for each variable in the group
+        """
+        self.__variables[group]["group_cb"] = cb
+
+    def set_variable_watcher(self, group, name, cb : Callback):
         """
         Add a callback to the variable specified, when start logging this function will be called
         with 3 parameter: timestamp, name and value.
         """
-        if(cb.__code__.co_argcount != 3 ):
-            pass#raise Exception("Watcher must accept exacty 3 parameter.")
-        variable = self.__variables["{}.{}".format(group,name)]
-        variable["cb"] = cb
-    def set_predicate(self, group, name, pred):
+        self.__variables[group][name]['cb'] = cb
+
+    def set_group_predicate(self, group, pred : GroupPredicate):
+        """
+        Add a predicate to the group specified, when start logging before calling the watcher
+        it will be called the function pred with the data as parameter, if pred returns True the 
+        watcher is called otherwise not.
+        The function pred must be a function that takes a dict and returns a bool.
+        Notice: the parameter data is a dict containing the association name:value for 
+        each variable in the group
+        """
+        self.__variables[group]['group_predicate'] = pred
+
+    def set_variable_predicate(self, group, name, pred : Predicate):
         """
         Add a predicate to the variable specified, when start logging before calling the watcher
         it will be called the function pred with the value as parameter, if pred returns True the 
         watcher is called otherwise not.
         The function pred must be a function that takes a parameter and returns a bool.
         """
-        if(pred.__code__.co_argcount != 1):
-            raise Exception("Predicate must accept exacty 1 parameter.")
-        variable = self.__variables["{}.{}".format(group,name)]
-        variable["predicate"] = pred
+        self.__variables[group][name]['predicate'] = pred
+
+
+
 
 class Setter:
     __instances = {}
