@@ -2,7 +2,7 @@ from threading import Event
 import time
 from cflib.crazyflie import Crazyflie
 from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
-from extension.coordination.event_manager import EventManager
+from extension.coordination.coordination_manager import CoordinationManager
 from extension.decks.ai import AiDeck
 from extension.decks.deck import Deck
 from extension.decks.multiranger import MultiRanger
@@ -39,9 +39,9 @@ class ExtendedCrazyFlie(SyncCrazyflie):
         self.logger.add_variable('pm','batteryLevel', 10000, 'uint8_t')
         self.logger.add_variable('pm','state', 10000, 'int8_t')
         self.logger.set_group_watcher('pm', self.__update_battery)
-        self.battery_event = "{}@battery".format(self.cf.link_uri)
-        EventManager.getInstance().add_event(
-            self.battery_event, {
+        self.battery_observable = "{}@battery".format(self.cf.link_uri)
+        CoordinationManager.getInstance().add_observable(
+            self.battery_observable, {
                 'vabt' : 5,
                 'batteryLevel': 100,
                 'state': 0,
@@ -71,37 +71,34 @@ class ExtendedCrazyFlie(SyncCrazyflie):
         self.logger.add_variable('kalman', 'varPY', 10, 'float')
         self.logger.add_variable('kalman', 'varPZ', 10, 'float')
         self.logger.set_group_watcher('kalman', self.__cb_estimators)
-        em : EventManager = EventManager.getInstance()
-        em.add_event("{}@resetEstimation".format(self.cf.link_uri), {
+        cm : CoordinationManager = CoordinationManager.getInstance()
+        cm.add_observable("{}@resetEstimation".format(self.cf.link_uri), {
             'var_x_history' : [1000] + 10,
             'var_y_history' : [1000] + 10,
             'var_z_history' : [1000] + 10,
         })
-        quality_reached : Event = Event()
-        em.observe(
-            event_name= "{}@resetEstimation".format(self.cf.link_uri), # event name
-            action= lambda _ , e : e[0].set(), # if pass the condition trigger the event (context)
+        cm.observe_and_wait(
+            observable_name= "{}@resetEstimation".format(self.cf.link_uri), # observable name
             condition= self.__quality_test, # test if the quality is below threshold
-            context= [quality_reached] # context is the event quality reached
-        )
-        quality_reached.wait() # wait the quality
+        ).wait()# wait the quality
+         
         # remove used resources
         self.logger.remove_variable('kalman', 'varPX')
         self.logger.remove_variable('kalman', 'varPX')
         self.logger.remove_variable('kalman', 'varPX')
-        em.remove_event("{}@resetEstimation".format(self.cf.link_uri))
+        cm.remove_observable("{}@resetEstimation".format(self.cf.link_uri))
 
     # callback for update estimator values
     def __cb_estimators(self, ts, name, data):
-        em : EventManager = EventManager.getInstance()
-        state = em.get_event_state("{}@resetEstimation".format(self.cf.link_uri))
+        cm : CoordinationManager = CoordinationManager.getInstance()
+        state = cm.get_observable_state("{}@resetEstimation".format(self.cf.link_uri))
         state['var_x_history'].append(data['varPX'])
         state['var_x_history'].pop(0)
         state['var_y_history'].append(data['varPY'])
         state['var_y_history'].pop(0)
         state['var_z_history'].append(data['varPZ'])
         state['var_z_history'].pop(0)
-        em.update_event_state("{}@resetEstimation".format(self.cf.link_uri), state)
+        cm.update_observable_state("{}@resetEstimation".format(self.cf.link_uri), state)
     # condition on notify
     def __quality_test(self, state) -> bool:
         threshold = 0.001
@@ -119,7 +116,7 @@ class ExtendedCrazyFlie(SyncCrazyflie):
             'vbat': data['vbat'],
             'batteryLevel':data['batteryLevel']
         }
-        EventManager.getInstance().update_event_state(self.battery_event, self.__battery)
+        CoordinationManager.getInstance().update_observable_state(self.battery_observable, self.__battery)
 
     def get_battery(self):
         return self.__battery

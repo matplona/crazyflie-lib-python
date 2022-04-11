@@ -25,11 +25,9 @@ input   output              input   output
 """
 
 from functools import reduce
-import math
 from threading import Event
-import time
 from cflib.positioning.motion_commander import MotionCommander
-from extension.coordination.event_manager import EventManager
+from extension.coordination.coordination_manager import CoordinationManager
 from extension.decks.deck import Deck
 from extension.decks.z_ranger import VelocityLimit
 from extension.examples.hand_driven_drone.utils import ActionLimit
@@ -68,7 +66,6 @@ def follow_safe(multiranger_state : dict, mc : MotionCommander) :
         # unsafe -> stop action
         mc.start_linear_motion(0, 0, 0)
 
-
 def is_low(battery : dict):
     return battery['batteryLevel'] <= BATTERY_LIMIT
 
@@ -78,18 +75,14 @@ with ExtendedCrazyFlie(URI) as ecf:
     print(ecf.get_battery)
     if(Deck.bcMultiranger not in ecf.decks):
         raise Exception("This example needs Multiranger deck attached")
-    em : EventManager = EventManager.getInstance()
-    finish_event : Event = Event()
+    cm : CoordinationManager = CoordinationManager.getInstance()
     with MotionCommander(ecf.cf, default_height=DEFAULT_HEIGHT) as mc:
-        em.observe(
-            event_name= ecf.battery_event,
-            action= lambda _, e: e.set(),
-            condition= is_low,
-            context= [finish_event]
-        )
-        em.observe(
-            event_name= ecf.decks[Deck.bcMultiranger].event_name,
+        cm.observe(
+            observable_name= ecf.decks[Deck.bcMultiranger].observable_name,
             action= follow_safe,
             context= [mc],
         )
-        finish_event.wait()
+        cm.observe_and_wait(
+            observable_name= ecf.battery_observable,
+            condition= is_low,
+        ).wait()

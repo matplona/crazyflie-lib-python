@@ -1,6 +1,6 @@
 from coordination.observer import Observer
 
-class Event:
+class Observable:
     def __init__(self, initial_state : dict) -> None:
         self.__state : dict = initial_state
         self.__observer : list[Observer]  = []
@@ -8,7 +8,7 @@ class Event:
     def add_observer(self, observer : Observer) -> None:
         self.__observer.append(observer)
 
-    def update_event_state(self, new_state : dict) -> None:
+    def update_observable_state(self, new_state : dict) -> None:
         # quick check if domain is consistent
         if self.__state.keys() == new_state.keys():
             self.__state = new_state

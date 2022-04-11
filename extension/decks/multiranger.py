@@ -1,6 +1,6 @@
 from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
 from extension.variables.variables import Logger
-from extension.coordination.event_manager import EventManager
+from extension.coordination.coordination_manager import CoordinationManager
 
 MAX_RANGE = 4000 # max range of action = 4 meter
 
@@ -11,12 +11,12 @@ class MultiRanger:
         self.__right = MAX_RANGE+1
         self.__left = MAX_RANGE+1
         self.__up =  MAX_RANGE+1
-        self.event_name  = "{}@multiranger".format(scf.cf.link_uri),
+        self.observable_name  = "{}@multiranger".format(scf.cf.link_uri),
         self.__logger = Logger.getInstance(scf)
-        self.__manager = EventManager.getInstance()
+        self.__manager = CoordinationManager.getInstance()
 
-        # Add event to Manager
-        self.__manager.add_event(self.event_name, self.get_state)
+        # Add observable to Manager
+        self.__manager.add_observable(self.observable_name, self.get_state)
 
         # Logging variables declaration
         self.__logger.add_variable("range", "front", update_period_ms, "uint16_t")
@@ -39,7 +39,7 @@ class MultiRanger:
         self.__right = data['right']
         self.__left = data['left']
         self.__up = data['up']
-        self.__manager.update_event_state(self.event_name, data)
+        self.__manager.update_observable_state(self.observable_name, data)
 
     def get_front(self) -> int:
         return self.__front
@@ -59,5 +59,3 @@ class MultiRanger:
             'left':self.__left,
             'up': self.__up,
         }
-    def get_event_name(self) -> str:
-        return self.event_name
