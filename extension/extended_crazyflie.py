@@ -39,6 +39,14 @@ class ExtendedCrazyFlie(SyncCrazyflie):
         self.logger.add_variable('pm','batteryLevel', 10000, 'uint8_t')
         self.logger.add_variable('pm','state', 10000, 'int8_t')
         self.logger.set_group_watcher('pm', self.__update_battery)
+        self.battery_event = "{}@battery".format(self.cf.link_uri)
+        EventManager.getInstance().add_event(
+            self.battery_event, {
+                'vabt' : 5,
+                'batteryLevel': 100,
+                'state': 0,
+            }
+        )
         self.logger.start_logging_group('pm')
 
         # return reference
@@ -71,10 +79,10 @@ class ExtendedCrazyFlie(SyncCrazyflie):
         })
         quality_reached : Event = Event()
         em.observe(
-            "{}@resetEstimation".format(self.cf.link_uri), # event name
-            lambda _ , e : e[0].set(), # if pass the condition trigger the event (context)
-            self.__quality_test, # test if the quality is below threshold
-            [quality_reached] # context is the event quality reached
+            event_name= "{}@resetEstimation".format(self.cf.link_uri), # event name
+            action= lambda _ , e : e[0].set(), # if pass the condition trigger the event (context)
+            condition= self.__quality_test, # test if the quality is below threshold
+            context= [quality_reached] # context is the event quality reached
         )
         quality_reached.wait() # wait the quality
         # remove used resources
@@ -111,6 +119,7 @@ class ExtendedCrazyFlie(SyncCrazyflie):
             'vbat': data['vbat'],
             'batteryLevel':data['batteryLevel']
         }
+        EventManager.getInstance().update_event_state(self.battery_event, self.__battery)
 
     def get_battery(self):
         return self.__battery

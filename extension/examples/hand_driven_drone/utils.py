@@ -2,6 +2,7 @@ class ActionLimit():
     #measure unit millimeters
     MIN = 500
     MAX = 1000
+    SAFE = 300 
 
 class VelocityLimit():
     #measure unit meters/second

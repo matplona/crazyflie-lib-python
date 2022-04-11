@@ -6,9 +6,9 @@ Closer would be the hand faster would be the drone in
 flying away from your hand.
 In this example the height of the flight is fixed and 
 the drone moves only in the x-y plane.
+The range of the action and the velocity limits are specified in the utils.py 
 """
 
-# the range of the action would be from 1 meter to 50 centimeter
 import time
 from cflib.positioning.motion_commander import MotionCommander
 from extension.coordination.event_manager import EventManager
@@ -32,6 +32,6 @@ with ExtendedCrazyFlie(URI) as ecf:
         em.observe(
             event_name= ecf.decks[Deck.bcMultiranger].event_name,
             action= fly_away,
-            context= mc,
+            context= [mc],
         )
         time.sleep(30)
