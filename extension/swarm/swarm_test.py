@@ -7,7 +7,7 @@ from cflib.crazyflie.swarm import Swarm
 from cflib.crazyflie.log import LogConfig
 from cflib.crazyflie.syncLogger import SyncLogger
 from cflib.positioning.position_hl_commander import PositionHlCommander
-from extension.variables.variables import Logger
+from extension.variables.logging_manager import LoggingManager
 
 DEFAULT_HEIGHT = 0.5
 URI0 = 'radio://0/80/2M/E7E7E7E700'
@@ -25,15 +25,6 @@ uris = {
     URI4,
     URI5,
 }
-
-def print_battery_level(scf: SyncCrazyflie):
-    lg = LogConfig(name='Battery', period_in_ms=10)
-    lg.add_variable('pm.vbat', 'float')
-    lg.add_variable('pm.batteryLevel')
-    with SyncLogger(scf, lg) as logger:
-        for log_entry in logger:
-            print("{} : {}".format(scf.cf.link_uri, log_entry[1] ))
-            break
 
 def print_positions(swarm):
     for uri, position in swarm.get_estimated_positions().items():
@@ -63,11 +54,11 @@ def sequence0_hl_commander(scf : SyncCrazyflie):
         #only take off
         barrier.wait(timeout=10)
 def sequence1_hl_commander(scf : SyncCrazyflie):
-    logger = Logger(scf)
+    logger = LoggingManager(scf)
     logger.add_variable("stateEstimate","x", 10, "float")
     logger.add_variable("stateEstimate","y", 10, "float")
-    logger.add_predicate("stateEstimate", "x", lambda val: 0.4<val<0.6)
-    logger.add_watcher("stateEstimate", "x", target_position)
+    logger.set_variable_predicate("stateEstimate", "x", lambda val: 0.4<val<0.6)
+    logger.set_variable_watcher("stateEstimate", "x", target_position)
     logger.start_logging_all()
     x = 0.0
     y = 1.0
@@ -235,7 +226,6 @@ if __name__ == '__main__':
     with Swarm(uris, factory=factory) as swarm:
         print('Waiting for parameters to be downloaded...')
         swarm.parallel(wait_for_param_download)
-        swarm.parallel(print_battery_level)
         swarm.parallel_safe(reset_estimator)
         time.sleep(3)
         print_positions(swarm)

@@ -3,7 +3,7 @@ from cflib.crazyflie.log import LogConfig
 from cflib.crazyflie.syncLogger import SyncLogger
 from extension.decks.z_ranger import ZRanger
 from extension.swarm.swarm_test import print_battery_level
-from extension.variables.variables import Logger
+from extension.variables.parameters_manager import Logger
 import time
 import math
 import cflib.crtp

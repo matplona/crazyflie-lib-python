@@ -1,5 +1,4 @@
-from cflib import crazyflie
-from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
+from cflib.crazyflie import Crazyflie
 from cflib.crazyflie.log import LogConfig
 import time
 from typing import Any, Callable
@@ -10,27 +9,24 @@ GroupCallback = Callable[[int, str, dict], None]
 Predicate = Callable[[Any], bool]
 GroupPredicate = Callable[[dict], bool]
 
-class Logger:
-    __instances = {}
+class LoggingManager:
+    __instance = None
 
     @staticmethod
-    def getInstance(scf : SyncCrazyflie) :
-        """call this method to get the right instance of the logger given the SyncCrazyFlie"""
-        if scf.cf.link_uri in Logger.__instances:
-            return Logger.__instances.get(scf.cf.link_uri)
-        #if not return create a new instance and add in the dict then return it
-        Logger.__instances[scf.cf.link_uri] = None
-        logger : Logger = Logger(scf)
-        Logger.__instances[scf.cf.link_uri] = logger
-        return logger
+    def getInstance(cf : Crazyflie) :
+        """call this method to get the single instance of the LoggingManager"""
+        if LoggingManager.__instance == None:
+            LoggingManager.__instance = LoggingManager()
+        return LoggingManager.__instance
 
-    def __init__(self, scf : SyncCrazyflie) -> None:
-        if scf.cf.link_uri not in Logger.__instances :
-            raise("This is not the right way to get an Instance, please call the static method getInstance(scf)")
-        else:
-            self.__cf : crazyflie.Crazyflie = scf.cf
+    def __init__(self, cf : Crazyflie) -> None:
+        if self.__instance == None :
+            # initialize correctly the instance
+            self.__cf : Crazyflie = cf
             self.__variables = {}
             self.__logs = []
+        else:
+            raise("This is not the right way to get an Instance, please call the static method getInstance()")
     
     def __get_size(self, type) -> int:
         if(type=='uint8_t' or type=='int8_t'):
@@ -44,8 +40,8 @@ class Logger:
 
     def add_variable(self, group, name, period_in_ms, type) -> None:
         """
-        Add a variable to the logger.
-        [!] The datatype is the transferred datatype, it will be converted from internal type to transferred type before transfers:
+        Add a variable to the LoggingManager.
+        [!] The type can differ from the ToC and must be one of the following:
             *   float                                                   # 4 Bytes
             *   uint8_t and int8_t                                      # 1 Byte
             *   uint16_t and int16_t                                    # 2 Bytes
@@ -56,7 +52,7 @@ class Logger:
         variable_log = None
         if(group in self.__variables and name in self.__variables[group]):
             #if variable already exist raise exception
-            raise Exception("Variable {}.{} already exist in logger.".format(group,name))
+            raise Exception("Variable {}.{} already exist in LoggingManager.".format(group,name))
         size = self.__get_size(type)
         #search a log with exact period that can host the variable
         added = False
@@ -100,8 +96,9 @@ class Logger:
 
     def remove_variable(self, group, name):
         if group not in self.__variables or name not in self.__variables[group]:
-            #if variable already exist raise exception
-            raise Exception("Variable {}.{} not exist in logger".format(group,name))
+            #if variable not exist raise exception
+            raise Exception("Variable {}.{} not exist in LoggingManager".format(group,name))
+        
 
     def __add_log(self, period_in_ms) -> LogConfig:
         # [!] log must be <= 26 Bytes (e.g., 6 floats + 1 FP16)
@@ -150,6 +147,9 @@ class Logger:
 
     def start_logging_variable(self, group, name):
         """Start logging the variable specified"""
+        if group not in self.__variables or name not in self.__variables[group]:
+            #if variable not exist raise exception
+            raise Exception("Variable {}.{} not exist in LoggingManager".format(group,name))
         if not self.__variables[group][name]['is_running']:
             log : LogConfig = self.__variables[group][name]["log"]
             self.__variables[group][name]['is_running'] = True
@@ -159,6 +159,9 @@ class Logger:
 
     def stop_logging_variable(self, group, name):
         """Stop logging the variable specified"""
+        if group not in self.__variables or name not in self.__variables[group]:
+            #if variable not exist raise exception
+            raise Exception("Variable {}.{} not exist in LoggingManager".format(group,name))
         if self.__variables[group][name]['is_running']:
             log : LogConfig = self.__variables[group][name]["log"]
             self.__variables[group][name]['is_running'] = False
@@ -168,11 +171,17 @@ class Logger:
 
     def start_logging_group(self, group):
         """Start logging all the variable in the group specified"""
+        if group not in self.__variables:
+            #if group not exist raise exception
+            raise Exception("Group {} not exist in LoggingManager".format(group))
         for name in self.__variables[group].keys():
             self.start_logging_variable(group, name)
 
     def stop_logging_group(self, group):
         """Stop logging all the variable in the group specified"""
+        if group not in self.__variables:
+            #if group not exist raise exception
+            raise Exception("Group {} not exist in LoggingManager".format(group))
         for name in self.__variables[group].keys():
             self.stop_logging_variable(group, name)
     
@@ -191,6 +200,9 @@ class Logger:
         with 3 parameter: timestamp (of the last logged), group name and data. Where data is a 
         dict containing the association name:value for each variable in the group
         """
+        if group not in self.__variables:
+            #if group not exist raise exception
+            raise Exception("Group {} not exist in LoggingManager".format(group))
         self.__variables[group]["group_cb"] = cb
 
     def set_variable_watcher(self, group, name, cb : Callback):
@@ -198,6 +210,9 @@ class Logger:
         Add a callback to the variable specified, when start logging this function will be called
         with 3 parameter: timestamp, name and value.
         """
+        if group not in self.__variables or name not in self.__variables[group]:
+            #if variable not exist raise exception
+            raise Exception("Variable {}.{} not exist in LoggingManager".format(group,name))
         self.__variables[group][name]['cb'] = cb
 
     def set_group_predicate(self, group, pred : GroupPredicate):
@@ -209,6 +224,9 @@ class Logger:
         Notice: the parameter data is a dict containing the association name:value for 
         each variable in the group
         """
+        if group not in self.__variables:
+            #if group not exist raise exception
+            raise Exception("Group {} not exist in LoggingManager".format(group))
         self.__variables[group]['group_predicate'] = pred
 
     def set_variable_predicate(self, group, name, pred : Predicate):
@@ -218,89 +236,7 @@ class Logger:
         watcher is called otherwise not.
         The function pred must be a function that takes a parameter and returns a bool.
         """
+        if group not in self.__variables or name not in self.__variables[group]:
+            #if variable not exist raise exception
+            raise Exception("Variable {}.{} not exist in LoggingManager".format(group,name))
         self.__variables[group][name]['predicate'] = pred
-
-
-
-
-class Setter:
-    __instances = {}
-
-    @staticmethod
-    def getInstance(scf : SyncCrazyflie) :
-        """call this method to get the right instance of the setter given the SyncCrazyFlie"""
-        if scf.cf.link_uri in Setter.__instances:
-            return Setter.__instances.get(scf.cf.link_uri)
-        #if not return create a new instance and add in the dict then return it
-        s = Setter(scf)
-        Setter.__instances[scf.cf.link_uri] = s
-        return s
-
-    def __init__(self, scf : SyncCrazyflie) -> None:
-        if scf.cf.link_uri not in Setter.__instances :
-            raise("This is not the right way to get an Instance, please call the static method getInstance(scf)")
-        else:
-            self.__cf : crazyflie = scf.cf
-            self.__variables = {}
-
-    def __cb(self, name, value):
-        ts = int(time.time()*1000)
-        value = float(value)
-        #check if the predicate is true
-        if(self.__variables[name]["predicate"](value)):
-            #call the callback with the following parameter:
-                #   -   timestamp
-                #   -   group.name
-                #   -   value
-            self.__variables[name]["cb"](ts, name, value)
-
-    def add_variable(self, group, name):
-        self.__variables["{}.{}".format(group, name)] = {
-            "group":group,
-            "name":name,
-            "cb": lambda timestamp, name, value : None, # initial empty watcher
-            "predicate" : lambda value : True # inital not constrainted predicate
-        }
-        self.__cf.param.add_update_callback(group, name, self.__cb)
-
-    def set_watcher(self, group, name, cb):
-        """
-        Add a callback to the variable specified, when the value of this variable change, this function will be 
-        called with 3 parameter: timestamp, name and value.
-        [!] ATTENTION: the timestamp is generated by the python script not by the CF
-        """
-        if(cb.__code__.co_argcount != 3):
-            raise Exception("Watcher must accept exacty 3 parameter.")
-        if("{}.{}".format(group, name) in self.__variables):
-            self.__variables["{}.{}".format(group, name)]["cb"] = cb
-        else:
-            raise Exception("Variable not found in the setter, you may add it before use.")
-
-    def set_predicate(self, group, name, pred):
-        """
-        Add a predicate to the variable such that it call the watcher only when the predicate returns true
-        """
-        if(pred.__code__.co_argcount != 1):
-            raise Exception("Predicate must accept exacty 1 parameter.")
-        if("{}.{}".format(group, name) in self.__variables):
-            self.__variables["{}.{}".format(group, name)]["predicate"] = pred
-        else:
-            raise Exception("Variable not found in the setter, you may add it before use.")
-
-    def set_value(self, group, name, value, template="{:f}"):
-        """
-        Set the value of a parameter direcly on board of the CF. Parameter must be according to the toc
-        """
-        if("{}.{}".format(group, name) in self.__variables):
-            self.__cf.param.set_value("{}.{}".format(group, name), template.format(value))
-        else:
-            raise Exception("Variable not found in the setter, you may add it before use.")
-
-    def get_value(self, group, name):
-        """
-        Get the value of a parameter direcly on board of the CF. Parameter must be according to the toc
-        """
-        if("{}.{}".format(group, name) in self.__variables):
-            return self.__cf.param.get_value("{}.{}".format(group, name))
-        else:
-            raise Exception("Variable not found in the setter, you may add it before use.")

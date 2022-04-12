@@ -51,9 +51,9 @@ class AiDeck:
         self.__port = port
         self.__ip = ip
         self.__socket : socket.socket = None
-        self._connect() # connect to the drone
+        self.__connect() # connect to the drone
 
-    def _connect(self) -> None:
+    def __connect(self) -> None:
         print("Connecting to socket on {}:{}...".format(self.__ip, self.__port))
         self.__socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.__socket.settimeout(10)
@@ -134,9 +134,9 @@ class AiDeck:
         if not self.__socket:
             print("Socket not connected, connect to the drone to start the video stream")
             return
-        self._start_stream(algo, *args)
+        self.__start_stream(algo, *args)
     
-    def _start_stream(self, callback, *args):
+    def __start_stream(self, callback, *args):
         self.__stream = ImgThread(self.__socket, callback, *args)
         self.__stream.start()
     

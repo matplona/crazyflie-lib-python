@@ -1,37 +1,34 @@
-from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
-from extension.variables.variables import Logger
-from extension.coordination.coordination_manager import CoordinationManager
+from extension.extended_crazyflie import ExtendedCrazyFlie
 
 MAX_RANGE = 4000 # max range of action = 4 meter
 
 class MultiRanger:
-    def __init__(self, scf : SyncCrazyflie, update_period_ms = 100) -> None:
+    def __init__(self, ecf : ExtendedCrazyFlie, update_period_ms = 100) -> None:
         self.__front = MAX_RANGE+1
         self.__back = MAX_RANGE+1
         self.__right = MAX_RANGE+1
         self.__left = MAX_RANGE+1
         self.__up =  MAX_RANGE+1
-        self.observable_name  = "{}@multiranger".format(scf.cf.link_uri),
-        self.__logger = Logger.getInstance(scf)
-        self.__manager = CoordinationManager.getInstance()
+        self.observable_name = "{}@multiranger".format(ecf.cf.link_uri),
+        self.__ecf = ecf
 
         # Add observable to Manager
-        self.__manager.add_observable(self.observable_name, self.get_state)
+        self.__ecf.coordination_manager.add_observable(self.observable_name, self.get_state())
 
         # Logging variables declaration
-        self.__logger.add_variable("range", "front", update_period_ms, "uint16_t")
-        self.__logger.add_variable("range", "back", update_period_ms, "uint16_t")
-        self.__logger.add_variable("range", "right", update_period_ms, "uint16_t")
-        self.__logger.add_variable("range", "left", update_period_ms, "uint16_t")
-        self.__logger.add_variable("range", "up", update_period_ms, "uint16_t")
+        self.__ecf.logging_manager.add_variable("range", "front", update_period_ms, "uint16_t")
+        self.__ecf.logging_manager.add_variable("range", "back", update_period_ms, "uint16_t")
+        self.__ecf.logging_manager.add_variable("range", "right", update_period_ms, "uint16_t")
+        self.__ecf.logging_manager.add_variable("range", "left", update_period_ms, "uint16_t")
+        self.__ecf.logging_manager.add_variable("range", "up", update_period_ms, "uint16_t")
         # Set group watcher
-        self.__logger.set_group_watcher("range", self.__set_state)
+        self.__ecf.logging_manager.set_group_watcher("range", self.__set_state)
         # Start logging
-        self.__logger.start_logging_group("range")
+        self.__ecf.logging_manager.start_logging_group("range")
     
     def __del__(self) -> None:
         # Stop logging
-        self.__logger.stop_logging_group("range")
+        self.__ecf.logging_manager.stop_logging_group("range")
 
     def __set_state(self, ts, name, data) -> None:
         self.__front = data['front']
@@ -39,7 +36,7 @@ class MultiRanger:
         self.__right = data['right']
         self.__left = data['left']
         self.__up = data['up']
-        self.__manager.update_observable_state(self.observable_name, data)
+        self.__ecf.coordination_manager.update_observable_state(self.observable_name, self.get_state())
 
     def get_front(self) -> int:
         return self.__front

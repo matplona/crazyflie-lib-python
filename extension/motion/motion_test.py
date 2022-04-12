@@ -2,8 +2,7 @@ from threading import Barrier, Event
 from cflib.crazyflie.log import LogConfig
 from cflib.crazyflie.syncLogger import SyncLogger
 from extension.decks.z_ranger import ZRanger
-from extension.swarm.swarm_test import print_battery_level
-from extension.variables.variables import Logger
+from extension.variables.logging_manager import LoggingManager
 import time
 import math
 import cflib.crtp
@@ -15,45 +14,6 @@ def spiral(mc:MotionCommander, round):
     mc.forward(distance_m=radious, velocity=(radious/step_duration))
     mc.start_linear_motion(mc.VELOCITY, 0, (spiral_height/circle_durtion), 360/circle_durtion)
     time.sleep(circle_durtion*round)
-
-def reset_estimator(scf):
-    cf = scf.cf
-    cf.param.set_value('kalman.resetEstimation', '1')
-    time.sleep(0.1)
-    cf.param.set_value('kalman.resetEstimation', '0')
-    wait_for_position_estimator(scf)
-
-def wait_for_position_estimator(scf):
-    print('Waiting for estimator to find position...')
-    log_config = LogConfig(name='Kalman Variance', period_in_ms=10)
-    log_config.add_variable('kalman.varPX', 'float')
-    log_config.add_variable('kalman.varPY', 'float')
-    log_config.add_variable('kalman.varPZ', 'float')
-    var_y_history = [1000] * 10
-    var_x_history = [1000] * 10
-    var_z_history = [1000] * 10
-    threshold = 0.001
-    with SyncLogger(scf, log_config) as logger:
-        for log_entry in logger:
-            data = log_entry[1]
-            var_x_history.append(data['kalman.varPX'])
-            var_x_history.pop(0)
-            var_y_history.append(data['kalman.varPY'])
-            var_y_history.pop(0)
-            var_z_history.append(data['kalman.varPZ'])
-            var_z_history.pop(0)
-            min_x = min(var_x_history)
-            max_x = max(var_x_history)
-            min_y = min(var_y_history)
-            max_y = max(var_y_history)
-            min_z = min(var_z_history)
-            max_z = max(var_z_history)
-
-            if (max_x - min_x) < threshold and (
-                    max_y - min_y) < threshold and (
-                    max_z - min_z) < threshold:
-                print("{} QUALITY REACHED".format(scf.cf.link_uri))
-                break
 
 def obstacle_detected(front, back, left, right, mc : MotionCommander):
     global barrier
@@ -96,8 +56,8 @@ if __name__ == '__main__':
     # Initialize the low-level drivers
     cflib.crtp.init_drivers()
     with SyncCrazyflie(URI, cf=Crazyflie(rw_cache='./cache')) as scf:
-        reset_estimator(scf)
-        print_battery_level(scf)
+        #reset_estimator(scf)
+        #print_battery_level(scf)
         input("go..")
 
         """NO MOTION"""
