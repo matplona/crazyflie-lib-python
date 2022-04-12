@@ -1,5 +1,7 @@
-from extension.extended_crazyflie import ExtendedCrazyFlie
-
+from __future__ import annotations
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from extension.extended_crazyflie import ExtendedCrazyFlie
 MAX_RANGE = 4000 # max range of action = 4 meter
 
 class MultiRanger:
@@ -9,7 +11,7 @@ class MultiRanger:
         self.__right = MAX_RANGE+1
         self.__left = MAX_RANGE+1
         self.__up =  MAX_RANGE+1
-        self.observable_name = "{}@multiranger".format(ecf.cf.link_uri),
+        self.observable_name = "{}@multiranger".format(ecf.cf.link_uri)
         self.__ecf = ecf
 
         # Add observable to Manager

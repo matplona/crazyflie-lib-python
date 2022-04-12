@@ -1,12 +1,13 @@
-from extension.extended_crazyflie import ExtendedCrazyFlie
-from extension.coordination.coordination_manager import CoordinationManager
-
+from __future__ import annotations
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from extension.extended_crazyflie import ExtendedCrazyFlie
 MAX_RANGE = 4000 # max range of action = 4 meter
 
 class ZRanger:
     def __init__(self, ecf : ExtendedCrazyFlie, update_period_ms = 100) -> None:
         self.__zrange = MAX_RANGE+1
-        self.observable_name = "{}@zranger".format(ecf.cf.link_uri),
+        self.observable_name = "{}@zranger".format(ecf.cf.link_uri)
         self.__ecf = ecf
 
         # Add observable to Manager

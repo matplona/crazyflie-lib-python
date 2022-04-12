@@ -76,31 +76,16 @@ class ParametersManager:
     def set_value(self, group, name, value):
         """
         Set the value of a parameter direcly on board of the CF. 
+        If the variable is not found is ok but it will not be added.
         [!] Parameter must be according to the toc.
         [!] Parameter must be RW to set its value.
         """
-        if(group in self.__variables and name in self.__variables[group]):
-            self.__cf.param.set_value("{}.{}".format(group, name), value)
-        else:
-            raise Exception("Variable not found in the ParametersManager, you should add before use it.")
-    
-    def set_value_and_ack(self, group, name, value) -> bool:
-        """
-        Set the value of a parameter direcly on board of the CF. the acknowledge that the value has been
-        changed correctly. Returns true if the value has been changed correctly.
-        [!] Parameter must be according to the toc.
-        [!] Parameter must be RW to set its value.
-        [!] This is an expensive operation, use only when needed.
-        """
-        self.set_value(group, name, value)
-        return value == self.get_value(group, name)
+        self.__cf.param.set_value("{}.{}".format(group, name), value)
 
     def get_value(self, group, name):
         """
         Get the value of a parameter direcly on board of the CF. 
+        If the variable is not found in the manager is ok but it will not be added.
         [!] Parameter must be according to the toc.
         """
-        if(group in self.__variables and name in self.__variables[group]):
-            return self.__cf.param.get_value("{}.{}".format(group, name))
-        else:
-            raise Exception("Variable not found in the ParametersManager, you should add before use it.")
+        return self.__cf.param.get_value("{}.{}".format(group, name))
