@@ -28,9 +28,8 @@ from functools import reduce
 from threading import Event
 from cflib.positioning.motion_commander import MotionCommander
 from extension.coordination.coordination_manager import CoordinationManager
-from extension.decks.deck import Deck
-from extension.decks.z_ranger import VelocityLimit
-from extension.examples.hand_driven_drone.utils import ActionLimit
+from extension.decks.deck_type import DeckType
+from extension.examples.hand_driven_drone.utils import ActionLimit, VelocityLimit
 from hand_driven_drone.utils import get_vx, get_vy
 from extension.extended_crazyflie import ExtendedCrazyFlie
 
@@ -69,16 +68,16 @@ def follow_safe(multiranger_state : dict, mc : MotionCommander) :
 def is_low(battery : dict):
     return battery['batteryLevel'] <= BATTERY_LIMIT
 
-URI = 'radio://0/80/2M/E7E7E7E703'
+URI = 'radio://0/80/2M/E7E7E7E705'
 DEFAULT_HEIGHT = 0.5
 with ExtendedCrazyFlie(URI) as ecf:
     print(ecf.get_battery)
-    if(Deck.bcMultiranger not in ecf.decks):
+    if(DeckType.bcMultiranger not in ecf.decks):
         raise Exception("This example needs Multiranger deck attached")
     cm : CoordinationManager = CoordinationManager.getInstance()
     with MotionCommander(ecf.cf, default_height=DEFAULT_HEIGHT) as mc:
         cm.observe(
-            observable_name= ecf.decks[Deck.bcMultiranger].observable_name,
+            observable_name= ecf.decks[DeckType.bcMultiranger].observable_name,
             action= follow_safe,
             context= [mc],
         )

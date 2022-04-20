@@ -7,11 +7,17 @@ MAX_RANGE = 4000 # max range of action = 4 meter
 class ZRanger:
     def __init__(self, ecf : ExtendedCrazyFlie, update_period_ms = 100) -> None:
         self.__zrange = MAX_RANGE+1
-        self.observable_name = "{}@zranger".format(ecf.cf.link_uri)
         self.__ecf = ecf
+        self.observable_name = "{}@zranger".format(ecf.cf.link_uri)
+        self.__contribute_to_state_estimate = self.__initialize_contribution()
 
         # Add observable to Manager
         self.__ecf.coordination_manager.add_observable(self.observable_name, self.get_state())
+
+        # Parameter variables declaration
+        self.__ecf.parameters_manager.add_variable("motion", "disableZrange")
+        # Set watcher
+        self.__ecf.parameters_manager.set_watcher("motion", "disableZrange", self.__update_contribution)
 
         # Logging variables declaration
         self.__ecf.logging_manager.add_variable("range", "zrange", update_period_ms, "uint16_t")
@@ -34,7 +40,22 @@ class ZRanger:
         return {
             'zrange':self.__zrange,
         }
+
+    def __initialize_contribution(self) -> bool:
+        return (self.__ecf.parameters_manager.get_value("motion", "disableZrange") == 0)
+
+    @property
+    def contribute_to_state_estimate(self) -> bool:
+        return self.__contribute_to_state_estimate
     
+    @contribute_to_state_estimate.setter
+    def contribute_to_state_estimate(self, is_contributing : bool):
+        value : int = 0 if is_contributing else 1
+        self.__ecf.parameters_manager.set_value("motion", "disableZrange", value)
+
+    def __update_contribution(self, ts, name, value):
+        self.__contribute_to_state_estimate = (value == 0)
+
     # dead method
     # def keep_distance(self, callback, *args) -> int:
     #     """

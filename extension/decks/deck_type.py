@@ -1,6 +1,6 @@
 import enum
 
-class Deck (enum.Enum):
+class DeckType (enum.Enum):
     bcMultiranger = 1
     bcFlow2 = 2
     bcZRanger2 = 3

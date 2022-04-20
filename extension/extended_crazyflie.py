@@ -4,7 +4,8 @@ from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
 from extension.battery import Battery
 from extension.coordination.coordination_manager import CoordinationManager
 from extension.decks.ai import AiDeck
-from extension.decks.deck import Deck
+from extension.decks.deck_type import DeckType
+from extension.decks.flowdeck import FlowDeck
 from extension.decks.multiranger import MultiRanger
 from extension.decks.z_ranger import ZRanger
 from extension.variables.parameters_manager import ParametersManager
@@ -28,12 +29,14 @@ class ExtendedCrazyFlie(SyncCrazyflie):
         self.parameters_manager : ParametersManager = ParametersManager.getInstance(self.cf)
 
         # initialize decks
-        if self.__is_attached(Deck.bcMultiranger):
-            self.decks[Deck.bcMultiranger] = MultiRanger(self)
-        if self.__is_attached(Deck.bcZRanger2):
-            self.decks[Deck.bcZRanger2] = ZRanger(self)
-        if self.__is_attached(Deck.bcAIDeck):
-            self.decks[Deck.bcAIDeck] = AiDeck(self)
+        if self.__is_attached(DeckType.bcMultiranger):
+            self.decks[DeckType.bcMultiranger] = MultiRanger(self)
+        if self.__is_attached(DeckType.bcZRanger2):
+            self.decks[DeckType.bcZRanger2] = ZRanger(self)
+        if self.__is_attached(DeckType.bcAIDeck):
+            self.decks[DeckType.bcAIDeck] = AiDeck(self)
+        if self.__is_attached(DeckType.bcFlow2):
+            self.decks[DeckType.bcFlow2] = FlowDeck(self)
 
         # initialize battery module
         self.battery : Battery = Battery(self)
@@ -49,7 +52,7 @@ class ExtendedCrazyFlie(SyncCrazyflie):
         self.logging_manager.stop_logging_all()
         super().__exit__(exc_type, exc_val, exc_tb)
 
-    def __is_attached(self, deck:Deck):
+    def __is_attached(self, deck:DeckType):
         self.cf.param.get_value("deck.{}".format(deck.name)) != 0
 
     def reset_estimator(self):
