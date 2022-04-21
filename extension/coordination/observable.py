@@ -1,4 +1,4 @@
-from coordination.observer import Observer
+from extension.coordination.observer import Observer
 
 class Observable:
     def __init__(self, initial_state : dict) -> None:

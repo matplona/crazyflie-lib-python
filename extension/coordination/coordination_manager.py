@@ -1,8 +1,8 @@
 from threading import Event
-from coordination import Action # import Action Type
-from coordination import Condition # import Codition Type
-from coordination.observable import Observable
-from coordination.observer import Observer
+from extension.coordination import Action # import Action Type
+from extension.coordination import Condition # import Codition Type
+from extension.coordination.observable import Observable
+from extension.coordination.observer import Observer
 
 class CoordinationManager:
     __instance = None
@@ -17,7 +17,7 @@ class CoordinationManager:
     def __init__(self) -> None:
         if self.__instance == None :
             # initialize correctly the instance
-            self.__observables : dict[str, Observable] = []
+            self.__observables : dict[str, Observable] = {}
         else:
             raise("This is not the right way to get an Instance, please call the static method getInstance()")
     
@@ -25,7 +25,7 @@ class CoordinationManager:
         # check that the name not clashes
         if observable_name not in self.__observables:
             # add a new observable in the map
-            self.__observable[observable_name] = Observable(initial_state)
+            self.__observables[observable_name] = Observable(initial_state)
         else:
             raise('Observable "{}" already exist!'.format(observable_name))
     
@@ -33,13 +33,13 @@ class CoordinationManager:
         # check that the observable exist
         if observable_name in self.__observables:
             # remove observable and return its last state 
-            return self.__observable.pop(observable_name)
+            return self.__observables.pop(observable_name)
         else:
             raise('Observable "{}" doesn\' exist!'.format(observable_name))
     
-    def get_observable_state(self, observable_name: str):
+    def get_observable_state(self, observable_name: str) -> dict:
         if observable_name in self.__observables :
-            self.__observables[observable_name].get_state()
+            return self.__observables[observable_name].get_state()
         else:
             raise('Observable "{}" doesn\'t exist!'.format(observable_name))
 
@@ -59,7 +59,7 @@ class CoordinationManager:
     def observe_and_wait(self, observable_name : str, condition : Condition) -> Event:
         if observable_name in self.__observables :
             e : Event = Event()
-            obs = Observer(lambda _ : e.set(), condition, None)
+            obs = Observer(lambda _ : e.set(), condition, [])
             self.__observables[observable_name].add_observer(obs)
             return e
         else:

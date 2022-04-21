@@ -1,3 +1,4 @@
+from tokenize import group
 from cflib.crazyflie import Crazyflie
 from cflib.crazyflie.log import LogConfig
 import time
@@ -16,7 +17,7 @@ class LoggingManager:
     def getInstance(cf : Crazyflie) :
         """call this method to get the single instance of the LoggingManager"""
         if LoggingManager.__instance == None:
-            LoggingManager.__instance = LoggingManager()
+            LoggingManager.__instance = LoggingManager(cf)
         return LoggingManager.__instance
 
     def __init__(self, cf : Crazyflie) -> None:
@@ -117,12 +118,17 @@ class LoggingManager:
         return new_entry
 
     def __cb(self, timestamp, data : dict, logconfig):
+
         for name, value in data.items():
             # get the name and the group
-            var_name : str = name.split(".")[0]
-            group_name : str = name.split(".")[1]
+            var_name : str = name.split(".")[1]
+            group_name : str = name.split(".")[0]
             group_ref = self.__variables[group_name]
             var_ref = self.__variables[group_name][var_name]
+
+            # check that the log has been started
+            if var_ref['log']['count'] <= 0:
+                return # log hasn't been started
 
             # if is the first variable in the group setting the value
             if 'data' not in group_ref:
@@ -150,9 +156,11 @@ class LoggingManager:
         if group not in self.__variables or name not in self.__variables[group]:
             #if variable not exist raise exception
             raise Exception("Variable {}.{} not exist in LoggingManager".format(group,name))
+
         if not self.__variables[group][name]['is_running']:
             log : LogConfig = self.__variables[group][name]["log"]
             self.__variables[group][name]['is_running'] = True
+            self.__variables[group]['count'] += 1 # increment count of variable that has been started
             log['count'] += 1 # increment count of variable that has been started
             if(log['count'] == 1):
                 log["log"].start()
@@ -165,6 +173,7 @@ class LoggingManager:
         if self.__variables[group][name]['is_running']:
             log : LogConfig = self.__variables[group][name]["log"]
             self.__variables[group][name]['is_running'] = False
+            self.__variables[group]['count'] -= 1 # decrement count of variable that has been started
             log['count'] -= 1 # decrement count of variable that has been started
             if(log['count'] == 0):
                 log["log"].stop()
@@ -175,7 +184,8 @@ class LoggingManager:
             #if group not exist raise exception
             raise Exception("Group {} not exist in LoggingManager".format(group))
         for name in self.__variables[group].keys():
-            self.start_logging_variable(group, name)
+            if name not in ['group_predicate', 'group_cb', 'count', 'data']:
+                self.start_logging_variable(group, name)
 
     def stop_logging_group(self, group):
         """Stop logging all the variable in the group specified"""
@@ -183,7 +193,8 @@ class LoggingManager:
             #if group not exist raise exception
             raise Exception("Group {} not exist in LoggingManager".format(group))
         for name in self.__variables[group].keys():
-            self.stop_logging_variable(group, name)
+            if name not in ['group_predicate', 'group_cb', 'count', 'data']:
+                self.stop_logging_variable(group, name)
     
     def start_logging_all(self):
         """Start logging all the variable added"""

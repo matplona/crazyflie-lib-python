@@ -7,25 +7,25 @@ if TYPE_CHECKING:
 from enum import Enum
 
 class Effect(Enum):
-    off = 0,
-    white_spinner = 1,
-    color_spinner = 2,
-    tilt = 3,
-    brightness = 4,
-    color_spinner_2 = 5,
-    double_spinner = 6,
-    solid_color_effect = 7,
-    factory_test = 8,
-    battery_status = 9,
-    boat_lights = 10,
-    alert = 11,
-    gravity = 12,
-    virtual_memory = 13,
-    fade_color = 14,
-    communication_signal_strength = 15,
-    status_localization_service = 16,
-    LED_timing_from_memory = 17,
-    lighthouse_positioning = 18,
+    off = 0
+    white_spinner = 1
+    color_spinner = 2
+    tilt = 3
+    brightness = 4
+    color_spinner_2 = 5
+    double_spinner = 6
+    solid_color_effect = 7
+    factory_test = 8
+    battery_status = 9
+    boat_lights = 10
+    alert = 11
+    gravity = 12
+    virtual_memory = 13
+    fade_color = 14
+    communication_signal_strength = 15
+    status_localization_service = 16
+    LED_timing_from_memory = 17
+    lighthouse_positioning = 18
 
 class Color:
     def __init__(self, r:int, g:int, b:int) -> None:

@@ -13,7 +13,7 @@ class ParametersManager:
     def getInstance(cf : Crazyflie) :
         """call this method to get the single instance of the ParametersManager"""
         if ParametersManager.__instance == None:
-            ParametersManager.__instance = ParametersManager()
+            ParametersManager.__instance = ParametersManager(cf)
         return ParametersManager.__instance
 
     def __init__(self, cf : Crazyflie) -> None:

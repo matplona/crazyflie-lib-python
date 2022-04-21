@@ -27,7 +27,6 @@ class ExtendedCrazyFlie(SyncCrazyflie):
         self.logging_manager : LoggingManager = LoggingManager.getInstance(self.cf)
         # initialize parameters_manager
         self.parameters_manager : ParametersManager = ParametersManager.getInstance(self.cf)
-
         # initialize decks
         if self.__is_attached(DeckType.bcMultiranger):
             self.decks[DeckType.bcMultiranger] = MultiRanger(self)
@@ -43,6 +42,7 @@ class ExtendedCrazyFlie(SyncCrazyflie):
 
         # reset estimator
         if self.__reset_estimators:
+            print("resetting estimators")
             self.reset_estimator()
 
         # return reference
@@ -63,15 +63,16 @@ class ExtendedCrazyFlie(SyncCrazyflie):
         time.sleep(0.1)
         self.cf.param.set_value('kalman.resetEstimation', '0')
         print('Waiting for estimator to find position...')
-        self.logging_manager.add_variable('kalman', 'varPX', 10, 'float')
-        self.logging_manager.add_variable('kalman', 'varPY', 10, 'float')
-        self.logging_manager.add_variable('kalman', 'varPZ', 10, 'float')
+        self.logging_manager.add_variable('kalman', 'varPX', 100, 'float')
+        self.logging_manager.add_variable('kalman', 'varPY', 100, 'float')
+        self.logging_manager.add_variable('kalman', 'varPZ', 100, 'float')
         self.logging_manager.set_group_watcher('kalman', self.__cb_estimators)
         self.coordination_manager.add_observable("{}@resetEstimation".format(self.cf.link_uri), {
-            'var_x_history' : [1000] + 10,
-            'var_y_history' : [1000] + 10,
-            'var_z_history' : [1000] + 10,
+            'var_x_history' : [1000] * 10,
+            'var_y_history' : [1000] * 10,
+            'var_z_history' : [1000] * 10,
         })
+        self.logging_manager.start_logging_group('kalman')
         self.coordination_manager.observe_and_wait(
             observable_name= "{}@resetEstimation".format(self.cf.link_uri), # observable name
             condition= self.__quality_test, # test if the quality is below threshold
@@ -79,8 +80,8 @@ class ExtendedCrazyFlie(SyncCrazyflie):
          
         # remove used resources
         self.logging_manager.remove_variable('kalman', 'varPX')
-        self.logging_manager.remove_variable('kalman', 'varPX')
-        self.logging_manager.remove_variable('kalman', 'varPX')
+        self.logging_manager.remove_variable('kalman', 'varPY')
+        self.logging_manager.remove_variable('kalman', 'varPZ')
         self.coordination_manager.remove_observable("{}@resetEstimation".format(self.cf.link_uri))
 
     # callback for update estimator values

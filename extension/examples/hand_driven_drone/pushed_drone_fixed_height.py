@@ -10,10 +10,11 @@ The range of the action and the velocity limits are specified in the utils.py
 """
 
 import time
+import cflib.crtp
 from cflib.positioning.motion_commander import MotionCommander
-from extension.coordination.coordination_manager import CoordinationManager
+from cflib.utils import uri_helper
 from extension.decks.deck_type import DeckType
-from hand_driven_drone.utils import get_vx, get_vy
+from extension.examples.hand_driven_drone.utils import get_vx, get_vy
 from extension.extended_crazyflie import ExtendedCrazyFlie
 
 def fly_away(multiranger_state : dict, mc : MotionCommander) :
@@ -21,17 +22,22 @@ def fly_away(multiranger_state : dict, mc : MotionCommander) :
     vy = get_vy(multiranger_state['right'], multiranger_state['left'])
     mc.start_linear_motion(vx, vy, 0)
 
-URI = 'radio://0/80/2M/E7E7E7E703'
-DEFAULT_HEIGHT = 0.5
-with ExtendedCrazyFlie(URI) as ecf:
-    print(ecf.get_battery)
-    if(DeckType.bcMultiranger not in ecf.decks):
-        raise Exception("This example needs Multiranger deck attached")
-    cm : CoordinationManager = CoordinationManager.getInstance()
-    with MotionCommander(ecf.cf, default_height=DEFAULT_HEIGHT) as mc:
-        cm.observe(
-            observable_name= ecf.decks[DeckType.bcMultiranger].observable_name,
-            action= fly_away,
-            context= [mc],
-        )
-        time.sleep(30)
+if __name__ == '__main__':
+    # Initialize the low-level drivers
+    cflib.crtp.init_drivers()
+
+    uri = uri_helper.uri_from_env(default='radio://0/80/2M/E7E7E7E705')
+    DEFAULT_HEIGHT = 0.5
+
+    with ExtendedCrazyFlie(uri) as ecf:
+        print("Battery: {}".format(ecf.battery.get_battery_status()))
+        if(DeckType.bcMultiranger not in ecf.decks):
+            raise Exception("This example needs Multiranger deck attached")
+        input("fly..")
+        with MotionCommander(ecf.cf, default_height=DEFAULT_HEIGHT) as mc:
+            ecf.coordination_manager.observe(
+                observable_name= ecf.decks[DeckType.bcMultiranger].observable_name,
+                action= fly_away,
+                context= [mc],
+            )
+            time.sleep(30)

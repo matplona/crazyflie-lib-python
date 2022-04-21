@@ -1,6 +1,6 @@
 from typing import Any
-from coordination import Action # import Action Type
-from coordination import Condition # import Codition Type
+from extension.coordination import Action # import Action Type
+from extension.coordination import Condition # import Codition Type
 
 class Observer:
     def __init__(self, action : Action, condition : Condition, context : list) -> None:
