@@ -31,7 +31,7 @@ class ZRanger:
         self.__ecf.logging_manager.stop_logging_variable("range", "zrange")
 
     def __set_state(self, ts, name, data) -> None:
-        self.__zrange = data['zrange']
+        self.__zrange = data
         self.__ecf.coordination_manager.update_observable_state(self.observable_name, self.get_state())
 
     def get_zrange(self) -> int:

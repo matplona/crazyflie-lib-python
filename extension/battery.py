@@ -29,7 +29,7 @@ class Battery:
         ecf.logging_manager.set_group_watcher('pm', self.__update_battery)
         self.observable_name = "{}@battery".format(ecf.cf.link_uri)
         self.__ecf = ecf
-        self.__ecf.coordination_manager.add_observable(self.observable_name, self.get_battery_status())
+        self.__ecf.coordination_manager.add_observable(self.observable_name, self.get_complete_battery_status())
         ecf.logging_manager.start_logging_group('pm')
     
     def __del__(self):
@@ -40,7 +40,7 @@ class Battery:
         self.__pm_state = data['state']
         self.__voltage = data['vbat']
         self.__set_battery_level()
-        self.__ecf.coordination_manager.update_observable_state(self.observable_name, self.get_battery_status())
+        self.__ecf.coordination_manager.update_observable_state(self.observable_name, self.get_complete_battery_status())
     
     def __set_battery_level(self) -> None:
         # 100 : x = (__full_voltage - __low_voltage) : (__voltage - __low_voltage)
@@ -58,7 +58,7 @@ class Battery:
         return self.__battery_level
     def get_complete_battery_status(self) -> dict:
         return {
-            'pm_state': self.__pm_state,
+            'pm_state': PowerManagementState(self.__pm_state),
             'voltage': self.__voltage,
             'battery_level': self.__battery_level
         }

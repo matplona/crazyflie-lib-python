@@ -1,3 +1,4 @@
+from tokenize import group
 from cflib.crazyflie import Crazyflie
 import time
 from typing import Any, Callable
@@ -24,16 +25,18 @@ class ParametersManager:
         else:
             raise("This is not the right way to get an Instance, please call the static method getInstance()")
     
-    def __cb(self, name, value):
+    def __cb(self, name:str, value):
         ts = int(time.time()*1000)
         value = float(value)
+        group = name.split('.')[0]
+        name = name.split('.')[1]
         # check if the predicate is true
-        if(self.__variables[name]["predicate"](value)):
+        if(self.__variables[group][name]["predicate"](value)):
             #call the callback with the following parameter:
                 #   -   timestamp
                 #   -   group.name
                 #   -   value
-            self.__variables[name]["cb"](ts, name, value)
+            self.__variables[group][name]["cb"](ts, name, value)
 
     def add_variable(self, group, name):
         if group not in self.__variables:

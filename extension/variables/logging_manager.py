@@ -61,9 +61,7 @@ class LoggingManager:
             if log["period"] == period_in_ms and log["size"] + size <= 26:
                 # if the period is correct and there is space add the variable to the log
                 log["log"].add_variable("{}.{}".format(group,name), type)
-                # refreshing the content of the log inside the CF
-                log["log"].delete()
-                log["log"].create()
+                log["updated"] = True # we updated the log configuration by adding a variable
                 # update the size of the log
                 log["size"] += size
                 added = True
@@ -99,36 +97,62 @@ class LoggingManager:
         if group not in self.__variables or name not in self.__variables[group]:
             #if variable not exist raise exception
             raise Exception("Variable {}.{} not exist in LoggingManager".format(group,name))
-        
+        self.stop_logging_variable(group, name) # stop if needed
+        self.__variables[group].pop(name) # remove
+        if self.__count_variables(self.__variables[group]) == 0:
+            # if no more variables are inside the group remove the group
+            self.__variables.pop(group)
+    
+    def remove_group(self, group : str) -> None:
+        if group not in self.__variables:
+            #if variable not exist raise exception
+            raise Exception("Group {} not exist in LoggingManager".format(group))
+        self.stop_logging_group(group) # stop if needed
+        self.__variables.pop(group) # remove
 
     def __add_log(self, period_in_ms) -> LogConfig:
         # [!] log must be <= 26 Bytes (e.g., 6 floats + 1 FP16)
         name = "Config_{}".format(len(self.__logs))
         if(period_in_ms < 10):
             period_in_ms = 10
+        if(period_in_ms > 0xFF * 10):
+            period_in_ms = 0xFF * 10 # 2550 ms
         log = LogConfig(name=name, period_in_ms=period_in_ms)
         new_entry = {
             "log":log,
             "period":period_in_ms,
             "size": 0,
             "count": 0, # num of variable that have started logging
+            "updated": True,
         }
         self.__logs.append(new_entry)
         log.data_received_cb.add_callback(self.__cb)
         return new_entry
 
-    def __cb(self, timestamp, data : dict, logconfig):
+    def __count_variables(self, group : str) -> bool:
+        count = 0
+        for name in self.__variables[group].keys():
+            if name not in ['group_predicate', 'group_cb', 'count', 'data']:
+                count += 1
+        return count
 
+    def __get_variables_name_list(self, group : str) -> list[str]:
+        variables = []
+        for name in self.__variables[group].keys():
+            if name not in ['group_predicate', 'group_cb', 'count', 'data']:
+                variables.append(name)
+        return variables
+
+    def __cb(self, timestamp, data : dict, logconfig):
         for name, value in data.items():
             # get the name and the group
             var_name : str = name.split(".")[1]
             group_name : str = name.split(".")[0]
-            group_ref = self.__variables[group_name]
-            var_ref = self.__variables[group_name][var_name]
+            group_ref : dict = self.__variables[group_name]
+            var_ref : dict = self.__variables[group_name][var_name]
 
-            # check that the log has been started
-            if var_ref['log']['count'] <= 0:
-                return # log hasn't been started
+            if not var_ref['is_running']:
+                continue # pass this variable
 
             # if is the first variable in the group setting the value
             if 'data' not in group_ref:
@@ -163,6 +187,10 @@ class LoggingManager:
             self.__variables[group]['count'] += 1 # increment count of variable that has been started
             log['count'] += 1 # increment count of variable that has been started
             if(log['count'] == 1):
+                if log['updated']:
+                    # refreshing the content of the log inside the CF
+                    log["log"].delete()
+                    log["log"].create()
                 log["log"].start()
 
     def stop_logging_variable(self, group, name):
@@ -176,25 +204,23 @@ class LoggingManager:
             self.__variables[group]['count'] -= 1 # decrement count of variable that has been started
             log['count'] -= 1 # decrement count of variable that has been started
             if(log['count'] == 0):
-                log["log"].stop()
+                log["log"].stop() # TODO check the correctness
 
     def start_logging_group(self, group):
         """Start logging all the variable in the group specified"""
         if group not in self.__variables:
             #if group not exist raise exception
             raise Exception("Group {} not exist in LoggingManager".format(group))
-        for name in self.__variables[group].keys():
-            if name not in ['group_predicate', 'group_cb', 'count', 'data']:
-                self.start_logging_variable(group, name)
+        for name in self.__get_variables_name_list(group):
+            self.start_logging_variable(group, name)
 
     def stop_logging_group(self, group):
         """Stop logging all the variable in the group specified"""
         if group not in self.__variables:
             #if group not exist raise exception
             raise Exception("Group {} not exist in LoggingManager".format(group))
-        for name in self.__variables[group].keys():
-            if name not in ['group_predicate', 'group_cb', 'count', 'data']:
-                self.stop_logging_variable(group, name)
+        for name in self.__get_variables_name_list(group):
+            self.stop_logging_variable(group, name)
     
     def start_logging_all(self):
         """Start logging all the variable added"""

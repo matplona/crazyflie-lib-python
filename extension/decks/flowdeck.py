@@ -1,6 +1,7 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
 from extension.decks.z_ranger import ZRanger
+from extension.exceptions import SetterException
 
 if TYPE_CHECKING:
     from extension.extended_crazyflie import ExtendedCrazyFlie
@@ -40,12 +41,27 @@ class FlowDeck:
         self.__flow_y = data['predNY']
         self.__ecf.coordination_manager.update_observable_state(self.observable_name, self.get_state())
 
-    def get_height(self) -> int:
-        return self.__zrange.get_zrange()
-    def get_flow_x(self) -> float:
+    @property
+    def zrange(self):
+        return self.__zrange
+    @zrange.setter
+    def zrange(self, _):
+        raise SetterException('zrange') # avoid setting the value manually
+    
+    @property
+    def flow_x(self):
         return self.__flow_x
-    def get_flow_y(self) -> float:
+    @flow_x.setter
+    def flow_x(self, _):
+        raise SetterException('flow_x') # avoid setting the value manually
+
+    @property
+    def flow_y(self):
         return self.__flow_y
+    @flow_y.setter
+    def flow_y(self, _):
+        raise SetterException('flow_y') # avoid setting the value manually
+
     def get_state(self) -> dict:
         return {
             'flow_x':self.__flow_x,
