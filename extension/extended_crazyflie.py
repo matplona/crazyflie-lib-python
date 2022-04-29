@@ -10,12 +10,12 @@ from extension.decks.lighthouse import Lighthouse
 from extension.decks.multiranger import MultiRanger
 from extension.decks.z_ranger import ZRanger
 from extension.variables.parameters_manager import ParametersManager
-from extension.variables.logging_manager import LoggingManager
+from extension.variables.logging_manager import LogVariableType, LoggingManager
 
 class ExtendedCrazyFlie(SyncCrazyflie):
 
     def __init__(self, link_uri, cf=Crazyflie(rw_cache='./cache'), reset_estimators=True) -> None:
-        super().__init__(link_uri=link_uri) #, cf=cf)
+        super().__init__(link_uri=link_uri, cf=cf)
         self.__reset_estimators = reset_estimators
         self.decks = {}
         self.logging_manager : LoggingManager = None
@@ -68,9 +68,9 @@ class ExtendedCrazyFlie(SyncCrazyflie):
         time.sleep(0.1)
         self.cf.param.set_value('kalman.resetEstimation', '0')
         print('Waiting for estimator to find position...')
-        self.logging_manager.add_variable('kalman', 'varPX', 10, 'float')
-        self.logging_manager.add_variable('kalman', 'varPY', 10, 'float')
-        self.logging_manager.add_variable('kalman', 'varPZ', 10, 'float')
+        self.logging_manager.add_variable('kalman', 'varPX', 10, LogVariableType.float)
+        self.logging_manager.add_variable('kalman', 'varPY', 10, LogVariableType.float)
+        self.logging_manager.add_variable('kalman', 'varPZ', 10, LogVariableType.float)
         self.logging_manager.set_group_watcher('kalman', self.__cb_estimators)
         self.coordination_manager.add_observable("{}@resetEstimation".format(self.cf.link_uri), {
             'var_x_history' : [1000] * 10,
@@ -83,9 +83,9 @@ class ExtendedCrazyFlie(SyncCrazyflie):
             condition= self.__quality_test, # test if the quality is below threshold
         ).wait()# wait the quality
          
-        # TODO remove used resources
-        # self.logging_manager.remove_group('kalman')
-        # self.coordination_manager.remove_observable("{}@resetEstimation".format(self.cf.link_uri))
+        # remove used resources
+        self.logging_manager.remove_group('kalman')
+        self.coordination_manager.remove_observable("{}@resetEstimation".format(self.cf.link_uri))
 
     # callback for update estimator values
     def __cb_estimators(self, ts, name, data):

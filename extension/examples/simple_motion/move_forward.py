@@ -11,6 +11,7 @@ from cflib.utils import uri_helper
 from extension.decks.deck_type import DeckType
 from extension.decks.z_ranger import ZRanger
 from extension.extended_crazyflie import ExtendedCrazyFlie
+from extension.variables.logging_manager import LogVariableType
 DEFAULT_HEIGHT = 0.5
 TARGET = [1, 1, DEFAULT_HEIGHT]
 threshold = 0.1
@@ -44,9 +45,9 @@ if __name__ == '__main__':
         print(ecf.parameters_manager.get_value('motion', 'disable'))
         print(ecf.parameters_manager.get_value('motion', 'disableZrange'))
 
-        ecf.logging_manager.add_variable('stateEstimate', 'x', 1000, 'float')
-        ecf.logging_manager.add_variable('stateEstimate', 'y', 1000, 'float')
-        ecf.logging_manager.add_variable('stateEstimate', 'z', 1000, 'float')
+        ecf.logging_manager.add_variable('stateEstimate', 'x', 1000, LogVariableType.float)
+        ecf.logging_manager.add_variable('stateEstimate', 'y', 1000, LogVariableType.float)
+        ecf.logging_manager.add_variable('stateEstimate', 'z', 1000, LogVariableType.float)
         observable_name = "{}@custom_observable".format(ecf.cf.link_uri)
         ecf.logging_manager.set_group_watcher(
             'stateEstimate',

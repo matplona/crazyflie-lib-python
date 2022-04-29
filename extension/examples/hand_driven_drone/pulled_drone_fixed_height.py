@@ -71,7 +71,7 @@ def is_low(battery : dict):
 URI = 'radio://0/80/2M/E7E7E7E705'
 DEFAULT_HEIGHT = 0.5
 with ExtendedCrazyFlie(URI) as ecf:
-    print(ecf.get_battery)
+    print(ecf.battery.get_complete_battery_status)
     if(DeckType.bcMultiranger not in ecf.decks):
         raise Exception("This example needs Multiranger deck attached")
     cm : CoordinationManager = CoordinationManager.getInstance()
@@ -82,6 +82,6 @@ with ExtendedCrazyFlie(URI) as ecf:
             context= [mc],
         )
         cm.observe_and_wait(
-            observable_name= ecf.battery_observable,
+            observable_name= ecf.battery.observable_name,
             condition= is_low,
         ).wait()

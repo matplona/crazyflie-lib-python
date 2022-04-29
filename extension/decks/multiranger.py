@@ -1,5 +1,7 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
+
+from extension.variables.logging_manager import LogVariableType
 if TYPE_CHECKING:
     from extension.extended_crazyflie import ExtendedCrazyFlie
 MAX_RANGE = 4000 # max range of action = 4 meter
@@ -18,11 +20,11 @@ class MultiRanger:
         self.__ecf.coordination_manager.add_observable(self.observable_name, self.get_state())
 
         # Logging variables declaration
-        self.__ecf.logging_manager.add_variable("range", "front", update_period_ms, "uint16_t")
-        self.__ecf.logging_manager.add_variable("range", "back", update_period_ms, "uint16_t")
-        self.__ecf.logging_manager.add_variable("range", "right", update_period_ms, "uint16_t")
-        self.__ecf.logging_manager.add_variable("range", "left", update_period_ms, "uint16_t")
-        self.__ecf.logging_manager.add_variable("range", "up", update_period_ms, "uint16_t")
+        self.__ecf.logging_manager.add_variable("range", "front", update_period_ms, LogVariableType.uint16_t)
+        self.__ecf.logging_manager.add_variable("range", "back", update_period_ms, LogVariableType.uint16_t)
+        self.__ecf.logging_manager.add_variable("range", "right", update_period_ms, LogVariableType.uint16_t)
+        self.__ecf.logging_manager.add_variable("range", "left", update_period_ms, LogVariableType.uint16_t)
+        self.__ecf.logging_manager.add_variable("range", "up", update_period_ms, LogVariableType.uint16_t)
         # Set group watcher
         self.__ecf.logging_manager.set_group_watcher("range", self.__set_state)
         # Start logging

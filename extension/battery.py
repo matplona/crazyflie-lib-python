@@ -2,6 +2,8 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 from enum import Enum
 
+from extension.variables.logging_manager import LogVariableType
+
 if TYPE_CHECKING:
     from extension.extended_crazyflie import ExtendedCrazyFlie
 
@@ -24,8 +26,8 @@ class Battery:
 
     def __init__(self, ecf : ExtendedCrazyFlie) -> None:
         # start logging battery level every 10 seconds
-        ecf.logging_manager.add_variable('pm','vbat', 1000,'float')
-        ecf.logging_manager.add_variable('pm','state', 1000, 'int8_t')
+        ecf.logging_manager.add_variable('pm','vbat', 1000, LogVariableType.float)
+        ecf.logging_manager.add_variable('pm','state', 1000, LogVariableType.int8_t)
         ecf.logging_manager.set_group_watcher('pm', self.__update_battery)
         self.observable_name = "{}@battery".format(ecf.cf.link_uri)
         self.__ecf = ecf
