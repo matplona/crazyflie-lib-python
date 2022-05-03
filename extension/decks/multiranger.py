@@ -1,13 +1,15 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
+from extension.decks.deck import Deck, DeckType
 
 from extension.variables.logging_manager import LogVariableType
 if TYPE_CHECKING:
     from extension.extended_crazyflie import ExtendedCrazyFlie
 MAX_RANGE = 4000 # max range of action = 4 meter
 
-class MultiRanger:
+class MultiRanger(Deck):
     def __init__(self, ecf : ExtendedCrazyFlie, update_period_ms = 100) -> None:
+        super().__init__(DeckType.bcMultiranger) #initialize super
         self.__front = MAX_RANGE+1
         self.__back = MAX_RANGE+1
         self.__right = MAX_RANGE+1

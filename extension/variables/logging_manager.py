@@ -49,7 +49,7 @@ class LoggingManager:
             return LogVariableType[self.__cf.log.toc.get_element_by_complete_name(name).ctype]
         return type
 
-    def add_variable(self, group, name, period_in_ms, type:LogVariableType) -> None:
+    def add_variable(self, group, name, period_in_ms, type:LogVariableType = LogVariableType.default) -> None:
         """
         Add a variable to the LoggingManager. It will find a Log config to fit the var in with the rigth period,
         creating a new one if it does not exist.
@@ -97,6 +97,9 @@ class LoggingManager:
             "predicate" : lambda _ : True, # by default no predicate constraint
             "cb": None, # by default None cb
         }
+    def add_group(self, group:str, period_in_ms, type:LogVariableType = LogVariableType.default) -> None:
+        for name in self.__cf.log.toc.toc[group]:
+            self.add_variable(group,name, period_in_ms, type)
 
     def remove_variable(self, group, name):
         if group not in self.__variables or name not in self.__variables[group]:
@@ -162,6 +165,7 @@ class LoggingManager:
 
     def __cb(self, timestamp, data : dict, logconfig):
         for name, value in data.items():
+            
             # get the name and the group
             var_name : str = name.split(".")[1]
             group_name : str = name.split(".")[0]
@@ -209,14 +213,18 @@ class LoggingManager:
             self.__variables[group][name]['is_running'] = True
             self.__variables[group]['count'] += 1 # increment count of variable that has been started
             log['count'] += 1 # increment count of variable that has been started
-            if(log['count'] == 1): # if is the first of the config to start running
-                if log['updated']: # and the log was updated
-                    try:
-                        self.__cf.log.log_blocks.remove(log['log']) # try to remove
-                        log['log'].delete() # delete content on the crazyflie only if needed
-                    except ValueError:
-                        pass # means that it was not in the block list
-                    self.__cf.log.add_config(log['log']) #re add the config to the Log
+            if log['updated']: # and the log was updated
+                try:
+                    self.__cf.log.log_blocks.remove(log['log']) # try to remove
+                    log['log'].delete() # delete content on the crazyflie only if needed
+                except ValueError:
+                    pass # means that it was not in the block list
+                self.__cf.log.add_config(log['log']) # re add the config to the Log
+                log['updated'] = False # after updating the log reset the variable
+                # need to restart the log if is running
+                if log['count'] > 0:
+                    log['log'].start()
+            if log['count'] == 1:
                 log['log'].start() # only if is the first start the block
 
     def stop_logging_variable(self, group, name):

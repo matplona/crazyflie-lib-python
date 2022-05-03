@@ -28,7 +28,7 @@ from functools import reduce
 from threading import Event
 from cflib.positioning.motion_commander import MotionCommander
 from extension.coordination.coordination_manager import CoordinationManager
-from extension.decks.deck_type import DeckType
+from extension.decks.deck import DeckType
 from extension.examples.hand_driven_drone.utils import ActionLimit, VelocityLimit
 from hand_driven_drone.utils import get_vx, get_vy
 from extension.extended_crazyflie import ExtendedCrazyFlie

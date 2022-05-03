@@ -4,6 +4,8 @@ import time
 import numpy as np
 import cv2
 
+from extension.decks.deck import Deck, DeckType
+
 class ImgThread(threading.Thread):
     def __init__(self, socket, callback, timeout=-1, *args):
         threading.Thread.__init__(self)
@@ -46,8 +48,9 @@ class ImgThread(threading.Thread):
     def stop(self):
         self.__stopped = True
 
-class AiDeck:
+class AiDeck(Deck):
     def __init__(self, port=5000, ip="192.168.4.1") -> None:
+        super().__init__(DeckType.bcAIDeck) #initialize super
         self.__port = port
         self.__ip = ip
         self.__socket : socket.socket = None

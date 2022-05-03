@@ -4,7 +4,7 @@ from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
 from extension.battery import Battery
 from extension.coordination.coordination_manager import CoordinationManager
 from extension.decks.ai import AiDeck
-from extension.decks.deck_type import DeckType
+from extension.decks.deck import Deck, DeckType
 from extension.decks.flowdeck import FlowDeck
 from extension.decks.lighthouse import Lighthouse
 from extension.decks.multiranger import MultiRanger
@@ -17,7 +17,7 @@ class ExtendedCrazyFlie(SyncCrazyflie):
     def __init__(self, link_uri, cf=Crazyflie(rw_cache='./cache'), reset_estimators=True) -> None:
         super().__init__(link_uri=link_uri, cf=cf)
         self.__reset_estimators = reset_estimators
-        self.decks = {}
+        self.decks : dict[Deck]= {}
         self.logging_manager : LoggingManager = None
         self.parameters_manager : ParametersManager = None
         self.coordination_manager : CoordinationManager = CoordinationManager.getInstance()

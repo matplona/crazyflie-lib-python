@@ -13,7 +13,7 @@ import time
 import cflib.crtp
 from cflib.positioning.motion_commander import MotionCommander
 from cflib.utils import uri_helper
-from extension.decks.deck_type import DeckType
+from extension.decks.deck import DeckType
 from extension.decks.lighthouse import Lighthouse
 from extension.decks.multiranger import MultiRanger
 from extension.examples.hand_driven_drone.utils import get_vx, get_vy

@@ -1,0 +1,24 @@
+import enum
+
+from extension.exceptions import SetterException
+
+class DeckType (enum.Enum):
+    bcMultiranger = 1
+    bcFlow2 = 2
+    bcZRanger2 = 3
+    bcAIDeck = 4
+    bcLedRing = 5
+    bcBuzzer = 6
+    bcLighthouse4 = 7
+
+class Deck:
+    def __init__(self, type : DeckType) -> None:
+        self.__type = type
+
+    @property
+    def type(self):
+        return self.__type
+    
+    @type.setter
+    def type(self, _):
+        raise SetterException('type') # avoid setting the value manually

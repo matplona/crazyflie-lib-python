@@ -1,5 +1,6 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
+from extension.decks.deck import Deck, DeckType
 from extension.decks.z_ranger import ZRanger
 from extension.exceptions import SetterException
 from extension.variables.logging_manager import LogVariableType
@@ -8,8 +9,9 @@ if TYPE_CHECKING:
     from extension.extended_crazyflie import ExtendedCrazyFlie
 MAX_RANGE = 4000 # max range of action = 4 meter
 
-class FlowDeck:
+class FlowDeck(Deck):
     def __init__(self, ecf : ExtendedCrazyFlie, update_period_ms = 100) -> None:
+        super().__init__(DeckType.bcFlow2) #initialize super
         self.__zrange = ZRanger(ecf)
         self.__ecf = ecf
         self.__flow_x = 0 # measure in pixel / frame
