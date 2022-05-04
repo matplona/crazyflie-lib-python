@@ -7,8 +7,8 @@ from extension.variables.logging_manager import LogVariableType
 if TYPE_CHECKING:
     from extension.extended_crazyflie import ExtendedCrazyFlie
 
-MAX_VOLTAGE = 5.0
-MIN_VOLTAGE = 2.7
+MAX_VOLTAGE = 5.0 #TODO verify
+MIN_VOLTAGE = 2.8
 
 class PowerManagementState(Enum):
     battery = 0
@@ -26,7 +26,7 @@ class Battery:
 
     def __init__(self, ecf : ExtendedCrazyFlie) -> None:
         # start logging battery level every 10 seconds
-        ecf.logging_manager.add_variable('pm','vbat', 1000, LogVariableType.float)
+        ecf.logging_manager.add_variable('pm','vbatMV', 1000, LogVariableType.uint16_t)
         ecf.logging_manager.add_variable('pm','state', 1000, LogVariableType.int8_t)
         ecf.logging_manager.set_group_watcher('pm', self.__update_battery)
         self.observable_name = "{}@battery".format(ecf.cf.link_uri)
@@ -40,7 +40,7 @@ class Battery:
     # callback for update battery state
     def __update_battery(self, ts, name, data):
         self.__pm_state = data['state']
-        self.__voltage = data['vbat']
+        self.__voltage = data['vbatMV']/1000
         self.__set_battery_level()
         self.__ecf.coordination_manager.update_observable_state(self.observable_name, self.get_complete_battery_status())
     

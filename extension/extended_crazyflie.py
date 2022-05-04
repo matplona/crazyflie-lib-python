@@ -1,3 +1,4 @@
+import logging
 import time
 from cflib.crazyflie import Crazyflie
 from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
@@ -11,10 +12,10 @@ from extension.decks.multiranger import MultiRanger
 from extension.decks.z_ranger import ZRanger
 from extension.variables.parameters_manager import ParametersManager
 from extension.variables.logging_manager import LogVariableType, LoggingManager
+console = logging.getLogger(__name__)
 
 class ExtendedCrazyFlie(SyncCrazyflie):
-
-    def __init__(self, link_uri, cf=Crazyflie(rw_cache='./cache'), reset_estimators=True) -> None:
+    def __init__(self, link_uri, cf=Crazyflie(), reset_estimators=True) -> None:
         super().__init__(link_uri=link_uri, cf=cf)
         self.__reset_estimators = reset_estimators
         self.decks : dict[Deck]= {}
@@ -25,36 +26,41 @@ class ExtendedCrazyFlie(SyncCrazyflie):
     def __enter__(self):
         super().__enter__()
         # initialize logging_manager
-        self.logging_manager : LoggingManager = LoggingManager.getInstance(self.cf)
+        self.logging_manager : LoggingManager = LoggingManager(self)
         # initialize parameters_manager
-        self.parameters_manager : ParametersManager = ParametersManager.getInstance(self.cf)
+        self.parameters_manager : ParametersManager = ParametersManager(self)
 
         # reset estimator
         if self.__reset_estimators:
-            print("resetting estimators")
             self.reset_estimator()
 
         # initialize decks
         if self.__is_attached(DeckType.bcFlow2):
             self.decks[DeckType.bcFlow2] = FlowDeck(self)
+            console.info("Created FlowDeck module")
         elif self.__is_attached(DeckType.bcZRanger2):
             # if it hasn't the flowDeck but has Zrange than initialize the zrange
             self.decks[DeckType.bcZRanger2] = ZRanger(self)
+            console.info("Created Zranger module")
         if self.__is_attached(DeckType.bcMultiranger):
             self.decks[DeckType.bcMultiranger] = MultiRanger(self)
+            console.info("Created MultiRanger module")
         if self.__is_attached(DeckType.bcAIDeck):
             self.decks[DeckType.bcAIDeck] = AiDeck(self)
+            console.info("Created AIDeck module")
         if self.__is_attached(DeckType.bcLighthouse4):
             self.decks[DeckType.bcLighthouse4] = Lighthouse(self)
+            console.info("Created Lighthouse module")
         
         # initialize battery module
         self.battery : Battery = Battery(self)
+        console.info("Created Battery module")
 
         # return reference
         return self
     
     def __exit__(self, exc_type, exc_val, exc_tb):
-        self.logging_manager.stop_logging_all()
+        self.logging_manager.close()
         super().__exit__(exc_type, exc_val, exc_tb)
 
     def __is_attached(self, deck:DeckType) -> bool:
@@ -64,10 +70,11 @@ class ExtendedCrazyFlie(SyncCrazyflie):
         """
         This function will reset the kalman state and wait for convergence of estimators
         """
+        console.info("Resetting estimators")
         self.cf.param.set_value('kalman.resetEstimation', '1')
         time.sleep(0.1)
         self.cf.param.set_value('kalman.resetEstimation', '0')
-        print('Waiting for estimator to find position...')
+        console.info('Waiting for estimator to find position...')
         self.logging_manager.add_variable('kalman', 'varPX', 10, LogVariableType.float)
         self.logging_manager.add_variable('kalman', 'varPY', 10, LogVariableType.float)
         self.logging_manager.add_variable('kalman', 'varPZ', 10, LogVariableType.float)
@@ -77,12 +84,13 @@ class ExtendedCrazyFlie(SyncCrazyflie):
             'var_y_history' : [1000] * 10,
             'var_z_history' : [1000] * 10,
         })
+        start = time.time()
         self.logging_manager.start_logging_group('kalman')
         self.coordination_manager.observe_and_wait(
             observable_name= "{}@resetEstimation".format(self.cf.link_uri), # observable name
             condition= self.__quality_test, # test if the quality is below threshold
         ).wait()# wait the quality
-         
+        console.info(f"Estimators reset completed in {time.time()-start} s")
         # remove used resources
         self.logging_manager.remove_group('kalman')
         self.coordination_manager.remove_observable("{}@resetEstimation".format(self.cf.link_uri))

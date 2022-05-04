@@ -1,4 +1,5 @@
 from __future__ import annotations
+import logging
 from threading import Event
 from typing import TYPE_CHECKING
 from extension.decks.deck import Deck, DeckType
@@ -18,6 +19,8 @@ from cflib.localization.lighthouse_types import LhDeck4SensorPositions
 from cflib.localization.lighthouse_types import LhMeasurement
 from cflib.localization.lighthouse_types import Pose
 
+console = logging.getLogger(__name__)
+
 if TYPE_CHECKING:
     from extension.extended_crazyflie import ExtendedCrazyFlie
 
@@ -32,6 +35,23 @@ class Lighthouse(Deck):
         geo_dict : dict[int, LighthouseBsGeometry] = self.__create_geometry_dict(solution.bs_poses)
         self.upload_geometry(geo_dict)
         return geo_dict
+    
+    def complex_geometry_estimate(self) -> dict[int, LighthouseBsGeometry]:
+        """This method will fly the crazyflie around the flight space to estimate the geometry in
+        different position. This will leads in a better estimation of the Geometry of the environment.
+        By default the crazyflie will move around from the starting point (origin) by at most 1.5 m in
+        all the 3 dimension. Make sure to have at least 2 meters of free space around it. If you want
+        to specify a different fligth space, modify the config file (#TODO) according to the readme.md
+        inside the ligthhouse_config folder.
+        """
+        confirm = input(f'[!] ATTENTION:\tthe crazyflie {self.__ecf.cf.link_uri} will fly to estimate the geometry in multiple points in the fligth area. Continue ? [y/n].\n')
+        if confirm.lower() == 'y':
+            if DeckType.bcFlow2 not in self.__ecf.decks:
+                console.error("To use complex estimation you need a Flow Deck attched. Aborting.")
+                return
+            console.info("Resetting estimators before flying.")
+            self.__ecf.reset_estimator()
+
 
     def __record_sample(self) -> LhCfPoseSample:
         """Record angles and average over the samples to reduce noise"""

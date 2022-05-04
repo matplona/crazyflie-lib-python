@@ -8,7 +8,7 @@ if TYPE_CHECKING:
 MAX_RANGE = 4000 # max range of action = 4 meter
 
 class MultiRanger(Deck):
-    def __init__(self, ecf : ExtendedCrazyFlie, update_period_ms = 100) -> None:
+    def __init__(self, ecf : ExtendedCrazyFlie, update_period_ms = 11) -> None:
         super().__init__(DeckType.bcMultiranger) #initialize super
         self.__front = MAX_RANGE+1
         self.__back = MAX_RANGE+1

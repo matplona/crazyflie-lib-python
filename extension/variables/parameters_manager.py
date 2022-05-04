@@ -1,5 +1,7 @@
-from tokenize import group
-from cflib.crazyflie import Crazyflie
+from __future__ import annotations
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from extension.extended_crazyflie import ExtendedCrazyFlie
 import time
 from typing import Any, Callable
 
@@ -8,22 +10,9 @@ Callback = Callable[[int, str, Any], None]
 Predicate = Callable[[Any], bool]
 
 class ParametersManager:
-    __instance = None
-
-    @staticmethod
-    def getInstance(cf : Crazyflie) :
-        """call this method to get the single instance of the ParametersManager"""
-        if ParametersManager.__instance == None:
-            ParametersManager.__instance = ParametersManager(cf)
-        return ParametersManager.__instance
-
-    def __init__(self, cf : Crazyflie) -> None:
-        if self.__instance == None :
-            # initialize correctly the instance
-            self.__cf : Crazyflie = cf
-            self.__variables = {}
-        else:
-            raise("This is not the right way to get an Instance, please call the static method getInstance()")
+    def __init__(self, ecf : ExtendedCrazyFlie) -> None:
+                self.__ecf : ExtendedCrazyFlie = ecf
+                self.__variables = {}
     
     def __cb(self, name:str, value):
         ts = int(time.time()*1000)
@@ -62,7 +51,7 @@ class ParametersManager:
         """
         if(group in self.__variables and name in self.__variables[group]):
             if self.__variables[group][name]["cb"] is None:
-                self.__cf.param.add_update_callback(group, name, self.__cb)
+                self.__ecf.cf.param.add_update_callback(group, name, self.__cb)
             self.__variables[group][name]["cb"] = cb
         else:
             raise Exception("Variable not found in the ParametersManager, you should add before use it.")
@@ -83,7 +72,7 @@ class ParametersManager:
         [!] Parameter must be according to the toc.
         [!] Parameter must be RW to set its value.
         """
-        self.__cf.param.set_value("{}.{}".format(group, name), value)
+        self.__ecf.cf.param.set_value("{}.{}".format(group, name), value)
 
     def get_value(self, group, name):
         """
@@ -91,4 +80,4 @@ class ParametersManager:
         If the variable is not found in the manager is ok but it will not be added.
         [!] Parameter must be according to the toc.
         """
-        return self.__cf.param.get_value("{}.{}".format(group, name))
+        return self.__ecf.cf.param.get_value("{}.{}".format(group, name))

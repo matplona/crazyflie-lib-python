@@ -2,6 +2,7 @@
 TODO: description
 """
 
+import logging
 import time
 import cflib.crtp
 from cflib.positioning.motion_commander import MotionCommander
@@ -12,6 +13,8 @@ from extension.variables.logging_manager import LogVariableType
 DEFAULT_HEIGHT = 0.5
 TARGET = [1, 1, DEFAULT_HEIGHT]
 threshold = 0.1
+
+logging.basicConfig(level=logging.INFO)
 
 def position_changed(state : dict, positions : list) -> None:
     positions.append([state['x'], state['y'], state['z']])
@@ -41,9 +44,9 @@ if __name__ == '__main__':
         #print(ecf.parameters_manager.get_value('motion', 'disable'))
         #print(ecf.parameters_manager.get_value('motion', 'disableZrange'))
 
-        ecf.logging_manager.add_variable('stateEstimate', 'x', 1100, LogVariableType.float)
-        ecf.logging_manager.add_variable('stateEstimate', 'y', 1100, LogVariableType.float)
-        ecf.logging_manager.add_variable('stateEstimate', 'z', 1100, LogVariableType.float)
+        ecf.logging_manager.add_variable('stateEstimate', 'x', 1000, LogVariableType.float)
+        ecf.logging_manager.add_variable('stateEstimate', 'y', 1000, LogVariableType.float)
+        ecf.logging_manager.add_variable('stateEstimate', 'z', 1000, LogVariableType.float)
         observable_name = "{}@custom_observable".format(ecf.cf.link_uri)
         ecf.coordination_manager.add_observable(
             observable_name, 

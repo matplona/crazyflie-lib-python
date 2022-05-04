@@ -9,6 +9,7 @@ the drone moves only in the x-y plane.
 The range of the action and the velocity limits are specified in the utils.py 
 """
 
+import logging
 import time
 import cflib.crtp
 from cflib.positioning.motion_commander import MotionCommander
@@ -18,6 +19,8 @@ from extension.decks.lighthouse import Lighthouse
 from extension.decks.multiranger import MultiRanger
 from extension.examples.hand_driven_drone.utils import get_vx, get_vy
 from extension.extended_crazyflie import ExtendedCrazyFlie
+
+logging.basicConfig(level=logging.INFO)
 
 INITIALIZE_LIGHTHOUSE = False
 

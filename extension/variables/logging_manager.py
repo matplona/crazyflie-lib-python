@@ -1,17 +1,29 @@
-from enum import Enum
-from tokenize import group
-from cflib.crazyflie import Crazyflie
+from __future__ import annotations
+import time
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from extension.extended_crazyflie import ExtendedCrazyFlie
 from cflib.crazyflie.log import LogConfig
 import logging
 from typing import Any, Callable
+from enum import Enum
+from colorama import Fore, Style
 
-print_logger = logging.getLogger(__name__)
+console = logging.getLogger(__name__)
 
 # type aliases
 Callback = Callable[[int, str, Any], None]
 GroupCallback = Callable[[int, str, dict], None]
 Predicate = Callable[[Any], bool]
 GroupPredicate = Callable[[dict], bool]
+
+class UniqueLogName:
+    count = 0
+    @staticmethod
+    def get_unique_name():
+        name = f'Log_{UniqueLogName.count}'
+        UniqueLogName.count += 1
+        return name
 
 class LogVariableType(Enum):
     default = 0
@@ -25,28 +37,17 @@ class LogVariableType(Enum):
     float = 4
 
 class LoggingManager:
-    __instance = None
+    def __init__(self, ecf : ExtendedCrazyFlie) -> None:
+        self.__ecf : ExtendedCrazyFlie = ecf
+        self.__variables = {}
+        self.__logs : list = []
+        self.__ecf.wait_for_params() # waiting reset
+        console.info('Log TOC reset completed')
 
-    @staticmethod
-    def getInstance(cf : Crazyflie) :
-        """call this method to get the single instance of the LoggingManager"""
-        if LoggingManager.__instance == None:
-            LoggingManager.__instance = LoggingManager(cf)
-        return LoggingManager.__instance
-
-    def __init__(self, cf : Crazyflie) -> None:
-        if self.__instance == None :
-            # initialize correctly the instance
-            self.__cf : Crazyflie = cf
-            self.__variables = {}
-            self.__logs : list = []
-        else:
-            raise("This is not the right way to get an Instance, please call the static method getInstance()")
-    
     def __resolve_type(self, type: LogVariableType, name : str) -> LogVariableType:
         if type == LogVariableType.default:
             # resolve the type
-            return LogVariableType[self.__cf.log.toc.get_element_by_complete_name(name).ctype]
+            return LogVariableType[self.__ecf.cf.log.toc.get_element_by_complete_name(name).ctype]
         return type
 
     def add_variable(self, group, name, period_in_ms, type:LogVariableType = LogVariableType.default) -> None:
@@ -61,7 +62,7 @@ class LoggingManager:
             #if variable already exist raise exception
             raise Exception("Variable {}.{} already exist in LoggingManager.".format(group,name))
         
-        type = self.__resolve_type(type, f'{name}.{group}')
+        type = self.__resolve_type(type, f'{group}.{name}')
         size = type.value
         # search a log with exact period that can host the variable
         added = False
@@ -98,7 +99,7 @@ class LoggingManager:
             "cb": None, # by default None cb
         }
     def add_group(self, group:str, period_in_ms, type:LogVariableType = LogVariableType.default) -> None:
-        for name in self.__cf.log.toc.toc[group]:
+        for name in self.__ecf.cf.log.toc.toc[group]:
             self.add_variable(group,name, period_in_ms, type)
 
     def remove_variable(self, group, name):
@@ -116,7 +117,7 @@ class LoggingManager:
             log['log'].stop() # stop if needed
             log['log'].delete() # delete the log from the crazyflie
             try:
-                self.__cf.log.log_blocks.remove(log['log']) # try remove the config from the log blocks
+                self.__ecf.cf.log.log_blocks.remove(log['log']) # try remove the config from the log blocks
                 self.__logs.remove(log) # remove the log entry from the local dict
             except ValueError:
                 pass # means that there weren't in the log blocks
@@ -132,7 +133,7 @@ class LoggingManager:
 
     def __new_log(self, period_in_ms) -> LogConfig:
         # [!] log must be <= 26 Bytes (e.g., 6 floats + 1 FP16)
-        name = "Log_{}".format(len(self.__logs))
+        name = UniqueLogName.get_unique_name()
         if(period_in_ms < 10):
             period_in_ms = 10
         if(period_in_ms > 0xFF * 10):
@@ -147,6 +148,7 @@ class LoggingManager:
         }
         self.__logs.append(new_entry)
         log.data_received_cb.add_callback(self.__cb)
+        console.debug(f'{Fore.GREEN}[++]{Style.RESET_ALL}\tNew LogConfig created')
         return new_entry
 
     def __count_variables(self, group : str) -> bool:
@@ -172,7 +174,7 @@ class LoggingManager:
 
             # check that the variable are still in the dict
             if group_name not in self.__variables or var_name not in self.__variables[group_name]:
-                print_logger.warning(f"[!]\t{group_name}.{var_name} is logging but has been removed")
+                console.warning(f"[!]\t{group_name}.{var_name} is logging but has been removed")
                 continue # pass this variable
 
             group_ref : dict = self.__variables[group_name]
@@ -213,19 +215,22 @@ class LoggingManager:
             self.__variables[group][name]['is_running'] = True
             self.__variables[group]['count'] += 1 # increment count of variable that has been started
             log['count'] += 1 # increment count of variable that has been started
-            if log['updated']: # and the log was updated
-                try:
-                    self.__cf.log.log_blocks.remove(log['log']) # try to remove
-                    log['log'].delete() # delete content on the crazyflie only if needed
-                except ValueError:
-                    pass # means that it was not in the block list
-                self.__cf.log.add_config(log['log']) # re add the config to the Log
+            if log['updated']: # and the log was updated and was running
+                if log['log'].started: # if it was running stop and remove the config
+                    try:
+                        log['log'].stop()
+                        self.__ecf.cf.log.log_blocks.remove(log['log']) # try to remove
+                        log['log'].delete() # delete content on the crazyflie only if needed
+                    except ValueError:
+                        pass # means that it was not in the block list
+                self.__ecf.cf.log.add_config(log['log']) # (re)add the config to the Log
                 log['updated'] = False # after updating the log reset the variable
                 # need to restart the log if is running
                 if log['count'] > 0:
                     log['log'].start()
-            if log['count'] == 1:
+            elif log['count'] == 1:
                 log['log'].start() # only if is the first start the block
+            console.debug(f'{Fore.GREEN}[>]{Style.RESET_ALL}\tStarted logging variable {group}.{name}')
 
     def stop_logging_variable(self, group, name):
         """Stop logging the variable specified"""
@@ -239,6 +244,8 @@ class LoggingManager:
             log['count'] -= 1 # decrement count of variable that has been started
             if(log['count'] == 0):
                 log['log'].stop() # if is the last to be stopped in config we need to stop it
+            console.debug(f'{Fore.RED}[<]{Style.RESET_ALL}\tStopped logging variable {group}.{name}')
+        
 
     def start_logging_group(self, group):
         """Start logging all the variable in the group specified"""
@@ -247,6 +254,8 @@ class LoggingManager:
             raise Exception("Group {} not exist in LoggingManager".format(group))
         for name in self.__get_variables_name_list(group):
             self.start_logging_variable(group, name)
+        console.debug(f'{Fore.GREEN}[>]{Style.RESET_ALL}\tStarted logging group {group}')
+        
 
     def stop_logging_group(self, group):
         """Stop logging all the variable in the group specified"""
@@ -255,6 +264,7 @@ class LoggingManager:
             raise Exception("Group {} not exist in LoggingManager".format(group))
         for name in self.__get_variables_name_list(group):
             self.stop_logging_variable(group, name)
+        console.debug(f'{Fore.RED}[<]{Style.RESET_ALL}\tStopped logging group {group}')
     
     def start_logging_all(self):
         """Start logging all the variable added"""
@@ -264,6 +274,14 @@ class LoggingManager:
         """Stop logging all the variable added"""
         for group in self.__variables.keys():
             self.stop_logging_group(group)
+
+    def close(self):
+        """Stop logging all the variables and delete all the LogConfig stored on the CF"""
+        self.stop_logging_all()
+        block : LogConfig
+        for block in self.__ecf.cf.log.log_blocks:
+            # delete the block inside the CF
+            block.delete()
 
     def set_group_watcher(self, group, cb : GroupCallback):
         """
