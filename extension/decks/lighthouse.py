@@ -1,6 +1,7 @@
 from __future__ import annotations
 from threading import Event
 from typing import TYPE_CHECKING
+from extension.decks.deck import Deck, DeckType
 from extension.exceptions import SetterException
 from cflib.crazyflie.mem.lighthouse_memory import LighthouseBsGeometry
 from cflib.localization.lighthouse_bs_vector import LighthouseBsVectors
@@ -20,8 +21,9 @@ from cflib.localization.lighthouse_types import Pose
 if TYPE_CHECKING:
     from extension.extended_crazyflie import ExtendedCrazyFlie
 
-class Lighthouse:
+class Lighthouse(Deck):
     def __init__(self, ecf : ExtendedCrazyFlie) -> None:
+        super().__init__(DeckType.bcLighthouse4) #initialize super
         self.__ecf = ecf
 
     def simple_geometry_estimate(self) -> dict[int, LighthouseBsGeometry]:

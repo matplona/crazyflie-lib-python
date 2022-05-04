@@ -1,14 +1,17 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
+from extension.decks.deck import Deck, DeckType
 from extension.decks.z_ranger import ZRanger
 from extension.exceptions import SetterException
+from extension.variables.logging_manager import LogVariableType
 
 if TYPE_CHECKING:
     from extension.extended_crazyflie import ExtendedCrazyFlie
 MAX_RANGE = 4000 # max range of action = 4 meter
 
-class FlowDeck:
+class FlowDeck(Deck):
     def __init__(self, ecf : ExtendedCrazyFlie, update_period_ms = 100) -> None:
+        super().__init__(DeckType.bcFlow2) #initialize super
         self.__zrange = ZRanger(ecf)
         self.__ecf = ecf
         self.__flow_x = 0 # measure in pixel / frame
@@ -25,8 +28,8 @@ class FlowDeck:
         self.__ecf.parameters_manager.set_watcher("motion", "disable", self.__update_contribution)
 
         # Logging variables declaration
-        self.__ecf.logging_manager.add_variable("kalman_pred", "predNX", update_period_ms, "float")
-        self.__ecf.logging_manager.add_variable("kalman_pred", "predNY", update_period_ms, "float")
+        self.__ecf.logging_manager.add_variable("kalman_pred", "predNX", update_period_ms, LogVariableType.float)
+        self.__ecf.logging_manager.add_variable("kalman_pred", "predNY", update_period_ms, LogVariableType.float)
         # Set group watcher
         self.__ecf.logging_manager.set_group_watcher("kalman_pred", self.__set_state)
         # Start logging

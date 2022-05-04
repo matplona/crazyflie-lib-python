@@ -1,11 +1,15 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
+from extension.decks.deck import Deck, DeckType
+
+from extension.variables.logging_manager import LogVariableType
 if TYPE_CHECKING:
     from extension.extended_crazyflie import ExtendedCrazyFlie
 MAX_RANGE = 4000 # max range of action = 4 meter
 
-class ZRanger:
+class ZRanger(Deck):
     def __init__(self, ecf : ExtendedCrazyFlie, update_period_ms = 100) -> None:
+        super().__init__(DeckType.bcZRanger2) #initialize super
         self.__zrange = MAX_RANGE+1
         self.__ecf = ecf
         self.observable_name = "{}@zranger".format(ecf.cf.link_uri)
@@ -20,7 +24,7 @@ class ZRanger:
         self.__ecf.parameters_manager.set_watcher("motion", "disableZrange", self.__update_contribution)
 
         # Logging variables declaration
-        self.__ecf.logging_manager.add_variable("range", "zrange", update_period_ms, "uint16_t")
+        self.__ecf.logging_manager.add_variable("range", "zrange", update_period_ms, LogVariableType.uint16_t)
         # Set group watcher
         self.__ecf.logging_manager.set_variable_watcher("range", "zrange", self.__set_state)
         # Start logging

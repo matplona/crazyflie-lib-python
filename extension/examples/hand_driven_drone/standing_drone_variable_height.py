@@ -10,7 +10,7 @@ from cflib.crazyflie.commander import Commander
 import cflib.crtp
 from cflib.positioning.motion_commander import MotionCommander
 from cflib.utils import uri_helper
-from extension.decks.deck_type import DeckType
+from extension.decks.deck import DeckType
 from extension.decks.z_ranger import ZRanger
 from extension.extended_crazyflie import ExtendedCrazyFlie
 

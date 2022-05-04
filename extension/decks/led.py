@@ -1,6 +1,8 @@
 from __future__ import annotations
 import re
 from typing import TYPE_CHECKING
+
+from extension.decks.deck import Deck, DeckType
 if TYPE_CHECKING:
     from extension.extended_crazyflie import ExtendedCrazyFlie
 
@@ -157,7 +159,8 @@ class Colors(Enum):
     purple = Color(127, 0, 127)
     olive = Color(127, 127, 0)
 
-class LedRing:
+class LedRing(Deck):
+    super().__init__(DeckType.bcLedRing) #initialize super
     __effect : int = 0
     __solid_effect_color : Color = Color(20,20,20)
     __headlight : bool = False
@@ -234,10 +237,8 @@ class LedRing:
         self.__ecf.parameters_manager.set_value('ring', 'effect', effect.value)
     def toggle_headlight(self):
         self.__ecf.parameters_manager.set_value('ring', 'headlightEnable', 1 if (not self.__headlight) else 0)
-    def headlight_on(self):
-        self.__ecf.parameters_manager.set_value('ring', 'headlightEnable', 1)
-    def headlight_off(self):
-        self.__ecf.parameters_manager.set_value('ring', 'headlightEnable', 0)
+    def headlight_switch(self, on = True):
+        self.__ecf.parameters_manager.set_value('ring', 'headlightEnable', 1 if on else 0)
     def change_solid_effect_color(self, color : Color):
         self.__ecf.parameters_manager.set_value('ring', 'solidRed', color.r)
         self.__ecf.parameters_manager.set_value('ring', 'solidGreen', color.g)
