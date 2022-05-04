@@ -45,6 +45,14 @@ if __name__ == '__main__':
         ecf.logging_manager.add_variable('stateEstimate', 'y', 1100, LogVariableType.float)
         ecf.logging_manager.add_variable('stateEstimate', 'z', 1100, LogVariableType.float)
         observable_name = "{}@custom_observable".format(ecf.cf.link_uri)
+        ecf.coordination_manager.add_observable(
+            observable_name, 
+            {
+                'x':0,
+                'y':0,
+                'z':0,
+            }
+        )
         ecf.logging_manager.set_group_watcher(
             'stateEstimate',
             lambda ts,name,val: ecf.coordination_manager.update_observable_state(
@@ -56,23 +64,19 @@ if __name__ == '__main__':
                 }
             )
         )
-        ecf.coordination_manager.add_observable(
-            observable_name, 
-            {
-                'x':0,
-                'y':0,
-                'z':0,
-            }
-        )
+        
         time.sleep(5)
         ecf.logging_manager.start_logging_group('stateEstimate')
+
         ecf.coordination_manager.observe(
             observable_name=observable_name,
             action= lambda state: print(state),
         )
+        
         input("fly..")
 
         with MotionCommander(ecf.cf, default_height=DEFAULT_HEIGHT) as mc:
+            # take_off
             ecf.coordination_manager.observe(
                 observable_name = observable_name,
                 action= position_changed,
@@ -85,7 +89,11 @@ if __name__ == '__main__':
                 observable_name = observable_name,
                 condition= target_reached,
             ).wait(timeout=3) # estimated arrival time = 2 seconds
+
+            # mc.stop()
+
             print("Landing...")
+            # landing
     
     # print results
     print(positions)

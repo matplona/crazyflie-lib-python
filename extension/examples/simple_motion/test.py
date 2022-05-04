@@ -4,8 +4,11 @@ from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
 import cflib.crtp
 from cflib.positioning.motion_commander import MotionCommander
 from cflib.utils import uri_helper
+from extension.decks.deck import DeckType
 from extension.extended_crazyflie import ExtendedCrazyFlie
 import logging
+
+from extension.variables.logging_manager import LogVariableType
 
 logging.basicConfig(level=logging.INFO)
 USE_ECF = False
@@ -105,3 +108,37 @@ if __name__ == '__main__':
             time.sleep(4)
             lg.stop()
             print('stopping lg')
+
+
+
+
+
+
+
+
+
+
+def cb(ts, name, val):
+    print(f'[{ts}]\tvariable {name} = {val}')
+
+
+
+with ExtendedCrazyFlie(uri) as ecf:
+    ecf.logging_manager.add_variable('pm', 'batteryLevel', 1000, LogVariableType.float)
+    ecf.logging_manager.set_variable_watcher('pm', 'batteryLevel', cb)
+    #ecf.logging_manager.set_variable_watcher('pm', 'batteryLevel', lamda..)
+    ecf.logging_manager.set_variable_predicate('pm', 'batteryLevel', lambda val: val < 50)
+
+    ecf.parameters_manager.add_variable('motion', 'disable')
+    ecf.parameters_manager.set_watcher('motion', 'disable', lambda ts, name, val: print('param updated'))
+    ecf.parameters_manager.set_value('motion', 'disable', 1)
+
+
+with MotionCommander(ecf.cf) as mc:
+
+    ecf.coordination_manager.observe(
+        observable_name=ecf.decks[DeckType.bcMultiranger].observable_name,
+        action= lambda x, mc: mc.move_forward(x['up']),
+        condition= lambda x: x['up'] > 20,
+        context= mc
+    )

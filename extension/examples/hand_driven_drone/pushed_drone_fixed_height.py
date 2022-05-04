@@ -24,8 +24,8 @@ INITIALIZE_LIGHTHOUSE = False
 def fly_away(multiranger_state : dict, mc : MotionCommander) :
     vx = get_vx(multiranger_state['front'], multiranger_state['back'])
     vy = get_vy(multiranger_state['right'], multiranger_state['left'])
-    #mc.start_linear_motion(vx, vy, 0)
-    print(f'({vx}, {vy})')
+    mc.start_linear_motion(vx, vy, 0)
+    #print(f'({vx}, {vy})')
 
 if __name__ == '__main__':
     # Initialize the low-level drivers
