@@ -28,17 +28,15 @@ def fly_away(multiranger_state : dict, mc : MotionCommander) :
     vx = get_vx(multiranger_state['front'], multiranger_state['back'])
     vy = get_vy(multiranger_state['right'], multiranger_state['left'])
     mc.start_linear_motion(vx, vy, 0)
-    #print(f'({vx}, {vy})')
-
 if __name__ == '__main__':
     # Initialize the low-level drivers
-    cflib.crtp.init_drivers()
+    # cflib.crtp.init_drivers()
 
     uri = uri_helper.uri_from_env(default='radio://0/80/2M/E7E7E7E706')
     DEFAULT_HEIGHT = 0.5
 
     with ExtendedCrazyFlie(uri) as ecf:
-        print("Battery: {}".format(ecf.battery.get_complete_battery_status()))
+        ecf.battery.print_state()
         if(DeckType.bcMultiranger not in ecf.decks):
             raise Exception("This example needs Multiranger deck attached")
         multiranger : MultiRanger = ecf.decks[DeckType.bcMultiranger]
@@ -54,4 +52,4 @@ if __name__ == '__main__':
                 action= fly_away,
                 context= [mc],
             )
-            time.sleep(10)
+            time.sleep(30)

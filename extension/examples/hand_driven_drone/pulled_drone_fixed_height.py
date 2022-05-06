@@ -66,16 +66,13 @@ def follow_safe(multiranger_state : dict, mc : MotionCommander) :
         # unsafe -> stop action
         mc.start_linear_motion(0, 0, 0)
 
-def is_low(battery : dict):
-    return battery['batteryLevel'] <= BATTERY_LIMIT
-
 URI = 'radio://0/80/2M/E7E7E7E706'
 DEFAULT_HEIGHT = 0.5
 if __name__ == '__main__':
     # Initialize the low-level drivers
-    cflib.crtp.init_drivers()
+    # cflib.crtp.init_drivers()
     with ExtendedCrazyFlie(URI) as ecf:
-        print(ecf.battery.get_complete_battery_status)
+        ecf.battery.print_state()
         if(DeckType.bcMultiranger not in ecf.decks):
             raise Exception("This example needs Multiranger deck attached")
         cm : CoordinationManager = CoordinationManager.getInstance()
@@ -86,8 +83,4 @@ if __name__ == '__main__':
                 action= follow_safe,
                 context= [mc],
             )
-            time.sleep(20)
-            # cm.observe_and_wait(
-            #     observable_name= ecf.battery.observable_name,
-            #     condition= is_low,
-            # ).wait()
+            time.sleep(30)

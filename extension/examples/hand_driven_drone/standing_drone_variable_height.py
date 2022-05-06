@@ -14,21 +14,23 @@ from extension.decks.deck import DeckType
 from extension.decks.z_ranger import ZRanger
 from extension.extended_crazyflie import ExtendedCrazyFlie
 
-def adjust_height(zrange_state : dict, c : Commander):
+ADJUST_VELOCITY = 0.2 # [m/s]
+threshold = 0.05 # [m]
+
+def adjust_height(zrange_state : dict, mc : MotionCommander):
     h = zrange_state['zrange']
-    if h > DEFAULT_HEIGHT:
-        c.send_position_setpoint(0,0,h,0)
-        
+    if h > DEFAULT_HEIGHT + threshold:
+        mc.start_linear_motion(0,0,ADJUST_VELOCITY, 0) # raise height
+    elif h < DEFAULT_HEIGHT - threshold:
+        mc.start_linear_motion(0,0,-ADJUST_VELOCITY, 0) # lower height
+    else:
+        mc.start_linear_motion(0,0,0,0) # hover fixed
 
 if __name__ == '__main__':
-    # Initialize the low-level drivers
-    cflib.crtp.init_drivers()
-
     uri = uri_helper.uri_from_env(default='radio://0/80/2M/E7E7E7E705')
-    DEFAULT_HEIGHT = 0.5
-
+    DEFAULT_HEIGHT = 0.2
     with ExtendedCrazyFlie(uri) as ecf:
-        print("Battery: {}".format(ecf.battery.get_complete_battery_status()))
+        ecf.battery.print_state()
         if(DeckType.bcFlow2 not in ecf.decks or DeckType.bcZRanger2 not in ecf.decks):
             raise Exception("This example needs FlowDeck or ZRanger deck attached")
         if(DeckType.bcLighthouse4 not in ecf.decks):
@@ -46,7 +48,7 @@ if __name__ == '__main__':
 
         with MotionCommander(ecf.cf, default_height=DEFAULT_HEIGHT) as mc:
             ecf.coordination_manager.observe(
-                observable_name= ecf.decks[DeckType.bcMultiranger].observable_name,
+                observable_name= zranger.observable_name,
                 action= adjust_height,
                 context= [mc],
             )
