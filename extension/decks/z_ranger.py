@@ -1,11 +1,17 @@
 from __future__ import annotations
+import logging
 from typing import TYPE_CHECKING
+
+from colorama import Fore, Style
 from extension.decks.deck import Deck, DeckType
 
 from extension.variables.logging_manager import LogVariableType
 if TYPE_CHECKING:
     from extension.extended_crazyflie import ExtendedCrazyFlie
 MAX_RANGE = 4000 # max range of action = 4 meter
+
+console = logging.getLogger(__name__)
+#console.level = logging.DEBUG
 
 class ZRanger(Deck):
     def __init__(self, ecf : ExtendedCrazyFlie, update_period_ms = 100) -> None:
@@ -36,6 +42,7 @@ class ZRanger(Deck):
 
     def __set_state(self, ts, name, data) -> None:
         self.__zrange = data
+        console.debug(f'{Fore.CYAN}[^]{Style.RESET_ALL}\tZRange update: {self.__zrange}\t\t\t{Fore.MAGENTA}@{ts}{Style.RESET_ALL}')
         self.__ecf.coordination_manager.update_observable_state(self.observable_name, self.get_state())
 
     def get_zrange(self) -> int:

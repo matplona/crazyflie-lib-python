@@ -1,13 +1,13 @@
 class ActionLimit():
     #measure unit millimeters
-    MIN = 500
-    MAX = 1000
-    SAFE = 300 
+    MIN = 150
+    MAX = 500
+    SAFE = 100
 
 class VelocityLimit():
     #measure unit meters/second
     MIN = 0
-    MAX = 2
+    MAX = 1
 
 # this function wil compute a velocity inversely proportional to the distance of the hand
 # form the drone using inverse rescaling from the interval (ActionLimit.MIN, ActionLimit.MAX)

@@ -26,11 +26,12 @@ input   output              input   output
 
 from functools import reduce
 from threading import Event
+import time
+import cflib
 from cflib.positioning.motion_commander import MotionCommander
 from extension.coordination.coordination_manager import CoordinationManager
 from extension.decks.deck import DeckType
-from extension.examples.hand_driven_drone.utils import ActionLimit, VelocityLimit
-from hand_driven_drone.utils import get_vx, get_vy
+from extension.examples.hand_driven_drone.utils import ActionLimit, VelocityLimit,get_vx, get_vy
 from extension.extended_crazyflie import ExtendedCrazyFlie
 
 SPEED_CLIP = 0.5
@@ -60,7 +61,7 @@ def follow_safe(multiranger_state : dict, mc : MotionCommander) :
     if is_safe(multiranger_state['back'], multiranger_state['front'], multiranger_state['left'], multiranger_state['right']):
         vx = clip(get_vx(multiranger_state['front'], multiranger_state['back']))
         vy = clip(get_vy(multiranger_state['right'], multiranger_state['left']))
-        mc.start_linear_motion(vx, vy, 0)
+        mc.start_linear_motion(-vx, -vy, 0)
     else:
         # unsafe -> stop action
         mc.start_linear_motion(0, 0, 0)
@@ -68,20 +69,25 @@ def follow_safe(multiranger_state : dict, mc : MotionCommander) :
 def is_low(battery : dict):
     return battery['batteryLevel'] <= BATTERY_LIMIT
 
-URI = 'radio://0/80/2M/E7E7E7E705'
+URI = 'radio://0/80/2M/E7E7E7E706'
 DEFAULT_HEIGHT = 0.5
-with ExtendedCrazyFlie(URI) as ecf:
-    print(ecf.battery.get_complete_battery_status)
-    if(DeckType.bcMultiranger not in ecf.decks):
-        raise Exception("This example needs Multiranger deck attached")
-    cm : CoordinationManager = CoordinationManager.getInstance()
-    with MotionCommander(ecf.cf, default_height=DEFAULT_HEIGHT) as mc:
-        cm.observe(
-            observable_name= ecf.decks[DeckType.bcMultiranger].observable_name,
-            action= follow_safe,
-            context= [mc],
-        )
-        cm.observe_and_wait(
-            observable_name= ecf.battery.observable_name,
-            condition= is_low,
-        ).wait()
+if __name__ == '__main__':
+    # Initialize the low-level drivers
+    cflib.crtp.init_drivers()
+    with ExtendedCrazyFlie(URI) as ecf:
+        print(ecf.battery.get_complete_battery_status)
+        if(DeckType.bcMultiranger not in ecf.decks):
+            raise Exception("This example needs Multiranger deck attached")
+        cm : CoordinationManager = CoordinationManager.getInstance()
+        input('fly...')
+        with MotionCommander(ecf.cf, default_height=DEFAULT_HEIGHT) as mc:
+            cm.observe(
+                observable_name= ecf.decks[DeckType.bcMultiranger].observable_name,
+                action= follow_safe,
+                context= [mc],
+            )
+            time.sleep(20)
+            # cm.observe_and_wait(
+            #     observable_name= ecf.battery.observable_name,
+            #     condition= is_low,
+            # ).wait()

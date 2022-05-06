@@ -3,13 +3,14 @@ import time
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from extension.extended_crazyflie import ExtendedCrazyFlie
-from cflib.crazyflie.log import LogConfig
+from cflib.crazyflie.log import Log, LogConfig
 import logging
 from typing import Any, Callable
 from enum import Enum
 from colorama import Fore, Style
 
 console = logging.getLogger(__name__)
+console.level = logging.DEBUG
 
 # type aliases
 Callback = Callable[[int, str, Any], None]
@@ -26,15 +27,17 @@ class UniqueLogName:
         return name
 
 class LogVariableType(Enum):
-    default = 0
-    uint8_t = 1
-    int8_t = 1
-    uint16_t = 2
-    int16_t = 2
-    uint32_t = 4
-    int32_t = 4
-    FP16 = 2
-    float = 4
+    default = (0,0) # pair(index, size)
+    uint8_t = (1,1)
+    int8_t = (2,1)
+    uint16_t = (3,2)
+    int16_t = (4,2)
+    uint32_t = (5,4)
+    int32_t = (6,4)
+    FP16 = (7,2)
+    float = (8,4)
+    def get_size(self):
+        return self.value[1] # return the second element of the pair
 
 class LoggingManager:
     def __init__(self, ecf : ExtendedCrazyFlie) -> None:
@@ -63,11 +66,11 @@ class LoggingManager:
             raise Exception("Variable {}.{} already exist in LoggingManager.".format(group,name))
         
         type = self.__resolve_type(type, f'{group}.{name}')
-        size = type.value
+        size = type.get_size()
         # search a log with exact period that can host the variable
         added = False
         for log in self.__logs:
-            if log["period"] == period_in_ms and log["size"] + size <= 26:
+            if log["period"] == period_in_ms and log["size"] + size <= log['log'].MAX_LEN:
                 # if the period is correct and there is space add the variable to the log
                 added = True
                 variable_log = log
@@ -112,22 +115,31 @@ class LoggingManager:
         if self.__count_variables(group) == 0:
             # if no more variables are inside the group remove the group
             self.__variables.pop(group)
-        log['size'] -= removed['type'].value # update the size of the log
+        log['size'] -= removed['type'].get_size() # update the size of the log
+        log['updated'] = True
         if log['size'] <= 0:
-            log['log'].stop() # stop if needed
-            log['log'].delete() # delete the log from the crazyflie
-            try:
-                self.__ecf.cf.log.log_blocks.remove(log['log']) # try remove the config from the log blocks
-                self.__logs.remove(log) # remove the log entry from the local dict
-            except ValueError:
-                pass # means that there weren't in the log blocks
-    
+            self.__delete_log(log)    
     def remove_group(self, group : str) -> None:
         if group not in self.__variables:
             #if variable not exist raise exception
             raise Exception("Group {} not exist in LoggingManager".format(group))
         for var_name in self.__get_variables_name_list(group): # for each var inside the group
             self.remove_variable(group, var_name) # remove the variable
+
+    def __delete_log(self, log_entry):
+        cf_log : Log= self.__ecf.cf.log
+        self.__logs.remove(log_entry) # remove from local list and get its LogConfig
+        config : LogConfig = log_entry['log'] # get its LogConfig
+        config.stop()
+        config.delete()
+        cf_log.log_blocks.remove(config) # remove from the general Log
+        cf_log._config_id_counter -= 1 # decrease by one the config counter TODO check
+        # reset the config 
+        config.added = False
+        config.started = False
+        config.cf = None
+        config.valid = False
+        config.useV2 = False
 
 
 
@@ -216,13 +228,8 @@ class LoggingManager:
             self.__variables[group]['count'] += 1 # increment count of variable that has been started
             log['count'] += 1 # increment count of variable that has been started
             if log['updated']: # and the log was updated and was running
-                if log['log'].started: # if it was running stop and remove the config
-                    try:
-                        log['log'].stop()
-                        self.__ecf.cf.log.log_blocks.remove(log['log']) # try to remove
-                        log['log'].delete() # delete content on the crazyflie only if needed
-                    except ValueError:
-                        pass # means that it was not in the block list
+                if log['log'].added: # if it was already added delete the config
+                    self.__delete_log(log)
                 self.__ecf.cf.log.add_config(log['log']) # (re)add the config to the Log
                 log['updated'] = False # after updating the log reset the variable
                 # need to restart the log if is running

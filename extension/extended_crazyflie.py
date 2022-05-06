@@ -1,5 +1,6 @@
 import logging
 import time
+from cflib import crtp
 from cflib.crazyflie import Crazyflie
 from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
 from extension.battery import Battery
@@ -24,6 +25,8 @@ class ExtendedCrazyFlie(SyncCrazyflie):
         self.coordination_manager : CoordinationManager = CoordinationManager.getInstance()
 
     def __enter__(self):
+        if len(crtp.CLASSES) == 0:
+            crtp.init_drivers() # initialize drivers 
         super().__enter__()
         # initialize logging_manager
         self.logging_manager : LoggingManager = LoggingManager(self)
@@ -92,6 +95,7 @@ class ExtendedCrazyFlie(SyncCrazyflie):
         ).wait()# wait the quality
         console.info(f"Estimators reset completed in {time.time()-start} s")
         # remove used resources
+        self.logging_manager.stop_logging_group('kalman')
         self.logging_manager.remove_group('kalman')
         self.coordination_manager.remove_observable("{}@resetEstimation".format(self.cf.link_uri))
 

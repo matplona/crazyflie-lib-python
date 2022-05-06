@@ -54,4 +54,4 @@ if __name__ == '__main__':
                 action= fly_away,
                 context= [mc],
             )
-            time.sleep(5)
+            time.sleep(10)

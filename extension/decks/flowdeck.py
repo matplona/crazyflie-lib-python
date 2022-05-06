@@ -1,13 +1,17 @@
 from __future__ import annotations
+import logging
 from typing import TYPE_CHECKING
 from extension.decks.deck import Deck, DeckType
 from extension.decks.z_ranger import ZRanger
 from extension.exceptions import SetterException
 from extension.variables.logging_manager import LogVariableType
-
+from colorama import Fore, Style
 if TYPE_CHECKING:
     from extension.extended_crazyflie import ExtendedCrazyFlie
 MAX_RANGE = 4000 # max range of action = 4 meter
+
+console = logging.getLogger(__name__)
+#console.level = logging.DEBUG
 
 class FlowDeck(Deck):
     def __init__(self, ecf : ExtendedCrazyFlie, update_period_ms = 100) -> None:
@@ -42,6 +46,7 @@ class FlowDeck(Deck):
     def __set_state(self, ts, name, data) -> None:
         self.__flow_x = data['predNX']
         self.__flow_y = data['predNY']
+        console.debug(f'{Fore.CYAN}[^]{Style.RESET_ALL}\tFlowDeck update: ({self.__flow_x}, {self.__flow_y})\t\t\t{Fore.MAGENTA}@{ts}{Style.RESET_ALL}')
         self.__ecf.coordination_manager.update_observable_state(self.observable_name, self.get_state())
 
     @property
