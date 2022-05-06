@@ -16,15 +16,11 @@ import time
 from cflib.positioning.motion_commander import MotionCommander
 from cflib.utils import uri_helper
 from extension.extended_crazyflie import ExtendedCrazyFlie
-from extension.variables.logging_manager import LogVariableType
 DEFAULT_HEIGHT = 0.5
 TARGET = [1, 0]
 threshold = 0.1
 
 logging.basicConfig(level=logging.INFO)
-
-def position_changed(state : dict, positions : list) -> None:
-    positions.append([state['x'], state['y'], state['z']])
 
 def target_reached(state : dict) -> bool:
     reached = True
@@ -38,61 +34,38 @@ if __name__ == '__main__':
     positions = [] # empty positions
     with ExtendedCrazyFlie(uri) as ecf:
         time.sleep(1)
-        ecf.logging_manager.add_variable('stateEstimate', 'x', 10, LogVariableType.float)
-        ecf.logging_manager.add_variable('stateEstimate', 'y', 10, LogVariableType.float)
-        ecf.logging_manager.add_variable('stateEstimate', 'z', 10, LogVariableType.float)
-        observable_name = "{}@custom_observable".format(ecf.cf.link_uri)
-        ecf.coordination_manager.add_observable(
-            observable_name, 
-            {
-                'x':0,
-                'y':0,
-                'z':0,
-            }
-        )
-        ecf.logging_manager.set_group_watcher(
-            'stateEstimate',
-            lambda ts,name,val: ecf.coordination_manager.update_observable_state(
-                observable_name,
-                {
-                    'x':val['x'],
-                    'y':val['y'],
-                    'z':val['z'],
-                }
-            )
-        )
-        time.sleep(1)
-        ecf.logging_manager.start_logging_group('stateEstimate')
-        time.sleep(1)
 
         # change the TARGET coordinate system into Global coordinate system
-        estimate = ecf.coordination_manager.get_observable_state(observable_name)
-        TARGET[0] += estimate['x']
-        TARGET[1] += estimate['y']
-
-        print(f"I'm @ [{estimate['x']},{estimate['y']},{estimate['z']}]\t\t\tTrying to reach [{TARGET[0]},{TARGET[1]},{TARGET[2]}]")
+        TARGET[0] += ecf.state_estimate.x
+        TARGET[1] += ecf.state_estimate.y
 
         input("fly..")
-
+        ecf.state_estimate.record_positions(period_in_ms=50)
+        ecf.state_estimate.record_velocities(period_in_ms=50)
+        ecf.state_estimate.record_accelerations(period_in_ms=50)
+        ecf.state_estimate.record_attitudes(period_in_ms=50)
         with MotionCommander(ecf.cf, default_height=DEFAULT_HEIGHT) as mc:
             # take_off
             time.sleep(1)
-            ecf.coordination_manager.observe(
-                observable_name = observable_name,
-                action= position_changed,
-                context= [positions],
-            ) # first observer to print out the state
             mc.start_linear_motion(0.2,0,0,0)
             ecf.coordination_manager.observe_and_wait(
-                observable_name = observable_name,
+                observable_name = ecf.state_estimate.observable_name,
                 condition= target_reached,
             ).wait(timeout=6) # estimated arrival time = 5 seconds
             mc.start_linear_motion(0,0,0,0)#stop
             time.sleep(1)
             print("Landing...")
             # landing
-    
-    # print results
-    #import matplotlib as plt
+        ecf.state_estimate.stop_record_positions()
+        ecf.state_estimate.stop_record_velocities()
+        ecf.state_estimate.stop_record_accelerations()
+        ecf.state_estimate.stop_record_attitudes()
 
-    print(positions)
+        ecf.state_estimate.plot_positions_3D()
+        ecf.state_estimate.plot_position_velocity_3D()
+        ecf.state_estimate.plot_position_acceleration_3D()
+        ecf.state_estimate.plot_position_2D()
+        ecf.state_estimate.plot_velocity_2D()
+        ecf.state_estimate.plot_acceleraiton_2D()
+        ecf.state_estimate.plot_attitude_2D()
+

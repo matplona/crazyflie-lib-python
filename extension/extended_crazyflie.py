@@ -1,5 +1,7 @@
 import logging
 import time
+
+from colorama import Fore, Style
 from cflib import crtp
 from cflib.crazyflie import Crazyflie
 from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
@@ -11,6 +13,7 @@ from extension.decks.flowdeck import FlowDeck
 from extension.decks.lighthouse import Lighthouse
 from extension.decks.multiranger import MultiRanger
 from extension.decks.z_ranger import ZRanger
+from extension.state_estimate import StateEstimate
 from extension.variables.parameters_manager import ParametersManager
 from extension.variables.logging_manager import LogVariableType, LoggingManager
 console = logging.getLogger(__name__)
@@ -59,6 +62,9 @@ class ExtendedCrazyFlie(SyncCrazyflie):
         self.battery : Battery = Battery(self)
         console.info("Created Battery module")
 
+        # initialize state estimate module
+        self.state_estimate : StateEstimate = StateEstimate(self, True, True, True)
+
         # return reference
         return self
     
@@ -74,9 +80,9 @@ class ExtendedCrazyFlie(SyncCrazyflie):
         This function will reset the kalman state and wait for convergence of estimators
         """
         console.info("Resetting estimators")
-        self.cf.param.set_value('kalman.resetEstimation', '1')
+        self.parameters_manager.set_value('kalman','resetEstimation', '1')
         time.sleep(0.1)
-        self.cf.param.set_value('kalman.resetEstimation', '0')
+        self.parameters_manager.set_value('kalman','resetEstimation', '1')
         console.info('Waiting for estimator to find position...')
         self.logging_manager.add_variable('kalman', 'varPX', 10, LogVariableType.float)
         self.logging_manager.add_variable('kalman', 'varPY', 10, LogVariableType.float)
