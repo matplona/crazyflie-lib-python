@@ -53,9 +53,6 @@ import errno
 import logging
 import struct
 
-from colorama import Fore
-from colorama import Style
-
 from .toc import Toc
 from .toc import TocFetcher
 from cflib.crtp.crtpstack import CRTPPacket
@@ -93,7 +90,8 @@ GET_TOC_ELEMENT = 'GET_TOC_ELEMENT'
 
 
 logger = logging.getLogger(__name__)
-logger.level = logging.DEBUG
+
+
 class LogVariable():
     """A logging variable"""
 
@@ -233,8 +231,7 @@ class LogConfig(object):
                 pk.data.append(struct.pack('<I', var.address))
             else:  # Item in TOC
                 element_id = self.cf.log.toc.get_element_id(var.name)
-                logger.debug('[%s] Adding %s with id=%d and type=0x%02X',
-                             self,
+                logger.debug('Adding %s with id=%d and type=0x%02X',
                              var.name,
                              element_id,
                              var.get_storage_and_fetch_byte())
@@ -254,11 +251,10 @@ class LogConfig(object):
 
     def create(self):
         """Save the log configuration in the Crazyflie"""
-        logging.debug(f'{Fore.LIGHTGREEN_EX}[+]{Style.RESET_ALL}\t Created log for {self.variables[0].name.split(".")[0]}')
         command = self._cmd_create_block()
         next_to_add = 0
         is_done = False
-        
+
         num_variables = 0
         pending = 0
         for block in self.cf.log.log_blocks:
@@ -345,13 +341,8 @@ class LogConfig(object):
             name = var.name
             unpackstring = LogTocElement.get_unpack_string_from_id(
                 var.fetch_as)
-            try:
-                value = struct.unpack(
-                    unpackstring, log_data[data_index:data_index + size])[0]
-                #logger.info(f'{Fore.GREEN}[!]{Style.RESET_ALL}\treceived::\n\t\t[log_data] = {log_data}\n\t\t[timestamp] = {timestamp}\n\t\t[UNPACKSTRING] = {unpackstring}\n\t\t[TRIMMED] = {log_data[data_index:data_index + size]}')
-            except Exception as e:
-                #logger.error(f'{Fore.RED}[!]{Style.RESET_ALL}\treceived:\n\t\t[log_data] = {log_data}\n\t\t[timestamp] = {timestamp}\n\t\t[UNPACKSTRING] = {unpackstring}\n\t\t[TRIMMED] = {log_data[data_index:data_index + size]}')
-                raise e
+            value = struct.unpack(
+                unpackstring, log_data[data_index:data_index + size])[0]
             data_index += size
             ret_data[name] = value
         self.data_received_cb.call(timestamp, ret_data, self)
@@ -622,16 +613,12 @@ class Log():
         if (chan == CHAN_LOGDATA):
             chan = packet.channel
             id = packet.data[0]
-            #logger.debug(f"received packet from block_id {id}")
             block = self._find_block(id)
             timestamps = struct.unpack('<BBB', packet.data[1:4])
             timestamp = (
                 timestamps[0] | timestamps[1] << 8 | timestamps[2] << 16)
             logdata = packet.data[4:]
             if (block is not None):
-                try:
-                    block.unpack_log_data(logdata, timestamp)
-                except Exception as e:
-                    pass#raise e
+                block.unpack_log_data(logdata, timestamp)
             else:
                 logger.warning('Error no LogEntry to handle id=%d', id)
