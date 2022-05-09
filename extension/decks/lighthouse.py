@@ -338,11 +338,15 @@ class Lighthouse(Deck):
         console.debug("Geometry writtten inside the crazyflie")
 
 
-import xmlschema
-import os
-schema = os.path.abspath('/lighthouse_config/config.xml')
-with open(schema) as o:
-    print(o.readline())
-xml = os.path.abspath('/lighthouse_config/config.xml')
-print(os.path.abspath(os.path.curdir))
-#xmlschema.validate(xml, schema)
+# import xmlschema
+# import os
+# dir = os.path.dirname(os.path.abspath(__file__))
+# xml = os.path.join(dir, 'lighthouse_config/config.xml')
+# schema = os.path.join(dir, 'lighthouse_config/schema.xsd')
+# with open(xml) as o:
+#     print(o.readline())
+
+# with open(schema) as o:
+#     print(o.readline())
+
+# xmlschema.validate(xml, schema)
