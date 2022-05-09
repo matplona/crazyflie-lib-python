@@ -33,7 +33,7 @@ class Battery:
         ecf.logging_manager.set_group_watcher('pm', self.__update_battery)
         self.observable_name = "{}@battery".format(ecf.cf.link_uri)
         self.__ecf = ecf
-        self.__ecf.coordination_manager.add_observable(self.observable_name, self.__get_state)
+        self.__ecf.coordination_manager.add_observable(self.observable_name, self.__get_state())
         ecf.logging_manager.start_logging_group('pm')
     
     def __del__(self):
@@ -44,7 +44,7 @@ class Battery:
         self.__pm_state = data['state']
         self.__voltage = data['vbatMV']/1000
         self.__set_battery_level()
-        self.__ecf.coordination_manager.update_observable_state(self.observable_name, self.__get_state)
+        self.__ecf.coordination_manager.update_observable_state(self.observable_name, self.__get_state())
     
     @property
     def low_voltage(self):
