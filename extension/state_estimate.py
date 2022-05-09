@@ -1,5 +1,7 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
+
+from colorama import Fore, Style
 if TYPE_CHECKING:
     from extension.extended_crazyflie import ExtendedCrazyFlie
 
@@ -120,6 +122,7 @@ class StateEstimate:
                 self.__attitudes[2].append(self.__yaw)
                 
         # update the observable state
+        print(f'{Fore.GREEN}TYPE OF STATE: {type(self.__get_state())}\nSTATE: {self.__get_state()}{Style.RESET_ALL}')
         self.__ecf.coordination_manager.update_observable_state(self.observable_name, self.__get_state())
     
     @property
