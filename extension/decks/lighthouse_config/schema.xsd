@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <!-- definition of simple elements -->
+    <xs:element name="x" type="xs:decimal"/>
+    <xs:element name="y" type="xs:decimal"/>
+    <xs:element name="z" type="xs:decimal"/>
+
+    <!-- definition of attributes -->
+    <xs:attribute name="default_height" type="xs:decimal"/>
+    <xs:attribute name="default_velocity" type="xs:decimal"/>
+
+    <!-- definition of complex elements -->
+    <xs:element name="x_axis_point">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="x"/>
+            </xs:sequence>
+            <xs:attribute ref="default_velocity" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="xy_plane_point">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="x"/>
+                <xs:element ref="y"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="xy_plane_points">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="xy_plane_point" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute ref="default_velocity" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="waypoint">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="x"/>
+                <xs:element ref="y"/>
+                <xs:element ref="z"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="space_points">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="waypoint" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute ref="default_velocity" use="required"/>
+        </xs:complexType>
+    </xs:element>    
+
+    <xs:element name="space">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="x_axis_point"/>
+                <xs:element ref="xy_plane_points"/>
+                <xs:element ref="space_points"/>
+            </xs:sequence>
+            <xs:attribute ref="default_height" use="required"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

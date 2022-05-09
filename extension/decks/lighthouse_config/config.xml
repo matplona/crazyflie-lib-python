@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+
+<space xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default_height='0.3'>
+    <!--xsi:noNamespaceSchemaLocation="lighthouse.xsd">-->
+
+    <!-- measure exactly at 1 m from the origin (used to scale the system)-->
+    <x_axis_point default_velocity='0.1'><x>1.0</x></x_axis_point>
+
+    <xy_plane_points default_velocity='0.1'>
+        <!-- measure at the corners of a space area of 3 x 3 m -->
+        <xy_plane_point><x>1.5</x><y>1.5</y></xy_plane_point>    
+        <xy_plane_point><x>-1.5</x><y>1.5</y></xy_plane_point>    
+        <xy_plane_point><x>-1.5</x><y>-1.5</y></xy_plane_point>    
+        <xy_plane_point><x>1.5</x><y>-1.5</y></xy_plane_point>    
+    </xy_plane_points>
+    
+    <space_points default_velocity='0.1'>
+        <!-- Cover a space of 3 x 3 x 1.5h around the origin -->
+        <waypoint><x>0.0</x><y>0.0</y><z>0.3</z></waypoint>
+        <waypoint><x>1.5</x><y>0.0</y><z>0.3</z></waypoint>
+        <waypoint><x>1.5</x><y>1.5</y><z>0.3</z></waypoint>
+        <waypoint><x>-1.5</x><y>1.5</y><z>0.35</z></waypoint>
+        <waypoint><x>-1.5</x><y>-1.5</y><z>0.4</z></waypoint>
+        <waypoint><x>1.5</x><y>-1.5</y><z>0.45</z></waypoint>
+        <waypoint><x>1.5</x><y>1.5</y><z>0.5</z></waypoint>
+        <waypoint><x>-1.5</x><y>1.5</y><z>0.55</z></waypoint>
+        <waypoint><x>-1.5</x><y>-1.5</y><z>0.6</z></waypoint>
+        <waypoint><x>1.5</x><y>-1.5</y><z>0.65</z></waypoint>
+        <waypoint><x>1.5</x><y>1.5</y><z>0.7</z></waypoint>
+        <waypoint><x>-1.5</x><y>1.5</y><z>0.75</z></waypoint>
+        <waypoint><x>-1.5</x><y>-1.5</y><z>0.8</z></waypoint>
+        <waypoint><x>1.5</x><y>-1.5</y><z>0.85</z></waypoint>
+        <waypoint><x>1.5</x><y>1.5</y><z>0.9</z></waypoint>
+        <waypoint><x>-1.5</x><y>1.5</y><z>0.95</z></waypoint>
+        <waypoint><x>-1.5</x><y>-1.5</y><z>1.0</z></waypoint>
+        <waypoint><x>1.5</x><y>-1.5</y><z>1.05</z></waypoint>
+        <waypoint><x>1.5</x><y>1.5</y><z>1.1</z></waypoint>
+        <waypoint><x>-1.5</x><y>1.5</y><z>1.15</z></waypoint>
+        <waypoint><x>-1.5</x><y>-1.5</y><z>1.2</z></waypoint>
+        <waypoint><x>1.5</x><y>-1.5</y><z>1.25</z></waypoint>
+        <waypoint><x>1.5</x><y>1.5</y><z>1.3</z></waypoint>
+        <waypoint><x>-1.5</x><y>1.5</y><z>1.35</z></waypoint>
+        <waypoint><x>-1.5</x><y>-1.5</y><z>1.4</z></waypoint>
+        <waypoint><x>1.5</x><y>-1.5</y><z>1.45</z></waypoint>
+        <waypoint><x>0.0</x><y>0.0</y><z>1.5</z></waypoint>
+    </space_points>
+</space>

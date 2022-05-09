@@ -1,16 +1,19 @@
 from __future__ import annotations
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from extension.extended_crazyflie import ExtendedCrazyFlie
+
 import logging
 from threading import Event
 import time
-from typing import TYPE_CHECKING
 from colorama import Fore, Style
-
-from cv2 import threshold
+import xmlschema
+import os
+import xml.etree.ElementTree as ET
 import numpy as np
 from cflib.positioning.motion_commander import MotionCommander
 from cflib.positioning.position_hl_commander import PositionHlCommander
 from extension.decks.deck import Deck, DeckType
-from extension.exceptions import SetterException
 from cflib.crazyflie.mem.lighthouse_memory import LighthouseBsGeometry
 from cflib.localization.lighthouse_bs_vector import LighthouseBsVectors
 from cflib.localization.lighthouse_config_manager import LighthouseConfigWriter
@@ -29,8 +32,6 @@ import xmlschema
 
 console = logging.getLogger(__name__)
 
-if TYPE_CHECKING:
-    from extension.extended_crazyflie import ExtendedCrazyFlie
 
 class Lighthouse(Deck):
     def __init__(self, ecf : ExtendedCrazyFlie) -> None:
@@ -69,8 +70,17 @@ class Lighthouse(Deck):
                 console.error("To use complex estimation you need a Flow Deck attched. Aborting.")
                 return
             # # # # # # # # # #     XML CONFIG PARSING  # # # # # # # # # # # # # # # # # # # # 
-            
-
+            dir = os.path.dirname(os.path.abspath(__file__))
+            xml = os.path.join(dir, 'lighthouse_config/config.xml')
+            schema = os.path.join(dir, 'lighthouse_config/schema.xsd')
+            # VALIDATE THE CONFIG FILE
+            try:
+                xmlschema.validate(xml, schema)
+                console.info(f'LightHouse config is valid')
+            except Exception as e:
+                console.critical(f'{Fore.RED}The configuration file \'config.xml\' is invalid:\n{Style.RESET_ALL}{e}')
+            space = ET.parse(xml).getroot()
+            H = float(space.attrib['default_height'])
             # # # # # # # # # #     ORIGIN MEASURAMENT  # # # # # # # # # # # # # # # # # # # # 
             self.simple_geometry_estimate()
             if not self.__ready:
@@ -78,12 +88,16 @@ class Lighthouse(Deck):
                 return
             self.__ready = False
             self.__ecf.reset_estimator() # reset estimators
-            H = 0.3
             # # # # # # # # # #     X AXIS MEASURAMENT  # # # # # # # # # # # # # # # # # # # # 
             console.info("X axis estimation")
-            with MotionCommander(self.__ecf.cf) as mc:
+
+            # parsing config 
+            x_position = [float(space.find('./x_axis_point/x').text), 0, H]
+            default_velocity = float(space.find('./x_axis_point').attrib['default_velocity'])
+
+            with PositionHlCommander(self.__ecf.cf, default_height=H, default_velocity=default_velocity) as hl:
                 time.sleep(1) # wait take off completely
-                mc.forward(1, 0.1) # move 1 meter forward slowly
+                hl.go_to(*x_position) # move to the desired x axis position
                 time.sleep(1) # stabilize than land
             self.__x_axis = []
             threshold=0.05 # 5 cm
@@ -109,20 +123,20 @@ class Lighthouse(Deck):
             console.info("XY plane estimation")
             self.__xy_plane = []
             threshold=0.2 # 20 cm
+            desired_position = []
+            # parsing config 
+            for point in space.find('./xy_plane_points'):
+                desired_position.append(((float(point.find('./x').text)), float(point.find('./y').text), H))
+            default_velocity = float(space.find('./xy_plane_points').attrib['default_velocity'])
             movements_completed = 0
-            desired_position = [
-                (1, 1), #   first quad
-                (-1, 1), # second quad
-                (-1, -1), # third quad
-                (1, -1), # fourth quad
-            ]
+
             while(len(self.__xy_plane) < len(desired_position)):
                 # if the number of measures is equal to the movements completed
                 if len(self.__xy_plane) == movements_completed:
                     # need to move to next point
                     with PositionHlCommander(self.__ecf.cf, default_velocity=0.1, default_height=H) as hl:
                         time.sleep(1) # wait take off completely
-                        hl.go_to(*desired_position[movements_completed], H)
+                        hl.go_to(*desired_position[movements_completed])# go to the desired position
                         time.sleep(1) # stabilize than land
                     movements_completed += 1
 
@@ -144,35 +158,17 @@ class Lighthouse(Deck):
             self.__space_samples = []
             plot_interval = 500
             plot_clock = 0
-            waypoints = [
-                (0,0,H),
-                (1,0,H),
-                (1,1,   H+0.05*0),
-                (-1,1,  H+0.05*1),
-                (-1,-1, H+0.05*2),
-                (1,-1,  H+0.05*3),
-                (1,1,   H+0.05*4),
-                (-1,1,  H+0.05*5),
-                (-1,-1, H+0.05*6),
-                (1,-1,  H+0.05*7),
-                (1,1,   H+0.05*8),
-                (-1,1,  H+0.05*9),
-                (-1,-1, H+0.05*10),
-                (1,-1,  H+0.05*11),
-                (1,1,   H+0.05*12),
-                (-1,1,  H+0.05*13),
-                (-1,-1, H+0.05*14),
-                (1,-1,  H+0.05*15),
-                (1,1,   H+0.05*16),
-                (-1,1,  H+0.05*17),
-                (-1,-1, H+0.05*18),
-                (1,-1,  H+0.05*19),
-                (0,0,   H+0.05*20),
-            ]
+            waypoints = []
+
+            # parsing config 
+            for point in space.find('./space_points'):
+                waypoints.append(((float(point.find('./x').text)), float(point.find('./y').text), float(point.find('./z').text)))
+            default_velocity = float(space.find('./space_points').attrib['default_velocity'])
+
             bs_seen = set()
             self.__intervals_quality = []
             def ready_cb(bs_id: int, angles: LighthouseBsVectors):
-                nonlocal bs_seen
+                nonlocal bs_seen, plot_clock, plot_interval
                 now = time.time()
                 if now > plot_clock + plot_interval: 
                     plot_clock = now # update clock
@@ -338,15 +334,34 @@ class Lighthouse(Deck):
         console.debug("Geometry writtten inside the crazyflie")
 
 
-# import xmlschema
-# import os
-# dir = os.path.dirname(os.path.abspath(__file__))
-# xml = os.path.join(dir, 'lighthouse_config/config.xml')
-# schema = os.path.join(dir, 'lighthouse_config/schema.xsd')
-# with open(xml) as o:
-#     print(o.readline())
+dir = os.path.dirname(os.path.abspath(__file__))
+xml = os.path.join(dir, 'lighthouse_config/config.xml')
+schema = os.path.join(dir, 'lighthouse_config/schema.xsd')
+try:
+    xmlschema.validate(xml, schema)
+    console.info(f'LightHouse config is valid')
+except Exception as e:
+    console.critical(f'{Fore.RED}The configuration file \'config.xml\' is invalid:\n{Style.RESET_ALL}{e}')
 
-# with open(schema) as o:
-#     print(o.readline())
 
-# xmlschema.validate(xml, schema)
+space = ET.parse(xml).getroot()
+
+H = 0.3
+
+# parsing config 
+x_position = [float(space.find('./x_axis_point/x').text), 0, 0.3]
+default_velocity = float(space.find('./x_axis_point').attrib['default_velocity'])
+desired_position = []
+waypoints = []
+# parsing config 
+for point in space.find('./xy_plane_points'):
+    desired_position.append(((float(point.find('./x').text)), float(point.find('./y').text), H))
+default_velocity = float(space.find('./xy_plane_points').attrib['default_velocity'])
+
+# parsing config 
+for point in space.find('./space_points'):
+    waypoints.append(((float(point.find('./x').text)), float(point.find('./y').text), float(point.find('./z').text)))
+default_velocity = float(space.find('./space_points').attrib['default_velocity'])
+
+print(waypoints)
+print(default_velocity)
