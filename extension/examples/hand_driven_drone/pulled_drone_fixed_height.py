@@ -25,9 +25,7 @@ input   output              input   output
 """
 
 from functools import reduce
-from threading import Event
 import time
-import cflib
 from cflib.positioning.motion_commander import MotionCommander
 from extension.coordination.coordination_manager import CoordinationManager
 from extension.decks.deck import DeckType
@@ -69,8 +67,6 @@ def follow_safe(multiranger_state : dict, mc : MotionCommander) :
 URI = 'radio://0/80/2M/E7E7E7E706'
 DEFAULT_HEIGHT = 0.5
 if __name__ == '__main__':
-    # Initialize the low-level drivers
-    # cflib.crtp.init_drivers()
     with ExtendedCrazyFlie(URI) as ecf:
         ecf.battery.print_state()
         if(DeckType.bcMultiranger not in ecf.decks):

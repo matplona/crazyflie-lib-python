@@ -6,8 +6,6 @@ with a constant velocity of 0.3 m/s
 """
 
 import time
-from cflib.crazyflie.commander import Commander
-import cflib.crtp
 from cflib.positioning.motion_commander import MotionCommander
 from cflib.utils import uri_helper
 from extension.decks.deck import DeckType

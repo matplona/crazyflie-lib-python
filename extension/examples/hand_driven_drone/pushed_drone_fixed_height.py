@@ -11,7 +11,6 @@ The range of the action and the velocity limits are specified in the utils.py
 
 import logging
 import time
-import cflib.crtp
 from cflib.positioning.motion_commander import MotionCommander
 from cflib.utils import uri_helper
 from extension.decks.deck import DeckType
@@ -20,7 +19,7 @@ from extension.decks.multiranger import MultiRanger
 from extension.examples.hand_driven_drone.utils import get_vx, get_vy
 from extension.extended_crazyflie import ExtendedCrazyFlie
 
-logging.basicConfig(level=logging.INFO)
+#logging.basicConfig(level=logging.INFO)
 
 INITIALIZE_LIGHTHOUSE = False
 
@@ -29,9 +28,6 @@ def fly_away(multiranger_state : dict, mc : MotionCommander) :
     vy = get_vy(multiranger_state['right'], multiranger_state['left'])
     mc.start_linear_motion(vx, vy, 0)
 if __name__ == '__main__':
-    # Initialize the low-level drivers
-    # cflib.crtp.init_drivers()
-
     uri = uri_helper.uri_from_env(default='radio://0/80/2M/E7E7E7E706')
     DEFAULT_HEIGHT = 0.5
 
