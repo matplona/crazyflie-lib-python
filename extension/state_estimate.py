@@ -22,13 +22,13 @@ class StateEstimate:
 
     def __init__(self, ecf : ExtendedCrazyFlie, estimate_velocity = False, estimate_acceleration=False, estimate_attitude=False) -> None:
         # start logging stateEstimate every 10 ms
-        ecf.logging_manager.add_variable('stateEstimateZ','x', 10, LogVariableType.uint16_t)
-        ecf.logging_manager.add_variable('stateEstimateZ','y', 10, LogVariableType.uint16_t)
-        ecf.logging_manager.add_variable('stateEstimateZ','z', 10, LogVariableType.uint16_t)
+        ecf.logging_manager.add_variable('stateEstimate','x', 10, LogVariableType.float)
+        ecf.logging_manager.add_variable('stateEstimate','y', 10, LogVariableType.float)
+        ecf.logging_manager.add_variable('stateEstimate','z', 10, LogVariableType.float)
         if estimate_velocity:
-            ecf.logging_manager.add_variable('stateEstimateZ','vx', 10, LogVariableType.uint16_t)
-            ecf.logging_manager.add_variable('stateEstimateZ','vy', 10, LogVariableType.uint16_t)
-            ecf.logging_manager.add_variable('stateEstimateZ','vz', 10, LogVariableType.uint16_t)
+            ecf.logging_manager.add_variable('stateEstimate','vx', 10, LogVariableType.float)
+            ecf.logging_manager.add_variable('stateEstimate','vy', 10, LogVariableType.float)
+            ecf.logging_manager.add_variable('stateEstimate','vz', 10, LogVariableType.float)
             self.__vx = 0
             self.__vy = 0
             self.__vz = 0
@@ -36,9 +36,9 @@ class StateEstimate:
             self.__vel_period = 0
             self.__velocities = [[],[],[]]
         if estimate_acceleration:
-            ecf.logging_manager.add_variable('stateEstimateZ','ax', 10, LogVariableType.uint16_t)
-            ecf.logging_manager.add_variable('stateEstimateZ','ay', 10, LogVariableType.uint16_t)
-            ecf.logging_manager.add_variable('stateEstimateZ','az', 10, LogVariableType.uint16_t)
+            ecf.logging_manager.add_variable('stateEstimate','ax', 10, LogVariableType.float)
+            ecf.logging_manager.add_variable('stateEstimate','ay', 10, LogVariableType.float)
+            ecf.logging_manager.add_variable('stateEstimate','az', 10, LogVariableType.float)
             self.__ax = 0
             self.__ay = 0
             self.__az = 0
@@ -46,9 +46,9 @@ class StateEstimate:
             self.__acc_period = 0
             self.__accelerations = [[],[],[]]
         if estimate_attitude:
-            ecf.logging_manager.add_variable('stateEstimateZ','roll', 10, LogVariableType.uint16_t)
-            ecf.logging_manager.add_variable('stateEstimateZ','pitch', 10, LogVariableType.uint16_t)
-            ecf.logging_manager.add_variable('stateEstimateZ','yaw', 10, LogVariableType.uint16_t)
+            ecf.logging_manager.add_variable('stateEstimate','roll', 10, LogVariableType.float)
+            ecf.logging_manager.add_variable('stateEstimate','pitch', 10, LogVariableType.float)
+            ecf.logging_manager.add_variable('stateEstimate','yaw', 10, LogVariableType.float)
             self.__roll = 0
             self.__pitch = 0
             self.__yaw = 0
@@ -58,22 +58,22 @@ class StateEstimate:
         self.__estimate_velocity = estimate_velocity
         self.__estimate_acceleration = estimate_acceleration
         self.__estimate_attitude = estimate_attitude
-        ecf.logging_manager.set_group_watcher('stateEstimateZ', self.__update_state)
-        self.observable_name = "{}@stateEstimateZ".format(ecf.cf.link_uri)
+        ecf.logging_manager.set_group_watcher('stateEstimate', self.__update_state)
+        self.observable_name = "{}@stateEstimate".format(ecf.cf.link_uri)
         self.__ecf = ecf
         self.__ecf.coordination_manager.add_observable(self.observable_name, self.__get_state)
-        ecf.logging_manager.start_logging_group('stateEstimateZ')
+        ecf.logging_manager.start_logging_group('stateEstimate')
     
     def __del__(self):
-        self.__ecf.logging_manager.stop_logging_group('stateEstimateZ')
+        self.__ecf.logging_manager.stop_logging_group('stateEstimate')
 
     # callback for update battery state
     def __update_state(self, ts, name, data):
 
         # POSITION ===============================================================================
-        self.__x = data['x']/1000
-        self.__y = data['y']/1000
-        self.__z = data['z']/1000
+        self.__x = data['x']
+        self.__y = data['y']
+        self.__z = data['z']
         # check if the state need to be recorded
         if self.__pos_clock > 0 and (ts > self.__pos_clock + self.__pos_period): 
             # if clock is active and the current timestamp is after the current clock plus period
@@ -84,9 +84,9 @@ class StateEstimate:
         
         # VELOCITY ==============================================================================
         if self.__estimate_velocity:
-            self.__vx = data['vx']/1000
-            self.__vy = data['vy']/1000
-            self.__vz = data['vz']/1000
+            self.__vx = data['vx']
+            self.__vy = data['vy']
+            self.__vz = data['vz']
             # check if the state need to be recorded
             if self.__vel_clock > 0 and (ts > self.__vel_clock + self.__vel_period): 
                 # if clock is active and the current timestamp is after the current clock plus period
@@ -97,9 +97,9 @@ class StateEstimate:
 
         # ACCELERATION ==========================================================================
         if self.__estimate_acceleration:
-            self.__ax = data['ax']/1000
-            self.__ay = data['ay']/1000
-            self.__az = data['az']/1000
+            self.__ax = data['ax']
+            self.__ay = data['ay']
+            self.__az = data['az']
             if self.__acc_clock > 0 and (ts > self.__acc_clock + self.__acc_period): 
                 # if clock is active and the current timestamp is after the current clock plus period
                 self.__acc_clock = ts # update the clock
@@ -109,9 +109,9 @@ class StateEstimate:
 
         # ATTITUDE ==============================================================================
         if self.__estimate_attitude:
-            self.__roll = data['roll']/1000
-            self.__pitch = data['pitch']/1000
-            self.__yaw = data['yaw']/1000
+            self.__roll = data['roll']
+            self.__pitch = data['pitch']
+            self.__yaw = data['yaw']
             if self.__att_clock > 0 and (ts > self.__att_clock + self.__att_period): 
                 # if clock is active and the current timestamp is after the current clock plus period
                 self.__att_clock = ts # update the clock
@@ -248,37 +248,39 @@ class StateEstimate:
     def stop_record_attitudes(self):
         self.__att_clock = 0
 
-    def plot_positions_3D(self, animated=False):
+    def plot_positions_3D(self,  show=True, cmap_values = [], cmp_label=''):
         if len(self.__positions) == 0:
             print("Positions record is empty")
         else:
-            def __update(num, data, line):
-                # NOTE: there is no .set_data() for 3 dim data...
-                line.set_data(data[0:2, :num])
-                line.set_3d_properties(data[2, :num])
             data_set = np.array([self.__positions[0], self.__positions[1], self.__positions[2]])
             samples = len(data_set[0])
             fig = plt.figure()
             ax = fig.add_subplot(projection='3d')
-            line = ax.plot(data_set[0],data_set[1],data_set[2], )[0]
+            if len(cmap_values) > 0:
+                n = min(len(cmap_values), len(data_set[0]))
+                # resize and reshape
+                data_set = data_set[:, 0:n]
+                points = data_set.T.reshape(-1, 1, 3)
+                cmap_values = np.array(cmap_values)[0:n]
+                segments = np.concatenate([points[:-1], points[1:]], axis=1)
+                lc = Line3DCollection(segments, cmap=plt.get_cmap('RdYlGn'),
+                        norm=plt.Normalize(cmap_values.min(), cmap_values.max()))
+                lc.set_array(cmap_values)
+                line = ax.add_collection3d(lc)
+                fig.colorbar(line, ax=ax, label=cmp_label, location='bottom', shrink=0.5)
+            else:
+                ax.plot(data_set[0],data_set[1],data_set[2])[0]
+            
             ax.plot(data_set[0][0],data_set[1][0],data_set[2][0], c='g', marker='^')
             ax.plot(data_set[0][samples-1],data_set[1][samples-1],data_set[2][samples-1], c='r', marker='v')
             ax.set_title(f'{self.__ecf.cf.link_uri} trajectory')
             ax.set_xlabel('X [m]')
             ax.set_ylabel('Y [m]')
             ax.set_zlabel('Z [m]')
-            if animated:
-                FuncAnimation(
-                    fig,
-                    __update,
-                    samples,
-                    fargs=(data_set, line),
-                    interval=200, 
-                    blit=False,
-                )
-            plt.show()
+            if show: plt.show()
+            return fig, ax
     
-    def plot_position_velocity_3D(self):
+    def plot_position_velocity_3D(self, show=True):
         if len(self.__positions) == 0 or len(self.__velocities) == 0:
             print("Positions and/or Velocities record are empty")
         elif len(self.__positions) != len(self.__velocities):
@@ -305,9 +307,10 @@ class StateEstimate:
             ax.set_xlabel('X [m]')
             ax.set_ylabel('Y [m]')
             ax.set_zlabel('Z [m]')
-            plt.show()
+            if show: plt.show()
+            return fig, ax
 
-    def plot_position_acceleration_3D(self):
+    def plot_position_acceleration_3D(self, show=True):
         if len(self.__positions) == 0 or len(self.__accelerations) == 0:
             print("Positions and Acceletations record are empty")
         elif len(self.__positions) != len(self.__accelerations):
@@ -334,9 +337,10 @@ class StateEstimate:
             ax.set_xlabel('X [m]')
             ax.set_ylabel('Y [m]')
             ax.set_zlabel('Z [m]')
-            plt.show()
+            if show: plt.show()
+            return fig, ax
     
-    def plot_position_2D(self):
+    def plot_position_2D(self, show=True):
         if len(self.__positions) == 0:
             print("Positions record is empty")
         else:
@@ -350,9 +354,10 @@ class StateEstimate:
             axs[0].plot(data_set[0], ts)
             axs[1].plot(data_set[1], ts)
             axs[2].plot(data_set[2], ts)
-            plt.show()
+            if show: plt.show()
+            return fig, axs
 
-    def plot_velocity_2D(self):
+    def plot_velocity_2D(self, show=True):
         if len(self.__velocities) == 0:
             print("Velocities record is empty")
         else:
@@ -366,9 +371,10 @@ class StateEstimate:
             axs[0].plot(data_set[0], ts)
             axs[1].plot(data_set[1], ts)
             axs[2].plot(data_set[2], ts)
-            plt.show()
+            if show: plt.show()
+            return fig, axs
 
-    def plot_acceleraiton_2D(self):
+    def plot_acceleraiton_2D(self, show=True):
         if len(self.__accelerations) == 0:
             print("Accelerations record is empty")
         else:
@@ -382,9 +388,10 @@ class StateEstimate:
             axs[0].plot(data_set[0], ts)
             axs[1].plot(data_set[1], ts)
             axs[2].plot(data_set[2], ts)
-            plt.show()
+            if show: plt.show()
+            return fig, axs
     
-    def plot_attitude_2D(self):
+    def plot_attitude_2D(self, show=True):
         if len(self.__attitudes) == 0:
             print("Attitudes record is empty")
         else:
@@ -398,5 +405,6 @@ class StateEstimate:
             axs[0].plot(data_set[0], ts)
             axs[1].plot(data_set[1], ts)
             axs[2].plot(data_set[2], ts)
-            plt.show()
+            if show: plt.show()
+            return fig, axs
     
