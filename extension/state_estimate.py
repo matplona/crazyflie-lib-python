@@ -10,7 +10,6 @@ from extension.variables.logging_manager import LogVariableType
 import matplotlib.pyplot as plt
 from math import sqrt
 from threading import Timer
-from matplotlib.animation import FuncAnimation
 from mpl_toolkits.mplot3d.art3d import Line3DCollection
 import numpy as np
 
@@ -63,7 +62,7 @@ class StateEstimate:
         ecf.logging_manager.set_group_watcher('stateEstimate', self.__update_state)
         self.observable_name = "{}@stateEstimate".format(ecf.cf.link_uri)
         self.__ecf = ecf
-        self.__ecf.coordination_manager.add_observable(self.observable_name, self.__get_state)
+        self.__ecf.coordination_manager.add_observable(self.observable_name, self.__get_state())
         ecf.logging_manager.start_logging_group('stateEstimate')
     
     def __del__(self):
@@ -122,7 +121,6 @@ class StateEstimate:
                 self.__attitudes[2].append(self.__yaw)
                 
         # update the observable state
-        print(f'{Fore.GREEN}TYPE OF STATE: {type(self.__get_state())}\nSTATE: {self.__get_state()}{Style.RESET_ALL}')
         self.__ecf.coordination_manager.update_observable_state(self.observable_name, self.__get_state())
     
     @property
