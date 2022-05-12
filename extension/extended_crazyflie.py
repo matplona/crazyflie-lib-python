@@ -51,8 +51,8 @@ class ExtendedCrazyFlie(SyncCrazyflie):
         if self.__is_attached(DeckType.bcMultiranger):
             self.decks[DeckType.bcMultiranger] = MultiRanger(self)
             console.info("Created MultiRanger module")
-        if self.__is_attached(DeckType.bcAIDeck):
-            self.decks[DeckType.bcAIDeck] = AiDeck(self)
+        if self.__is_attached(DeckType.bcAI):
+            self.decks[DeckType.bcAI] = AiDeck(self)
             console.info("Created AIDeck module")
         if self.__is_attached(DeckType.bcLighthouse4):
             self.decks[DeckType.bcLighthouse4] = Lighthouse(self)

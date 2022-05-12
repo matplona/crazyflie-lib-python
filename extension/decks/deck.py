@@ -6,7 +6,7 @@ class DeckType (enum.Enum):
     bcMultiranger = 1
     bcFlow2 = 2
     bcZRanger2 = 3
-    bcAIDeck = 4
+    bcAI = 4
     bcLedRing = 5
     bcBuzzer = 6
     bcLighthouse4 = 7

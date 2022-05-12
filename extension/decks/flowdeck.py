@@ -16,11 +16,11 @@ console = logging.getLogger(__name__)
 class FlowDeck(Deck):
     def __init__(self, ecf : ExtendedCrazyFlie, update_period_ms = 100) -> None:
         super().__init__(DeckType.bcFlow2) #initialize super
-        self.__zrange = ZRanger(ecf)
+        self.__zranger = ZRanger(ecf)
         self.__ecf = ecf
         self.__flow_x = 0 # measure in pixel / frame
         self.__flow_y = 0 # measure in pixel / frame
-        self.contribute_to_state_estimate = self.__initialize_contribution()
+        self.__contribute_to_state_estimate = self.__initialize_contribution()
         self.observable_name = "{}@flowdeck".format(ecf.cf.link_uri)
 
         # Add observable to Manager
@@ -50,11 +50,11 @@ class FlowDeck(Deck):
         self.__ecf.coordination_manager.update_observable_state(self.observable_name, self.get_state())
 
     @property
-    def zrange(self):
-        return self.__zrange
-    @zrange.setter
-    def zrange(self, _):
-        raise SetterException('zrange') # avoid setting the value manually
+    def zranger(self):
+        return self.__zranger
+    @zranger.setter
+    def zranger(self, _):
+        raise SetterException('zranger') # avoid setting the value manually
     
     @property
     def flow_x(self):
@@ -74,11 +74,11 @@ class FlowDeck(Deck):
         return {
             'flow_x':self.__flow_x,
             'flow_y':self.__flow_y,
-            'zranger':self.__zrange.get_state(),
+            'zranger':self.__zranger.get_state(),
         }
 
     def __initialize_contribution(self) -> bool:
-        return (self.__ecf.parameters_manager.get_value("motion", "disable") == 0)
+        return (self.__ecf.parameters_manager.get_value("motion", "disable") == '0')
 
     @property
     def contribute_to_state_estimate(self) -> bool:

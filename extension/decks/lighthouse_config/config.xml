@@ -4,9 +4,9 @@
     <!--xsi:noNamespaceSchemaLocation="lighthouse.xsd">-->
 
     <!-- measure exactly at 1 m from the origin (used to scale the system)-->
-    <x_axis_point default_velocity='0.1'><x>1.0</x></x_axis_point>
+    <x_axis_point default_velocity='0.5'><x>1.0</x></x_axis_point>
 
-    <xy_plane_points default_velocity='0.1'>
+    <xy_plane_points default_velocity='0.5'>
         <!-- measure at the corners of a space area of 3 x 3 m -->
         <xy_plane_point><x>1.5</x><y>1.5</y></xy_plane_point>    
         <xy_plane_point><x>-1.5</x><y>1.5</y></xy_plane_point>    
@@ -14,7 +14,7 @@
         <xy_plane_point><x>1.5</x><y>-1.5</y></xy_plane_point>    
     </xy_plane_points>
     
-    <space_points default_velocity='0.1'>
+    <space_points default_velocity='1'>
         <!-- Cover a space of 3 x 3 x 1.5h around the origin -->
         <waypoint><x>0.0</x><y>0.0</y><z>0.3</z></waypoint>
         <waypoint><x>1.5</x><y>0.0</y><z>0.3</z></waypoint>

@@ -53,7 +53,7 @@ class ZRanger(Deck):
         }
 
     def __initialize_contribution(self) -> bool:
-        return (self.__ecf.parameters_manager.get_value("motion", "disableZrange") == 0)
+        return (self.__ecf.parameters_manager.get_value("motion", "disableZrange") == '0')
 
     @property
     def contribute_to_state_estimate(self) -> bool:

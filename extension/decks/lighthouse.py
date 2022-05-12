@@ -46,15 +46,16 @@ class Lighthouse(Deck):
             if self.__origin is None:
                 console.error("Estimation in the origin failed.")
                 input("Move the crazyflie and be sure that is receivoing from at least 2 BS. Press ENTER when ready.")
-        solution = self.__estimate_and_solve([self.__origin]) # estimate and solve only for origin
-        if not self.__ready:
-            confirm = input(f'[{Fore.YELLOW}WARNING{Style.RESET_ALL}]\tSolution did not converge, it might not be good!\nContinue? [y/n] :{Fore.CYAN}>{Style.RESET_ALL}')
-        if confirm.lower() != 'y':
-            print(f'Geometry estimation {Fore.RED}ABORTED{Style.RESET_ALL}')
-            return None
-        geo_dict : dict[int, LighthouseBsGeometry] = self.__create_geometry_dict(solution.bs_poses)
-        self.upload_geometry(geo_dict)
-        return geo_dict
+        self.__ready = True
+        #solution = self.__estimate_and_solve([self.__origin]) # estimate and solve only for origin
+        # if not self.__ready:
+        #     confirm = input(f'[{Fore.YELLOW}WARNING{Style.RESET_ALL}]\tSolution did not converge, it might not be good!\nContinue? [y/n]: {Fore.CYAN}>{Style.RESET_ALL}')
+        #     if confirm.lower() != 'y':
+        #         print(f'Geometry estimation {Fore.RED}ABORTED{Style.RESET_ALL}')
+        #         return None
+        # geo_dict : dict[int, LighthouseBsGeometry] = self.__create_geometry_dict(solution.bs_poses)
+        #self.upload_geometry(geo_dict)
+        #return geo_dict
     
     def complex_geometry_estimate(self, visualize=False) -> dict[int, LighthouseBsGeometry]:
         """This method will fly the crazyflie around the flight space to estimate the geometry in
@@ -64,11 +65,28 @@ class Lighthouse(Deck):
         to specify a different fligth space, modify the config file (#TODO) according to the readme.md
         inside the ligthhouse_config folder.
         """
-        confirm = input(f'[!] WARNING:\tthe crazyflie {self.__ecf.cf.link_uri} will fly to estimate the geometry in multiple points in the fligth area. Continue ? [y/n].\n')
+        print(f'[{Fore.YELLOW}!{Style.RESET_ALL}] {Fore.YELLOW}WARNING{Style.RESET_ALL}:\tthe crazyflie ({Fore.CYAN}{self.__ecf.cf.link_uri}{Style.RESET_ALL}) will fly to estimate the geometry in multiple points in the fligth area.')
+        confirm = input(f'Continue? [y/n]: {Fore.CYAN}>{Style.RESET_ALL}')
         if confirm.lower() == 'y':
             if DeckType.bcFlow2 not in self.__ecf.decks:
                 console.error("To use complex estimation you need a Flow Deck attched. Aborting.")
                 return
+            if not self.__ecf.decks[DeckType.bcFlow2].contribute_to_state_estimate:
+                print(f'[{Fore.YELLOW}!{Style.RESET_ALL}] {Fore.YELLOW}WARNING{Style.RESET_ALL}:\tThe DeckFlow\'s flow sensor is disabled from contribution, the flight can be unsafe.')
+                confirm = input(f'Would you like to enable it before proceeding? [y(enable)/n(proceed anyway)/a(abort)]: {Fore.CYAN}>{Style.RESET_ALL}')
+                if confirm.lower() == 'y':
+                    self.__ecf.decks[DeckType.bcFlow2].contribute_to_state_estimate = True
+                elif confirm.lower() != 'n':
+                    print('Aborting.')
+                    return
+            if not self.__ecf.decks[DeckType.bcFlow2].zrange.contribute_to_state_estimate:
+                print(f'[{Fore.YELLOW}!{Style.RESET_ALL}] {Fore.YELLOW}WARNING{Style.RESET_ALL}:\tThe DeckFlow\'s height sensor is disabled from contribution, the flight can be unsafe.')
+                confirm = input(f'Would you like to enable it before proceeding? [y(enable)/n(proceed anyway)/a(abort)]: {Fore.CYAN}>{Style.RESET_ALL}')
+                if confirm.lower() == 'y':
+                    self.__ecf.decks[DeckType.bcFlow2].zrange.contribute_to_state_estimate = True
+                elif confirm.lower() != 'n':
+                    print('Aborting.')
+                    return
             # # # # # # # # # #     XML CONFIG PARSING  # # # # # # # # # # # # # # # # # # # # 
             dir = os.path.dirname(os.path.abspath(__file__))
             xml = os.path.join(dir, 'lighthouse_config/config.xml')
@@ -84,7 +102,7 @@ class Lighthouse(Deck):
             # # # # # # # # # #     ORIGIN MEASURAMENT  # # # # # # # # # # # # # # # # # # # # 
             self.simple_geometry_estimate()
             if not self.__ready:
-                console.error("Estimation in the origin failed, can't fly")
+                console.error("Estimation in the origin failed, can't fly.\nAborting.")
                 return
             self.__ready = False
             self.__ecf.reset_estimator() # reset estimators
@@ -94,11 +112,14 @@ class Lighthouse(Deck):
             # parsing config 
             x_position = [float(space.find('./x_axis_point/x').text), 0, H]
             default_velocity = float(space.find('./x_axis_point').attrib['default_velocity'])
-
-            with PositionHlCommander(self.__ecf.cf, default_height=H, default_velocity=default_velocity) as hl:
-                time.sleep(1) # wait take off completely
-                hl.go_to(*x_position) # move to the desired x axis position
-                time.sleep(1) # stabilize than land
+            with MotionCommander(self.__ecf.cf) as mc:
+                time.sleep(1)
+                mc.forward(x_position[0], default_velocity)
+                time.sleep(1)
+            # with PositionHlCommander(self.__ecf.cf, default_height=H, default_velocity=default_velocity) as hl:
+            #     time.sleep(1) # wait take off completely
+            #     hl.go_to(*x_position) # move to the desired x axis position
+            #     time.sleep(1) # stabilize than land
             self.__x_axis = []
             threshold=0.05 # 5 cm
             while(len(self.__x_axis) == 0):
@@ -121,6 +142,7 @@ class Lighthouse(Deck):
 
             # # # # # # # # # #    XY PLANE MEASURAMENT  # # # # # # # # # # # # # # # # # # # # 
             console.info("XY plane estimation")
+            input('fly...')
             self.__xy_plane = []
             threshold=0.2 # 20 cm
             desired_position = []
@@ -134,7 +156,7 @@ class Lighthouse(Deck):
                 # if the number of measures is equal to the movements completed
                 if len(self.__xy_plane) == movements_completed:
                     # need to move to next point
-                    with PositionHlCommander(self.__ecf.cf, default_velocity=0.1, default_height=H) as hl:
+                    with PositionHlCommander(self.__ecf.cf, default_velocity=default_velocity, default_height=H) as hl:
                         time.sleep(1) # wait take off completely
                         hl.go_to(*desired_position[movements_completed])# go to the desired position
                         time.sleep(1) # stabilize than land
@@ -180,7 +202,7 @@ class Lighthouse(Deck):
             reader = LighthouseSweepAngleReader(self.__ecf.cf, ready_cb)
             reader.start()
             self.__ecf.state_estimate.record_positions(period_in_ms=plot_interval)
-            with PositionHlCommander(self.__ecf.cf, default_velocity=0.1, default_height=H) as hl:
+            with PositionHlCommander(self.__ecf.cf, default_velocity=default_velocity, default_height=H) as hl:
                 time.sleep(1) # wait take off completely
                 for waypoint in waypoints:
                     hl.go_to(*waypoint)
@@ -311,6 +333,8 @@ class Lighthouse(Deck):
         )
         if not solution.success: 
             self.__ready = False
+        else:
+            self.__ready = True
         return solution
 
     def __create_geometry_dict(self, bs_poses: dict[int, Pose]) -> dict[int, LighthouseBsGeometry]:
@@ -334,34 +358,31 @@ class Lighthouse(Deck):
         console.debug("Geometry writtten inside the crazyflie")
 
 
-dir = os.path.dirname(os.path.abspath(__file__))
-xml = os.path.join(dir, 'lighthouse_config/config.xml')
-schema = os.path.join(dir, 'lighthouse_config/schema.xsd')
-try:
-    xmlschema.validate(xml, schema)
-    console.info(f'LightHouse config is valid')
-except Exception as e:
-    console.critical(f'{Fore.RED}The configuration file \'config.xml\' is invalid:\n{Style.RESET_ALL}{e}')
+# dir = os.path.dirname(os.path.abspath(__file__))
+# xml = os.path.join(dir, 'lighthouse_config/config.xml')
+# schema = os.path.join(dir, 'lighthouse_config/schema.xsd')
+# try:
+#     xmlschema.validate(xml, schema)
+#     console.info(f'LightHouse config is valid')
+# except Exception as e:
+#     console.critical(f'{Fore.RED}The configuration file \'config.xml\' is invalid:\n{Style.RESET_ALL}{e}')
 
 
-space = ET.parse(xml).getroot()
+# space = ET.parse(xml).getroot()
 
-H = 0.3
+# H = 0.3
 
-# parsing config 
-x_position = [float(space.find('./x_axis_point/x').text), 0, 0.3]
-default_velocity = float(space.find('./x_axis_point').attrib['default_velocity'])
-desired_position = []
-waypoints = []
-# parsing config 
-for point in space.find('./xy_plane_points'):
-    desired_position.append(((float(point.find('./x').text)), float(point.find('./y').text), H))
-default_velocity = float(space.find('./xy_plane_points').attrib['default_velocity'])
+# # parsing config 
+# x_position = [float(space.find('./x_axis_point/x').text), 0, 0.3]
+# default_velocity = float(space.find('./x_axis_point').attrib['default_velocity'])
+# desired_position = []
+# waypoints = []
+# # parsing config 
+# for point in space.find('./xy_plane_points'):
+#     desired_position.append(((float(point.find('./x').text)), float(point.find('./y').text), H))
+# default_velocity = float(space.find('./xy_plane_points').attrib['default_velocity'])
 
-# parsing config 
-for point in space.find('./space_points'):
-    waypoints.append(((float(point.find('./x').text)), float(point.find('./y').text), float(point.find('./z').text)))
-default_velocity = float(space.find('./space_points').attrib['default_velocity'])
-
-print(waypoints)
-print(default_velocity)
+# # parsing config 
+# for point in space.find('./space_points'):
+#     waypoints.append(((float(point.find('./x').text)), float(point.find('./y').text), float(point.find('./z').text)))
+# default_velocity = float(space.find('./space_points').attrib['default_velocity'])

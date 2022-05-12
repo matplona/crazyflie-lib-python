@@ -50,7 +50,7 @@ class ImgThread(threading.Thread):
 
 class AiDeck(Deck):
     def __init__(self, port=5000, ip="192.168.4.1") -> None:
-        super().__init__(DeckType.bcAIDeck) #initialize super
+        super().__init__(DeckType.bcAI) #initialize super
         self.__port = port
         self.__ip = ip
         self.__socket : socket.socket = None
