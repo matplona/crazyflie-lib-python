@@ -25,10 +25,13 @@ def adjust_height(zrange_state : dict, mc : MotionCommander, ):
     # if isinstance(mc, MockMotionCommander):
     #     mc.set_h(h)
     if (h < DEFAULT_HEIGHT + threshold) and prev < 1:
+        prev = 1
         mc.start_linear_motion(0,0,ADJUST_VELOCITY, 0) # raise height
     elif (h > DEFAULT_HEIGHT - threshold) and prev >-1:
+        prev = -1
         mc.start_linear_motion(0,0,-ADJUST_VELOCITY, 0) # lower height
     elif prev != 0:
+        prev = 0 
         mc.start_linear_motion(0,0,0,0) # hover fixed
 
 
