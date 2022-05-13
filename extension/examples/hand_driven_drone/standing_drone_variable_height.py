@@ -20,7 +20,7 @@ DEFAULT_HEIGHT = 0.5
 
 def adjust_height(zrange_state : dict, mc : MotionCommander):
     
-    h = zrange_state['zrange']
+    h = zrange_state['zrange']/1000
     if isinstance(mc, MockMotionCommander):
         mc.set_h(h)
     if h < DEFAULT_HEIGHT + threshold:
