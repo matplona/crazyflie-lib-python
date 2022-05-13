@@ -19,7 +19,6 @@ threshold = 0.05 # [m]
 DEFAULT_HEIGHT = 0.5
 
 def adjust_height(zrange_state : dict, mc : MotionCommander):
-    
     h = zrange_state['zrange']/1000
     if isinstance(mc, MockMotionCommander):
         mc.set_h(h)
@@ -38,7 +37,7 @@ class MockMotionCommander:
     def start_linear_motion(self,vx,vy,vz,vyaw):
         if vz > 0:
             print(f'{Fore.GREEN}H={self.__h} ->Raising{Style.RESET_ALL}')
-        elif vz > 0:
+        elif vz < 0:
             print(f'{Fore.RED}H={self.__h} ->Lowering{Style.RESET_ALL}')
         else:
             print(f'{Fore.BLUE}H={self.__h} ->Hovering{Style.RESET_ALL}')
