@@ -14,19 +14,21 @@ from extension.decks.deck import DeckType
 from extension.decks.z_ranger import ZRanger
 from extension.extended_crazyflie import ExtendedCrazyFlie
 
-ADJUST_VELOCITY = 0.2 # [m/s]
-threshold = 0.05 # [m]
-DEFAULT_HEIGHT = 0.5
+ADJUST_VELOCITY = 0.15 # [m/s]
+threshold = 0.1 # [m]
+DEFAULT_HEIGHT = 0.2
+prev = 0 # 0=hovering, -1=lowering, +1=raising
 
-def adjust_height(zrange_state : dict, mc : MotionCommander):
+def adjust_height(zrange_state : dict, mc : MotionCommander, ):
+    global prev
     h = zrange_state['zrange']/1000
     # if isinstance(mc, MockMotionCommander):
     #     mc.set_h(h)
-    if h < DEFAULT_HEIGHT + threshold:
+    if (h < DEFAULT_HEIGHT + threshold) and prev < 1:
         mc.start_linear_motion(0,0,ADJUST_VELOCITY, 0) # raise height
-    elif h > DEFAULT_HEIGHT - threshold:
+    elif (h > DEFAULT_HEIGHT - threshold) and prev >-1:
         mc.start_linear_motion(0,0,-ADJUST_VELOCITY, 0) # lower height
-    else:
+    elif prev != 0:
         mc.start_linear_motion(0,0,0,0) # hover fixed
 
 
@@ -77,4 +79,5 @@ if __name__ == '__main__':
                 context= [mc],
             )
             time.sleep(10)
-
+            mc.land()
+            time.sleep(2)
