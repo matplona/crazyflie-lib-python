@@ -19,9 +19,10 @@ threshold = 0.05 # [m]
 DEFAULT_HEIGHT = 0.5
 
 def adjust_height(zrange_state : dict, mc : MotionCommander):
+    
+    h = zrange_state['zrange']
     if isinstance(mc, MockMotionCommander):
         mc.set_h(round(h, 2))
-    h = zrange_state['zrange']
     if h < DEFAULT_HEIGHT + threshold:
         mc.start_linear_motion(0,0,ADJUST_VELOCITY, 0) # raise height
     elif h > DEFAULT_HEIGHT - threshold:
@@ -46,7 +47,7 @@ class MockMotionCommander:
     def __enter__(self):
         print('using MOCK commander')
         return self
-    def __exit__(self):
+    def __exit__(self, exc_type, exc_val, exc_t):
         return
 
 if __name__ == '__main__':
