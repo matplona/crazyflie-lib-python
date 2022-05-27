@@ -2,7 +2,7 @@
 For this example we use the hight ToF sensor of the ZRanger or the one of the FlowDeck to
 to create a drone that keeps fixed is X_Y position while the height is adjustable by placing an hand
 below the drone. It will try to keep the distance from your hand constant. changes of height are gradual
-with a constant velocity of 0.3 m/s
+with a constant velocity of 0.15 m/s
 """
 
 import time
@@ -22,8 +22,6 @@ prev = 0 # 0=hovering, -1=lowering, +1=raising
 def adjust_height(zrange_state : dict, mc : MotionCommander, ):
     global prev
     h = zrange_state['zrange']/1000
-    # if isinstance(mc, MockMotionCommander):
-    #     mc.set_h(h)
     if (h < DEFAULT_HEIGHT + threshold) and prev < 1:
         prev = 1
         mc.start_linear_motion(0,0,ADJUST_VELOCITY, 0) # raise height
@@ -33,26 +31,6 @@ def adjust_height(zrange_state : dict, mc : MotionCommander, ):
     elif prev != 0:
         prev = 0 
         mc.start_linear_motion(0,0,0,0) # hover fixed
-
-
-# class MockMotionCommander:
-#     def __init__(self, cf, default_height) -> None:
-#         self.__h = default_height
-#         return
-#     def start_linear_motion(self,vx,vy,vz,vyaw):
-#         if vz > 0:
-#             print(f'{Fore.GREEN}H={self.__h} ->Raising{Style.RESET_ALL}')
-#         elif vz < 0:
-#             print(f'{Fore.RED}H={self.__h} ->Lowering{Style.RESET_ALL}')
-#         else:
-#             print(f'{Fore.BLUE}H={self.__h} ->Hovering{Style.RESET_ALL}')
-#     def set_h(self, h):
-#         self.__h = h
-#     def __enter__(self):
-#         print('using MOCK commander')
-#         return self
-#     def __exit__(self, exc_type, exc_val, exc_t):
-#         return
 
 if __name__ == '__main__':
     uri = uri_helper.uri_from_env(default='radio://0/80/2M/E7E7E7E706')
@@ -82,5 +60,3 @@ if __name__ == '__main__':
                 context= [mc],
             )
             time.sleep(10)
-            mc.land()
-            time.sleep(2)
