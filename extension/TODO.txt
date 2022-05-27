@@ -1,15 +1,6 @@
-STATE ESTIMATE module:
-    - x,y,z,roll,pitch,yaw,thrust estimate
-
 LIGHTHOUSE module:
     - geometry standard estimate
     - geometry advanced estimate
-    - BS positions
-
-coordination_framework:
-    - add possibility to have observer over multiple observables
 
 logging & parameter:
     - add the possibility of having multiple watcher and relative predicate
-
-

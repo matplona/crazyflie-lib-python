@@ -1,10 +1,5 @@
 
-"""
-Example of how to get estimation and write to the Lighthouse base station geometry
-and calibration memory in a Crazyflie
-"""
 from threading import Event
-from cv2 import VariationalRefinement
 from cflib.crazyflie.mem import LighthouseBsGeometry
 from cflib.crazyflie.mem import LighthouseMemHelper
 from cflib.localization.lighthouse_bs_geo import LighthouseBsGeoEstimator

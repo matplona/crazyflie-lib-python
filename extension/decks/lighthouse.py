@@ -1,5 +1,7 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
+
+from extension.calibration.calibration import WriteBsGeo
 if TYPE_CHECKING:
     from extension.extended_crazyflie import ExtendedCrazyFlie
 
@@ -36,33 +38,18 @@ console = logging.getLogger(__name__)
 class Lighthouse(Deck):
     def __init__(self, ecf : ExtendedCrazyFlie) -> None:
         super().__init__(DeckType.bcLighthouse4) #initialize super
-        self.__ecf = ecf
+        self.__ecf : ExtendedCrazyFlie = ecf
 
     def simple_geometry_estimate(self) -> dict[int, LighthouseBsGeometry] | None:
-        self.__origin = None
-        while(self.__origin is None):
-            console.info("Estimating LightHouse geometry in the Origin")
-            self.__origin : LhCfPoseSample = self.__record_sample() # record one sampleù
-            if self.__origin is None:
-                console.error("Estimation in the origin failed.")
-                input("Move the crazyflie and be sure that is receivoing from at least 2 BS. Press ENTER when ready.")
-        self.__ready = True
-        #solution = self.__estimate_and_solve([self.__origin]) # estimate and solve only for origin
-        # if not self.__ready:
-        #     confirm = input(f'[{Fore.YELLOW}WARNING{Style.RESET_ALL}]\tSolution did not converge, it might not be good!\nContinue? [y/n]: {Fore.CYAN}>{Style.RESET_ALL}')
-        #     if confirm.lower() != 'y':
-        #         print(f'Geometry estimation {Fore.RED}ABORTED{Style.RESET_ALL}')
-        #         return None
-        # geo_dict : dict[int, LighthouseBsGeometry] = self.__create_geometry_dict(solution.bs_poses)
-        #self.upload_geometry(geo_dict)
-        #return geo_dict
+        self.__simple_writer = WriteBsGeo(self.__ecf.cf)
+        self.__simple_writer.estimate_and_write()
     
     def complex_geometry_estimate(self, visualize=False) -> dict[int, LighthouseBsGeometry]:
         """This method will fly the crazyflie around the flight space to estimate the geometry in
         different position. This will leads in a better estimation of the Geometry of the environment.
         By default the crazyflie will move around from the starting point (origin) by at most 1.5 m in
         all the 3 dimension. Make sure to have at least 2 meters of free space around it. If you want
-        to specify a different fligth space, modify the config file (#TODO) according to the readme.md
+        to specify a different fligth space, modify the config file according to the readme.md (#TODO)
         inside the ligthhouse_config folder.
         """
         print(f'[{Fore.YELLOW}!{Style.RESET_ALL}] {Fore.YELLOW}WARNING{Style.RESET_ALL}:\tthe crazyflie ({Fore.CYAN}{self.__ecf.cf.link_uri}{Style.RESET_ALL}) will fly to estimate the geometry in multiple points in the fligth area.')
@@ -100,10 +87,13 @@ class Lighthouse(Deck):
             space = ET.parse(xml).getroot()
             H = float(space.attrib['default_height'])
             # # # # # # # # # #     ORIGIN MEASURAMENT  # # # # # # # # # # # # # # # # # # # # 
-            self.simple_geometry_estimate()
-            if not self.__ready:
-                console.error("Estimation in the origin failed, can't fly.\nAborting.")
-                return
+            self.__origin = None
+            while(self.__origin is None):
+                console.info("Estimating LightHouse geometry in the Origin")
+                self.__origin : LhCfPoseSample = self.__record_sample() # record one sample
+                if self.__origin is None:
+                    console.error("Estimation in the origin failed.")
+                    input("Move the crazyflie and be sure that is receivoing from at least 2 BS. Press ENTER when ready.")
             self.__ready = False
             self.__ecf.reset_estimator() # reset estimators
             # # # # # # # # # #     X AXIS MEASURAMENT  # # # # # # # # # # # # # # # # # # # # 
