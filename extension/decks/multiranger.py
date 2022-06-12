@@ -4,6 +4,7 @@ from typing import TYPE_CHECKING
 
 from colorama import Fore, Style
 from extension.decks.deck import Deck, DeckType
+from extension.exceptions import SetterException
 
 from extension.variables.logging_manager import LogVariableType
 if TYPE_CHECKING:
@@ -11,7 +12,6 @@ if TYPE_CHECKING:
 MAX_RANGE = 4000 # max range of action = 4 meter
 
 console = logging.getLogger(__name__)
-#console.level = logging.DEBUG
 
 class MultiRanger(Deck):
     def __init__(self, ecf : ExtendedCrazyFlie, update_period_ms = 11) -> None:
@@ -51,16 +51,41 @@ class MultiRanger(Deck):
         console.debug(f'{Fore.CYAN}[^]{Style.RESET_ALL}\tMultiRange update: [{self.__front},{self.__back},{self.__right},{self.__left},{self.__up},]\t\t\t{Fore.MAGENTA}@{ts}{Style.RESET_ALL}')
         self.__ecf.coordination_manager.update_observable_state(self.observable_name, self.get_state())
 
-    def get_front(self) -> int:
+    @property
+    def front(self):
         return self.__front
-    def get_back(self) -> int:
+    @front.setter
+    def front(self, _):
+        raise SetterException('front') # avoid setting the value manually
+    
+    @property
+    def back(self):
         return self.__back
-    def get_left(self) -> int:
+    @back.setter
+    def back(self, _):
+        raise SetterException('back') # avoid setting the value manually
+
+    @property
+    def right(self):
+        return self.__right
+    @right.setter
+    def right(self, _):
+        raise SetterException('right') # avoid setting the value manually
+
+    @property
+    def left(self):
         return self.__left
-    def get_right(self) -> int:
-        return self.__right  
-    def get_right(self) -> int:
+    @left.setter
+    def left(self, _):
+        raise SetterException('left') # avoid setting the value manually
+    
+    @property
+    def up(self):
         return self.__up
+    @up.setter
+    def up(self, _):
+        raise SetterException('up') # avoid setting the value manually
+
     def get_state(self) -> dict:
         return {
             'front':self.__front,

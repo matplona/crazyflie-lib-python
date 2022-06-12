@@ -4,6 +4,7 @@ from typing import TYPE_CHECKING
 
 from colorama import Fore, Style
 from extension.decks.deck import Deck, DeckType
+from extension.exceptions import SetterException
 
 from extension.variables.logging_manager import LogVariableType
 if TYPE_CHECKING:
@@ -11,7 +12,6 @@ if TYPE_CHECKING:
 MAX_RANGE = 4000 # max range of action = 4 meter
 
 console = logging.getLogger(__name__)
-#console.level = logging.DEBUG
 
 class ZRanger(Deck):
     def __init__(self, ecf : ExtendedCrazyFlie, update_period_ms = 100) -> None:
@@ -44,16 +44,22 @@ class ZRanger(Deck):
         self.__zrange = data
         console.debug(f'{Fore.CYAN}[^]{Style.RESET_ALL}\tZRange update: {self.__zrange}\t\t\t{Fore.MAGENTA}@{ts}{Style.RESET_ALL}')
         self.__ecf.coordination_manager.update_observable_state(self.observable_name, self.get_state())
-
-    def get_zrange(self) -> int:
-        return self.__zrange
+    
     def get_state(self) -> dict:
         return {
             'zrange':self.__zrange,
         }
+    
+    @property
+    def zrange(self):
+        return self.__zrange
+    @zrange.setter
+    def zrange(self, _):
+        raise SetterException('zrange') # avoid setting the value manually
 
     def __initialize_contribution(self) -> bool:
         return (self.__ecf.parameters_manager.get_value("motion", "disableZrange") == '0')
+
 
     @property
     def contribute_to_state_estimate(self) -> bool:
@@ -66,18 +72,3 @@ class ZRanger(Deck):
 
     def __update_contribution(self, ts, name, value):
         self.__contribute_to_state_estimate = (value == 0)
-
-    # dead method
-    # def keep_distance(self, callback, *args) -> int:
-    #     """
-    #     The drone will keep the distance from the zrange sensor inside the Action limits:
-    #     The callback function will be called when the sensor reads a value outside the limits.
-    #     The argument provided to the callback is the distance from the center of the range namely: ACTION_VALUE
-    #     If zrange < MIN  -->  ACTION_VALUE > 0 (need to go up)
-    #     If zrange > MAX  -->  ACTION_VALUE < 0 (need to go down)
-    #     """
-    #     def condition(zrange) -> bool:
-    #         return zrange < ActionLimit.MIN or zrange > ActionLimit.MAX
-    #     def action(zrange) -> None:
-    #         callback((ActionLimit.CENTER - zrange), *args)
-    #     return self.add_action_on_condition(action, condition)

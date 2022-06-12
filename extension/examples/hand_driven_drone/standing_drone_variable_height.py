@@ -33,7 +33,7 @@ def adjust_height(zrange_state : dict, mc : MotionCommander, ):
         mc.start_linear_motion(0,0,0,0) # hover fixed
 
 if __name__ == '__main__':
-    uri = uri_helper.uri_from_env(default='radio://0/80/2M/E7E7E7E706')
+    uri = uri_helper.uri_from_env(default='radio://0/80/2M/E7E7E7E7E7')
     
     with ExtendedCrazyFlie(uri) as ecf:
         ecf.battery.print_state()

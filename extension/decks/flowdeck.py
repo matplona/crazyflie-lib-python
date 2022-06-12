@@ -11,7 +11,6 @@ if TYPE_CHECKING:
 MAX_RANGE = 4000 # max range of action = 4 meter
 
 console = logging.getLogger(__name__)
-#console.level = logging.DEBUG
 
 class FlowDeck(Deck):
     def __init__(self, ecf : ExtendedCrazyFlie, update_period_ms = 100) -> None:

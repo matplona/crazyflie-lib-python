@@ -79,8 +79,8 @@ class StateEstimate:
         if self.__pos_clock > 0 and (ts > self.__pos_clock + self.__pos_period): 
             # if clock is active and the current timestamp is after the current clock plus period
             self.__pos_clock = ts # update the clock
-            self.__positions[0].append(self.__x)
-            self.__positions[1].append(self.__y)
+            if len(self.__positions) == 3: self.__positions[0].append(self.__x)
+            if len(self.__positions) == 3:self.__positions[1].append(self.__y)
             self.__positions[2].append(self.__z)
         
         # VELOCITY ==============================================================================
@@ -92,8 +92,8 @@ class StateEstimate:
             if self.__vel_clock > 0 and (ts > self.__vel_clock + self.__vel_period): 
                 # if clock is active and the current timestamp is after the current clock plus period
                 self.__vel_clock = ts # update the clock
-                self.__velocities[0].append(self.__vx)
-                self.__velocities[1].append(self.__vy)
+                if len(self.__velocities) == 3:self.__velocities[0].append(self.__vx)
+                if len(self.__velocities) == 3:self.__velocities[1].append(self.__vy)
                 self.__velocities[2].append(self.__vz)
 
         # ACCELERATION ==========================================================================
@@ -104,8 +104,8 @@ class StateEstimate:
             if self.__acc_clock > 0 and (ts > self.__acc_clock + self.__acc_period): 
                 # if clock is active and the current timestamp is after the current clock plus period
                 self.__acc_clock = ts # update the clock
-                self.__accelerations[0].append(self.__ax)
-                self.__accelerations[1].append(self.__ay)
+                if len(self.__accelerations) == 3: self.__accelerations[0].append(self.__ax)
+                if len(self.__accelerations) == 3: self.__accelerations[1].append(self.__ay)
                 self.__accelerations[2].append(self.__az)
 
         # ATTITUDE ==============================================================================
@@ -116,8 +116,8 @@ class StateEstimate:
             if self.__att_clock > 0 and (ts > self.__att_clock + self.__att_period): 
                 # if clock is active and the current timestamp is after the current clock plus period
                 self.__att_clock = ts # update the clock
-                self.__attitudes[0].append(self.__roll)
-                self.__attitudes[1].append(self.__pitch)
+                if len(self.__attitudes) == 3: self.__attitudes[0].append(self.__roll)
+                if len(self.__attitudes) == 3: self.__attitudes[1].append(self.__pitch)
                 self.__attitudes[2].append(self.__yaw)
                 
         # update the observable state
@@ -216,28 +216,28 @@ class StateEstimate:
     def record_positions(self, period_in_ms = 10, stop_after_in_s = -1, append = False):
         self.__pos_clock = 1 # clock active
         self.__pos_period = period_in_ms
-        if not append: self.__positions = [] # clear previous record
+        if not append: self.__positions = [[],[],[]] # clear previous record
         if stop_after_in_s > 0: Timer(stop_after_in_s, self.stop_record_positions).start()
 
     def record_velocities(self, period_in_ms = 10, stop_after_in_s = -1, append = False):
         if not self.__estimate_velocity:raise Exception("Velocity is not currently estimated")
         self.__vel_clock = 1 # clock active
         self.__vel_period = period_in_ms
-        if not append: self.__velocities = [] # clear previous record
+        if not append: self.__velocities = [[],[],[]] # clear previous record
         if stop_after_in_s > 0: Timer(stop_after_in_s, self.stop_record_velocities).start()
     
     def record_accelerations(self, period_in_ms = 10, stop_after_in_s = -1, append = False):
         if not self.__estimate_acceleration:raise Exception("Acceleration is not currently estimated")
         self.__acc_clock = 1 # clock active
         self.__acc_period = period_in_ms
-        if not append: self.__accelerations = [] # clear previous record
+        if not append: self.__accelerations = [[],[],[]] # clear previous record
         if stop_after_in_s > 0: Timer(stop_after_in_s, self.stop_record_accelerations).start()
     
     def record_attitudes(self, period_in_ms = 10, stop_after_in_s = -1, append = False):
         if not self.__estimate_attitude:raise Exception("Attitude is not currently estimated")
         self.__att_clock = 1 # clock active
         self.__att_period = period_in_ms
-        if not append: self.__attitudes = [] # clear previous record
+        if not append: self.__attitudes = [[],[],[]] # clear previous record
         if stop_after_in_s > 0: Timer(stop_after_in_s, self.stop_record_attitudes).start()
 
     def stop_record_positions(self):
@@ -264,7 +264,7 @@ class StateEstimate:
                 points = data_set.T.reshape(-1, 1, 3)
                 cmap_values = np.array(cmap_values)[0:n]
                 segments = np.concatenate([points[:-1], points[1:]], axis=1)
-                lc = Line3DCollection(segments, cmap=plt.get_cmap('RdYlGn'),
+                lc = Line3DCollection(segments, cmap=plt.get_cmap('RdYlGn').reversed(),
                         norm=plt.Normalize(cmap_values.min(), cmap_values.max()))
                 lc.set_array(cmap_values)
                 line = ax.add_collection3d(lc)
@@ -292,7 +292,7 @@ class StateEstimate:
             v_xyz = np.array([sqrt(v[0]*v[0] + v[1]*v[1] + v[2]*v[2]) for v in vel])
             n = len(self.__positions[0])
             segments = np.concatenate([points[:-1], points[1:]], axis=1)
-            lc = Line3DCollection(segments, cmap=plt.get_cmap('RdYlGn'),
+            lc = Line3DCollection(segments, cmap=plt.get_cmap('RdYlGn').reversed(),
                     norm=plt.Normalize(v_xyz.min(), v_xyz.max()))
             lc.set_array(v_xyz)
             fig = plt.figure()
@@ -322,7 +322,7 @@ class StateEstimate:
             a_xyz = np.array([sqrt(a[0]*a[0] + a[1]*a[1] + a[2]*a[2]) for a in acc])
             n = len(self.__positions[0])
             segments = np.concatenate([points[:-1], points[1:]], axis=1)
-            lc = Line3DCollection(segments, cmap=plt.get_cmap('RdYlGn'),
+            lc = Line3DCollection(segments, cmap=plt.get_cmap('RdYlGn').reversed(),
                     norm=plt.Normalize(a_xyz.min(), a_xyz.max()))
             lc.set_array(a_xyz)
             fig = plt.figure()
@@ -352,9 +352,9 @@ class StateEstimate:
             axs[2].set_ylabel('Position Z [m/s]')
             axs[2].set_xlabel('Time [s]')
             ts = [x*self.__pos_period/1000 for x in range(len(data_set[0]))]
-            axs[0].plot(data_set[0], ts)
-            axs[1].plot(data_set[1], ts)
-            axs[2].plot(data_set[2], ts)
+            axs[0].plot(ts, data_set[0])
+            axs[1].plot(ts, data_set[1])
+            axs[2].plot(ts, data_set[2])
             if show: plt.show()
             return fig, axs
 
@@ -369,9 +369,9 @@ class StateEstimate:
             axs[2].set_ylabel('Velocity Z [m/s²]')
             axs[2].set_xlabel('Time [s]')
             ts = [x*self.__acc_period/1000 for x in range(len(data_set[0]))]
-            axs[0].plot(data_set[0], ts)
-            axs[1].plot(data_set[1], ts)
-            axs[2].plot(data_set[2], ts)
+            axs[0].plot(ts, data_set[0])
+            axs[1].plot(ts, data_set[1])
+            axs[2].plot(ts, data_set[2])
             if show: plt.show()
             return fig, axs
 
@@ -386,9 +386,9 @@ class StateEstimate:
             axs[2].set_ylabel('Acceleration Z [m/s]')
             axs[2].set_xlabel('Time [s]')
             ts = [x*self.__vel_period/1000 for x in range(len(data_set[0]))]
-            axs[0].plot(data_set[0], ts)
-            axs[1].plot(data_set[1], ts)
-            axs[2].plot(data_set[2], ts)
+            axs[0].plot(ts, data_set[0])
+            axs[1].plot(ts, data_set[1])
+            axs[2].plot(ts, data_set[2])
             if show: plt.show()
             return fig, axs
     
@@ -403,9 +403,9 @@ class StateEstimate:
             axs[2].set_ylabel('Yaw [deg]')
             axs[2].set_xlabel('Time [s]')
             ts = [x*self.__vel_period/1000 for x in range(len(data_set[0]))]
-            axs[0].plot(data_set[0], ts)
-            axs[1].plot(data_set[1], ts)
-            axs[2].plot(data_set[2], ts)
+            axs[0].plot(ts, data_set[0])
+            axs[1].plot(ts, data_set[1])
+            axs[2].plot(ts, data_set[2])
             if show: plt.show()
             return fig, axs
     

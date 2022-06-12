@@ -14,7 +14,7 @@ import time
 from cflib.positioning.motion_commander import MotionCommander
 from cflib.utils import uri_helper
 from extension.decks.deck import DeckType
-from extension.decks.lighthouse import Lighthouse
+from extension.decks.lighthouse.lighthouse import Lighthouse
 from extension.decks.multiranger import MultiRanger
 from extension.examples.hand_driven_drone.utils import get_vx, get_vy
 from extension.extended_crazyflie import ExtendedCrazyFlie
@@ -28,7 +28,7 @@ def fly_away(multiranger_state : dict, mc : MotionCommander) :
     vy = get_vy(multiranger_state['right'], multiranger_state['left'])
     mc.start_linear_motion(vx, vy, 0)
 if __name__ == '__main__':
-    uri = uri_helper.uri_from_env(default='radio://0/80/2M/E7E7E7E706')
+    uri = uri_helper.uri_from_env(default='radio://0/80/2M/E7E7E7E7E7')
     DEFAULT_HEIGHT = 0.5
 
     with ExtendedCrazyFlie(uri) as ecf:

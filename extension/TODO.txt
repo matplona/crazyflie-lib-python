@@ -1,6 +1,0 @@
-LIGHTHOUSE module:
-    - geometry standard estimate
-    - geometry advanced estimate
-
-logging & parameter:
-    - add the possibility of having multiple watcher and relative predicate

@@ -64,7 +64,7 @@ def follow_safe(multiranger_state : dict, mc : MotionCommander) :
         # unsafe -> stop action
         mc.start_linear_motion(0, 0, 0)
 
-URI = 'radio://0/80/2M/E7E7E7E706'
+URI = 'radio://0/80/2M/E7E7E7E7E7'
 DEFAULT_HEIGHT = 0.5
 if __name__ == '__main__':
     with ExtendedCrazyFlie(URI) as ecf:

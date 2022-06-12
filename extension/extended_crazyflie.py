@@ -1,7 +1,5 @@
 import logging
 import time
-
-from colorama import Fore, Style
 from cflib import crtp
 from cflib.crazyflie import Crazyflie
 from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
@@ -10,7 +8,7 @@ from extension.coordination.coordination_manager import CoordinationManager
 from extension.decks.ai import AiDeck
 from extension.decks.deck import Deck, DeckType
 from extension.decks.flowdeck import FlowDeck
-from extension.decks.lighthouse import Lighthouse
+from extension.decks.lighthouse.lighthouse import Lighthouse
 from extension.decks.multiranger import MultiRanger
 from extension.decks.z_ranger import ZRanger
 from extension.state_estimate import StateEstimate

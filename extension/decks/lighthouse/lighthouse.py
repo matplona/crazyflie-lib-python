@@ -2,6 +2,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from extension.calibration.calibration import WriteBsGeo
+from extension.decks.lighthouse.multi_bs_estimation import connect_and_estimate
 if TYPE_CHECKING:
     from extension.extended_crazyflie import ExtendedCrazyFlie
 
@@ -40,18 +41,23 @@ class Lighthouse(Deck):
         super().__init__(DeckType.bcLighthouse4) #initialize super
         self.__ecf : ExtendedCrazyFlie = ecf
 
-    def simple_geometry_estimate(self) -> dict[int, LighthouseBsGeometry] | None:
+    def simple_geometry_estimation(self) -> dict[int, LighthouseBsGeometry] | None:
+        """This method is the fastest and less reliable Geometry Estimation process. Use only for testing purposes"""
         self.__simple_writer = WriteBsGeo(self.__ecf.cf)
         self.__simple_writer.estimate_and_write()
+
+    def multi_bs_geometry_estimation(self) -> None:
+        """This method is the safest and more reliable Geometry Estimation process."""
+        connect_and_estimate(self.__ecf.cf)
     
-    def complex_geometry_estimate(self, visualize=False) -> dict[int, LighthouseBsGeometry]:
-        """This method will fly the crazyflie around the flight space to estimate the geometry in
-        different position. This will leads in a better estimation of the Geometry of the environment.
-        By default the crazyflie will move around from the starting point (origin) by at most 1.5 m in
-        all the 3 dimension. Make sure to have at least 2 meters of free space around it. If you want
-        to specify a different fligth space, modify the config file according to the readme.md (#TODO)
-        inside the ligthhouse_config folder.
-        """
+    def automatic_geometry_estimation(self, visualize=False) -> dict[int, LighthouseBsGeometry]:
+        """This method is EXPERIMENTAL, some of its fuctionalities may not work."""
+        # This method will fly the crazyflie around the flight space to estimate the geometry in
+        # different position. This will leads in a better estimation of the Geometry of the environment.
+        # By default the crazyflie will move around from the starting point (origin) by at most 1.5 m in
+        # all the 3 dimension. Make sure to have at least 2 meters of free space around it. If you want
+        # to specify a different fligth space, modify the config file according to the readme.md inside this folder
+        # inside the ligthhouse_config folder.
         print(f'[{Fore.YELLOW}!{Style.RESET_ALL}] {Fore.YELLOW}WARNING{Style.RESET_ALL}:\tthe crazyflie ({Fore.CYAN}{self.__ecf.cf.link_uri}{Style.RESET_ALL}) will fly to estimate the geometry in multiple points in the fligth area.')
         confirm = input(f'Continue? [y/n]: {Fore.CYAN}>{Style.RESET_ALL}')
         if confirm.lower() == 'y':
@@ -232,7 +238,7 @@ class Lighthouse(Deck):
             geo_dict : dict[int, LighthouseBsGeometry] = self.__create_geometry_dict(solution.bs_poses)
             self.upload_geometry(geo_dict)
             return geo_dict
-
+    
     def __visualize(self, cf_poses: list[Pose], bs_poses: list[Pose]):
         """Visualize positions of base stations and Crazyflie positions"""
         import matplotlib.pyplot as plt
@@ -346,33 +352,3 @@ class Lighthouse(Deck):
         helper.write_and_store_config(data_written, geos=geo_dict)
         event.wait()
         console.debug("Geometry writtten inside the crazyflie")
-
-
-# dir = os.path.dirname(os.path.abspath(__file__))
-# xml = os.path.join(dir, 'lighthouse_config/config.xml')
-# schema = os.path.join(dir, 'lighthouse_config/schema.xsd')
-# try:
-#     xmlschema.validate(xml, schema)
-#     console.info(f'LightHouse config is valid')
-# except Exception as e:
-#     console.critical(f'{Fore.RED}The configuration file \'config.xml\' is invalid:\n{Style.RESET_ALL}{e}')
-
-
-# space = ET.parse(xml).getroot()
-
-# H = 0.3
-
-# # parsing config 
-# x_position = [float(space.find('./x_axis_point/x').text), 0, 0.3]
-# default_velocity = float(space.find('./x_axis_point').attrib['default_velocity'])
-# desired_position = []
-# waypoints = []
-# # parsing config 
-# for point in space.find('./xy_plane_points'):
-#     desired_position.append(((float(point.find('./x').text)), float(point.find('./y').text), H))
-# default_velocity = float(space.find('./xy_plane_points').attrib['default_velocity'])
-
-# # parsing config 
-# for point in space.find('./space_points'):
-#     waypoints.append(((float(point.find('./x').text)), float(point.find('./y').text), float(point.find('./z').text)))
-# default_velocity = float(space.find('./space_points').attrib['default_velocity'])

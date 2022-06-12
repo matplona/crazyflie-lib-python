@@ -9,6 +9,8 @@ we defined a range around the TARGET using threshold of 10cm to be sure that the
 
 To run this example is better to use:
     - DeckFlow and/or LightHouse.
+
+At the end of the fly, the example uses the state_estimate utility module to print out 7 plots of telemetry during flight.
 """
 
 import logging
