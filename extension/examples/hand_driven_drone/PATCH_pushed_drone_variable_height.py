@@ -20,6 +20,7 @@ DEFAULT_HEIGHT = 0.2
 prev = 0 # 0=hovering, -1=lowering, +1=raising
 
 def adjust_motion(custom_state : dict, mc : MotionCommander):
+  print(f'mooving ({custom_state['vx']},{custom_state['vy']},{custom_state['vz']})')
   mc.start_linear_motion(custom_state['vx'],custom_state['vy'],custom_state['vz'], 0)
 
 def adjust_height(zrange_state : dict, ecf : ExtendedCrazyFlie):
