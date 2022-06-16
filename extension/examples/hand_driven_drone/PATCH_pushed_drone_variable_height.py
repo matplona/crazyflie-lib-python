@@ -14,13 +14,12 @@ from extension.examples.hand_driven_drone.utils import get_vx, get_vy
 from extension.extended_crazyflie import ExtendedCrazyFlie
 
 CUSTOM_OBSERVABLE_NAME = 'custom_observable'
-ADJUST_VELOCITY = 0.15 # [m/s]
+ADJUST_VELOCITY = 0.30 # [m/s]
 threshold = 0.1 # [m]
 DEFAULT_HEIGHT = 0.2
 prev = 0 # 0=hovering, -1=lowering, +1=raising
 
 def adjust_motion(custom_state : dict, mc : MotionCommander):
-  print(f'mooving ({custom_state['vx']},{custom_state['vy']},{custom_state['vz']})')
   mc.start_linear_motion(custom_state['vx'],custom_state['vy'],custom_state['vz'], 0)
 
 def adjust_height(zrange_state : dict, ecf : ExtendedCrazyFlie):
