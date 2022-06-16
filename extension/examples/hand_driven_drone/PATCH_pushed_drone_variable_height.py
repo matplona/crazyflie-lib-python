@@ -18,38 +18,35 @@ ADJUST_VELOCITY = 0.15 # [m/s]
 threshold = 0.1 # [m]
 DEFAULT_HEIGHT = 0.2
 prev = 0 # 0=hovering, -1=lowering, +1=raising
-state = {
-  'vx': 0,
-  'vy': 0,
-  'vz': 0,
-}
 
 def adjust_motion(custom_state : dict, mc : MotionCommander):
+  print(f'mooving ({custom_state['vx']},{custom_state['vy']},{custom_state['vz']})')
   mc.start_linear_motion(custom_state['vx'],custom_state['vy'],custom_state['vz'], 0)
 
 def adjust_height(zrange_state : dict, ecf : ExtendedCrazyFlie):
-    global prev, state
+    global prev
+    current_state = ecf.coordination_manager.get_observable_state(CUSTOM_OBSERVABLE_NAME)
     h = zrange_state['zrange']/1000
     if (h < DEFAULT_HEIGHT + threshold) and prev < 1:
         prev = 1
-        state['vz'] = ADJUST_VELOCITY # raise height
+        current_state['vz'] = ADJUST_VELOCITY # raise height
     elif (h > DEFAULT_HEIGHT - threshold) and prev >-1:
         prev = -1
-        state['vz'] = -ADJUST_VELOCITY # lower height
+        current_state['vz'] = -ADJUST_VELOCITY # lower height
     elif prev != 0:
         prev = 0 
-        state['vz'] = 0 # hover fixed
+        current_state['vz'] = 0 # hover fixed
     # UPDATE THE CUSTOM OBSERVABLE
-    ecf.coordination_manager.update_observable_state(CUSTOM_OBSERVABLE_NAME, state)
+    ecf.coordination_manager.update_observable_state(CUSTOM_OBSERVABLE_NAME, current_state)
 
 def fly_away(multiranger_state : dict, ecf : ExtendedCrazyFlie) :
-  global state
+    current_state = ecf.coordination_manager.get_observable_state(CUSTOM_OBSERVABLE_NAME)
     vx = get_vx(multiranger_state['front'], multiranger_state['back'])
     vy = get_vy(multiranger_state['right'], multiranger_state['left'])
-    state['vx'] = vx
-    state['vy'] = vy
+    current_state['vx'] = vx
+    current_state['vy'] = vy
     # UPDATE THE CUSTOM OBSERVABLE
-    ecf.coordination_manager.update_observable_state(CUSTOM_OBSERVABLE_NAME, state)
+    ecf.coordination_manager.update_observable_state(CUSTOM_OBSERVABLE_NAME, current_state)
   
 if __name__ == '__main__':
     uri = uri_helper.uri_from_env(default='radio://0/80/2M/E7E7E7E7E7')
@@ -72,9 +69,16 @@ if __name__ == '__main__':
         if(DeckType.bcMultiranger not in ecf.decks):
             raise Exception("This example needs Multiranger deck attached")
         multiranger : MultiRanger = ecf.decks[DeckType.bcMultiranger]
-          
+        
+        # INITIAL STATE
+        initial_state = {
+          'vx': 0,
+          'vy': 0,
+          'vz': 0,
+        }
+        
         # CREATE CUSTOM OBSERVABLE
-        ecf.coordination_manager.add_observable(CUSTOM_OBSERVABLE_NAME, state)
+        ecf.coordination_manager.add_observable(CUSTOM_OBSERVABLE_NAME, initial_state)
         
         input("press ENTER to fly..")
         with MotionCommander(ecf.cf, default_height=DEFAULT_HEIGHT) as mc:
