@@ -6,3 +6,4 @@ Action = Callable[..., None]
 
 # A Condition is a function that takes as input the new state of the domain and return True or False
 Condition = Callable[[dict], bool]
+MultiCondition = Callable[[list[dict]], bool]

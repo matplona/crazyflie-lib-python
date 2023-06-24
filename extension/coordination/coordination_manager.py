@@ -1,6 +1,8 @@
 from threading import Event
-from extension.coordination import Action # import Action Type
-from extension.coordination import Condition # import Codition Type
+from typing import Callable
+from extension.coordination import Action, MultiCondition # import Action Type
+from extension.coordination import Condition
+from extension.coordination.multi_observer import MultiObserver # import Codition Type
 from extension.coordination.observable import Observable
 from extension.coordination.observer import Observer
 
@@ -56,10 +58,37 @@ class CoordinationManager:
         else:
             raise Exception('Observable "{}" doesn\'t exist!'.format(observable_name))
     
+
+    def multi_observe(self, observable_names : list(str), action : Action, condition : MultiCondition = lambda *_ : True, context : list = []):
+        observable_getters : dict(str, Callable[[str], dict]) = {} 
+        for observable_name in observable_names:
+            if observable_name in self.__observables :
+                observable_getters[observable_name] = lambda name: self.get_observable_state(name)
+            else:
+                raise Exception('Observable "{}" doesn\'t exist!'.format(observable_name))
+        for observable_name in observable_names:
+            obs = MultiObserver(action, condition, context, observable_getters)
+            self.__observables[observable_name].add_observer(obs)
+
     def observe_and_wait(self, observable_name : str, condition : Condition) -> Event:
         if observable_name in self.__observables :
             e : Event = Event()
             obs = Observer(lambda _ : e.set(), condition, [])
+            self.__observables[observable_name].add_observer(obs)
+            return e
+        else:
+            raise Exception('Observable "{}" doesn\'t exist!'.format(observable_name))
+        
+    def multi_observe_and_wait(self, observable_names : list(str), condition : MultiCondition) -> Event:
+        observable_getters : dict(str, function) = {} 
+        for observable_name in observable_names:
+            if observable_name in self.__observables :
+                observable_getters[observable_name] = lambda name: self.get_observable_state(name)
+            else:
+                raise Exception('Observable "{}" doesn\'t exist!'.format(observable_name))
+        for observable_name in observable_names:
+            e : Event = Event()
+            obs = MultiObserver(lambda _ : e.set(), condition, [])
             self.__observables[observable_name].add_observer(obs)
             return e
         else:
