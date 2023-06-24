@@ -48,7 +48,7 @@ class UdpDriver(CRTPDriver):
             raise WrongUriType('Not an UDP URI')
 
         parse = urlparse(uri)
-
+        self.needs_resending = True
         self.queue = queue.Queue()
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.addr = (parse.hostname, parse.port)
@@ -60,10 +60,8 @@ class UdpDriver(CRTPDriver):
         data, addr = self.socket.recvfrom(1024)
 
         if data:
-            data = struct.unpack('B' * (len(data) - 1), data[0:len(data) - 1])
-            pk = CRTPPacket()
-            pk.port = data[0]
-            pk.data = data[1:]
+            data = struct.unpack('B' * (len(data)), data)
+            pk = CRTPPacket(data[0], data[1:])
             return pk
 
         try:
@@ -78,18 +76,9 @@ class UdpDriver(CRTPDriver):
             return None
 
     def send_packet(self, pk):
-        raw = (pk.port,) + struct.unpack('B' * len(pk.data), pk.data)
-
-        cksum = 0
-        for i in raw:
-            cksum += i
-
-        cksum %= 256
-
-        data = ''.join(chr(v) for v in (raw + (cksum,)))
-
+        raw = (pk.header,) + struct.unpack('B' * len(pk.data), pk.data)
         # print tuple(data)
-        self.socket.sendto(data.encode(), self.addr)
+        self.socket.sendto(bytes(raw), self.addr)
 
     def close(self):
         # Remove this from the server clients list
