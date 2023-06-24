@@ -14,7 +14,7 @@ MAX_RANGE = 4000 # max range of action = 4 meter
 console = logging.getLogger(__name__)
 
 class ZRanger(Deck):
-    def __init__(self, ecf : ExtendedCrazyFlie, update_period_ms = 100) -> None:
+    def __init__(self, ecf : ExtendedCrazyFlie, update_period_ms = 25) -> None:
         super().__init__(DeckType.bcZRanger2) #initialize super
         self.__zrange = MAX_RANGE+1
         self.__ecf = ecf
