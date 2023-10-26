@@ -1,0 +1,73 @@
+
+In recent years, the rapid advancement of unmanned aerial vehicles, commonly known as drones, has revolutionized various industries and opened up new possibilities for applications ranging from aerial photography and package delivery to search and rescue operations. As drones become increasingly integrated into our daily lives, it is crucial to explore and understand the dynamics of their interaction with humans.
+
+In modern drone applications, the figure of the human is marginal with respect to the drone. The former usually plays the role of a supervisor while the latter performs almost automatically all the tasks requested. This significant discrepancy undoubtedly leads to a decrease in interactions between the two.
+
+In this thesis work, we will describe \easyfly{}, an easy and high level programming environment for drone applications. The purpose is to provide a programming environment to allow users with different level of expertise to experiments with drones. Differently from modern applications, our environment allows human and drone to work closely together, making \easyfly{} a perfect tool for conducting research on the field of \hdi{}.
+
+\section{The Problem: Programming \HDI}
+\label{sec:the_problem}
+\hdi{} is a branch of the more general field of \hri{} and it can be defined as "the study field focused on understanding, designing, and evaluating drone systems for use by or with human users" \cite{tezza2019hdi}.
+While the field of \hri{} offers valuable insights, the distinctive ability of drones to move freely in three-dimensional space, along with their unique shapes, sets \hdi{} as a distinct and independent area of research.
+
+The rapid technological progress in this field has made drones increasingly efficient and autonomous in performing various tasks. While on one hand, these advancements enable the integration of drones into everyday life, streamlining processes and reducing the time required for specific activities, on the other hand, modern drone applications do not represent the ideal prototype for conducting research in the field of \hdi{}.
+
+The first limitation of modern drone applications in the study of \hdi{} is the fact that these applications are designed to operate in large environments with the minimal human presence. An example can be represented by autonomous delivery drones \cite{primeAir} or 3D mapping applications \cite{nex3Dmapping} where the interactions with the human are purposely reduced to the bare minimum.
+
+In these type of applications, interactions between humans and drones are often limited to simple tasks, such as package delivery or crop monitoring. These interactions are often repetitive and lacks of diversity and complexity required in researches on \hdi{}. Since tasks and interaction are repetitive, usually users are trained to interact with the drone in a specific way. This training can reduce the variability in \hdi{}, making it less suitable for research purposes.
+
+Programming \hdi{} is usually the most complex and expensive phase during the research on the field. It usually requires a specialized team of researcher, able to program a custom drone application that addresses the complexity of interactions required. Moreover, the implementation phase is usually the bottleneck of the entire process, every small changes to the interaction model can result in days or even weeks for implementing the desired behaviour.
+
+One of the greatest challenges that arises during the programming of \hdi{} is the testing phase. Modern drones are usually fragile and expensive, while on the other hand, tests are likely to fail. This introduces a high consumption of resources, both in terms of costs and in term of time needed for repairing the entire setup before another attempt.
+
+\section{The Solution: \easyfly}
+\label{sec:the_solution}
+To overcome all the issues related to the programming of \hdi{}, we introduce \easyfly{}, a programming environment for drone applications that addresses all the needs of research in the filed of \hdi{}.
+
+To better understand the contribution of \easyfly{} to the research on \hdi{}, let us make a step back in describing what are the needs of researchers in this field.
+
+The ideal prototype of a programming environment for researchers studying \hdi{}, should address and solve all the problems related to the development of drone applications used for research. In particular, this prototype should ultimately be able to reduce the time and costs associated with the development phase along with increasing the effectiveness in the research.
+
+The first characteristic of the ideal prototype is to reduce the level of expertise needed to develop the desired drone application. This feature allows researchers to easily implement all the functionality required, without the needs for a specialized team of drone programmers. Moreover this feature would open the doors to a brand new type of research where the users are questioned to interact with the drone programmed by themselves. 
+\easyfly{} provide this feature by offering a set of simple operations, which indeed allows to build very complex behaviours. In addition to this, \easyfly{} allows to program in a descriptive fashion, in this way programs would be self explaining and easily interpreted by anyone.
+
+As in any other filed, also research on \hdi{} should be dynamic. In other words, to gather all the possible insights from an interaction, the drone application needs to rapidly change and best adapt to the situation. If the application developments cycle is too long, there is the risk to lose many possible opportunities to experiments possible alternative solutions. The ideal prototype should provide the maximum flexibility in adapting to many possible situation.
+For this reason \easyfly{} has adopted a modular approach for both the hardware and the software components. At any moment, a module (either software or hardware) can be attached or detached to compose the best configuration needed in that specific moment.
+
+Last but not least, the facilitation of the interaction the between human and the drone should be the primary goal. The ideal prototype should be the first promoter of the interaction. It should offer the best possible condition to allow the two entities to establish an interaction safely and free from any potential bias determined by the programming environment.\\
+For the implementation of \easyfly{} we have target a specific typology of unmanned aerial vehicles: nano-drones. As the name suggest, nano-drones are simply drones with very small size and weight. Given their small size, they are the best choice to facilitate \hdi{}.\\
+In first place nano-drones are less intimidating and intrusive compared to larger drones, this can make it easier for researchers to observe how individuals react and interact with them. They also allow a minimal disturbance in the environment of the observation, making them perfect for avoiding any possible noise in the experiment. Given the fact that drone and human are supposed to work closely together and that any possible malfunctioning can cause an unexpected crash of the drone, especially while experimenting new solutions, it is easy to deduce that smaller the drone is, safer is the interaction.\\ 
+Last observation is that nano-drones are usually less expensive with respect to bigger ones. This allows researchers to experiment interactions with multiple drones without affecting their budget.
+
+
+
+\section{The Benchmark: \Dronearena}
+\label{sec:the_benchmark}
+\begin{itemize}
+    \item describe what is the need of \easyfly{} for being tested and used in \hdi
+    \item describe briefly what is the \Dronearena project
+    \item describe how \easyfly is benched during the \Dronearena challenges
+\end{itemize}
+
+\section{State of the Art}
+\label{sec:intro_soa}
+\begin{itemize}
+    \item currently the state of the art is divided in programming environments for drone, and \hdi researches.
+    \item \hdi researcher usually uses parrot or dij as tool for their project
+    \item there is always a team of drone experts that builds a custom applications setup for every \hdi research.
+    \item problem can be:
+    \begin{itemize}
+        \item difficulties in adapting to many different situation for a single application
+        \item static testing environment
+    \end{itemize}
+    \item \easyfly{} tires to output an easy environment that allows for two kind of research:
+        \begin{itemize}
+            \item researchers can build and change the application autonomously
+            \item researcher are allowed to investigate in how users program, and uses drones  
+        \end{itemize}
+\end{itemize}
+
+
+
+\section{Overview}
+\label{sec:intro_overview}
