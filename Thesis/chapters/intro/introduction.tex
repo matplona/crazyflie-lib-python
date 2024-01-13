@@ -11,12 +11,12 @@ This significant discrepancy undoubtedly leads to a decrease in interactions bet
 This thesis will describe EasyFly, an accessible and high-level programming environment for drone applications.
 The purpose is to provide a programming environment to allow users with different levels of expertise to experiment with drones. 
 Differently from modern applications, our environment allows humans and drones to work closely together,
-making EasyFly a perfect tool for conducting research on the field of human-drone interactions.
+making EasyFly a perfect tool for conducting research in the field of human-drone interactions.
 
 
 \section{The Problem: Programming Human-Drone Interactions}\label{sec:the_problem}
 Human-Drone Interaction (HDI) is a branch of the more general field of Human-Robot Interaction (HRI), and it can be defined as 
-`the study field focused on understanding, designing, and evaluating drone systems for use by or with human user`~\cite{tezza2019hdi}.
+`the study field focused on understanding, designing, and evaluating drone systems for use by or with human user~\cite{tezza2019hdi}`.
 While the field of HRI offers valuable insights, the distinctive ability of drones to move freely in three-dimensional
 space, along with their unique shapes, sets HDI as a distinct and independent area of research.
 
@@ -47,121 +47,99 @@ both in terms of costs and time needed for repairing the entire setup before ano
 
 \section{The Solution: EasyFly}\label{sec:the_solution}
 To overcome all the issues related to the programming of HDI, we introduce EasyFly, a programming environment for
-drone applications that addresses all the needs of research in the field of HDI.
+drone applications that address all the research needs in the field of HDI.
 
-To better understand the contribution of EasyFly to this research field, let us make a step back in describing
-what are the needs of researchers.
+To better understand the contribution of EasyFly to this research field, let us take a step back and describe the needs of researchers.
 
-The ideal prototype of a programming environment for researchers studying HDI, should address and solve all the problems
-related to the development of drone applications used for research. In particular, this prototype should ultimately be able
-to reduce the time and costs associated with the development phase along with increasing the effectiveness in the research.
+The ideal prototype of a programming environment for researchers studying HDI should address and solve all the problems
+related to developing drone applications used for research. 
+In particular, this prototype should ultimately reduce the time and costs associated with the development phase and increase the research's effectiveness.
 
 The first characteristic of the ideal prototype is to reduce the level of expertise needed to develop the desired drone
-application. This feature allows researchers to easily implement all the functionality required, without the needs for
+application. This feature allows researchers to implement all the required functionality easily without requiring
 a specialized team of drone programmers. Moreover, this feature would open the doors to a brand-new type of research where
 the users are questioned to interact with the drone programmed by themselves.
-EasyFly provides this feature by offering a set of simple operations, which indeed allows building very complex behaviors.
-In addition to this, EasyFly allows programming in a descriptive fashion, in this way programs would be self explaining
+EasyFly provides this feature by offering a set of simple operations, which indeed allows the creation of very complex behaviors.
+In addition to this, EasyFly allows programming in a descriptive fashion; in this way, programs would be self-explaining
 and easily interpreted by anyone.
 
-As in any other filed, also research on HDI should be dynamic. In other words, to gather all the possible
-insights from an interaction, the drone application needs to rapidly change and best adapt to the situation.
-If the application developments cycle is too long, there is the risk to lose many possible opportunities to
-experiments possible alternative solutions. The ideal prototype should provide the maximum flexibility in adapting
+As in any other field, research on HDI should be dynamic. In other words, to gather all the possible
+insights from an interaction, the drone application must rapidly change and adapt to the situation.
+If the application development cycle is too long, there is the risk of losing many possible opportunities to
+experiment with possible alternative solutions. The ideal prototype should provide the maximum flexibility in adapting
 to many possible situations.
-For this reason EasyFly has adopted a modular approach for both the hardware and the software components.
+For this reason, EasyFly has adopted a modular approach for both the hardware and the software components.
 At any moment, a module (either software or hardware) can be attached or detached to compose the best configuration
-needed in that specific moment.
+needed at that specific moment.
 
-Last but not least, the facilitation of the interaction the between human and the drone should be the primary goal.
+Last but not least, facilitating the interaction between the human and the drone should be the primary goal.
 The ideal prototype should be the first promoter of the interaction. It should offer the best possible condition to
-allow the two entities to establish an interaction safely and free from any potential bias determined by the programming environment.\\
-For the implementation of EasyFly we have targeted a specific typology of unmanned aerial vehicles: nano-drones.
-As the name suggest, nano-drones are simply drones with very small size and weight. Given their small size,
-they are the best choice to facilitate human-drone interaction.\\
-In first place nano-drones are less intimidating and intrusive compared to larger drones, this can make it easier for
-researchers to observe how individuals react and interact with them. They also allow a minimal disturbance in the
-environment of the observation, making them perfect for avoiding any possible noise in the experiment.
-Given the fact that drone and human are supposed to work closely together and that any possible malfunctioning can
-cause an unexpected crash of the drone, especially while experimenting new solutions, it is easy to deduce that smaller
-the drone is, safer is the interaction.\\
-Last observation is that nano-drones are usually less expensive with respect to bigger ones. This allows researchers
-to experiment interactions with multiple drones without affecting their budget.
+allow the two entities to establish an interaction safely and free from any potential bias determined by the programming environment.
+
+To implement EasyFly, we have targeted a specific typology of unmanned aerial vehicles: nano-drones.
+As the name suggests, nano-drones are simply drones with very small size and weight. Their small size makes them the best choice to facilitate human-drone interaction.
+
+In the first place, nano-drones are less intimidating and intrusive than larger drones, making it easier for
+researchers to observe how individuals react and interact with them. They also allow minimal disturbance in the
+observation environment, making them perfect for avoiding any possible noise in the experiment.
+Given that the drone and the human are supposed to work closely together, any possible malfunction can cause an unexpected drone crash, 
+especially while experimenting with new solutions. It is easy to deduce that the smaller the drone is, the safer the interaction.
+The last observation is that nano-drones are usually less expensive than bigger ones, allowing researchers
+to experiment with interactions with multiple drones without affecting their budget.
 
 
 \section{The Benchmark: Drone Arena Challenge}\label{sec:the_benchmark}
-In the domain of HDI, the core part of the research, especially from the computer science perspective,
-is the experimental phase. It is during this phase that researchers put their ideas and prototypes to test
-and asses the practicality of innovative interaction models.
+In the HDI domain, the research's core part, especially from the computer science perspective,
+is the experimental phase. During this phase, researchers put their ideas and prototypes to test
+and assess the practicality of innovative interaction models.
 
-For a programming environment like EasyFly, it is essential to be tested and evaluated in a real scenario of
-research in HDI. The usage in real scenarios can help in detecting possible weaknesses of the programming environment,
-allowing for a fine tune of the model.
+For a programming environment like EasyFly, testing and evaluating in a real research scenario in HDI is essential. 
+The testing in real scenarios can help detect possible weaknesses in the programming environment, allowing for fine-tuning the model.
 
-To best evaluate our EasyFly programming environment, we had the possibility to participate in the
-Digital Futures Drone Arena project. This project allowed us to perform an in depth analysis on the impact of
-using EasyFly while developing human-drone interactions.
+To best evaluate our EasyFly programming environment, we had the possibility to participate in the Digital Futures Drone Arena project.
+This project allowed us to perform an in-depth analysis of the impact of using EasyFly while developing human-drone interactions.
 
-Drone Arena is an interdisciplinary research project which aims to create a technological and conceptual platform for
-interdisciplinary investigations of drones at the intersection of mobile robotics, autonomous systems, machine learning,
-and Human Computer Interaction.
+Drone Arena is an interdisciplinary research project that aims to create a technological and conceptual platform for interdisciplinary investigations of drones at the intersection of mobile robotics,
+ autonomous systems, machine learning, and Human-Computer Interaction.
 The project has three inter-related objectives:
 \begin{enumerate}
     \item   The constructions of a novel aerial drone testbed that is geared towards application-level
             functionality rather than low-level control mechanisms.
     \item   The organization of two challenges where multiple teams are involved and tasked to realize
-            functionality that push the state of the art.
+            functionality that pushes the state of the art.
     \item   The conduction of empirical investigation of Human Drone Interactions in the Drone Arena.
-            This includes observation, interviews, and microsociological video analysis, to inform future
+            This includes observation, interviews, and micro-sociological video analysis to inform future
             competitions in the drone arena and to develop insights from the movement-based explorations of drone piloting.
 \end{enumerate}
 
 In these settings, our EasyFly programming environment is focused on the first two objectives of the project.
-In particular, our programming environment was one of the core part of the novel aerial drone testbed
-used for the entire duration of the project. 
-For the second objective of the project we had the possibility to e had the opportunity to actively participate
-in the first of the two challenges organized for the Drone Arena project. During this challenge we conducted
-a complete and in depth evaluation on the impact of using EasyFly, in particular we compared our programming
-environment with another that is simpler and lower-level.
-
+In particular, our programming environment was one of the core parts of the novel aerial drone testbed used for the entire duration of the project. 
+For the second objective of the project, we had the possibility to actively participate in the first of the two challenges organized for the Drone Arena project. 
+During this challenge, we conducted a complete and in-depth evaluation of the impact of using EasyFly; 
+in particular, we compared our programming environment with a simpler and lower-level one.
 
 
 \section{State of the Art}\label{sec:intro_soa}
 The field of HDI is an active and evolving area of research with a focus on improving the ways in which humans
-and drones interact. It is a multidisciplinary filed with two main area of research, the technological and the sociological.
+and drones interact. It is a multidisciplinary field with two main research areas: the technological and the sociological.
 Each area focuses on distinct aspects of the interaction between humans and drones.
 
-In the technological area, at the intersection of computer science, mobile robotics, autonomous systems and machine learning,
-the key focus is on the development and improvement of the hardware and software components of drones and their interfaces.
+In the technological area, at the intersection of computer science, mobile robotics, autonomous systems, and machine learning,
+the key focus is developing and improving the hardware and software components of drones and their interfaces.
 The main goal of this area is to enhance the capabilities and functionalities of drones to make them more user-friendly and efficient.
 
-In the sociological area, which includes disciplines like social engineering, art, ethics and political science,
+In the sociological area, which includes disciplines like social engineering, art, ethics, and political science,
 the core objective is to understand how the presence and use of drones impact society, individuals, and communities.
 
-The most commonly used drone in researches on HDI filed, is the Parrot ARDrone \cite{tezza2019hdi}. 
+The most common drone model used in research in the HDI field is the Parrot ARDrone~\cite{tezza2019hdi}. 
 Parrot drones provide an easy-to-use software API allowing for quick prototyping, which is likely the reason they are the
-researcher's first choice. Although the Parrot ARDrone is widely used for research,
-this model was discontinued by the manufacturer.
+researcher's first choice. Although the Parrot ARDrone is widely used for research, this model was discontinued by the manufacturer.
 
-Especially in researches focused on the sociological area, where researcher has usually less familiarity with programming tools, 
-the progr
-
-\begin{itemize}
-    \item currently the state of the art is divided in programming environments for drone, and \hdi{} researches.
-    \item \hdi{} researcher usually uses parrot or dij as tool for their project
-    \item there is always a team of drone experts that builds a custom applications setup for every \hdi{} research.
-    \item problem can be:
-          \begin{itemize}
-              \item difficulties in adapting to many different situation for a single application
-              \item static testing environment
-          \end{itemize}
-    \item \easyfly{} tires to output an easy environment that allows for two kind of research:
-          \begin{itemize}
-              \item researchers can build and change the application autonomously
-              \item researcher are allowed to investigate in how users program, and uses drones
-          \end{itemize}
-\end{itemize}
-
-
+Especially in research focused on the sociological area, where researchers usually have less familiarity with programming tools, 
+the prototyping phase is the most complex and time-consuming. 
+EasyFly tries to overcome all the issues related to this phase by creating a simple and flexible programming environment for drone applications.
+Moreover, it tries to offer a new perspective in the investigation of human-drone interactions where the user plays the role of the programmer.
 
 \section{Overview}\label{sec:intro_overview}
+
+TODO at the end

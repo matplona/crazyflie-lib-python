@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.27)  13 JAN 2024 16:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.27)  13 JAN 2024 17:16
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1084,18 +1084,38 @@ Chapter 1.
 
 
 
-] [2] [3] [4] [5{c:/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]) [6]
+] [2] [3] [4]
+Overfull \hbox (5.74355pt too wide) in paragraph at lines 134--137
+[]\T1/cmr/m/n/12 The most com-mon drone model used in re-search in the HDI field is the Par-rot ARDrone [[]].
+ []
+
+) [5]
+Package epstopdf Info: Source file: <./Images/./raggiera_polimi.eps>
+(epstopdf)                    date: 2023-10-26 23:34:52
+(epstopdf)                    size: 1813066 bytes
+(epstopdf)             Output file: <./Images/./raggiera_polimi-eps-converted-to.pdf>
+(epstopdf)                    date: 2023-10-26 23:36:50
+(epstopdf)                    size: 40517 bytes
+(epstopdf)             Command: <repstopdf --outfile=./Images/./raggiera_polimi-eps-converted-to.pdf ./Images/./raggiera_polimi.eps>
+(epstopdf)             \includegraphics on input line 195.
+Package epstopdf Info: Output file is already uptodate.
+File: ./Images/./raggiera_polimi-eps-converted-to.pdf Graphic file (type pdf)
+<use ./Images/./raggiera_polimi-eps-converted-to.pdf>
+Package pdftex.def Info: ./Images/./raggiera_polimi-eps-converted-to.pdf  used on input line 195.
+(pdftex.def)             Requested size: 507.88533pt x 507.88051pt.
+ [6
+
+]
 Chapter 2.
 (./chapters/soa/state-of-the-atr.tex [7
 
-
 ] [8] [9] [10] [11] [12] [13]
-<./Images/soa/drone_hw_components.png, id=389, 168.63pt x 168.63pt>
+<./Images/soa/drone_hw_components.png, id=388, 168.63pt x 168.63pt>
 File: ./Images/soa/drone_hw_components.png Graphic file (type png)
 <use ./Images/soa/drone_hw_components.png>
 Package pdftex.def Info: ./Images/soa/drone_hw_components.png  used on input line 242.
 (pdftex.def)             Requested size: 227.62206pt x 227.62779pt.
-<./Images/soa/drone_sw_components.png, id=391, 647.41875pt x 361.35pt>
+<./Images/soa/drone_sw_components.png, id=390, 647.41875pt x 361.35pt>
 File: ./Images/soa/drone_sw_components.png Graphic file (type png)
 <use ./Images/soa/drone_sw_components.png>
 Package pdftex.def Info: ./Images/soa/drone_sw_components.png  used on input line 256.
@@ -1109,33 +1129,33 @@ Underfull \hbox (badness 3623) in paragraph at lines 261--261
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [14 <./Images/soa/drone_hw_components.png>]
-<./Images/soa/ground_station_controller.png, id=414, 218.31563pt x 278.54062pt>
+<./Images/soa/ground_station_controller.png, id=413, 218.31563pt x 278.54062pt>
 File: ./Images/soa/ground_station_controller.png Graphic file (type png)
 <use ./Images/soa/ground_station_controller.png>
 Package pdftex.def Info: ./Images/soa/ground_station_controller.png  used on input line 298.
 (pdftex.def)             Requested size: 113.81102pt x 145.20746pt.
-<./Images/soa/ground_station_smartphone.png, id=415, 218.31563pt x 278.54062pt>
+<./Images/soa/ground_station_smartphone.png, id=414, 218.31563pt x 278.54062pt>
 File: ./Images/soa/ground_station_smartphone.png Graphic file (type png)
 <use ./Images/soa/ground_station_smartphone.png>
 Package pdftex.def Info: ./Images/soa/ground_station_smartphone.png  used on input line 302.
 (pdftex.def)             Requested size: 113.81102pt x 145.20746pt.
-<./Images/soa/ground_base_station.png, id=416, 218.31563pt x 278.54062pt>
+<./Images/soa/ground_base_station.png, id=415, 218.31563pt x 278.54062pt>
 File: ./Images/soa/ground_base_station.png Graphic file (type png)
 <use ./Images/soa/ground_base_station.png>
 Package pdftex.def Info: ./Images/soa/ground_base_station.png  used on input line 306.
 (pdftex.def)             Requested size: 113.81102pt x 145.20746pt.
-<./Images/soa/ground_station_distributed.png, id=417, 301.125pt x 391.4625pt>
+<./Images/soa/ground_station_distributed.png, id=416, 301.125pt x 391.4625pt>
 File: ./Images/soa/ground_station_distributed.png Graphic file (type png)
 <use ./Images/soa/ground_station_distributed.png>
 Package pdftex.def Info: ./Images/soa/ground_station_distributed.png  used on input line 310.
 (pdftex.def)             Requested size: 159.33821pt x 207.1456pt.
-<./Images/soa/ground_station_distributed_with_sensor.png, id=418, 301.125pt x 391.4625pt>
+<./Images/soa/ground_station_distributed_with_sensor.png, id=417, 301.125pt x 391.4625pt>
 File: ./Images/soa/ground_station_distributed_with_sensor.png Graphic file (type png)
 <use ./Images/soa/ground_station_distributed_with_sensor.png>
 Package pdftex.def Info: ./Images/soa/ground_station_distributed_with_sensor.png  used on input line 314.
 (pdftex.def)             Requested size: 159.33821pt x 207.1456pt.
  [15 <./Images/soa/drone_sw_components.png>] [16 <./Images/soa/ground_station_controller.png> <./Images/soa/ground_station_smartphone.png> <./Images/soa/ground_base_station.png> <./Images/soa/ground_station_distributed.png> <./Images/soa/ground_station_distributed_with_sensor.png>]
-<./Images/soa/easyfly_offboard_ecosystem.png, id=451, 251.43938pt x 276.28218pt>
+<./Images/soa/easyfly_offboard_ecosystem.png, id=450, 251.43938pt x 276.28218pt>
 File: ./Images/soa/easyfly_offboard_ecosystem.png Graphic file (type png)
 <use ./Images/soa/easyfly_offboard_ecosystem.png>
 Package pdftex.def Info: ./Images/soa/easyfly_offboard_ecosystem.png  used on input line 364.
@@ -1145,7 +1165,7 @@ Chapter 3.
 (./chapters/tools/tools.tex [21
 
 
-] [22] [23] [24] [25] [26]) [27] [28]
+] [22] [23{c:/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [24] [25] [26]) [27] [28]
 Chapter 4.
 [29
 
@@ -1381,7 +1401,7 @@ Here is how much of TeX's memory you used:
  36 hyphenation exceptions out of 8191
  84i,18n,93p,1246b,841s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfcc1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc1200.pfb>
-Output written on Thesis.pdf (60 pages, 1158441 bytes).
+Output written on Thesis.pdf (60 pages, 1157967 bytes).
 PDF statistics:
  862 PDF objects out of 1000 (max. 8388607)
  729 compressed objects within 8 object streams

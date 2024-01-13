@@ -472,8 +472,15 @@ INPUT ./chapters/intro/introduction.tex
 INPUT ./chapters/intro/introduction.tex
 INPUT ./chapters/intro/introduction.tex
 INPUT chapters/intro/introduction.tex
-INPUT c:/texlive/2023/texmf-dist/fonts/tfm/jknappen/ec/tcrm1200.tfm
-INPUT c:/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
+INPUT ./Images/./raggiera_polimi.eps
+INPUT ./Images/./raggiera_polimi.eps
+INPUT ./Images/./raggiera_polimi.eps
+INPUT ./Images/./raggiera_polimi.eps
+INPUT ./Images/./raggiera_polimi-eps-converted-to.pdf
+INPUT ./Images/./raggiera_polimi-eps-converted-to.pdf
+INPUT ./Images/./raggiera_polimi.eps
+INPUT ./Images/./raggiera_polimi-eps-converted-to.pdf
+INPUT ./Images/./raggiera_polimi-eps-converted-to.pdf
 INPUT ./chapters/soa/state-of-the-atr.tex
 INPUT ./chapters/soa/state-of-the-atr.tex
 INPUT chapters/soa/state-of-the-atr.tex
@@ -517,6 +524,8 @@ INPUT ./Images/soa/easyfly_offboard_ecosystem.png
 INPUT ./chapters/tools/tools.tex
 INPUT ./chapters/tools/tools.tex
 INPUT chapters/tools/tools.tex
+INPUT c:/texlive/2023/texmf-dist/fonts/tfm/jknappen/ec/tcrm1200.tfm
+INPUT c:/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 INPUT c:/texlive/2023/texmf-dist/fonts/tfm/jknappen/ec/ectt1200.tfm
 INPUT ./Images/logo_polimi_scritta.eps
 INPUT ./Images/logo_polimi_scritta.eps
