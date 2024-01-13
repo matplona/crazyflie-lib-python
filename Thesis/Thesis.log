@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.27)  13 JAN 2024 17:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.27)  14 JAN 2024 00:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1113,15 +1113,15 @@ Chapter 2.
 <./Images/soa/drone_hw_components.png, id=388, 168.63pt x 168.63pt>
 File: ./Images/soa/drone_hw_components.png Graphic file (type png)
 <use ./Images/soa/drone_hw_components.png>
-Package pdftex.def Info: ./Images/soa/drone_hw_components.png  used on input line 242.
+Package pdftex.def Info: ./Images/soa/drone_hw_components.png  used on input line 238.
 (pdftex.def)             Requested size: 227.62206pt x 227.62779pt.
 <./Images/soa/drone_sw_components.png, id=390, 647.41875pt x 361.35pt>
 File: ./Images/soa/drone_sw_components.png Graphic file (type png)
 <use ./Images/soa/drone_sw_components.png>
-Package pdftex.def Info: ./Images/soa/drone_sw_components.png  used on input line 256.
+Package pdftex.def Info: ./Images/soa/drone_sw_components.png  used on input line 251.
 (pdftex.def)             Requested size: 318.66948pt x 177.86253pt.
 
-Underfull \hbox (badness 3623) in paragraph at lines 261--261
+Underfull \hbox (badness 3623) in paragraph at lines 256--256
 [][][][][]\T1/cmr/m/n/12 : []|The main
  []
 
@@ -1132,33 +1132,37 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <./Images/soa/ground_station_controller.png, id=413, 218.31563pt x 278.54062pt>
 File: ./Images/soa/ground_station_controller.png Graphic file (type png)
 <use ./Images/soa/ground_station_controller.png>
-Package pdftex.def Info: ./Images/soa/ground_station_controller.png  used on input line 298.
+Package pdftex.def Info: ./Images/soa/ground_station_controller.png  used on input line 293.
 (pdftex.def)             Requested size: 113.81102pt x 145.20746pt.
 <./Images/soa/ground_station_smartphone.png, id=414, 218.31563pt x 278.54062pt>
 File: ./Images/soa/ground_station_smartphone.png Graphic file (type png)
 <use ./Images/soa/ground_station_smartphone.png>
-Package pdftex.def Info: ./Images/soa/ground_station_smartphone.png  used on input line 302.
+Package pdftex.def Info: ./Images/soa/ground_station_smartphone.png  used on input line 297.
 (pdftex.def)             Requested size: 113.81102pt x 145.20746pt.
 <./Images/soa/ground_base_station.png, id=415, 218.31563pt x 278.54062pt>
 File: ./Images/soa/ground_base_station.png Graphic file (type png)
 <use ./Images/soa/ground_base_station.png>
-Package pdftex.def Info: ./Images/soa/ground_base_station.png  used on input line 306.
+Package pdftex.def Info: ./Images/soa/ground_base_station.png  used on input line 301.
 (pdftex.def)             Requested size: 113.81102pt x 145.20746pt.
 <./Images/soa/ground_station_distributed.png, id=416, 301.125pt x 391.4625pt>
 File: ./Images/soa/ground_station_distributed.png Graphic file (type png)
 <use ./Images/soa/ground_station_distributed.png>
-Package pdftex.def Info: ./Images/soa/ground_station_distributed.png  used on input line 310.
+Package pdftex.def Info: ./Images/soa/ground_station_distributed.png  used on input line 305.
 (pdftex.def)             Requested size: 159.33821pt x 207.1456pt.
 <./Images/soa/ground_station_distributed_with_sensor.png, id=417, 301.125pt x 391.4625pt>
 File: ./Images/soa/ground_station_distributed_with_sensor.png Graphic file (type png)
 <use ./Images/soa/ground_station_distributed_with_sensor.png>
-Package pdftex.def Info: ./Images/soa/ground_station_distributed_with_sensor.png  used on input line 314.
+Package pdftex.def Info: ./Images/soa/ground_station_distributed_with_sensor.png  used on input line 309.
 (pdftex.def)             Requested size: 159.33821pt x 207.1456pt.
- [15 <./Images/soa/drone_sw_components.png>] [16 <./Images/soa/ground_station_controller.png> <./Images/soa/ground_station_smartphone.png> <./Images/soa/ground_base_station.png> <./Images/soa/ground_station_distributed.png> <./Images/soa/ground_station_distributed_with_sensor.png>]
-<./Images/soa/easyfly_offboard_ecosystem.png, id=450, 251.43938pt x 276.28218pt>
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[15 <./Images/soa/drone_sw_components.png>] [16 <./Images/soa/ground_station_controller.png> <./Images/soa/ground_station_smartphone.png> <./Images/soa/ground_base_station.png> <./Images/soa/ground_station_distributed.png> <./Images/soa/ground_station_distributed_with_sensor.png>]
+<./Images/soa/easyfly_offboard_ecosystem.png, id=452, 251.43938pt x 276.28218pt>
 File: ./Images/soa/easyfly_offboard_ecosystem.png Graphic file (type png)
 <use ./Images/soa/easyfly_offboard_ecosystem.png>
-Package pdftex.def Info: ./Images/soa/easyfly_offboard_ecosystem.png  used on input line 364.
+Package pdftex.def Info: ./Images/soa/easyfly_offboard_ecosystem.png  used on input line 357.
 (pdftex.def)             Requested size: 136.57462pt x 150.06702pt.
  [17 <./Images/soa/easyfly_offboard_ecosystem.png>] [18] [19]) [20]
 Chapter 3.
@@ -1390,7 +1394,7 @@ LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-10-23>
  ***********
 Package rerunfilecheck Info: File `Thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 1EAD671CAE45C1A8AAD6DB511EDB147B;6554.
+(rerunfilecheck)             Checksum: 197FF2816DE3CA2F35D767B6B67C115C;6551.
  ) 
 Here is how much of TeX's memory you used:
  30855 strings out of 476306
@@ -1401,7 +1405,7 @@ Here is how much of TeX's memory you used:
  36 hyphenation exceptions out of 8191
  84i,18n,93p,1246b,841s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfcc1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc1200.pfb>
-Output written on Thesis.pdf (60 pages, 1157967 bytes).
+Output written on Thesis.pdf (60 pages, 1157638 bytes).
 PDF statistics:
  862 PDF objects out of 1000 (max. 8388607)
  729 compressed objects within 8 object streams
