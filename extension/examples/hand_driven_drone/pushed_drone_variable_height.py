@@ -8,7 +8,7 @@ import time
 from cflib.positioning.motion_commander import MotionCommander
 from cflib.utils import uri_helper
 from extension.decks.deck import DeckType
-from extension.decks.multiranger import MultiRanger
+from extension.decks.multiranger.multiranger import MultiRanger
 from extension.decks.z_ranger import ZRanger
 from extension.examples.hand_driven_drone.utils import get_vx, get_vy
 from extension.extended_crazyflie import ExtendedCrazyFlie

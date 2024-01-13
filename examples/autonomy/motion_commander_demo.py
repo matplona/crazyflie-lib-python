@@ -41,7 +41,7 @@ from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
 from cflib.positioning.motion_commander import MotionCommander
 from cflib.utils import uri_helper
 
-URI = uri_helper.uri_from_env(default='radio://0/80/2M/E7E7E7E7E7')
+URI = 'udp://127.0.0.1:1808'
 
 # Only output errors from the logging framework
 logging.basicConfig(level=logging.ERROR)
@@ -51,7 +51,7 @@ if __name__ == '__main__':
     # Initialize the low-level drivers
     cflib.crtp.init_drivers()
 
-    with SyncCrazyflie(URI, cf=Crazyflie(rw_cache='./cache')) as scf:
+    with SyncCrazyflie(URI, cf=Crazyflie()) as scf:
         # We take off when the commander is created
         with MotionCommander(scf) as mc:
             time.sleep(1)

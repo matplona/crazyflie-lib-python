@@ -9,7 +9,7 @@ import cflib.crtp
 from cflib.crazyflie import Crazyflie
 from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
 from cflib.positioning.motion_commander import MotionCommander
-from extension.decks.multiranger import MultiRanger, ActionLimit, VelocityLimit
+from extension.decks.multiranger.multiranger import MultiRanger, ActionLimit, VelocityLimit
 def spiral(mc:MotionCommander, round):
     mc.forward(distance_m=radious, velocity=(radious/step_duration))
     mc.start_linear_motion(mc.VELOCITY, 0, (spiral_height/circle_durtion), 360/circle_durtion)

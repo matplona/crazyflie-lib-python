@@ -1,0 +1,169 @@
+The main resource used in this work is Crazyflie, an open platform produced by Bitcraze [Bitcraze] that offers an ecosystem of products and open source libraries that allows people to develop new functionalities for aerial drones. The key feature of this platform is that it offers a set of expansion decks that can extend the drones capabilities with new sensors. Expansion decks can be mounted on the drones in a very easy way and they are immediately ready for being used to compose the desired configuration in the application of interest. Given its modularity and high versatility, this platform perfectly fits as a baseline for developing an easy and high level environment for programming drones. In this chapter we present an overview of the Crazyflie platform to give a basic knowledge of its tools and its surrounding environment. We will first present all the hardware used in this work, then we will give an overview of all the software libraries that compose the platform and finally we will describe in detail the main software components.
+
+3.1 Ecosystem Overview
+The Crazyflie platform is composed of a set of devices and tools {FIG 3.1}, it has a modular architecture that makes it possible to build very versatile systems, adaptable to many possible situations. The ecosystem of this platform gravitates around its main actor: the Crazyflie nano drone. The drone brings with itself the minimal set of sensors and actuators that allows it to fly. To empower the drone capabilities, the platform makes available a set of expansion decks which gives the drone additional sensors, making it possible to adapt it to many possible situations.
+To coordinate the drone’s operations, the platform needs a ground station that can be hosted on any computer with a python script interpreter or on a mobile phone with installed a dedicated App. The communication between the quadcopter and the ground station is handled using a dongle usb (CrazyRadio) or through Bluetooth when using the mobile App.
+The platform also offers some absolute positioning system that allows the drone to have a better position estimation in an absolute coordinate system.
+3.2 Hardware
+In this section we will provide an overview on the hardware components of the entire Crazyflie platform. We will firstly analyze the characteristics of the Crazyflie quadcopter used in this work and then we will briefly introduce the relevant expansion decks. We will then give an overview on the hardware components that compose the absolute positioning system adopted for the work: the Lighthouse positioning system.
+3.1.1 The Quadcopter
+Bitcraze produces a family of drones with similar hardware and firmware, but with differences in size and properties. The target for this work is the principal component of this family, the Crazyflie 2.1, an incredibly small and versatile quadcopter with a solid and modularized design that falls into the category of nano drones. Since our programming environment is meant to be used also by non-expert users, we need to target the most robust drone and with a very easy set up. For this reason we have targeted nano drones for our work and in particular the Crazyflie 2.1. Moreover given its size it is also possible to set up a swarm of drones with ease.
+This drone consists of many hardware components that are hosted on a single, compact and light base. We can identify four main unit:
+Computing unit
+Motor unit
+Sensor unit
+Power unit
+The core of the drone is composed of two Micro Controller Units (MCUs): the first is an STM32F4 MCU that handles the main Crazyflie firmware with all the low-level and high-level controls. The second MCU is a NRF51822 that is in charge of handling all the radio communication and power management. 
+The motor unit of the Crazyflie 2.1 consists of four Coreless DC motors with plastic propellers, that are fixed at the corners of the base with the help of plastic supports.
+To control the flight the drone is equipped with two sensors: a BMI088 sensor which measures the acceleration along the 3 coordinate of the space plus the angular speed, and a BMP388 sensor that is an high precision pressure sensor. 
+The sensor unit of the Crazyflie 2.1, known also as Inertial Measurement Unit (IMU), is minimal and provides the minimum data that allows the drone to have an almost stable flight.
+Finally the power unit is constituted by a 240mAh LiPo battery that allows a flight duration of about 7 minutes. The total weight of the drone is 27 grams and is able to lift a payload of 15 grams. Its design is robust and simple, easing the assembly and the maintenance of its components.
+3.1.2 The Expansion Decks
+The drone itself, with only 2 sensors composing the IMU, has a limited capacity of understanding the surrounding environment. To overcome this limitation, it can be equipped with additional decks that extend its capabilities in sensing, positioning and visualization {FIG 3.2}. The platform offers a variety of expansion decks, but for the purpose of our work only a subset of them has been selected, in particular, those that can enable in some way in the human-drones interaction. Here we will list all the expansion decks used in this work with a brief description for each of them.
+Flow deck v2
+The Flow deck gives the Crazyflie the ability to understand when it’s moving in any direction. It mounts two sensors: the VL53L1x ToF measures the distance to the ground with high precision up to 4 meters and the PMW3901 optical flow sensor measures the relative velocity in the x-y plane in relation to the ground. This expansion deck is a relative positioning system that allows the drone to know its position relative to its take off point.
+Lighthouse positioning deck
+The Lighthouse deck is part of the Lighthouse absolute positioning system (See section 3.1.4). It is composed of four TS4231 IR receivers and a ICE40UP5K FPGA to process the signal received. This expansion deck allows the drone to know its position in an absolute coordinate system.
+Multi-ranger deck
+The Multiranger deck gives the Crazyflie the capability to sense the space around it and could react when something is close and for instance avoid obstacles.This is done by measuring the distance to objects in the following 5 directions: front, back, left, right and up with mm precision up to 4 meters, using five VL53L1x ToF sensors.
+Z-ranger deck v2
+The Z-ranger deck is a simplified and cheaper version of the Flow deck v2, it gives only the measurement of the distance from the floor up to 4 meters using the usual laser sensor VL53L1x ToF.
+AI-deck 1.1
+The AI-deck 1.1 extends the computational capabilities and will enable complex artificial intelligence-based workloads to run onboard, with the possibility to achieve fully autonomous navigation capabilities. It mounts an Himax HM01B0 (ultra low power 320×320 monochrome camera), GAP8 (ultra low power 8+1 core RISC-V MCU), NINA-W102 (ESP32 module for WiFi communication) and it has 512 Mbit HyperFlash and 64 Mbit HyperRAM memories. 
+LED-ring deck
+The LED-ring deck has 12 RGB LEDs disposed of in a ring (W2812B module) each of which can be controlled independently to build colorful animation. In addition it has 2 more LEDs facing front that emit more than 1800 mcd helping in light up the environment.
+
+
+3.1.3 Crazyradio PA
+As previously described, the Crazyflie platform expects two nodes of computation: the ground station and the Crazyflie 2.1 itself. To communicate with the Crazyflie 2.1 which has its integrated radio, the ground station needs an external radio dongle. The platform provides a low-latency and long range USB radio dongle, the Crazyradio PA. The CrazyRadio PA is based on the nRF24LU1+ from Nordic Semiconductor and it features a 20dBm power amplifier giving a range up to 1km (line of sight). The dongle comes pre-programmed with Crazyflie compatible firmware.
+The communication protocol used to communicate is the Crazy Radio Transfer Protocol (CRTP) which is a custom communication protocol of the Crazyflie platform (See section 3.7).
+3.1.4 Lighthouse Positioning System Hardware
+The Lighthouse positioning system is one of the possible solutions that Bitcraze offers to have an absolute positioning system for understanding the drone’s coordinates inside the flight space. The hardware of this system is composed of 2 or more HTC-Vive/SteamVR Base Station 2.0. The role of these Base Stations is to light up the flight space with periodic InfraRed (IR) beams.
+Onboard the Crazyflie 2.1, the Lighthouse expansion deck allows it to capture these IR beams thanks to four TS4231 IR receivers. The signal captured is then passed to an ICE40UP5K FPGA that with signal processing it computes the angle of incidence of the IR rays. The position and the pose of the crazyflie is then finally computed from the main MCU of the Crazyflie 2.1 (See section 3.4.x).
+3.3 Software libraries
+As previously anticipated, the Crazyflie environment is completed by a set of open source libraries, publicly available on GitHub, which allow people to program all its components and devices, to develop new features or upgrade existing ones. Each library targets a specific component of the system and is completely independent from all the others. 
+In this section we will briefly describe the two main libraries that have been used as baseline for our work. 
+3.3.1 crazyflie-lib-python
+The crazyflie-python-lib (cflib in short) [crazyflie-lib-python] is a software repository which consists of a python library for programming scripts which control the behavior of the Crazyflie 2.1.
+The library provides the base facilities to allow users to define in a python script the desired behavior of the drone, abstracting from the low level control mechanism
+As shown in figure {FIG 3.3}, the python scripts are executed on the ground station, the library contains the code to create communication packets that are sent through the Crazyradio reaching the Crazyflie which will eventually execute the commands requested. 
+
+3.3.2 crazyflie-firmware
+The crazyflie-firmware [crazyflie-firmware] is a software repository that contains all the firmware of the Crazyflie 2.1. The firmware is written in C++ and it handles the main autopilot on the STM32F4, it contains the driver of each possible expansion deck and controls all the communication on the opposite side with respect to the cflib.
+
+
+Fig 3.3
+
+
+
+
+
+
+
+
+
+
+
+
+
+3.4 Positioning systems
+Positioning systems represent the core sensing task of every drone application. Knowing the position of the drone in the flight space is essential for achieving any possible goal.
+The Crazyflie platform offers multiple positioning systems, both absolute and relative (See section 2.5). To select the best system for our application we analyzed the following metrics for each possibility that the platform offered:
+Relative or Absolute Positioning system
+Accuracy in sampling
+Cumulative of the error during time
+3.4.1 Relative Positioning Systems
+The Crazyflie platform offers 3 relative positioning systems. The first system is represented by the Inertial Measurement Unit which is provided on the base drone without expansion decks. This positioning system has a very poor accuracy and a cumulative error even worse. From our experience this system cannot be used as the only positioning system of the entire application, however it contributes with its information to obtain the position estimate.
+The Z-ranger deck is another positioning system that the platform offers, it provides an estimate only for the z-coordinate with a quite good accuracy but, as typical for every relative positioning system, it has a high cumulative of the error during time. An empowered version of the Z-ranger is represented by the Flow deck which instead is a positioning system capable of measuring the distance from the takeoff point for the three coordinates x, y and z. This last system has a really good accuracy in sampling and an acceptable cumulative of the error during time. Flow deck is the only relative positioning system that allows the crazyflie to fly with acceptable precision in the flight space.
+
+3.4.2 Absolute Positioning Systems
+As we have seen before relative positioning systems suffer from a high cumulative of the error during time. When the application needs that the estimate of the drone drone position does not drift over time, we need to consider the more robust absolute positioning systems. The environment provides three different absolute positioning systems solutions with different characteristics, performance and costs. 
+The first solution proposed, the Loco Positioning System (LPS) is based on Ultra Wide Band radio that is used to find the absolute 3D position of objects in space. Similarly to a miniature GPS system, it uses a set of Anchors, namely Loco positioning nodes (from 4 up to 8), that acts as a GPS satellite and Tag, namely Loco positioning deck, that acts as a GPS receiver. The accuracy of this system is probably the main limitation and is estimated to be in the range of 10 cm. 
+The second solution proposed is the Motion Capture System (MCS), which uses cameras to detect markers attached to the Crazyflies. Since the layout of the markers on the drone is known by the system, it is possible to calculate the position and orientation of the tracked object in a global reference frame. It is a very accurate positioning system but the two main limitations are: the native environment provides only the markers and it relies on third party systems for the entire MCS. Moreover the position is computed in an external node and it needs to be sent to the crazyflie increasing the communication load. 
+The last solution is the Lighthouse positioning system (Lighthouse), is the newest introduced in the environment and is the one selected for the work because it overcomes all the limitations of the previous.
+Lighthouse is an optically-based positioning system that allows an object to locate itself with high precision indoors. The system uses the SteamVR Base Station (BS) as an optical beacon. They are composed of spinning drums that shine the flight space with infrared beams in a range of 6 meters. The crazyflie on the other hand, with a Lighthouse positioning deck that has 4 optical IR receivers (photo diode) is capable of measuring the angle of incidence of the IR beams. Knowing the position and orientation of the BS enables the Crazyflie to compute its position onboard in global coordinates. The knowledge of the position and the orientation of the BS is called system geometry and is composed by a vector in the three dimensions and by a rotation matrix. Bitcraze officially supports only up to two BSs, which results in having a flight area of approximately 5x5 meters without losing in accuracy. This can be seen as a little bit constraining but with appropriate modifications the system supports up to 16 BSs covering in practice almost all the indoor situations. 
+As previously anticipated, Lighthouse positioning system overcomes the limitations that LPS and MCS has by taking the best characteristics form each of them, in fact, it computes the position onboard like LPS reducing the communication overload, and it has a very high accuracy comparable to the MCS, moreover is also the cheapest solution between the three choices.
+3.5 State estimate and control
+All the information given by the positioning systems and by the additional decks are simply data, to become useful, they need to be used in a clever way to control the stability of the drone and make it possible to fly. In this section we will describe all the software components that act in the control loop enabling the drone to fly.
+In the crazyflie platform, the control loop is managed inside the crazyflie firmware from the sensor read to the motor thrust {FIG 3.4}.
+
+FIG 3.4
+3.5.1 Sensors
+The read of data from sensors is the first step of the process and consists in the collection of the data measured by the sensors available and that are significant to the next step. Of course, the more data is gathered during this step, the more accurate would be the whole process. Given the choices described in the previous section regarding positioning systems and expansion decks, the sensors that are used in this step are:
+IMU
+Accelerometer: acceleration in body fixed coordinates x-y-z [ m/s2 ]
+Gyroscope: angle rate in roll pitch and yaw [ rad/s ]
+Pressure Sensor: Air pressure [ mBar ]
+Flow Deck v2
+ToF sensor: Distance to a surface [ mm ]
+Optical flow sensor: The detection movement of pixels in [ px/s ]
+Z ranger deck
+ToF sensor: Distance to a surface [ mm ]
+Lighthouse deck
+IR receivers: Sweep angle of Steam VR base stations 2.0 [ rad ]
+3.5.2 State Estimator
+The State Estimator, as the name suggests, is the component in charge of computing the state estimate starting from the data read by the sensors. The state to be estimated consists of 4 main variables:
+Position (x, y, z) [ m ]
+Velocity (vx, vy, vz) [ m/s ]
+Attitude absolute (roll, pitch, yaw) [ rad ]
+Attitude rate (rollrate, pitchrate, yawrate) [ rad/s ]
+
+This component inside the crazyflie firmware has 2 concrete implementation with different performance and accuracy:
+Complementary Filter
+Extended Kalman Filter (EKF)
+The Complementary Filter is a very lightweight and efficient state estimator. It uses only data coming from the IMU and from the ToF sensor (Flow deck or Z-ranger). The estimated output is only a portion of the crazyflie state: the Attitude and Position for the z coordinate.
+The EKF is a recursive filter that estimates the current state of the Crazyflie based on incoming measurements (in combination with a predicted standard deviation of the noise), the measurement model and the model of the system itself. 
+It is a step up in complexity with respect to the other estimator, it accepts as input all the possible sensor’s data.If enough sensor data are available, it can compute as output a complete state estimation: Attitude, Position and Velocity in all the directions.
+The choice of which state estimator to use can be either forced by the user or automatically set given the sensors available at boot time. By default the firmware uses the lighter Complementary Filter and switches to the EKF if more sensors are available.
+3.5.3 State Controller
+After the state has been estimated, the next step is to try to understand which actions to take in order to bring the state near to the desired state. This is the task of the State Controller component, which starting from the estimated state and the desired setpoint of the state it outputs the commands for the power distribution.
+As it was for the estimation stage, also here there are multiple options available:
+Proportional Integral Derivative controller (PID) 
+The Incremental Nonlinear Dynamic Inversion controller (INDI)
+Mellinger controller
+The simplest and lightest controller is the PID, on the opposite the Mellinger is the most complex one.
+By default the PID controller is used and the user can select to change the controller on the base of his/her particular needs.
+3.5.4 Commander
+The Commander component acts as an interface with the outside world. It is responsible for gathering from all possible sources the setpoints requested and also managing the priority among those sources. Before sending the setpoints to the controller, it checks its validity and, if necessary, discards or modifies it.
+The setpoint structure is defined by 2 levels of control: Position and Attitude that can be combined with 3 modality of control: mode absolute, mode velocity and mode disabled. 
+In the following table we can see how to combine levels and modality of control to define a setpoint for the desired state variable.
+
+State Variable
+Position control
+Attitude control
+Position
+mode absolute
+mode disabled
+Velocity
+mode velocity
+mode disabled
+Attitude absolute
+mode disabled
+mode absolute
+Attitude rate
+mode disabled
+mode velocity
+
+
+The sources from which the commander can listen for commands can be either a ground station or an internal component named High Level Commander. The High Level commander is a component that generates setpoints starting from a predefined trajectory saved in memory.
+3.5.5 Power Distribution and Motors
+The power distribution component is the component responsible for translating the commands received from the controller into thrust to give to the motors. The Motors will then finally produce a movement that changes the real state of the Crazyflie.
+3.6 Flight control
+On the other side of the communication channel, the ground station needs a way to interact with the drone and give information on which actions to take to fly in the desired way.
+In this section we will briefly describe the main alternatives that the cflib offers to write scripts that will eventually make some crazyflie fly.
+Inside the cflib the responsible for controlling the flight is a module named Commander Framework.
+The Commander Framework can be viewed as composed of 2 layer:
+The first layer provides low level operations that allow writing setpoints (according to TABLE1 ) and sending them with the custom CRTP protocol.
+The second layer, which is built upon the first, is more abstract and adds some general functionalities e.g., take off, land, move to.
+Inside the Commander framework there is also a parallel version for the 2 layers that is meant for interacting with another type of commander: the High Level commander (See section 3.5.4). This version provides functionality for starting/stopping a pre-loaded trajectory and some operations to modify this trajectory at runtime.
+To complete the overview on the flight control, the cflib offers also another module, the Swarm module which provides the functionalities to use the Commander Framework on multiple Crazyflie 2.1 simultaneously.
+3.7 Communication
+The Crazyflie platform has its own customized packet protocol: Crazy RealTime Protocol (CRTP). It was designed to allow packet prioritization to help real-time control of the Crazyflie.
+Each CRTP packet carries 32 bytes: one port number between 0 and 15 (4 bits), a channel number between 0 and 3 (2 bits) as well as a payload data buffer of up to 31 bytes.
+The link layer of the protocol guarantees strict packet ordering within a port whereas for different ports, packets can be re-organized and sent out of order. 
+All communication links are identified using an URI build up of the following: InterfaceType://InterfaceId/InterfaceChannel/InterfaceSpeed/Address e.g., radio://0:80:2M:E7E7E7E7E7.
+Built up on this communication protocol, the Crazyflie implements a logging and a parameters framework that allows the user to read and modify the information on the crazyflie. 
+Logging allows the user to define inside a log configuration a set of state variables to be logged periodically with a certain period. Each log configuration has a maximum size of 26 Bytes and the minimum period allowed is 10 milliseconds. 
+Parameters are instead configuration variables that can be read and/or written to the crazyflie. 
+Although it may seem that the two concepts overlap because they can both read variables, in reality they are profoundly different since logging tackles variables used to know periodically the current state of the crazyflie that usually changes during the flight instead parameters address configuration variables that are usually set before take off and then rarely changes. To avoid any possible ambiguity, the environment provides two Table of Contents (ToC), one for each framework, that contains all the possible variables that each framework can work on, grouped by functionalities.
+Both the 2 framework works asynchronously and so they allow to set up a callback function that will be called: when the values of the associated variable changes for the parameter framework; periodically according to the associated configuration log's period instead for the logging framework.

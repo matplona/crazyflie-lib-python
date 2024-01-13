@@ -25,3 +25,7 @@ docs/api/cflib
 
 #vscode config folder
 .vscode/
+
+#extension
+extension/simulator/data
+*.dat

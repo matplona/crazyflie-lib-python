@@ -1,0 +1,188 @@
+\begin{thebibliography}{38}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[3DR()]{3DR}
+3dr.
+\newblock URL \url{http://3dr.com/}.
+
+\bibitem[DIJ()]{DIJflightSimulator}
+Dij flight simulator.
+\newblock URL \url{https://www.dji.com/it/simulator}.
+
+\bibitem[cub()]{cube}
+Cubepilot.
+\newblock URL \url{https://www.cubepilot.com/}.
+
+\bibitem[dij()]{dij}
+Dij.
+\newblock URL \url{https://www.dji.com}.
+
+\bibitem[nav()]{navio2}
+Navio2 emlid.
+\newblock URL \url{https://docs.emlid.com/navio2/}.
+
+\bibitem[par()]{parrot}
+Parrot.
+\newblock URL \url{https://www.parrot.com}.
+
+\bibitem[pix()]{pixhawk}
+Pixhawk.
+\newblock URL \url{https://pixhawk.org/}.
+
+\bibitem[px4()]{px4}
+Px4 autopilot.
+\newblock URL \url{https://px4.io/}.
+
+\bibitem[sph()]{sphinx}
+Sphinx.
+\newblock URL \url{https://developer.parrot.com/docs/sphinx/index.html}.
+
+\bibitem[win()]{wingDrones}
+Wing drones.
+\newblock URL \url{https://wing.com/}.
+
+\bibitem[Anderson(2012)]{anderson2012accidentally}
+C.~Anderson.
+\newblock How i accidentally kickstarted the domestic drone boom.
+\newblock \emph{Wired Magazine}, 22:\penalty0 2012, 2012.
+
+\bibitem[Ashley-Rollman et~al.(2007)Ashley-Rollman, Goldstein, Lee, Mowry, and Pillai]{ashley2007meld}
+M.~P. Ashley-Rollman, S.~C. Goldstein, P.~Lee, T.~C. Mowry, and P.~Pillai.
+\newblock Meld: A declarative approach to programming ensembles.
+\newblock In \emph{2007 IEEE/RSJ International Conference on Intelligent Robots and Systems}, pages 2794--2800. IEEE, 2007.
+
+\bibitem[Bachrach et~al.(2010)Bachrach, Beal, and McLurkin]{bachrach2010proto}
+J.~Bachrach, J.~Beal, and J.~McLurkin.
+\newblock Composable continuous-space programs for robotic swarms.
+\newblock \emph{Neural Computing and Applications}, 19:\penalty0 825--847, 2010.
+
+\bibitem[Bonabeau et~al.(1999)Bonabeau, Dorigo, and Theraulaz]{bonabeau1999swarm}
+E.~Bonabeau, M.~Dorigo, and G.~Theraulaz.
+\newblock \emph{Swarm intelligence: from natural to artificial systems}.
+\newblock Number~1. Oxford university press, 1999.
+
+\bibitem[Card et~al.(1986)Card, MORAN, and Newell]{card1986model}
+S.~Card, T.~MORAN, and A.~Newell.
+\newblock The model human processor- an engineering model of human performance.
+\newblock \emph{Handbook of perception and human performance.}, 2\penalty0 (45--1), 1986.
+
+\bibitem[Cauchard et~al.(2015)Cauchard, E, Zhai, and Landay]{cauchard2015droneAndMe}
+J.~R. Cauchard, J.~L. E, K.~Y. Zhai, and J.~A. Landay.
+\newblock Drone \& me: an exploration into natural human-drone interaction.
+\newblock In \emph{Proceedings of the 2015 ACM international joint conference on pervasive and ubiquitous computing}, pages 361--365, 2015.
+
+\bibitem[CTAN(2017)]{bibtex}
+CTAN.
+\newblock {B}i{B}{T}e{X} documentation, 2017.
+\newblock URL \url{https://ctan.org/topic/bibtex-doc}.
+
+\bibitem[Dantu et~al.(2011)Dantu, Kate, Waterman, Bailis, and Welsh]{dantu2011karma}
+K.~Dantu, B.~Kate, J.~Waterman, P.~Bailis, and M.~Welsh.
+\newblock Programming micro-aerial vehicle swarms with karma.
+\newblock In \emph{Proceedings of the 9th ACM Conference on Embedded Networked Sensor Systems}, pages 121--134, 2011.
+
+\bibitem[Dix(2010)]{dix2010human}
+A.~Dix.
+\newblock Human--computer interaction: A stable discipline, a nascent science, and the growth of the long tail.
+\newblock \emph{Interacting with computers}, 22\penalty0 (1):\penalty0 13--27, 2010.
+
+\bibitem[Eriksson et~al.(2020)Eriksson, H{\"o}{\"o}k, Shusterman, Svanes, Unander-Scharin, and Unander-Scharin]{eriksson2020ethicsInMovement}
+S.~Eriksson, K.~H{\"o}{\"o}k, R.~Shusterman, D.~Svanes, C.~Unander-Scharin, and {\AA}.~Unander-Scharin.
+\newblock Ethics in movement: Shaping and being shaped in human-drone interaction.
+\newblock In \emph{Proceedings of the 2020 CHI Conference on Human Factors in Computing Systems}, pages 1--14, 2020.
+
+\bibitem[Feil-Seifer and Mataric(2009)]{hri2009davidMaya}
+D.~Feil-Seifer and M.~J. Mataric.
+\newblock Human robot interaction.
+\newblock \emph{Encyclopedia of complexity and systems science}, 80:\penalty0 4643--4659, 2009.
+
+\bibitem[Graether and Mueller(2012)]{graether2012joggobot}
+E.~Graether and F.~Mueller.
+\newblock Joggobot: a flying robot as jogging companion.
+\newblock In \emph{CHI'12 Extended Abstracts on Human Factors in Computing Systems}, pages 1063--1066. 2012.
+
+\bibitem[Hoppe et~al.(2019)Hoppe, Burger, Schmidt, and Kosch]{hoppe2019droneOS}
+M.~Hoppe, M.~Burger, A.~Schmidt, and T.~Kosch.
+\newblock Droneos: A flexible open-source prototyping framework for interactive drone routines.
+\newblock In \emph{Proceedings of the 18th International Conference on Mobile and Ubiquitous Multimedia}, pages 1--7, 2019.
+
+\bibitem[Knuth(1974)]{knuth74}
+D.~E. Knuth.
+\newblock Computer programming as an art.
+\newblock \emph{Commun. ACM}, pages 667--673, 1974.
+
+\bibitem[Knuth(1992)]{knuth92}
+D.~E. Knuth.
+\newblock Two notes on notation.
+\newblock \emph{Amer. Math. Monthly}, 99:\penalty0 403--422, 1992.
+
+\bibitem[LaFleur et~al.(2013)LaFleur, Cassady, Doud, Shades, Rogin, and He]{lafleur2013quadcopterBCI}
+K.~LaFleur, K.~Cassady, A.~Doud, K.~Shades, E.~Rogin, and B.~He.
+\newblock Quadcopter control in three-dimensional space using a noninvasive motor imagery-based brain--computer interface.
+\newblock \emph{Journal of neural engineering}, 10\penalty0 (4):\penalty0 046003, 2013.
+
+\bibitem[Lamport(1994)]{lamport94}
+L.~Lamport.
+\newblock \emph{LaTeX: A Document Preparation System}.
+\newblock Pearson Education India, 1994.
+
+\bibitem[Mottola et~al.(2014)Mottola, Moretta, Whitehouse, and Ghezzi]{mottola2014team}
+L.~Mottola, M.~Moretta, K.~Whitehouse, and C.~Ghezzi.
+\newblock Team-level programming of drone sensor networks.
+\newblock In \emph{Proceedings of the 12th ACM Conference on Embedded Network Sensor Systems}, pages 177--190, 2014.
+
+\bibitem[Nex and Remondino(2014{\natexlab{a}})]{nex2014uav3Dmapping}
+F.~Nex and F.~Remondino.
+\newblock Uav for 3d mapping applications: a review.
+\newblock \emph{Applied geomatics}, 6:\penalty0 1--15, 2014{\natexlab{a}}.
+
+\bibitem[Nex and Remondino(2014{\natexlab{b}})]{nex3Dmapping}
+F.~Nex and F.~Remondino.
+\newblock Uav for 3d mapping applications: a review.
+\newblock \emph{Applied geomatics}, 6:\penalty0 1--15, 2014{\natexlab{b}}.
+
+\bibitem[Pantelimon et~al.(2019)Pantelimon, Tepe, Carriveau, and Ahmed]{pantelimon2019surveyCommunication}
+G.~Pantelimon, K.~Tepe, R.~Carriveau, and S.~Ahmed.
+\newblock Survey of multi-agent communication strategies for information exchange and mission control of drone deployments.
+\newblock \emph{Journal of Intelligent \& Robotic Systems}, 95:\penalty0 779--788, 2019.
+
+\bibitem[Quigley et~al.(2009)Quigley, Conley, Gerkey, Faust, Foote, Leibs, Wheeler, Ng, et~al.]{quigley2009ros}
+M.~Quigley, K.~Conley, B.~Gerkey, J.~Faust, T.~Foote, J.~Leibs, R.~Wheeler, A.~Y. Ng, et~al.
+\newblock Ros: an open-source robot operating system.
+\newblock In \emph{ICRA workshop on open source software}, volume~3, page~5. Kobe, Japan, 2009.
+
+\bibitem[Sharma et~al.(2020)Sharma, Vanjani, Paliwal, Basnayaka, Jayakody, Wang, and Muthuchidambaranathan]{sharma2020communication}
+A.~Sharma, P.~Vanjani, N.~Paliwal, C.~M.~W. Basnayaka, D.~N.~K. Jayakody, H.-C. Wang, and P.~Muthuchidambaranathan.
+\newblock Communication and networking technologies for uavs: A survey.
+\newblock \emph{Journal of Network and Computer Applications}, 168:\penalty0 102739, 2020.
+
+\bibitem[Shilton et~al.(2018)]{shilton2018hciEthics}
+K.~Shilton et~al.
+\newblock Values and ethics in human-computer interaction.
+\newblock \emph{Foundations and Trends{\textregistered} in Human--Computer Interaction}, 12\penalty0 (2):\penalty0 107--171, 2018.
+
+\bibitem[Singireddy and Daim(2018)]{singireddy2018primeAir}
+S.~R.~R. Singireddy and T.~U. Daim.
+\newblock Technology roadmap: Drone delivery--amazon prime air.
+\newblock \emph{Infrastructure and Technology Management: Contributions from the Energy, Healthcare and Transportation Sectors}, pages 387--412, 2018.
+
+\bibitem[Sinha et~al.(2010)Sinha, Shahi, and Shankar]{sinha2010human}
+G.~Sinha, R.~Shahi, and M.~Shankar.
+\newblock Human computer interaction.
+\newblock In \emph{2010 3rd International Conference on Emerging Trends in Engineering and Technology}, pages 1--4. IEEE, 2010.
+
+\bibitem[Tezza and Andujar(2019)]{tezza2019hdi}
+D.~Tezza and M.~Andujar.
+\newblock The state-of-the-art of human--drone interaction: A survey.
+\newblock \emph{IEEE Access}, 7:\penalty0 167438--167454, 2019.
+
+\bibitem[Yanco and Drury(2004)]{yanco2004taxonomy}
+H.~A. Yanco and J.~Drury.
+\newblock Classifying human-robot interaction: an updated taxonomy.
+\newblock In \emph{2004 IEEE international conference on systems, man and cybernetics (IEEE Cat. No. 04CH37583)}, volume~3, pages 2841--2846. IEEE, 2004.
+
+\end{thebibliography}

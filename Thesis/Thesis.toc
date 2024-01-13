@@ -1,0 +1,47 @@
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{Abstract}{i}{chapter*.2}%
+\contentsline {chapter}{Abstract in lingua italiana}{iii}{chapter*.4}%
+\contentsline {chapter}{Contents\markboth {\MakeUppercase []{Contents}}{\MakeUppercase []{Contents}}}{v}{chapter*.6}%
+\vspace {2em}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}The Problem: Programming Human-Drone Interactions}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}The Solution: EasyFly}{2}{section.1.2}%
+\contentsline {section}{\numberline {1.3}The Benchmark: Drone Arena Challenge}{4}{section.1.3}%
+\contentsline {section}{\numberline {1.4}State of the Art}{5}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Overview}{6}{section.1.5}%
+\contentsline {chapter}{\numberline {2}State of The Art}{7}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Human Robot Interaction}{7}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}The Interaction Between Human and Robot}{8}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}HRI Taxonomy}{9}{subsection.2.1.2}%
+\contentsline {section}{\numberline {2.2}Human-Drone Interaction}{10}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}The Role of the Human During the Interaction}{11}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}The drone's control modality}{11}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Values and ethics in HDI}{13}{subsection.2.2.3}%
+\contentsline {section}{\numberline {2.3}Programming Environments}{13}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Single Drone Programming}{13}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Swarm Programming}{18}{subsection.2.3.2}%
+\contentsline {chapter}{\numberline {3}Tools}{21}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Chapter one}{29}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Sections and subsections}{29}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Equations}{29}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Figures, Tables and Algorithms}{30}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Figures}{30}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Tables}{31}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Algorithms}{32}{subsection.4.3.3}%
+\contentsline {section}{\numberline {4.4}Theorems, propositions and lists}{33}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Theorems}{33}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Propositions}{33}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}Lists}{33}{subsection.4.4.3}%
+\contentsline {section}{\numberline {4.5}Use of copyrighted material}{33}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Plagiarism}{33}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Bibliography and citations}{34}{section.4.7}%
+\contentsline {chapter}{\numberline {5}Conclusions and future developments}{35}{chapter.5}%
+\vspace {2em}
+\contentsline {chapter}{Bibliography\markboth {\MakeUppercase []{Bibliography}}{\MakeUppercase []{Bibliography}}}{37}{chapter*.27}%
+\vspace {2em}
+\contentsline {chapter}{\numberline {A}Appendix A}{41}{appendix.A}%
+\contentsline {chapter}{\numberline {B}Appendix B}{43}{appendix.B}%
+\contentsline {chapter}{List of Figures}{45}{appendix*.31}%
+\contentsline {chapter}{List of Tables}{47}{appendix*.33}%
+\contentsline {chapter}{List of Symbols}{49}{appendix*.35}%
+\contentsline {chapter}{Acknowledgements}{51}{appendix*.38}%

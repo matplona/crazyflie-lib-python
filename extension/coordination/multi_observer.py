@@ -3,8 +3,10 @@ from extension.coordination import Action, MultiCondition # import Action Type
 from extension.coordination.observer import Observer # import Codition Type
 
 class MultiObserver(Observer):
-    def __init__(self, action : Action, condition : MultiCondition, context : list, observable_getters: dict(str, Callable[[str], dict])) -> None:
-        super().__init__(action, condition , context) 
+    def __init__(self, action : Action, condition : MultiCondition, context : list, observable_getters: dict[str, Callable[[str], dict]]) -> None:
+        self.__action : Action = action
+        self.__condition : MultiCondition = condition
+        self.__context : list = context
         self.__observable_getters: dict[str, Callable[[str], dict]] = observable_getters
     
     def notify(self, _ ) -> None:

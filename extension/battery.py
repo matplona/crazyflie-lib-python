@@ -9,7 +9,7 @@ from enum import Enum
 from extension.exceptions import SetterException
 from extension.variables.logging_manager import LogVariableType
 
-MAX_VOLTAGE = 5.0 #TODO verify
+MAX_VOLTAGE = 5.0
 MIN_VOLTAGE = 2.8
 
 class PowerManagementState(Enum):

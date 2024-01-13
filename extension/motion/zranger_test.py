@@ -10,7 +10,7 @@ import cflib.crtp
 from cflib.crazyflie import Crazyflie
 from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
 from cflib.positioning.motion_commander import MotionCommander
-from extension.decks.multiranger import MultiRanger, ActionLimit, VelocityLimit
+from extension.decks.multiranger.multiranger import MultiRanger, ActionLimit, VelocityLimit
 
 def reset_estimator(scf):
     cf = scf.cf

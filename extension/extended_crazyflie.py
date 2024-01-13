@@ -9,7 +9,7 @@ from extension.decks.ai import AiDeck
 from extension.decks.deck import Deck, DeckType
 from extension.decks.flowdeck import FlowDeck
 from extension.decks.lighthouse.lighthouse import Lighthouse
-from extension.decks.multiranger import MultiRanger
+from extension.decks.multiranger.multiranger import MultiRanger
 from extension.decks.z_ranger import ZRanger
 from extension.state_estimate import StateEstimate
 from extension.variables.parameters_manager import ParametersManager
@@ -61,7 +61,7 @@ class ExtendedCrazyFlie(SyncCrazyflie):
         console.info("Created Battery module")
 
         # initialize state estimate module
-        self.state_estimate : StateEstimate = StateEstimate(self, True, True, True)
+        self.state_estimate : StateEstimate = StateEstimate(self, True, False, False)
 
         # return reference
         return self

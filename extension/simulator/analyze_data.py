@@ -34,13 +34,16 @@ def analyze_data(filename):
         ax.set_zlabel('Z')
         ax.set_title('3D Scatter Plot')
 
+        # Set equal aspect ratio for all three axes
+        ax.set_box_aspect([1, 1, 1])
+
         # # Add tooltips
         # cursor = mplcursors.cursor(scatter, hover=True)
         # tooltip_template = '({x:.2f}, {y:.2f}, {z:.2f})\nVx: {vx:.2f}'
         # cursor.connect('add', lambda sel: sel.annotation.set_text(tooltip_template.format(x=sel.target[0], y=sel.target[1], z=sel.target[2])))
 
         # Add a colorbar
-        sm = plt.cm.ScalarMappable(cmap='RdYlGn', norm=plt.Normalize(vmin=v.min(), vmax=v.max()))
+        sm = plt.cm.ScalarMappable(cmap='RdYlGn_r',  norm=plt.Normalize(vmin=v.min(), vmax=v.max()))
         sm.set_array([])
         fig.colorbar(sm)
 

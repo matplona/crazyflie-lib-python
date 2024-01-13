@@ -13,14 +13,20 @@ To run this example is better to use:
 At the end of the fly, the example uses the state_estimate utility module to print out 7 plots of telemetry during flight.
 """
 
+import sys
+ 
+# setting path
+sys.path.append('c:\\Users\\plona\\PC\\TESI\\crazyflie-lib-python')
+
 import logging
 import time
+
 from cflib.positioning.motion_commander import MotionCommander
 from cflib.utils import uri_helper
 from extension.extended_crazyflie import ExtendedCrazyFlie
 DEFAULT_HEIGHT = 0.5
 TARGET = [1, 0]
-threshold = 0.1
+threshold = 0.2
 
 logging.basicConfig(level=logging.INFO)
 
@@ -32,7 +38,7 @@ def target_reached(state : dict) -> bool:
     return reached
 
 if __name__ == '__main__':
-    uri = uri_helper.uri_from_env(default='radio://0/80/2M/E7E7E7E706')
+    uri = uri_helper.uri_from_env(default='radio://0/80/2M/E7E7E7E7E7')
     positions = [] # empty positions
     with ExtendedCrazyFlie(uri) as ecf:
         time.sleep(1)
@@ -42,10 +48,6 @@ if __name__ == '__main__':
         TARGET[1] += ecf.state_estimate.y
 
         input("fly..")
-        ecf.state_estimate.record_positions(period_in_ms=50)
-        ecf.state_estimate.record_velocities(period_in_ms=50)
-        ecf.state_estimate.record_accelerations(period_in_ms=50)
-        ecf.state_estimate.record_attitudes(period_in_ms=50)
         with MotionCommander(ecf.cf, default_height=DEFAULT_HEIGHT) as mc:
             # take_off
             time.sleep(1)
@@ -58,16 +60,3 @@ if __name__ == '__main__':
             time.sleep(1)
             print("Landing...")
             # landing
-        ecf.state_estimate.stop_record_positions()
-        ecf.state_estimate.stop_record_velocities()
-        ecf.state_estimate.stop_record_accelerations()
-        ecf.state_estimate.stop_record_attitudes()
-
-        ecf.state_estimate.plot_positions_3D()
-        ecf.state_estimate.plot_position_velocity_3D()
-        ecf.state_estimate.plot_position_acceleration_3D()
-        ecf.state_estimate.plot_position_2D()
-        ecf.state_estimate.plot_velocity_2D()
-        ecf.state_estimate.plot_acceleraiton_2D()
-        ecf.state_estimate.plot_attitude_2D()
-

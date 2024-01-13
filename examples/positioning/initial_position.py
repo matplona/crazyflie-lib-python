@@ -34,6 +34,7 @@ that is different from the standard positive X orientation and how to set the
 initial position of the kalman estimator.
 """
 import math
+from multiprocessing import current_process
 import time
 
 import cflib.crtp
@@ -41,9 +42,10 @@ from cflib.crazyflie import Crazyflie
 from cflib.crazyflie.log import LogConfig
 from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
 from cflib.crazyflie.syncLogger import SyncLogger
-
+import logging
+logging.basicConfig(level=logging.CRITICAL)
 # URI to the Crazyflie to connect to
-uri = 'radio://0/80/2M'
+uri = 'udp://127.0.0.1:1809'
 
 # Change the sequence according to your setup
 #             x    y    z
@@ -54,6 +56,8 @@ sequence = [
     (0, 0, 0.2),
 ]
 
+print(current_process().pid)
+input('start')
 
 def wait_for_position_estimator(scf):
     print('Waiting for estimator to find position...')
@@ -118,12 +122,13 @@ def run_sequence(scf, sequence, base_x, base_y, base_z, yaw):
     cf = scf.cf
 
     for position in sequence:
-        print('Setting position {}'.format(position))
 
         x = position[0] + base_x
         y = position[1] + base_y
         z = position[2] + base_z
 
+        print('Setting position {}'.format([x,y,z]))
+        
         for i in range(50):
             cf.commander.send_position_setpoint(x, y, z, yaw)
             time.sleep(0.1)
@@ -148,7 +153,7 @@ if __name__ == '__main__':
     # 180: negative X direction
     # 270: negative Y direction
 
-    with SyncCrazyflie(uri, cf=Crazyflie(rw_cache='./cache')) as scf:
+    with SyncCrazyflie(uri, cf=Crazyflie()) as scf:
         set_initial_position(scf, initial_x, initial_y, initial_z, initial_yaw)
         reset_estimator(scf)
         run_sequence(scf, sequence,

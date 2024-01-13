@@ -23,13 +23,13 @@ class StateEstimate:
 
     def __init__(self, ecf : ExtendedCrazyFlie, estimate_velocity = False, estimate_acceleration=False, estimate_attitude=False) -> None:
         # start logging stateEstimate every 10 ms
-        ecf.logging_manager.add_variable('stateEstimate','x', 10, LogVariableType.float)
-        ecf.logging_manager.add_variable('stateEstimate','y', 10, LogVariableType.float)
-        ecf.logging_manager.add_variable('stateEstimate','z', 10, LogVariableType.float)
+        ecf.logging_manager.add_variable('stateEstimate','x', 100, LogVariableType.float)
+        ecf.logging_manager.add_variable('stateEstimate','y', 100, LogVariableType.float)
+        ecf.logging_manager.add_variable('stateEstimate','z', 100, LogVariableType.float)
         if estimate_velocity:
-            ecf.logging_manager.add_variable('stateEstimate','vx', 10, LogVariableType.float)
-            ecf.logging_manager.add_variable('stateEstimate','vy', 10, LogVariableType.float)
-            ecf.logging_manager.add_variable('stateEstimate','vz', 10, LogVariableType.float)
+            ecf.logging_manager.add_variable('stateEstimate','vx', 1000, LogVariableType.float)
+            ecf.logging_manager.add_variable('stateEstimate','vy', 1000, LogVariableType.float)
+            ecf.logging_manager.add_variable('stateEstimate','vz', 1000, LogVariableType.float)
             self.__vx = 0
             self.__vy = 0
             self.__vz = 0

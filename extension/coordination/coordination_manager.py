@@ -39,6 +39,9 @@ class CoordinationManager:
         else:
             raise Exception('Observable "{}" doesn\' exist!'.format(observable_name))
     
+    def remove_all_observables(self) -> dict:
+        self.__observables.clear()
+
     def get_observable_state(self, observable_name: str) -> dict:
         if observable_name in self.__observables :
             return self.__observables[observable_name].get_state()
@@ -59,8 +62,8 @@ class CoordinationManager:
             raise Exception('Observable "{}" doesn\'t exist!'.format(observable_name))
     
 
-    def multi_observe(self, observable_names : list(str), action : Action, condition : MultiCondition = lambda *_ : True, context : list = []):
-        observable_getters : dict(str, Callable[[str], dict]) = {} 
+    def multi_observe(self, observable_names : list[str], action : Action, condition : MultiCondition = lambda *_ : True, context : list = []):
+        observable_getters : dict[str, Callable[[str], dict]] = {} 
         for observable_name in observable_names:
             if observable_name in self.__observables :
                 observable_getters[observable_name] = lambda name: self.get_observable_state(name)
@@ -79,8 +82,8 @@ class CoordinationManager:
         else:
             raise Exception('Observable "{}" doesn\'t exist!'.format(observable_name))
         
-    def multi_observe_and_wait(self, observable_names : list(str), condition : MultiCondition) -> Event:
-        observable_getters : dict(str, function) = {} 
+    def multi_observe_and_wait(self, observable_names : list[str], condition : MultiCondition) -> Event:
+        observable_getters : dict[str, Callable[[str], dict]] = {} 
         for observable_name in observable_names:
             if observable_name in self.__observables :
                 observable_getters[observable_name] = lambda name: self.get_observable_state(name)

@@ -191,7 +191,7 @@ class RequestMapper:
 if __name__ == '__main__':
     # Create a UDP socket
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    server_address = ('127.0.0.1', 1808)
+    server_address = ('127.0.0.1', 1809)
 
     # Bind the socket to the server address
     server_socket.bind(server_address)
@@ -232,14 +232,14 @@ if __name__ == '__main__':
             mapper = None
             print(f'{OKBLUE}PROCESSING DATA... {ENDC}')
             analyze_data(filename)
-            print(f'{WARNING + BOLD}REBOOT CRAZYFLIE SIM{ENDC}')
-            server_socket.bind(server_address)
-            print(f'{OKCYAN}Server restarted at {server_address[0]} on port {server_address[1]}{ENDC}')
-            simulator = CrazyflieSimulator(log_file=filename)
-            mapper = RequestMapper(simulator, server_socket)
-            print(f'{OKGREEN + BOLD}CRAZYFLIE SIM READY{ENDC}')
-            error = False
-            continue
+            # print(f'{WARNING + BOLD}REBOOT CRAZYFLIE SIM{ENDC}')
+            # server_socket.bind(server_address)
+            # print(f'{OKCYAN}Server restarted at {server_address[0]} on port {server_address[1]}{ENDC}')
+            # simulator = CrazyflieSimulator(log_file=filename)
+            # mapper = RequestMapper(simulator, server_socket)
+            # print(f'{OKGREEN + BOLD}CRAZYFLIE SIM READY{ENDC}')
+            # error = False
+            break
 
         data_array = struct.unpack('B' * len(data), data)
         pk = CRTPPacket(data_array[0], data_array[1:])
