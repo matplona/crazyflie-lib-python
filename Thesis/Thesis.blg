@@ -11,18 +11,26 @@ Warning--entry type for "dij" isn't style-file defined
 --line 176 of file Thesis_bibliography.bib
 Warning--entry type for "3DR" isn't style-file defined
 --line 182 of file Thesis_bibliography.bib
-Warning--entry type for "pixhawk" isn't style-file defined
+Warning--entry type for "bitcraze" isn't style-file defined
 --line 188 of file Thesis_bibliography.bib
-Warning--entry type for "px4" isn't style-file defined
+Warning--entry type for "crazyflie" isn't style-file defined
 --line 194 of file Thesis_bibliography.bib
-Warning--entry type for "cube" isn't style-file defined
+Warning--entry type for "crazyflie-lib-python" isn't style-file defined
 --line 200 of file Thesis_bibliography.bib
-Warning--entry type for "navio2" isn't style-file defined
+Warning--entry type for "crazyflie-firmware" isn't style-file defined
 --line 206 of file Thesis_bibliography.bib
+Warning--entry type for "pixhawk" isn't style-file defined
+--line 212 of file Thesis_bibliography.bib
+Warning--entry type for "px4" isn't style-file defined
+--line 218 of file Thesis_bibliography.bib
+Warning--entry type for "cube" isn't style-file defined
+--line 224 of file Thesis_bibliography.bib
+Warning--entry type for "navio2" isn't style-file defined
+--line 230 of file Thesis_bibliography.bib
 Warning--entry type for "sphinx" isn't style-file defined
---line 232 of file Thesis_bibliography.bib
+--line 256 of file Thesis_bibliography.bib
 Warning--entry type for "DIJFlightSimulator" isn't style-file defined
---line 238 of file Thesis_bibliography.bib
+--line 262 of file Thesis_bibliography.bib
 Warning--to sort, need author or key in wingDrones
 Warning--to sort, need author or key in parrot
 Warning--to sort, need author or key in dij
@@ -33,8 +41,16 @@ Warning--to sort, need author or key in cube
 Warning--to sort, need author or key in navio2
 Warning--to sort, need author or key in sphinx
 Warning--to sort, need author or key in DIJflightSimulator
+Warning--to sort, need author or key in bitcraze
+Warning--to sort, need author or key in crazyflie
+Warning--to sort, need author or key in crazyflie-lib-python
+Warning--to sort, need author or key in crazyflie-firmware
 Warning--empty year in 3DR
 Warning--empty year in DIJflightSimulator
+Warning--empty year in bitcraze
+Warning--empty year in crazyflie
+Warning--empty year in crazyflie-firmware
+Warning--empty year in crazyflie-lib-python
 Warning--empty year in cube
 Warning--empty year in dij
 Warning--empty year in navio2
@@ -46,45 +62,45 @@ Warning--empty year in wingDrones
 Warning--there's a number but no series in bonabeau1999swarm
 Warning--empty publisher in graether2012joggobot
 Warning--can't use both volume and number fields in quigley2009ros
-You've used 38 entries,
+You've used 42 entries,
             2773 wiz_defined-function locations,
-            802 strings with 10389 characters,
-and the built_in function-call counts, 17407 in all, are:
-= -- 1593
+            812 strings with 10630 characters,
+and the built_in function-call counts, 18385 in all, are:
+= -- 1688
 > -- 862
 < -- 29
-+ -- 303
++ -- 309
 - -- 264
-* -- 1341
-:= -- 2411
-add.period$ -- 110
-call.type$ -- 38
-change.case$ -- 198
-chr.to.int$ -- 37
-cite$ -- 109
-duplicate$ -- 845
-empty$ -- 1559
+* -- 1414
+:= -- 2489
+add.period$ -- 118
+call.type$ -- 42
+change.case$ -- 210
+chr.to.int$ -- 39
+cite$ -- 129
+duplicate$ -- 905
+empty$ -- 1699
 format.name$ -- 307
-if$ -- 3815
-int.to.chr$ -- 2
+if$ -- 4054
+int.to.chr$ -- 4
 int.to.str$ -- 1
 missing$ -- 29
-newline$ -- 188
+newline$ -- 204
 num.names$ -- 112
-pop$ -- 497
+pop$ -- 550
 preamble$ -- 1
-purify$ -- 162
+purify$ -- 170
 quote$ -- 0
-skip$ -- 703
+skip$ -- 755
 stack$ -- 0
-substring$ -- 692
-swap$ -- 149
+substring$ -- 704
+swap$ -- 156
 text.length$ -- 15
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 408
-warning$ -- 23
+type$ -- 452
+warning$ -- 31
 while$ -- 139
 width$ -- 0
-write$ -- 465
-(There were 33 warnings)
+write$ -- 504
+(There were 45 warnings)

@@ -1,4 +1,4 @@
-\begin{thebibliography}{38}
+\begin{thebibliography}{42}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -12,6 +12,22 @@
 \bibitem[DIJ()]{DIJflightSimulator}
 Dij flight simulator.
 \newblock URL \url{https://www.dji.com/it/simulator}.
+
+\bibitem[bit()]{bitcraze}
+Bitcraze.
+\newblock URL \url{https://www.bitcraze.io/}.
+
+\bibitem[cra({\natexlab{a}})]{crazyflie}
+Crazyflie 2.1, {\natexlab{a}}.
+\newblock URL \url{https://www.bitcraze.io/products/crazyflie-2-1/}.
+
+\bibitem[cra({\natexlab{b}})]{crazyflie-firmware}
+crazyflie-firmware, {\natexlab{b}}.
+\newblock URL \url{https://github.com/bitcraze/crazyflie-firmware}.
+
+\bibitem[cra({\natexlab{c}})]{crazyflie-lib-python}
+crazyflie-lib-python, {\natexlab{c}}.
+\newblock URL \url{https://github.com/bitcraze/crazyflie-lib-python}.
 
 \bibitem[cub()]{cube}
 Cubepilot.

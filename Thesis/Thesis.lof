@@ -11,11 +11,20 @@
 \contentsline {subfigure}{\numberline {(e)}{\ignorespaces {Distributed with sensor network}}}{16}{subfigure.3.5}%
 \contentsline {figure}{\numberline {2.4}{\ignorespaces EasyFly off-board ecosystem}}{17}{figure.caption.14}%
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Bitcraze Ecosystem overview}}{22}{figure.caption.16}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Expansion decks of Crazyflie 2.1}}{23}{figure.caption.17}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Flow deck v2}}}{23}{subfigure.2.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Z-ranger deck v2}}}{23}{subfigure.2.2}%
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Multi-ranger deck}}}{23}{subfigure.2.3}%
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Lighthouse positioning deck}}}{23}{subfigure.2.4}%
+\contentsline {subfigure}{\numberline {(e)}{\ignorespaces {AI-deck 1.1}}}{23}{subfigure.2.5}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Software libraries integration}}{26}{figure.caption.18}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Craziflie's control loop}}{29}{figure.caption.19}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Caption of the Figure to appear in the List of Figures.}}{31}{figure.caption.20}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Shorter caption}}{31}{figure.caption.21}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {One PoliMi logo.}}}{31}{subfigure.2.1}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Another one PoliMi logo.}}}{31}{subfigure.2.2}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Caption of the Figure to appear in the List of Figures.}}{33}{figure.caption.24}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Shorter caption}}{33}{figure.caption.25}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {One PoliMi logo.}}}{33}{subfigure.2.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Another one PoliMi logo.}}}{33}{subfigure.2.2}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

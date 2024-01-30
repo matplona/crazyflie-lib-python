@@ -21,27 +21,41 @@
 \contentsline {subsection}{\numberline {2.3.1}Single Drone Programming}{13}{subsection.2.3.1}%
 \contentsline {subsection}{\numberline {2.3.2}Swarm Programming}{18}{subsection.2.3.2}%
 \contentsline {chapter}{\numberline {3}Tools}{21}{chapter.3}%
-\contentsline {chapter}{\numberline {4}Chapter one}{29}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Sections and subsections}{29}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Equations}{29}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Figures, Tables and Algorithms}{30}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Figures}{30}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Tables}{31}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}Algorithms}{32}{subsection.4.3.3}%
-\contentsline {section}{\numberline {4.4}Theorems, propositions and lists}{33}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Theorems}{33}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}Propositions}{33}{subsection.4.4.2}%
-\contentsline {subsection}{\numberline {4.4.3}Lists}{33}{subsection.4.4.3}%
-\contentsline {section}{\numberline {4.5}Use of copyrighted material}{33}{section.4.5}%
-\contentsline {section}{\numberline {4.6}Plagiarism}{33}{section.4.6}%
-\contentsline {section}{\numberline {4.7}Bibliography and citations}{34}{section.4.7}%
-\contentsline {chapter}{\numberline {5}Conclusions and future developments}{35}{chapter.5}%
+\contentsline {section}{\numberline {3.1}Ecosystem Overview}{21}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Hardware}{22}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}The Quadcopter}{22}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Expansion Decks}{23}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Crazyradio PA}{24}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}Lighthouse Positioning System Hardware}{25}{subsection.3.2.4}%
+\contentsline {section}{\numberline {3.3}Software Libraries}{25}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}crazyflie-lib-python}{25}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}crazyflie-firmware}{25}{subsection.3.3.2}%
+\contentsline {section}{\numberline {3.4}Positioning Systems}{26}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Relative Positioning Systems}{27}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Absolute Positioning Systems}{27}{subsection.3.4.2}%
+\contentsline {section}{\numberline {3.5}State Estimate and Control}{28}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Flight Control}{30}{section.3.6}%
+\contentsline {chapter}{\numberline {4}Chapter one}{31}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Sections and subsections}{31}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Equations}{31}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Figures, Tables and Algorithms}{32}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Figures}{32}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Tables}{33}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Algorithms}{34}{subsection.4.3.3}%
+\contentsline {section}{\numberline {4.4}Theorems, propositions and lists}{35}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Theorems}{35}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Propositions}{35}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}Lists}{35}{subsection.4.4.3}%
+\contentsline {section}{\numberline {4.5}Use of copyrighted material}{35}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Plagiarism}{35}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Bibliography and citations}{36}{section.4.7}%
+\contentsline {chapter}{\numberline {5}Conclusions and future developments}{37}{chapter.5}%
 \vspace {2em}
-\contentsline {chapter}{Bibliography\markboth {\MakeUppercase []{Bibliography}}{\MakeUppercase []{Bibliography}}}{37}{chapter*.27}%
+\contentsline {chapter}{Bibliography\markboth {\MakeUppercase []{Bibliography}}{\MakeUppercase []{Bibliography}}}{39}{chapter*.31}%
 \vspace {2em}
-\contentsline {chapter}{\numberline {A}Appendix A}{41}{appendix.A}%
-\contentsline {chapter}{\numberline {B}Appendix B}{43}{appendix.B}%
-\contentsline {chapter}{List of Figures}{45}{appendix*.31}%
-\contentsline {chapter}{List of Tables}{47}{appendix*.33}%
-\contentsline {chapter}{List of Symbols}{49}{appendix*.35}%
-\contentsline {chapter}{Acknowledgements}{51}{appendix*.38}%
+\contentsline {chapter}{\numberline {A}Appendix A}{43}{appendix.A}%
+\contentsline {chapter}{\numberline {B}Appendix B}{45}{appendix.B}%
+\contentsline {chapter}{List of Figures}{47}{appendix*.35}%
+\contentsline {chapter}{List of Tables}{49}{appendix*.37}%
+\contentsline {chapter}{List of Symbols}{51}{appendix*.39}%
+\contentsline {chapter}{Acknowledgements}{53}{appendix*.42}%
