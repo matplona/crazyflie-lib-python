@@ -62,45 +62,45 @@ Warning--empty year in wingDrones
 Warning--there's a number but no series in bonabeau1999swarm
 Warning--empty publisher in graether2012joggobot
 Warning--can't use both volume and number fields in quigley2009ros
-You've used 42 entries,
+You've used 38 entries,
             2773 wiz_defined-function locations,
-            812 strings with 10630 characters,
-and the built_in function-call counts, 18385 in all, are:
-= -- 1688
-> -- 862
-< -- 29
-+ -- 309
-- -- 264
-* -- 1414
-:= -- 2489
-add.period$ -- 118
-call.type$ -- 42
-change.case$ -- 210
-chr.to.int$ -- 39
-cite$ -- 129
-duplicate$ -- 905
-empty$ -- 1699
-format.name$ -- 307
-if$ -- 4054
+            789 strings with 10322 characters,
+and the built_in function-call counts, 16928 in all, are:
+= -- 1552
+> -- 822
+< -- 24
++ -- 293
+- -- 252
+* -- 1332
+:= -- 2272
+add.period$ -- 106
+call.type$ -- 38
+change.case$ -- 195
+chr.to.int$ -- 35
+cite$ -- 121
+duplicate$ -- 821
+empty$ -- 1551
+format.name$ -- 291
+if$ -- 3737
 int.to.chr$ -- 4
 int.to.str$ -- 1
-missing$ -- 29
-newline$ -- 204
-num.names$ -- 112
-pop$ -- 550
+missing$ -- 25
+newline$ -- 184
+num.names$ -- 96
+pop$ -- 510
 preamble$ -- 1
-purify$ -- 170
+purify$ -- 158
 quote$ -- 0
-skip$ -- 755
+skip$ -- 691
 stack$ -- 0
-substring$ -- 704
-swap$ -- 156
-text.length$ -- 15
+substring$ -- 639
+swap$ -- 143
+text.length$ -- 14
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 452
+type$ -- 413
 warning$ -- 31
-while$ -- 139
+while$ -- 122
 width$ -- 0
-write$ -- 504
+write$ -- 454
 (There were 45 warnings)

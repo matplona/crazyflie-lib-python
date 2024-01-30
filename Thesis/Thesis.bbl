@@ -1,4 +1,4 @@
-\begin{thebibliography}{42}
+\begin{thebibliography}{38}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -91,11 +91,6 @@ J.~R. Cauchard, J.~L. E, K.~Y. Zhai, and J.~A. Landay.
 \newblock Drone \& me: an exploration into natural human-drone interaction.
 \newblock In \emph{Proceedings of the 2015 ACM international joint conference on pervasive and ubiquitous computing}, pages 361--365, 2015.
 
-\bibitem[CTAN(2017)]{bibtex}
-CTAN.
-\newblock {B}i{B}{T}e{X} documentation, 2017.
-\newblock URL \url{https://ctan.org/topic/bibtex-doc}.
-
 \bibitem[Dantu et~al.(2011)Dantu, Kate, Waterman, Bailis, and Welsh]{dantu2011karma}
 K.~Dantu, B.~Kate, J.~Waterman, P.~Bailis, and M.~Welsh.
 \newblock Programming micro-aerial vehicle swarms with karma.
@@ -126,25 +121,10 @@ M.~Hoppe, M.~Burger, A.~Schmidt, and T.~Kosch.
 \newblock Droneos: A flexible open-source prototyping framework for interactive drone routines.
 \newblock In \emph{Proceedings of the 18th International Conference on Mobile and Ubiquitous Multimedia}, pages 1--7, 2019.
 
-\bibitem[Knuth(1974)]{knuth74}
-D.~E. Knuth.
-\newblock Computer programming as an art.
-\newblock \emph{Commun. ACM}, pages 667--673, 1974.
-
-\bibitem[Knuth(1992)]{knuth92}
-D.~E. Knuth.
-\newblock Two notes on notation.
-\newblock \emph{Amer. Math. Monthly}, 99:\penalty0 403--422, 1992.
-
 \bibitem[LaFleur et~al.(2013)LaFleur, Cassady, Doud, Shades, Rogin, and He]{lafleur2013quadcopterBCI}
 K.~LaFleur, K.~Cassady, A.~Doud, K.~Shades, E.~Rogin, and B.~He.
 \newblock Quadcopter control in three-dimensional space using a noninvasive motor imagery-based brain--computer interface.
 \newblock \emph{Journal of neural engineering}, 10\penalty0 (4):\penalty0 046003, 2013.
-
-\bibitem[Lamport(1994)]{lamport94}
-L.~Lamport.
-\newblock \emph{LaTeX: A Document Preparation System}.
-\newblock Pearson Education India, 1994.
 
 \bibitem[Mottola et~al.(2014)Mottola, Moretta, Whitehouse, and Ghezzi]{mottola2014team}
 L.~Mottola, M.~Moretta, K.~Whitehouse, and C.~Ghezzi.
