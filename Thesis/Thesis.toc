@@ -35,10 +35,14 @@
 \contentsline {subsection}{\numberline {3.4.2}Absolute Positioning Systems}{27}{subsection.3.4.2}%
 \contentsline {section}{\numberline {3.5}State Estimate and Control}{28}{section.3.5}%
 \contentsline {section}{\numberline {3.6}Flight Control}{30}{section.3.6}%
-\contentsline {chapter}{\numberline {4}Conclusions and future developments}{31}{chapter.4}%
+\contentsline {chapter}{\numberline {4}Communication Framework}{31}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Coordination Framework}{33}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Extended Crazyflie}{35}{chapter.6}%
+\contentsline {chapter}{\numberline {7}ECF Modules}{37}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Conclusions and future developments}{39}{chapter.8}%
 \vspace {2em}
-\contentsline {chapter}{Bibliography\markboth {\MakeUppercase []{Bibliography}}{\MakeUppercase []{Bibliography}}}{33}{chapter*.22}%
+\contentsline {chapter}{Bibliography\markboth {\MakeUppercase []{Bibliography}}{\MakeUppercase []{Bibliography}}}{41}{chapter*.26}%
 \vspace {2em}
-\contentsline {chapter}{List of Figures}{37}{chapter*.24}%
-\contentsline {chapter}{List of Tables}{39}{chapter*.26}%
-\contentsline {chapter}{Acknowledgements}{41}{chapter*.28}%
+\contentsline {chapter}{List of Figures}{45}{chapter*.28}%
+\contentsline {chapter}{List of Tables}{47}{chapter*.30}%
+\contentsline {chapter}{Acknowledgements}{49}{chapter*.32}%

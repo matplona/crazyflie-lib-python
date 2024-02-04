@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex Thesis"] 1706656460 "Thesis.aux" "Thesis.bbl" "Thesis" 1706656465 0
+["bibtex Thesis"] 1707086268 "Thesis.aux" "Thesis.bbl" "Thesis" 1707086272 0
   "./Thesis_bibliography.bib" 1706656314 9037 b1efad29c30cc8cec19012f351fc0aa7 ""
-  "Thesis.aux" 1706656463 23446 0ab5e316ffe41e28921e0605be5c2bbc "pdflatex"
+  "Thesis.aux" 1707086271 24808 93dda4c9a59115956b76ecdbcc9536eb "pdflatex"
   "c:/texlive/2023/texmf-dist/bibtex/bst/natbib/abbrvnat.bst" 1698356710 26532 66bed5cc59495faaa3f9ae9af9fa5e42 ""
   (generated)
   "Thesis.bbl"
   "Thesis.blg"
   (rewritten before read)
-["pdflatex"] 1706656460 "c:/Users/plona/PC/TESI/crazyflie-lib-python/Thesis/Thesis.tex" "Thesis.pdf" "Thesis" 1706656465 0
+["pdflatex"] 1707086269 "c:/Users/plona/PC/TESI/crazyflie-lib-python/Thesis/Thesis.tex" "Thesis.pdf" "Thesis" 1707086272 0
   "Configuration_Files/PoliMi3i_thesis.cls" 1698359692 5204 48f0c5053337af60bb557c4bc0ef9980 ""
   "Configuration_Files/config.tex" 1698359692 2205 5d2bad9fb593108f48a04f2df8a0320e ""
   "Configuration_Files/custom_commands.tex" 1698359692 254 17e04a17aa53836eb538a255c56896fc ""
@@ -29,14 +29,14 @@
   "Images/tools/software_libraries.png" 1666520368 47502 aaa7c8d521581df0d30d9cf882e2155c ""
   "Images/tools/system_overview.jpg" 1705617390 130868 3b2215af3dd653ea694fc797d7102256 ""
   "Images/tools/z-ranger_v2.jpg" 1705847300 133523 8ac01c4df971db1ed8dbb2e804cba60f ""
-  "Thesis.aux" 1706656463 23446 0ab5e316ffe41e28921e0605be5c2bbc "pdflatex"
-  "Thesis.bbl" 1706656460 8821 3eebae0b82dbac5b2b8d42f5c5d5a6f0 "bibtex Thesis"
-  "Thesis.lof" 1706656463 1981 94d52598289a140bd4b92fdc2f0178eb "pdflatex"
-  "Thesis.lot" 1706656463 342 b376f86bb65285de285405716e667063 "pdflatex"
-  "Thesis.out" 1706656463 6558 f645ee5d42a28a8266cdb1cf14049b62 "pdflatex"
-  "Thesis.tex" 1706656447 9564 ab5caf81aafd4c57da1bbff6f7ac8230 ""
-  "Thesis.toc" 1706656463 3490 6b95458a98b3e1c1514d8c116943d5f3 "pdflatex"
-  "c:/Users/plona/PC/TESI/crazyflie-lib-python/Thesis/Thesis.tex" 1706656447 9564 ab5caf81aafd4c57da1bbff6f7ac8230 ""
+  "Thesis.aux" 1707086271 24808 93dda4c9a59115956b76ecdbcc9536eb "pdflatex"
+  "Thesis.bbl" 1707086269 8821 3eebae0b82dbac5b2b8d42f5c5d5a6f0 "bibtex Thesis"
+  "Thesis.lof" 1707086271 2061 a2806160ffdb2da815ce5fc4ebda871a "pdflatex"
+  "Thesis.lot" 1707086271 422 674155b98f8cc96d7ea65ddceb3a14f3 "pdflatex"
+  "Thesis.out" 1707086271 7116 ba8a768b71ad1ab4984b97612db109f5 "pdflatex"
+  "Thesis.tex" 1707086260 9873 cbeb503d68c3a8d02149769b6a63346f ""
+  "Thesis.toc" 1707086271 3792 00696ee2af896675fac11254736c7642 "pdflatex"
+  "c:/Users/plona/PC/TESI/crazyflie-lib-python/Thesis/Thesis.tex" 1707086260 9873 cbeb503d68c3a8d02149769b6a63346f ""
   "c:/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1698354689 2971 def0b6c1f0b107b3b936def894055589 ""
   "c:/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1698354689 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1698355501 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -269,9 +269,14 @@
   "c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1698358654 4658307 742a5296d0c68ece1c0b9d9595620511 ""
   "c:/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1698358822 6850384 cb888d38ed98a7d859e011c1f8493a46 ""
   "c:/texlive/2023/texmf.cnf" 1698358629 713 e69b156964470283e0530f5060668171 ""
-  "chapters/intro/introduction.tex" 1705162583 11713 aa7d9b8a870eb90454b44ed5734f5c9d ""
-  "chapters/soa/state-of-the-atr.tex" 1705615543 34863 8da45c02e4d7f5321016037a99dd4bd1 ""
-  "chapters/tools/tools.tex" 1706656121 21841 a1d98deb4fdb3ab97301e8b56b78d5ef ""
+  "chapters/1_intro/introduction.tex" 1705162583 11713 aa7d9b8a870eb90454b44ed5734f5c9d ""
+  "chapters/2_soa/state-of-the-atr.tex" 1705615543 34863 8da45c02e4d7f5321016037a99dd4bd1 ""
+  "chapters/3_tools/tools.tex" 1706656121 21841 a1d98deb4fdb3ab97301e8b56b78d5ef ""
+  "chapters/4_communication/communication-framework.tex" 1707085840 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "chapters/5_coordination/coordination-framework.tex" 1707085935 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "chapters/6_ecf/extended-crazyflie.tex" 1707086025 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "chapters/7_modules/ecf-modules.tex" 1707086056 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "chapters/8_evaluation/evaluation.tex" 1707086085 0 d41d8cd98f00b204e9800998ecf8427e ""
   (generated)
   "Thesis.aux"
   "Thesis.lof"
