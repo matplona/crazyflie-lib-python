@@ -561,6 +561,10 @@ INPUT ./Images/tools/control_loop.png
 INPUT ./chapters/4_communication/communication-framework.tex
 INPUT ./chapters/4_communication/communication-framework.tex
 INPUT chapters/4_communication/communication-framework.tex
+INPUT ./Images/communication/communication_stack.jpg
+INPUT ./Images/communication/communication_stack.jpg
+INPUT ./Images/communication/communication_stack.jpg
+INPUT ./Images/communication/communication_stack.jpg
 INPUT ./Images/./raggiera_polimi.eps
 INPUT ./Images/./raggiera_polimi.eps
 INPUT ./Images/./raggiera_polimi.eps
