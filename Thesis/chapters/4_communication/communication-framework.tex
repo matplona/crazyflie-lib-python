@@ -56,5 +56,57 @@ Moreover, both the two subsystems must handle a variety of variables with differ
 The Communication Framework that we designed and developed is meant to wrap the functionalities of these two complex subsystems and offer the user a more usable and efficient way to handle data logging and parameters.
 
 \section{The Design of the Communication Framework}\label{sec:communication_frameworks_design}
+
+The Communication Framework is a software component that provides an easy and accessible way to set parameters onboard the Crazyflie and to log telemetry data.
+This component is part of the ground station's software and has been designed as a publish/subscribe system.
+
+Every CRTP data that is routed to the parameter or logging subsystem is managed by the Communication Framework and stored in a central repository.
+Every other software component or script interested in such data can use the Communication Framework to access the repository and subscribe for value updates.
+
+Given the profound semantic difference between the logging and parameters subsystems, we decided to keep the two concepts separated inside the Communication Framework.
+For this reason, we developed two different Communication Managers, one for every subsystem. The two implementations, namely the Logging and the Parameters Manager, 
+shares the publish/subscribe design structure, but they slightly differ in the management of the updates in the repository.
+
 \subsection{The Logging Manager}\label{subsec:logging_manager}
-\subsection{The Parameter Manager}\label{subsec:parameter_manager}
+
+As described above, the Logging Manager is one of the two implementations of the Communication Framework. 
+In particular, the role of the Logging Manager is to handle the setup and the periodic updates of telemetry data sent from the Crayzyflie.
+
+The internal structure of this component is represented by a values repository where key-value pairs are stored to maintain the telemetry state.
+More in detail, each variable, identified by a unique key, represents an entry inside the values repository; the value of the entry is the last updated value of the logged variable.
+
+In a separate repository, the Logging Manager stores the subscribers interested in the variables updates. 
+In this second repository, the component stores a list of references to subscribers for each single variable or set of variables. 
+Each reference consists of a predicate function to allow filtering updates and a callback function to effectively notify the subscriber when the predicate is satisfied with the new value.
+
+To better understand the working principle behind the Logging Manager, we illustrated the complete workflow in Figure~\ref{fig:logging_manager}.
+Whenever the script running on the ground stations needs to start tracking a variable, the Logging Manager creates or updates a log configuration and sends it to the Crazyflie.
+The configuration contains information regarding the variable name, the type, and the desired period of updates. 
+At some point, when the script is interested in reading and getting updated on the variable's values, it creates a callback function, i.e., an action to be executed with the new updated value, and, optionally, a predicate function for receiving updates only when the values satisfy certain constraints.
+Then, the script registers these functions to the Logging Manager, specifying the single variable or set of variables of interest.
+When the logging process starts, the Crazyflie sends periodic messages containing the variable updates; the Logging Manager intercepts those messages and updates its internal values repository.
+Each time an update occurs, the Logging Manager checks whether any subscriber is watching that variable. 
+If so, for each subscriber, it evaluates the predicate and eventually notifies the subscriber by calling the registered callback. 
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{communication/logging_manager}
+    \caption{Logging Manager's workflows}\label{fig:logging_manager}
+\end{figure}
+
+Given that each variable can have its own size (given the type) and period, the Logging Manager needs to handle different log configurations.
+Moreover, the single configuration has a size constraint of 26 Bytes given by the size of the CRTP packet, increasing the complexity of the configuration management.
+
+To optimize the number of log configurations created, each time the Logging Manager needs to add a variable, 
+it searches for a suitable existing configuration with enough space to fit it. 
+The Logging Manager only adds a new configuration when strictly necessary, ensuring maximum optimization.
+
+\subsection{The Parameters Manager}\label{subsec:parameter_manager}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{communication/parameters_manager}
+    \caption{Parameters Manager's workflows}\label{fig:parameters}
+\end{figure}
+
