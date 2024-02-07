@@ -11,10 +11,11 @@ The Communication Framework manages the communication stream into two separate f
 The former is the flow of communication that is directed from the ground station to the drone; it is used to set configuration parameters onboard the drone.
 The latter is the opposite flow of communication, from the drone to the ground station, and it is used to receive all the telemetry data of the drone, allowing for better control.
 
+
 \section{The Communication Infrastructure}\label{sec:communication_infrastructure}
 Before diving into the details of our Communication Framework, it is crucial to understand the underlying communication infrastructure. 
 
-As described in Chapter~\ref{ch:tools}, our programming environment is divided into two main components: the ground station and the drone.
+As described in Chapter~\ref{ch:tools}, our programming environment is spread into two main devices: the ground station and the drone.
 The drone's firmware is written in C++ and runs on a small board with limited resources. On the other side, the ground station runs Python scripts
 that control the drone's behavior. The heterogeneity between these two subsystems increases the complexity of the communication process.
 
@@ -24,8 +25,10 @@ CRTP was designed to allow packet prioritization to help real-time control of th
 As shown in figure~\ref{fig:communication_stack}, the Crayzyflie communication is implemented as a stack of independent layers.
 Every layer of the communication stack has two parallel implementations, one hosted in the firmware onboard and the other on the ground station's software.
 
-The physical layer is responsible for transmitting packets to and from the Crazyflie. The link implements safe and ordered packet channels to and from the Crazyflie. 
-The link abstracts the physical medium and implements one transmitting and receiving packet channel to and from the Crazyflie.
+The physical layer is responsible for transmitting packets to and from the Crazyflie. 
+
+The link implements safe and ordered packet channels to and from the Crazyflie. This layer abstracts the physical medium and implements one transmitting and receiving packet channel to and from the Crazyflie.
+
 The CRTP layer introduces the concept of a logical packet; each packet measures 32 Bytes and is composed of three parts: port, channel, and payload.
 The tuple \textit{port:channel} allows the packet to be delivered to the specialized subsystem that receives and processes the message.
 
@@ -55,6 +58,7 @@ Moreover, both the two subsystems must handle a variety of variables with differ
 
 The Communication Framework that we designed and developed is meant to wrap the functionalities of these two complex subsystems and offer the user a more usable and efficient way to handle data logging and parameters.
 
+
 \section{The Design of the Communication Framework}\label{sec:communication_frameworks_design}
 
 The Communication Framework is a software component that provides an easy and accessible way to set parameters onboard the Crazyflie and to log telemetry data.
@@ -80,14 +84,16 @@ In this second repository, the component stores a list of references to subscrib
 Each reference consists of a predicate function to allow filtering updates and a callback function to effectively notify the subscriber when the predicate is satisfied with the new value.
 
 To better understand the working principle behind the Logging Manager, we illustrated the complete workflow in Figure~\ref{fig:logging_manager}.
+
 Whenever the script running on the ground stations needs to start tracking a variable, the Logging Manager creates or updates a log configuration and sends it to the Crazyflie.
 The configuration contains information regarding the variable name, the type, and the desired period of updates. 
+
 At some point, when the script is interested in reading and getting updated on the variable's values, it creates a callback function, i.e., an action to be executed with the new updated value, and, optionally, a predicate function for receiving updates only when the values satisfy certain constraints.
+
 Then, the script registers these functions to the Logging Manager, specifying the single variable or set of variables of interest.
 When the logging process starts, the Crazyflie sends periodic messages containing the variable updates; the Logging Manager intercepts those messages and updates its internal values repository.
 Each time an update occurs, the Logging Manager checks whether any subscriber is watching that variable. 
 If so, for each subscriber, it evaluates the predicate and eventually notifies the subscriber by calling the registered callback. 
-
 
 \begin{figure}[h]
     \centering
@@ -104,9 +110,30 @@ The Logging Manager only adds a new configuration when strictly necessary, ensur
 
 \subsection{The Parameters Manager}\label{subsec:parameter_manager}
 
+The other implementation of the Communication Framework, the Parameters Manager, manages the configuration operations of the Crayzyflie.
+The Crayzyflie 2.1 allows the users to set parameter values to configure the desired setup. 
+An example of a parameter could be the selected state estimator, i.e., Extended Kalman Filter or Complementary Filter (See Section~\ref{sec:state_estimate_and_control}).
+
+Following the same structure as the Logging Manager, also the Parameters Manager has one value and one subscriber repository where it stores, respectively, the current value for tracked parameters and the references of subscrbers for each variable.
+
+Conversely, variable updates are managed slightly differently with respect to the Logging Manager. 
+In fact, the underlying parameters subsystem does not have a periodic update of values; instead, the updates happen only when the parameter's value is effectively changed onboard.
+In other words, the Parameters Manager only receives and processes an update when the Crazyflie acknowledges a state change in the parameter's value.
+ 
+Figure~\ref{fig:parameters_manager} represents the operations workflow inside the Parameters Manager. When needed, usually before the takeoff,
+the script can use the Parameters Manager to read or write configuration values. 
+
+Read operations are processed straightforwardly with a synchronous request-response messages exchange. 
+The request contains the name of the variable, and the Crazyflie's response contains the current value of the requested parameter.
+
+Write operations, on the other side, are processed asynchronously; first, a request message is sent from the Parameters Manager to the Crazyflie,
+then, when the Crayzyflie successfully completes the update, it notifies the ground station's Parameters Manager.
+
+Once the Parameters Manager receives a value, it uses the internal publish/subscribe system to notify subscribers.  
+
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.9\textwidth]{communication/parameters_manager}
-    \caption{Parameters Manager's workflows}\label{fig:parameters}
+    \caption{Parameters Manager's workflows}\label{fig:parameters_manager}
 \end{figure}
 
