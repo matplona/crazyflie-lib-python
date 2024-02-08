@@ -336,6 +336,14 @@ INPUT c:/texlive/2023/texmf-dist/tex/latex/sidecap/sidecap.sty
 INPUT c:/texlive/2023/texmf-dist/tex/latex/sidecap/sidecap.sty
 INPUT c:/texlive/2023/texmf-dist/tex/latex/wrapfig/wrapfig.sty
 INPUT c:/texlive/2023/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+INPUT c:/texlive/2023/texmf-dist/tex/latex/csquotes/csquotes.sty
+INPUT c:/texlive/2023/texmf-dist/tex/latex/csquotes/csquotes.sty
+INPUT c:/texlive/2023/texmf-dist/tex/latex/csquotes/csquotes.def
+INPUT c:/texlive/2023/texmf-dist/tex/latex/csquotes/csquotes.def
+INPUT c:/texlive/2023/texmf-dist/tex/latex/csquotes/csquotes.def
+INPUT c:/texlive/2023/texmf-dist/tex/latex/csquotes/csquotes.cfg
+INPUT c:/texlive/2023/texmf-dist/tex/latex/csquotes/csquotes.cfg
+INPUT c:/texlive/2023/texmf-dist/tex/latex/csquotes/csquotes.cfg
 INPUT ./Configuration_Files/custom_commands.tex
 INPUT ./Configuration_Files/custom_commands.tex
 INPUT ./Configuration_Files/custom_commands.tex
@@ -673,6 +681,7 @@ INPUT ./Images/./raggiera_polimi-eps-converted-to.pdf
 INPUT Thesis.aux
 INPUT ./Thesis.out
 INPUT ./Thesis.out
+INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
 INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
 INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb

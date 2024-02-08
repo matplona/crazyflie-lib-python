@@ -1,0 +1,80 @@
+In any drone application, the drone's ability to react after an event is a key factor for the success of the application itself. 
+In this chapter, we present EasyFly's Coordination Framework, a software component belonging to the ground station system meant to coordinate and orchestrate all the actions of the Crazyflie. 
+
+The Coordination Framework acts as a centralized entity that is able to synchronize different parts of the same applications.
+Moreover, it is possible to coordinate multi-drone applications easily using the Coordination Framework.
+In this chapter, we first present the role of this framework and its use cases, providing some concrete examples of possible applications. 
+Then, we will analyze its structure and design principle in detail.
+
+
+\section{The Role of the Coordination Framework}\label{sec:coordination_framework_rolw}
+
+Coordination plays a crucial role in the successful implementation of drone applications. 
+Depending on the application type, the coordination of a drone can be seen at two different levels:
+\begin{itemize}
+    \item Intra-drone coordination
+    \item Inter-drone coordination
+\end{itemize}
+
+The first level of coordination considers the drone as an individual. 
+In this case, coordination is considered to be the process of reacting in the face of a change in the surrounding environment or the drone's internal state with an ad hoc action properly defined.
+
+In the case of intra-drone coordination, the role of the Coordination Framework is to watch over the current state of the drone (internal state or sensor data). 
+When a specific condition is met, it performs the corresponding action.
+
+A simple use case of the Coordination Framework considering intra-drone communication can be represented by the following:
+
+\begin{displayquote}
+    “For the drone application that we are developing, we need the drone to be maintained not too close to the walls of the flight area. 
+    Specifically, it must maintain a safe distance of 0,5 meters from the walls.”
+\end{displayquote}
+
+In the use case scenario described above the Coordination Framework will act as a supervisor entity that watches the values read from the lateral proximity sensors of the drone. 
+Whenever the distance is less than or equal to 0,5 meters, it will dispatch the action to move the drone in the opposite direction, bringing the distance from the wall back over the safe distance required.
+
+Conversely, inter-drone coordination applies only to applications where the number of drones is more than one.
+In these cases, the coordination is considered among individuals belonging to the same swarm.
+
+By synchronizing the actions of multiple drones, coordination allows for the efficient and effective achievement of complex tasks that would be difficult or impossible for a single drone to accomplish alone. 
+In this type of application, the role of the Coordination Framework is to watch over the state of the entire swarm and perform actions whenever a condition on the swarm state is met.
+
+To make this concept of inter-drone coordination clearer, let's consider also in this case a simple use case:
+
+\begin{displayquote}
+    We need to develop a swarm drone application that performs simple choreography for a demonstration during a fashion event. 
+    Our swarm is composed of three drones: D1, D2 and D3. 
+    The choreographer designed the choreography: D1 starts flying and slowly increases its height to 1 meter from the ground. 
+    After D1 completes its movement, D2 also starts flying and reaches a height of 0.5 meters. 
+    When D2 has reached the target height of 0.5 meters, the drones D1 and D3 will slowly meet D2 at 0.5 meters from the ground. 
+    Finally, to complete the choreography, land all the drones together.
+\end{displayquote}
+
+In this use case scenario, the Coordination Framework needs to track the height of each swarm component.
+For this reason, the swarm state will be represented by the tuple \(\langle D1 altitude, D2 altitude, D3altitude \rangle\). 
+Whenever the state changes, the Coordination Framework will decide on which actions to take according to the Table~\ref{table:inter_drone_use_case}
+
+\begin{table}[H]
+    \centering
+        \begin{tabular}{*{4}{|c}|}
+        \hline
+        \rowcolor{bluepoli!40}
+        \textbf{D1 altitude} & \textbf{D2 altitude} & \textbf{D3 altitude} & \textbf{Action to take } \\
+        \hline \hline
+        0 & 0 & 0 & move D1 up to 1 meter \\
+        \hline
+        1 & 0 & 0 & move D2 up to 0.5 meter \\
+        \hline
+        1 & 0.5 & 0 & move D1 down and D3 up to 0,5 meter \\
+        \hline
+        0.5 & 0.5 & 0.5 & land all the drones \\
+        \hline
+        \end{tabular}
+        \\[10pt]
+        \caption{Use case scenario of inter-drone communication}\label{table:inter_drone_use_case}
+    \end{table}
+    
+The key advantage of using this approach in both intra and inter-drone communication is that the entire business logic of the application is defined inside the Coordination Framework.
+This fact implies that the only challenging task that the developer needs to take care of is the definition of the state and the relative actions to take when the state changes.
+If the state is correctly updated and some external entity properly performs the actions defined, the Coordination Framework will orchestrate all the stuff to achieve the application's goals correctly.
+
+\section{Structure and Design Principles}\label{sec:coordination_structure_design}
