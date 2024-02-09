@@ -43,12 +43,14 @@
 \contentsline {chapter}{\numberline {5}Coordination Framework}{37}{chapter.5}%
 \contentsline {section}{\numberline {5.1}The Role of the Coordination Framework}{37}{section.5.1}%
 \contentsline {section}{\numberline {5.2}Structure and Design Principles}{39}{section.5.2}%
-\contentsline {chapter}{\numberline {6}Extended Crazyflie}{41}{chapter.6}%
-\contentsline {chapter}{\numberline {7}ECF Modules}{43}{chapter.7}%
-\contentsline {chapter}{\numberline {8}Conclusions and future developments}{45}{chapter.8}%
+\contentsline {subsection}{\numberline {5.2.1}The Observable}{40}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}The Coordination Manager}{41}{subsection.5.2.2}%
+\contentsline {chapter}{\numberline {6}Extended Crazyflie}{45}{chapter.6}%
+\contentsline {chapter}{\numberline {7}ECF Modules}{47}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Conclusions and future developments}{49}{chapter.8}%
 \vspace {2em}
-\contentsline {chapter}{Bibliography\markboth {\MakeUppercase []{Bibliography}}{\MakeUppercase []{Bibliography}}}{47}{chapter*.30}%
+\contentsline {chapter}{Bibliography\markboth {\MakeUppercase []{Bibliography}}{\MakeUppercase []{Bibliography}}}{51}{chapter*.31}%
 \vspace {2em}
-\contentsline {chapter}{List of Figures}{51}{chapter*.32}%
-\contentsline {chapter}{List of Tables}{53}{chapter*.34}%
-\contentsline {chapter}{Acknowledgements}{55}{chapter*.36}%
+\contentsline {chapter}{List of Figures}{55}{chapter*.33}%
+\contentsline {chapter}{List of Tables}{57}{chapter*.35}%
+\contentsline {chapter}{Acknowledgements}{59}{chapter*.37}%

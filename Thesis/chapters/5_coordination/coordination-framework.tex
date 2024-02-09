@@ -25,11 +25,11 @@ When a specific condition is met, it performs the corresponding action.
 A simple use case of the Coordination Framework considering intra-drone communication can be represented by the following:
 
 \begin{displayquote}
-    “For the drone application that we are developing, we need the drone to be maintained not too close to the walls of the flight area. 
-    Specifically, it must maintain a safe distance of 0,5 meters from the walls.”
+    For the drone application that we are developing, we need the drone to be maintained not too close to the walls of the flight area. 
+    Specifically, it must maintain a safe distance of 0,5 meters from the walls.
 \end{displayquote}
 
-In the use case scenario described above the Coordination Framework will act as a supervisor entity that watches the values read from the lateral proximity sensors of the drone. 
+In the use case scenario described above, the Coordination Framework will act as a supervisor entity that watches the values read from the lateral proximity sensors of the drone. 
 Whenever the distance is less than or equal to 0,5 meters, it will dispatch the action to move the drone in the opposite direction, bringing the distance from the wall back over the safe distance required.
 
 Conversely, inter-drone coordination applies only to applications where the number of drones is more than one.
@@ -50,7 +50,7 @@ To make this concept of inter-drone coordination clearer, let's consider also in
 \end{displayquote}
 
 In this use case scenario, the Coordination Framework needs to track the height of each swarm component.
-For this reason, the swarm state will be represented by the tuple \(\langle D1 altitude, D2 altitude, D3altitude \rangle\). 
+For this reason, the swarm state will be represented by the tuple \(\langle D1~altitude, D2~altitude, D3~altitude \rangle\). 
 Whenever the state changes, the Coordination Framework will decide on which actions to take according to the Table~\ref{table:inter_drone_use_case}
 
 \begin{table}[H]
@@ -78,3 +78,135 @@ This fact implies that the only challenging task that the developer needs to tak
 If the state is correctly updated and some external entity properly performs the actions defined, the Coordination Framework will orchestrate all the stuff to achieve the application's goals correctly.
 
 \section{Structure and Design Principles}\label{sec:coordination_structure_design}
+
+The design structure of the Coordination Framework is a publish-subscribe architecture that follows the principle of the observer pattern.
+
+The observer pattern is a design pattern in software engineering that defines a one-to-many relationship between entities,
+where changes in one entity (the `observable` or `subject`) are automatically propagated to other entities (the `observers`) that depend on it.
+
+In the observer pattern, the observable stores a list of observers and notifies them automatically whenever it changes state. 
+This way, observers can take action based on the observable's new state without constantly polling it for changes.
+
+Following this design pattern, we designed the Coordination Manager considering four main actors:
+\begin{itemize}
+    \item \textit{Observable} -- Represents a state that can change over time.  
+    
+    \item \textit{Producer} -- The script/component that creates the Observable, providing an initial state. 
+    Usually, this actor is in charge of updating the state of the Observable during time.
+
+    \item \textit{Observer} -- The script/component interested in watching some Observables' changes. 
+    Upon subscribing to the Observable, the Observer is notified by the framework when the former's state changes.
+
+    \item \textit{Coordination Manager} -- It is the component in charge of managing the entire state of the drone application, allowing Producers to update the value of a portion of the state and notifying Observers whenever this happens.
+\end{itemize}
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{coordination/design_architecture}
+    \caption[The architecture of the Coordination Framework]{The architecture of the Coordination Manager comprises two internal entities: the Observable and the Coordination Manager. 
+    Conversely, Producers and Observers are external to the framework and interact with it. }\label{fig:coordination_design_architecture}
+\end{figure}
+
+As presented in Figure~\ref{fig:coordination_design_architecture}, the core of the Coordination Framework is composed only of the Observable and the Coordination Manager entities.
+The Producer and the Observer are entities considered outside the frameworks and only act as utilizers of its functionalities.
+
+\subsection{The Observable}\label{subsec:observable}
+In our Coordination Framework, the Observable can be considered as the basic block of the entire structure.
+In the core, the Observable holds a piece of information known as the state of the Observable. 
+
+The state can be as complex as desired, and most importantly, it can change over time. 
+Moreover, the state is atomic and cannot change partially; in other words, regardless of the complexity of the state, every update must provide complete information.
+
+The Observable, on its own, is meaningless. 
+It becomes valid only when an external entity (observer) is interested in watching the state and being notified when some update occurs.
+
+For this reason, the Observable stores a list of references, known as subscriptions, to the external entities interested in watching the value of the state. 
+In the standard observer pattern, the subscription consists of a callback function that the Observable uses to notify the Observer of the new value.
+In our implementation, we decided to add some additional information to the subscription to increase the functionality of the pattern.
+In particular, the subscription is a tuple composed of the following parts:
+\begin{itemize}
+    \item \textit{Action} -- A callback function to be called whenever the state of the Observable changes
+    \item \textit{Condition} -- A predicate function that filters the values before notification. It is a function of the updated state of the Observable and decides whether to notify the Observer or not. 
+    \item \textit{Context} --  It is an optional object to be passed as a parameter to the Action. It can contain some helpful information to allow the Observer to take the action. 
+    When subscribing, the Observer can provide an arbitrary Context value; the provided Context will be stored in the subscription and sent back with each notification.
+\end{itemize}
+
+In the current implementations of the Coordination Framework, we have developed two types of Subsctipions, one synchronous and the other asynchronous. 
+As the names suggest, the synchronous subscription will block the execution of the Observer until the state is updated and the condition is satisfied.
+Conversely, using the asynchronous subscription, the Observer will continue executing and be called back later when the value changes and the condition is met.
+
+The standard observer pattern provides only the asynchronous notification. 
+We decided to extend the pattern with the synchronous one also because, sometimes, it is useful to check that the drone application is in the desired state before continuing the execution.
+
+\subsection{The Coordination Manager}\label{subsec:coordination_manager}
+
+The Coordination Manager is the orchestrator of the entire Coordination Framework. 
+Its role is to manage the whole application's Observables, creating and updating them when requested by some external Producer.
+
+Its core is a global repository of Observables, representing the whole application state. 
+Inside this repository, the Observables are identified by a unique name. 
+
+As shown in Figure~\ref{fig:coordination_design_architecture}, the Coordination Manager represents the facade of the entire Coordination Framework; external entities like Producers and Observers are forbidden to manipulate the values stored inside the Observables directly.
+This constraint allows centralized control, avoiding any possibility of an inconsistent state.
+
+To better understand the working principle of the Coordination Framework, we can show in action the Coordination Manager explaining more in detail how the use case scenario described at the beginning of the chapter can be easily solved with this approach.
+
+The scenario is the following:
+\begin{displayquote}
+    For the drone application that we are developing, we need the drone to be maintained not too close to the walls of the flight area. 
+    Specifically, it must maintain a safe distance of 0,5 meters from the walls.
+\end{displayquote}
+
+The first thing to do to solve this problem using the Coordination Manager is to define the State of the application. 
+In particular, we can identify four Observables:
+\begin{itemize}
+    \item \textsc{Left Observable} 
+    \item \textsc{Right Observable} 
+    \item \textsc{Front Observable} 
+    \item \textsc{Back Observable}
+\end{itemize}
+
+Our state is then represented by the following:
+
+\begin{lstlisting}[language=Python]
+    State = [
+		Observable_Left : { Distance from Left wall },
+		Observable_Rigth : { Distance from Right wall },
+		Observable_Front : { Distance from Front wall },
+		Observable_Back : { Distance from Back wall },
+	]
+\end{lstlisting}
+
+
+Once we have defined the state and managed the update of such a state, then we can define the second part of the Coordination Manager.
+To do this, we can set up 4 Observers, one for each Observable, to move the drone away from the respective wall.
+In particular, for each Observer, we can define an Action like the following:
+
+\begin{lstlisting}[language=Python]
+def move_away_left_wall_action( actual_distance, contex):
+	context.move_drone_right(0.5 - actual_distance)
+
+def move_away_rigth_wall_action( actual_distance, contex):
+	context.move_drone_left(0.5 - actual_distance)
+
+def move_away_front_wall_action( actual_distance, contex):
+	context.move_drone_back(0.5 - actual_distance)
+
+def move_away_back_wall_action( actual_distance, contex):
+	context.move_drone_front(0.5 - actual_distance)
+\end{lstlisting}
+
+Moreover, since we want to perform the action only if the distance from one wall is less than 0.5 meters, we can specify for all the Observer the following Condition function:
+
+\begin{lstlisting}[language=Python]
+def closer_enough_condition(actual_distance):
+	return actual_distance < 0.5
+\end{lstlisting}
+
+With this approach, the main advantage is that the entire business logic of the application is defined inside the Coordination Framework.
+As the solution to the use case shows, this framework simplifies the task for a user, letting them focus on the definition of state and reactions instead of trying to manage all the coordination between the parts. 
+
+Another advantage is that the resulting code is clean and can easily be read and understood also by users with less programming experience.
+
+On the other hand, when the number of Observables and Observers starts to become very big, the constraint of handling everything in a single and centralized component will surely introduce some overhead.
