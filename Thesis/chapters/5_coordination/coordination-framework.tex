@@ -3,6 +3,7 @@ In this chapter, we present EasyFly's Coordination Framework, a software compone
 
 The Coordination Framework acts as a centralized entity that is able to synchronize different parts of the same applications.
 Moreover, it is possible to coordinate multi-drone applications easily using the Coordination Framework.
+
 In this chapter, we first present the role of this framework and its use cases, providing some concrete examples of possible applications. 
 Then, we will analyze its structure and design principle in detail.
 
@@ -170,12 +171,12 @@ In particular, we can identify four Observables:
 Our state is then represented by the following:
 
 \begin{lstlisting}[language=Python]
-    State = [
-		Observable_Left : { Distance from Left wall },
-		Observable_Rigth : { Distance from Right wall },
-		Observable_Front : { Distance from Front wall },
-		Observable_Back : { Distance from Back wall },
-	]
+State = {
+    "Observable_Left": "Distance from Left wall",
+    "Observable_Rigth": "Distance from Right wall",
+    "Observable_Front": "Distance from Front wall",
+    "Observable_Back": "Distance from Back wall",
+}
 \end{lstlisting}
 
 
