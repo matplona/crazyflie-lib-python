@@ -50,10 +50,16 @@
 \contentsline {subsection}{\numberline {6.1.1}Extended Crazyflie Modules}{48}{subsection.6.1.1}%
 \contentsline {subsection}{\numberline {6.1.2}Use Case Scenario's Solution}{50}{subsection.6.1.2}%
 \contentsline {chapter}{\numberline {7}ECF Modules}{55}{chapter.7}%
-\contentsline {chapter}{\numberline {8}Conclusions and future developments}{57}{chapter.8}%
+\contentsline {section}{\numberline {7.1}State Estimate Module}{55}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Battery Module Module}{56}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Multiranger Module}{57}{section.7.3}%
+\contentsline {section}{\numberline {7.4}Z ranger Module}{57}{section.7.4}%
+\contentsline {section}{\numberline {7.5}Lighthouse Module}{57}{section.7.5}%
+\contentsline {section}{\numberline {7.6}AI deck Module}{57}{section.7.6}%
+\contentsline {chapter}{\numberline {8}Conclusions and future developments}{59}{chapter.8}%
 \vspace {2em}
-\contentsline {chapter}{Bibliography\markboth {\MakeUppercase []{Bibliography}}{\MakeUppercase []{Bibliography}}}{59}{chapter*.34}%
+\contentsline {chapter}{Bibliography\markboth {\MakeUppercase []{Bibliography}}{\MakeUppercase []{Bibliography}}}{61}{chapter*.34}%
 \vspace {2em}
-\contentsline {chapter}{List of Figures}{63}{chapter*.36}%
-\contentsline {chapter}{List of Tables}{65}{chapter*.38}%
-\contentsline {chapter}{Acknowledgements}{67}{chapter*.40}%
+\contentsline {chapter}{List of Figures}{65}{chapter*.36}%
+\contentsline {chapter}{List of Tables}{67}{chapter*.38}%
+\contentsline {chapter}{Acknowledgements}{69}{chapter*.40}%
