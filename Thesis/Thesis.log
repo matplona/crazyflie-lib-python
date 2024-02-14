@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.27)  11 FEB 2024 23:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.27)  12 FEB 2024 23:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1384,41 +1384,52 @@ Package pdftex.def Info: ./Images/ecf/ecf_module.png  used on input line 125.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [49] [50 <./Images/ecf/ecf_module.png>]
-Overfull \hbox (9.94632pt too wide) in paragraph at lines 189--190
+Overfull \hbox (9.94632pt too wide) in paragraph at lines 188--189
 [][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (9.94632pt too wide) in paragraph at lines 202--203
+Overfull \hbox (9.94632pt too wide) in paragraph at lines 201--202
 [][][][][][][][][][][][][][][] 
  []
 
-[51]) [52] [53]
-Package epstopdf Info: Source file: <./Images/./raggiera_polimi.eps>
-(epstopdf)                    date: 2023-10-26 23:34:52
-(epstopdf)                    size: 1813066 bytes
-(epstopdf)             Output file: <./Images/./raggiera_polimi-eps-converted-to.pdf>
-(epstopdf)                    date: 2023-10-26 23:36:50
-(epstopdf)                    size: 40517 bytes
-(epstopdf)             Command: <repstopdf --outfile=./Images/./raggiera_polimi-eps-converted-to.pdf ./Images/./raggiera_polimi.eps>
-(epstopdf)             \includegraphics on input line 218.
-Package epstopdf Info: Output file is already uptodate.
-File: ./Images/./raggiera_polimi-eps-converted-to.pdf Graphic file (type pdf)
-<use ./Images/./raggiera_polimi-eps-converted-to.pdf>
-Package pdftex.def Info: ./Images/./raggiera_polimi-eps-converted-to.pdf  used on input line 218.
-(pdftex.def)             Requested size: 507.88533pt x 507.88051pt.
- [54
-
-]
+[51]) [52]
 Chapter 7.
-(./chapters/7_modules/ecf-modules.tex [55
+(./chapters/7_modules/ecf-modules.tex [53
+
 
 ]
-Overfull \hbox (9.94632pt too wide) in paragraph at lines 57--58
+Overfull \hbox (9.94632pt too wide) in paragraph at lines 59--60
 [][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[56]) [57]
+[54]
+Overfull \hbox (73.38138pt too wide) in paragraph at lines 91--92
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (52.23636pt too wide) in paragraph at lines 92--93
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (66.33304pt too wide) in paragraph at lines 93--94
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (52.23636pt too wide) in paragraph at lines 94--95
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[55]
+<./Images/modules/multiranger.png, id=916, 284.56313pt x 260.47313pt>
+File: ./Images/modules/multiranger.png Graphic file (type png)
+<use ./Images/modules/multiranger.png>
+Package pdftex.def Info: ./Images/modules/multiranger.png  used on input line 122.
+(pdftex.def)             Requested size: 227.62206pt x 208.36288pt.
+ [56 <./Images/modules/multiranger.png>]) [57]
 Package epstopdf Info: Source file: <./Images/./raggiera_polimi.eps>
 (epstopdf)                    date: 2023-10-26 23:34:52
 (epstopdf)                    size: 1813066 bytes
@@ -1551,21 +1562,21 @@ LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-10-23>
  ***********
 Package rerunfilecheck Info: File `Thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 2667493F87A2541A831306F702C715D8;10410.
+(rerunfilecheck)             Checksum: D3A8997CBB736094A85CCD061C6DEC88;10397.
  ) 
 Here is how much of TeX's memory you used:
- 33560 strings out of 476306
- 620196 string characters out of 5798367
- 1965036 words of memory out of 5000000
- 54459 multiletter control sequences out of 15000+600000
+ 33593 strings out of 476306
+ 620886 string characters out of 5798367
+ 1967036 words of memory out of 5000000
+ 54483 multiletter control sequences out of 15000+600000
  577719 words of font info for 81 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 84i,12n,93p,1246b,2076s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,12n,93p,1246b,2099s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfcc1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc1200.pfb>
-Output written on Thesis.pdf (80 pages, 2296646 bytes).
+Output written on Thesis.pdf (80 pages, 2346278 bytes).
 PDF statistics:
- 1137 PDF objects out of 1200 (max. 8388607)
- 972 compressed objects within 10 object streams
- 301 named destinations out of 1000 (max. 500000)
- 632 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1151 PDF objects out of 1200 (max. 8388607)
+ 984 compressed objects within 10 object streams
+ 310 named destinations out of 1000 (max. 500000)
+ 637 words of extra memory for PDF output out of 10000 (max. 10000000)
 
