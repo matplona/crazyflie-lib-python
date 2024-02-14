@@ -81,18 +81,18 @@ The module is responsible only for keeping the information in the state consiste
 The Multiranger deck is an accessory board for the Crazyflie 2.1. 
 The deck is designed to provide the drone with range-sensing capabilities, allowing it to detect objects and obstacles in its environment.
 
-The Multiranger deck features four integrated ultrasonic sensors, which can be used to measure distances in a range of up to 5 meters. 
+The Multiranger deck features four integrated ultrasonic sensors, which can be used to measure distances in a range of up to 4 meters. 
 These sensors emit high-frequency sound waves that bounce off of nearby objects and return to the deck, allowing the deck to calculate the distance to the objects based on the time it takes for the sound waves to return.
 Multiranger deck is a powerful tool for adding range sensing capabilities to the Crazyflie 2.1, enabling it to perform a range of applications such as mapping, autonomous navigation, and obstacle avoidance.
 
 As any other ECF Module, also the Multiranger Module has a state that it manages. The state is composed of the 5 range measurement, one for each direction that it supports:
 \begin{lstlisting}[language=Python]
 State: {
-    "front" : "Distance from the nearest obstacle on the front (up to 5m)",
-    "back" : Distance from the nearest obstacle on the back (up to 5m)",
-    "right" : Distance from the nearest obstacle on the right (up to 5m)",
-    "left" : Distance from the nearest obstacle on the left (up to 5m)",
-    "up" : Distance from the nearest obstacle above (up to 5m)",
+    "front" : "Distance from the nearest obstacle on the front (up to 4m)",
+    "back" : Distance from the nearest obstacle on the back (up to 4m)",
+    "right" : Distance from the nearest obstacle on the right (up to 4m)",
+    "left" : Distance from the nearest obstacle on the left (up to 4m)",
+    "up" : Distance from the nearest obstacle above (up to 4m)",
 }
 \end{lstlisting}
 
@@ -134,8 +134,62 @@ If the obstacle gets too close, the only thing the drone can do to avoid the col
 
 \section{Height Module}\label{sec:module_height}
 
-The height module is a 
-This deck can measure distances up to 2 meters with an accuracy of around 1 centimeter, making it ideal for altitude sensing tasks in drones applications such as height control, landing, and takeoff.
+As we have seen in section\ref{deck:flow}, both the Flow deck V2 and the ZRanger deck V2 mount a sensor that allows the drone to measure its height from the ground.
+Like the sensors equipped by the Multiranger deck, this sensor enables the height measurement of up to 4 meters, with very high precision.
+We designed the height module to manage the information provided by this sensor to simplify height-related tasks in drone applications.
+
+The height module is an ECF module that manages the drone's height. It holds a simple state that consists of a single variable: the height.
+\begin{lstlisting}[language=Python]
+State: {
+    "height" : "Height from the ground (up to 4m)"
+}
+\end{lstlisting}
+
+When either the Flow deck V2 or the ZRanger deck V2 are attached to the drone, the control loop will use the information provided by the sensor to estimate the internal state of the drone.
+
+At first glance, this contribution seems valuable and harmless; in reality, this is true only when the ground surface is almost flat.
+When the ground surface is uneven, the measurement of the height sensor will act as a noise to the state estimation process, especially if the ground presents a stepped surface.
+
+To better understand the uneven floor problem, let's consider the example shown in Figure~\ref{fig:uneven_floor}.
+
+\begin{figure}[h]
+    \centering
+    \subfloat[Flat ground\label{fig:uneven_a}]{
+        \includegraphics[width=0.30\textwidth]{ecf/uneven_a}
+    }
+    \quad
+    \subfloat[Stepped ground\label{fig:uneven_b}]{
+        \includegraphics[width=0.30\textwidth]{ecf/uneven_b}
+    }
+    \quad
+    \subfloat[State estimator perspective of stepped ground\label{fig:uneven_c}]{
+        \includegraphics[width=0.30\textwidth]{ecf/uneven_c}
+    }
+    \caption{Uneven floor problem}\label{fig:uneven_floor}
+\end{figure}
+
+In the first Figure~\ref{fig:uneven_a}, the drone is flying over a flat ground, so the height sensor will contribute to the state estimate with the sensed value of 0.6 meters, which helps the State Estimator to provide a better estimate of the state (at least for the variable related with the height of the drone).
+
+In the second Figure~\ref{fig:uneven_b}, the drone flies over a stepped ground. 
+The height sensor will provide the State Estimator with a variable height by moving over this surface. 
+The measured height will be either 0.6 or 0.1 meters, depending on the position.
+
+Since the State Estimator is not aware of the conformation of the ground, the information perceived is the same as if the ground was flat and the drone was rapidly changing its height, as shown in Figure~\ref{fig:uneven_c}. 
+The rapid change in the state estimate is not expected and can produce some instabilities in the flight.
+
+To better understand the phenomena, we run some experiments with the following settings:
+We placed a Crazyflie 2.1 with a height sensor attached in front of a cube-shaped obstacle with a height of 0.5 meters. 
+We then write a script to take off the drone at 0.7 meters altitude and proceed above the obstacle. 
+After passing the obstacle, the drone was supposed to land. 
+
+As expected, as soon as the drone flies over the obstacle, the height sensor deck passes from a measure of 0.7 meters to a measure of 0.2 meters. 
+This (unwanted) rapid change always makes the drone crash. 
+
+To bypass this problem, we added a parameter that turns the height sensor's contribution to the state estimate on or off.
+This way, when the application's environment has flat ground, the developer can enable the contribution and better estimate the drone's height.
+Conversely, when the ground is uneven, the developer can avoid the problem described above by simply disabling the contribution through the parameter. 
+
+To simplify the developer's life, we implemented a utility function inside the height module that allows setting the parameter with a simple function call. 
 
 \section{Lighthouse Module}\label{sec:module_lighthouse}
 

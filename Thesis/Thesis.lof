@@ -32,4 +32,8 @@
 \contentsline {figure}{\numberline {6.3}{\ignorespaces Extended Craziflie Module internal structure}}{50}{figure.caption.30}%
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {7.1}{\ignorespaces Multiranger Object Tracking behavior}}{56}{figure.caption.32}%
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Uneven floor problem}}{58}{figure.caption.33}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Flat ground}}}{58}{subfigure.2.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Stepped ground}}}{58}{subfigure.2.2}%
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {State estimator perspective of stepped ground}}}{58}{subfigure.2.3}%
 \addvspace {10\p@ }

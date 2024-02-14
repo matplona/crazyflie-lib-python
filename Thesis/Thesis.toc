@@ -54,12 +54,12 @@
 \contentsline {section}{\numberline {7.2}Battery Module Module}{54}{section.7.2}%
 \contentsline {section}{\numberline {7.3}Multiranger Module}{55}{section.7.3}%
 \contentsline {section}{\numberline {7.4}Height Module}{57}{section.7.4}%
-\contentsline {section}{\numberline {7.5}Lighthouse Module}{57}{section.7.5}%
-\contentsline {section}{\numberline {7.6}AI deck Module}{57}{section.7.6}%
-\contentsline {chapter}{\numberline {8}Conclusions and future developments}{59}{chapter.8}%
+\contentsline {section}{\numberline {7.5}Lighthouse Module}{59}{section.7.5}%
+\contentsline {section}{\numberline {7.6}AI deck Module}{59}{section.7.6}%
+\contentsline {chapter}{\numberline {8}Conclusions and future developments}{61}{chapter.8}%
 \vspace {2em}
-\contentsline {chapter}{Bibliography\markboth {\MakeUppercase []{Bibliography}}{\MakeUppercase []{Bibliography}}}{61}{chapter*.35}%
+\contentsline {chapter}{Bibliography\markboth {\MakeUppercase []{Bibliography}}{\MakeUppercase []{Bibliography}}}{63}{chapter*.36}%
 \vspace {2em}
-\contentsline {chapter}{List of Figures}{65}{chapter*.37}%
-\contentsline {chapter}{List of Tables}{67}{chapter*.39}%
-\contentsline {chapter}{Acknowledgements}{69}{chapter*.41}%
+\contentsline {chapter}{List of Figures}{67}{chapter*.38}%
+\contentsline {chapter}{List of Tables}{69}{chapter*.40}%
+\contentsline {chapter}{Acknowledgements}{71}{chapter*.42}%
