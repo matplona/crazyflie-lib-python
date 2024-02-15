@@ -155,15 +155,15 @@ To better understand the uneven floor problem, let's consider the example shown 
 \begin{figure}[h]
     \centering
     \subfloat[Flat ground\label{fig:uneven_a}]{
-        \includegraphics[width=0.30\textwidth]{ecf/uneven_a}
+        \includegraphics[width=0.30\textwidth]{modules/uneven_a}
     }
     \quad
     \subfloat[Stepped ground\label{fig:uneven_b}]{
-        \includegraphics[width=0.30\textwidth]{ecf/uneven_b}
+        \includegraphics[width=0.30\textwidth]{modules/uneven_b}
     }
     \quad
     \subfloat[State estimator perspective of stepped ground\label{fig:uneven_c}]{
-        \includegraphics[width=0.30\textwidth]{ecf/uneven_c}
+        \includegraphics[width=0.30\textwidth]{modules/uneven_c}
     }
     \caption{Uneven floor problem}\label{fig:uneven_floor}
 \end{figure}
@@ -193,6 +193,112 @@ To simplify the developer's life, we implemented a utility function inside the h
 
 \section{Lighthouse Module}\label{sec:module_lighthouse}
 
+The Lighthouse ECF Module is the ECF Module associated with the Lighthouse Deck. As described in Section~\ref{subsec:absolute_positioning_systems}, the Lighthouse deck is a part of the absolute positioning system Lighthouse.
+The Lighthouse positioning system consists of two (or more) base stations emitting infrared light signals in a sweeping pattern. 
+The Lighthouse deck picks up these signals, which are mounted on the Crazyflie 2.1 drone. 
+The deck then uses the received signals to calculate its precise position and orientation in 3D space.
 
+This Module does not have a meaningful state. All the information that would belong to its state is technical and not applicable to any application.
+Given this, the Lighthouse ECF module is an exception in the standard ECF Module implementation: it neither handles nor maintains a State.
+
+A natural question can be: if the Lighthouse ECF Module does not hold a state, why is it useful?
+To answer this question, we need a little bit of background on the functioning of the Lighthouse positioning system:
+The Lighthouse positioning system is the most accurate and efficient positioning system that the whole Crazyflie platform provides. 
+The problem related to this positioning system is the complex configuration that it needs to work.
+
+The computation of the position in 3D space by knowing only the sweep angles of IR beams is not so direct. 
+Indeed, to work correctly, the Lighthouse system needs a very accurate configuration based on multiple measurements taken in the flight space.
+
+In fact, before using the Lighthouse, we need to estimate the environment's geometry. 
+The system's geometry estimates the position and orientation of the two Lighthouse Base Stations with respect to the origin of the absolute positioning system.
+To perform this estimation, the developer needs to measure the Geometry in multiple points of the flight space, and then by averaging them, he can get the best possible estimate.
+The more accurate the Geometry estimation, the more precise the positioning system.
+
+To answer the previous question, the Lighthouse ECF module exists and is extremely useful to overcome this limitation while using this positioning system.
+The Lighthouse ECF Module is an ECF Module without state; it comprises numerous utility functions that help configure the Lighthouse positioning system.
+
+The Lighthouse ECF Modules provide three main utility functions, each of which corresponds to a geometry estimation process:
+\begin{itemize}
+    \item \textit{simple\_geometry\_estimation}
+    \item \textit{multi\_bs\_geometry\_estimation}
+    \item \textit{automatic\_geometry\_estimation}
+\end{itemize}
+The first estimation process, \textit{simple\_geometry\_estimation}, is a very primitive and quick approach to the Geometry estimation process. 
+It consists of a single measurement in one position in the 3D space. 
+When this utility function is called, the ECF Module asks Crazyflie 2.1 for a single estimation of the position and orientation of the Lighthouse Base Stations.
+When this information is received, the Module sets the measurement point as the origin of the 3D coordinate system. 
+After that, it uploads this configuration back to Crazyflie 2.1.
+
+A problem related to this type of estimation is that the error in the estimate is non-constant in the flight space. 
+As evident from Figure~\ref{fig:lighthouse_error_1}, it increases proportionally to the distance from the origin.
+In this case, the resulting position estimate in the 3D space around the origin would be accurate. 
+Still, as far as we move from the origin, the error in the drone position estimate will increase, possibly resulting in instabilities or even crashes.
+This estimation process is intended only for quick tests where the drone position does not deviate too much from the origin.
+
+\begin{figure}[h]
+    \centering
+    \subfloat[Error distribution in the flight space while using the \textit{simple\_geometry\_estimation}\label{fig:lighthouse_error_1}]{
+        \includegraphics[width=0.40\textwidth]{modules/lighthouse_error_1}
+    }
+    \qquad
+    \subfloat[ Error distribution in the flight space while using the \textit{multi\_bs\_geometry\_estimation}\label{fig:lighthouse_error_2}]{
+        \includegraphics[width=0.40\textwidth]{modules/lighthouse_error_2}
+    }
+    \caption{Error distribution for Lighthouse}\label{fig:lighthouse_error}
+\end{figure}
+
+To overcome this significant limitation, we developed a more accurate estimation process: \textit{multi\_bs\_geometry\_estimation}. 
+As shown in Figure~\ref{fig:lighthouse_error_2}, this estimation process tries to make the error in the estimate constant across the entire flight space. 
+Moreover, this estimation method also supports the presence of multiple Lighthouse Base Stations (more than 2) that significantly increase flight space.
+
+This estimation method consists of multiple executions of the first estimation process.
+All the recorded samples are averaged to build the most accurate geometry estimation sent to the Crazyflie 2.1.
+
+
+The only drawback of this last estimation process is that it requires human help while doing the process. 
+The problem is that the user moving the drone around the drone in the fourth phase is interfering with the estimation process. 
+The user's body can block the IR beams from some base stations, invalidating lots of samples that otherwise would have been useful to compute a better geometry estimation.
+
+The last estimation process, the \textit{automatic\_geometry\_estimation}, is the automation of the previous process. 
+The user can configure the execution as he wants, and then the ECF Module (with the help of the Flow Deck v2) performs the sampling process by autonomously moving the drone around the flight space.
+
+The \textit{automatic\_geometry\_estimation} is the most complex but most powerful estimation process.
 
 \section{AI deck Module}\label{sec:module_ai_deck}
+
+
+The AI Deck is an accessory board designed to provide on-board artificial intelligence (AI) capabilities to the Crazyflie 2.1, allowing it to perform advanced computational tasks without needing external processing.
+
+The AI Deck is equipped with a powerful microcontroller unit (MCU) and a field-programmable gate array (FPGA), enabling high-performance computing and direct machine learning inference on the drone.
+The MCU on the AI Deck can run complex algorithms and execute machine learning models. 
+The FPGA complements the MCU by accelerating certain computations and enhancing the overall processing capabilities.
+
+The AI Deck can communicate directly with the ground station via WiFi thanks to the NINA unit mounted on the deck.
+The AI Deck, by default, runs a program on its MCU, which makes the video streaming of the camera mounted with the deck available on the WiFi communication channel.
+For this work, we adopted this standard configuration of the AI Deck without implementing any algorithm for object tracking or anything similar.
+
+The AI Deck ECF Module is an ECF module that allows one to connect, view, and run algorithms on the video streamed by the AI Deck itself.
+When this ECF module is detected and created, it automatically tries to connect to the WiFi network generated by the deck.
+
+In particular, the Module consists of the following utility functions:
+\begin{itemize}
+    \item \textit{record}
+    \item show\_recording
+    \item \textit{run\_ai}
+\end{itemize}
+
+The utility function \textit{record} allows the user to record from the video stream a video in mp4 format. 
+This functionality is significant when the user is in the developing phase of an AI algorithm. 
+In this case, the user can record videos and test/train their models using a flight recording.
+
+The show\_recording utility simply pops up a video player with the last unsaved recording, or if the path to the filename is provided, it shows the recording located at that path.
+
+When the developer has completed its AI algorithm, the user can use the \textit{run\_ai} utility to run that algorithm on the real-time streaming from the camera and perform the actions needed to accomplish the goal of the application to be developed.
+
+The \textit{run\_ai} function takes in input the algorithm (a python function) and an arbitrary list of arguments that can be used to take the actions.
+
+This function looks very similar to a Subscription in our Coordination Manager with an Action (the algorithm) and a Context (the arguments) to an Observable that maintains the video stream.
+
+Even if we could use our Coordination Framework, we decided to keep this particular implementation outside of it on purpose for two main reasons:
+First, we did not want to overload the Coordination Framework with heavy data like images to make the complete state lighter.
+Secondly, we thought that a direct implementation of the \textit{run\_ai} function would have been much easier to use in this case with respect to the standard subscription mechanism across the Coordination Framework.

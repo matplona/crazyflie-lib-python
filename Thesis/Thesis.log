@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.27)  15 FEB 2024 00:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.27)  15 FEB 2024 23:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1430,44 +1430,68 @@ File: ./Images/modules/multiranger.png Graphic file (type png)
 Package pdftex.def Info: ./Images/modules/multiranger.png  used on input line 122.
 (pdftex.def)             Requested size: 227.62206pt x 208.36288pt.
  [56 <./Images/modules/multiranger.png>]
-<./Images/ecf/uneven_a.png, id=928, 443.85825pt x 368.577pt>
-File: ./Images/ecf/uneven_a.png Graphic file (type png)
-<use ./Images/ecf/uneven_a.png>
-Package pdftex.def Info: ./Images/ecf/uneven_a.png  used on input line 159.
+<./Images/modules/uneven_a.png, id=928, 443.85825pt x 368.577pt>
+File: ./Images/modules/uneven_a.png Graphic file (type png)
+<use ./Images/modules/uneven_a.png>
+Package pdftex.def Info: ./Images/modules/uneven_a.png  used on input line 159.
 (pdftex.def)             Requested size: 136.57462pt x 113.41408pt.
-<./Images/ecf/uneven_b.png, id=929, 479.99326pt x 369.17924pt>
-File: ./Images/ecf/uneven_b.png Graphic file (type png)
-<use ./Images/ecf/uneven_b.png>
-Package pdftex.def Info: ./Images/ecf/uneven_b.png  used on input line 163.
+<./Images/modules/uneven_b.png, id=929, 479.99326pt x 369.17924pt>
+File: ./Images/modules/uneven_b.png Graphic file (type png)
+<use ./Images/modules/uneven_b.png>
+Package pdftex.def Info: ./Images/modules/uneven_b.png  used on input line 163.
 (pdftex.def)             Requested size: 136.57462pt x 105.04254pt.
-<./Images/ecf/uneven_c.png, id=930, 578.76225pt x 364.9635pt>
-File: ./Images/ecf/uneven_c.png Graphic file (type png)
-<use ./Images/ecf/uneven_c.png>
-Package pdftex.def Info: ./Images/ecf/uneven_c.png  used on input line 167.
+<./Images/modules/uneven_c.png, id=930, 578.76225pt x 364.9635pt>
+File: ./Images/modules/uneven_c.png Graphic file (type png)
+<use ./Images/modules/uneven_c.png>
+Package pdftex.def Info: ./Images/modules/uneven_c.png  used on input line 167.
 (pdftex.def)             Requested size: 136.57462pt x 86.12283pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[57] [58 <./Images/ecf/uneven_a.png> <./Images/ecf/uneven_b.png> <./Images/ecf/uneven_c.png>]) [59]
-Package epstopdf Info: Source file: <./Images/./raggiera_polimi.eps>
-(epstopdf)                    date: 2023-10-26 23:34:52
-(epstopdf)                    size: 1813066 bytes
-(epstopdf)             Output file: <./Images/./raggiera_polimi-eps-converted-to.pdf>
-(epstopdf)                    date: 2023-10-26 23:36:50
-(epstopdf)                    size: 40517 bytes
-(epstopdf)             Command: <repstopdf --outfile=./Images/./raggiera_polimi-eps-converted-to.pdf ./Images/./raggiera_polimi.eps>
-(epstopdf)             \includegraphics on input line 222.
-Package epstopdf Info: Output file is already uptodate.
-File: ./Images/./raggiera_polimi-eps-converted-to.pdf Graphic file (type pdf)
-<use ./Images/./raggiera_polimi-eps-converted-to.pdf>
-Package pdftex.def Info: ./Images/./raggiera_polimi-eps-converted-to.pdf  used on input line 222.
-(pdftex.def)             Requested size: 507.88533pt x 507.88051pt.
- [60
+[57] [58 <./Images/modules/uneven_a.png> <./Images/modules/uneven_b.png> <./Images/modules/uneven_c.png>] [59]
+<./Images/modules/lighthouse_error_1.png, id=960, 331.2375pt x 302.93175pt>
+File: ./Images/modules/lighthouse_error_1.png Graphic file (type png)
+<use ./Images/modules/lighthouse_error_1.png>
+Package pdftex.def Info: ./Images/modules/lighthouse_error_1.png  used on input line 242.
+(pdftex.def)             Requested size: 182.09486pt x 166.5344pt.
 
-]
+Underfull \hbox (badness 10000) in paragraph at lines 242--242
+[][]\T1/cmr/m/n/10 (a)[][] []|Er-ror dis-tri-bu-tion in the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 242--242
+\T1/cmr/m/n/10 flight space while us-ing the \T1/cmr/m/it/10 sim-
+ []
+
+<./Images/modules/lighthouse_error_2.png, id=961, 332.442pt x 242.70676pt>
+File: ./Images/modules/lighthouse_error_2.png Graphic file (type png)
+<use ./Images/modules/lighthouse_error_2.png>
+Package pdftex.def Info: ./Images/modules/lighthouse_error_2.png  used on input line 246.
+(pdftex.def)             Requested size: 182.09486pt x 132.94101pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 246--246
+[][]\T1/cmr/m/n/10 (b)[][] []| Er-ror dis-tri-bu-tion in the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 246--246
+\T1/cmr/m/n/10 flight space while us-ing the
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[60]
+Overfull \hbox (23.65858pt too wide) in paragraph at lines 272--275
+[]\T1/cmr/m/n/12 The AI Deck is equipped with a pow-er-ful mi-cro-con-troller unit (MCU) and a field-programmable
+ []
+
+[61 <./Images/modules/lighthouse_error_1.png> <./Images/modules/lighthouse_error_2.png>]) [62]
 Chapter 8.
-(./chapters/8_evaluation/evaluation.tex) (./Thesis.bbl [61
+(./chapters/8_evaluation/evaluation.tex) (./Thesis.bbl [63
+
 
 ]
 Package epstopdf Info: Source file: <./Images/./raggiera_polimi.eps>
@@ -1483,16 +1507,16 @@ File: ./Images/./raggiera_polimi-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Images/./raggiera_polimi-eps-converted-to.pdf>
 Package pdftex.def Info: ./Images/./raggiera_polimi-eps-converted-to.pdf  used on input line 1.
 (pdftex.def)             Requested size: 507.88533pt x 507.88051pt.
- [62
+ [64
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 29--31
 []\T1/cmr/m/n/12 crazyflie-lib-python, .  URL [][]$\T1/cmtt/m/n/12 https : / / github . com / bitcraze /
  []
 
-[63
+[65
 
-] [64]) [65]
+] [66]) [67]
 Package epstopdf Info: Source file: <./Images/./raggiera_polimi.eps>
 (epstopdf)                    date: 2023-10-26 23:34:52
 (epstopdf)                    size: 1813066 bytes
@@ -1506,13 +1530,13 @@ File: ./Images/./raggiera_polimi-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Images/./raggiera_polimi-eps-converted-to.pdf>
 Package pdftex.def Info: ./Images/./raggiera_polimi-eps-converted-to.pdf  used on input line 237.
 (pdftex.def)             Requested size: 507.88533pt x 507.88051pt.
- [66
+ [68
 
 ] (./Thesis.lof)
 \tf@lof=\write6
 \openout6 = `Thesis.lof'.
 
- [67
+ [69
 
 
 ]
@@ -1529,13 +1553,13 @@ File: ./Images/./raggiera_polimi-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Images/./raggiera_polimi-eps-converted-to.pdf>
 Package pdftex.def Info: ./Images/./raggiera_polimi-eps-converted-to.pdf  used on input line 253.
 (pdftex.def)             Requested size: 507.88533pt x 507.88051pt.
- [68
+ [70
 
 ] (./Thesis.lot)
 \tf@lot=\write7
 \openout7 = `Thesis.lot'.
 
- [69
+ [71
 
 ]
 Package epstopdf Info: Source file: <./Images/./raggiera_polimi.eps>
@@ -1551,9 +1575,9 @@ File: ./Images/./raggiera_polimi-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Images/./raggiera_polimi-eps-converted-to.pdf>
 Package pdftex.def Info: ./Images/./raggiera_polimi-eps-converted-to.pdf  used on input line 256.
 (pdftex.def)             Requested size: 507.88533pt x 507.88051pt.
- [70
+ [72
 
-] [71
+] [73
 
 ]
 Package epstopdf Info: Source file: <./Images/./raggiera_polimi.eps>
@@ -1569,7 +1593,7 @@ File: ./Images/./raggiera_polimi-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Images/./raggiera_polimi-eps-converted-to.pdf>
 Package pdftex.def Info: ./Images/./raggiera_polimi-eps-converted-to.pdf  used on input line 259.
 (pdftex.def)             Requested size: 507.88533pt x 507.88051pt.
- [72
+ [74
 
 ]
 
@@ -1582,21 +1606,21 @@ LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-10-23>
  ***********
 Package rerunfilecheck Info: File `Thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 97A35661EF5E77140362FECD549FDD05;10397.
+(rerunfilecheck)             Checksum: 5E2E2E64C0C538D1444D1EC30CFD4372;10397.
  ) 
 Here is how much of TeX's memory you used:
- 33650 strings out of 476306
- 622206 string characters out of 5798367
+ 33689 strings out of 476306
+ 623642 string characters out of 5798367
  1967036 words of memory out of 5000000
- 54530 multiletter control sequences out of 15000+600000
- 577719 words of font info for 81 fonts, out of 8000000 for 9000
+ 54563 multiletter control sequences out of 15000+600000
+ 578405 words of font info for 82 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  84i,12n,93p,1246b,2099s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfcc1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc1200.pfb>
-Output written on Thesis.pdf (82 pages, 2495435 bytes).
+<c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfcc1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc1200.pfb>
+Output written on Thesis.pdf (84 pages, 2853616 bytes).
 PDF statistics:
- 1182 PDF objects out of 1200 (max. 8388607)
- 1006 compressed objects within 11 object streams
- 320 named destinations out of 1000 (max. 500000)
- 652 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1208 PDF objects out of 1440 (max. 8388607)
+ 1024 compressed objects within 11 object streams
+ 325 named destinations out of 1000 (max. 500000)
+ 662 words of extra memory for PDF output out of 10000 (max. 10000000)
 
