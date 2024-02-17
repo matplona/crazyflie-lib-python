@@ -1,4 +1,4 @@
-\begin{thebibliography}{38}
+\begin{thebibliography}{42}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -37,6 +37,18 @@ Cubepilot.
 Dij.
 \newblock URL \url{https://www.dji.com}.
 
+\bibitem[dro({\natexlab{a}})]{dronearena}
+Drone arena, {\natexlab{a}}.
+\newblock URL \url{https://www.dronearena.info/}.
+
+\bibitem[dro({\natexlab{b}})]{dronearenaChallenge}
+Drone arena, {\natexlab{b}}.
+\newblock URL \url{https://www.dronearena.info/?page_id=25}.
+
+\bibitem[mem()]{memoryProfiler}
+Memory profiler.
+\newblock URL \url{https://pypi.org/project/memory-profiler/}.
+
 \bibitem[nav()]{navio2}
 Navio2 emlid.
 \newblock URL \url{https://docs.emlid.com/navio2/}.
@@ -52,6 +64,10 @@ Pixhawk.
 \bibitem[px4()]{px4}
 Px4 autopilot.
 \newblock URL \url{https://px4.io/}.
+
+\bibitem[rad()]{radon}
+Radon.
+\newblock URL \url{https://radon.readthedocs.io/en/latest/index.html}.
 
 \bibitem[sph()]{sphinx}
 Sphinx.

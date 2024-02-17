@@ -57,9 +57,13 @@
 \contentsline {section}{\numberline {7.5}Lighthouse Module}{59}{section.7.5}%
 \contentsline {section}{\numberline {7.6}AI deck Module}{61}{section.7.6}%
 \contentsline {chapter}{\numberline {8}Conclusions and future developments}{63}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Qualitative Analysis}{63}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Performance Analysis}{65}{section.8.2}%
+\contentsline {subsection}{\numberline {8.2.1}EasyFly Simulation Environment}{65}{subsection.8.2.1}%
+\contentsline {subsection}{\numberline {8.2.2}Tools and Metrics for Measuring Performances}{66}{subsection.8.2.2}%
 \vspace {2em}
-\contentsline {chapter}{Bibliography\markboth {\MakeUppercase []{Bibliography}}{\MakeUppercase []{Bibliography}}}{65}{chapter*.37}%
+\contentsline {chapter}{Bibliography\markboth {\MakeUppercase []{Bibliography}}{\MakeUppercase []{Bibliography}}}{69}{chapter*.38}%
 \vspace {2em}
-\contentsline {chapter}{List of Figures}{69}{chapter*.39}%
-\contentsline {chapter}{List of Tables}{71}{chapter*.41}%
-\contentsline {chapter}{Acknowledgements}{73}{chapter*.43}%
+\contentsline {chapter}{List of Figures}{73}{chapter*.40}%
+\contentsline {chapter}{List of Tables}{75}{chapter*.42}%
+\contentsline {chapter}{Acknowledgements}{77}{chapter*.44}%

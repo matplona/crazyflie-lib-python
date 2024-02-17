@@ -663,6 +663,10 @@ INPUT ./Images/modules/lighthouse_error_2.png
 INPUT ./chapters/8_evaluation/evaluation.tex
 INPUT ./chapters/8_evaluation/evaluation.tex
 INPUT chapters/8_evaluation/evaluation.tex
+INPUT ./Images/evaluation/simulation_environment.png
+INPUT ./Images/evaluation/simulation_environment.png
+INPUT ./Images/evaluation/simulation_environment.png
+INPUT ./Images/evaluation/simulation_environment.png
 INPUT ./Thesis.bbl
 INPUT ./Thesis.bbl
 INPUT Thesis.bbl
