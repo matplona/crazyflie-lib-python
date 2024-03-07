@@ -6,9 +6,9 @@ We divided the evaluation process into two main topics: we will give a qualitati
 For this analysis, we participated in the challenges organized for the Digital Futures Drone Arena project~\cite{dronearena}.
 During this challenge, groups of students and enthusiasts were asked to complete an obstacle run using Crazyflie 2.1 nano drones.
 
-Then, we will move to a performance analysis of EasyFly in a real example implementation, comparing it with a parallel implementation written using only the core cflib.
+Then, we will move to performance analysis of EasyFly in a real example implementation, comparing it with a similar implementation written using only the core cflib.
 This evaluation aims to assess the ease of implementing a drone application with EasyFly and the consequent reduction in complexity in the scripts. 
-On the other hand, we will demonstrate that the performance of an application developed with EasyFly is almost the same as a parallel implementation using the core cflib offered by Crazyflie.
+On the other hand, we will demonstrate that the performance of an application developed with EasyFly is almost the same as the implementation using the core cflib offered by Crazyflie.
 In this second part, we will describe the EasyFly simulation environment that allowed us to conduct a precise performance analysis.
 
 \section{Qualitative Analysis}\label{sec:qualitative_analysis}
@@ -22,7 +22,7 @@ The testing in real scenarios can help detect possible weaknesses in the program
 To best evaluate our EasyFly programming environment, we had the possibility to participate in the Digital Futures Drone Arena project~\cite{dronearena}.
 
 The Drone Arena project planned two challenges where groups of students and enthusiasts with different backgrounds were asked to complete a specific task using drones.
-These challenges aimed to allow researchers to collect data and perform studies about Human Drone Interactions.
+These challenges aim to allow researchers to collect data and perform studies about human-drone interactions.
 
 The EasyFly programming environment was part of the inaugural challenge in Sweden in June 2022~\cite{dronearenaChallenge}. 
 In this challenge, five groups of students and enthusiasts with knowledge of computer science were asked to program Crazyflie 2.1 nano drones to complete an obstacle course.
@@ -31,7 +31,7 @@ There were two main alternatives to write the scripts: the standard cflib or the
 The challenge was distributed over three days; the first two days were dedicated to development and testing, and the last day was dedicated to the final challenge, where the groups competed with each other with what they had produced in the days before.
 On the first day, we gave the groups a brief presentation on the basic knowledge of the Crazyflie 2.1 platform. 
 We also described the main components and working principles of the EasyFly programming environment.
-Then, we provided the groups with a Python project, where inside there were the original cflib, our EasyFly programming environment, and a folder of examples for both.
+Then, we provided the groups with a Python project, where inside was the original cflib, our EasyFly programming environment, and a folder of examples for both.
 From then on, the groups were free to develop and test the code with real Crazyflie 2.1 in a sample stage, with minimum support from the research team.
 
 This particular setting of the challenge allowed us to see and measure the impact of using EasyFly on a group with minimum knowledge of the Crazyflie platform. 
@@ -49,7 +49,6 @@ In their final code, almost every group used the utility functions of the Multir
 
 In conclusion, the challenge of the Drone Arena project allowed us to understand that the entire EasyFly programming environment, particularly the Coordination Manager, can seem too complicated at first glance and was a little more complex than we thought.
 The groups that decided not to use the programming environment decided on purpose to develop a more simple and sometimes effective solution.
-With more time to learn the programming environment's main principles, we think that almost all the groups would probably have used EasyFly. 
 
 
 \section{Performance Analysis}\label{sec:performance_analysis}
