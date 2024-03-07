@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def analyze_data(filename):
+def analyze_data(filename, filename_network):
     if os.path.isfile(filename):
         df = pd.read_csv(filename)
         # Extract the required columns
@@ -32,10 +32,17 @@ def analyze_data(filename):
         ax.set_xlabel('X')
         ax.set_ylabel('Y')
         ax.set_zlabel('Z')
-        ax.set_title('3D Scatter Plot')
+        ax.set_title('Obstacle course')
+        # max_range = max(max(x), max(y))
+        # min_range = min(min(x), min(y))
+        # delta = (max_range - min_range) / 2
+        # ax.set_xlim([min_range - delta, max_range + delta])
+        # ax.set_ylim([min_range - delta, max_range + delta])
 
         # Set equal aspect ratio for all three axes
         ax.set_box_aspect([1, 1, 1])
+        # ax.set_aspect('equal', adjustable='box')
+
 
         # # Add tooltips
         # cursor = mplcursors.cursor(scatter, hover=True)
@@ -52,6 +59,20 @@ def analyze_data(filename):
     else:
         # File does not exist
         print(f"The file '{filename}' does not exist.")
+    
+    if os.path.isfile(filename_network):
+        df = pd.read_csv(filename_network)
+        # Extract the required columns
+        plt.stackplot(df.index, df['in'], df['out'], labels=['Input Bytes', 'Output Bytes'], alpha=0.7)
+        plt.title('Network Load - Input and Output Bytes')
+        plt.xlabel('Time')
+        plt.ylabel('Bytes')
+        plt.legend(loc='upper left')
+        plt.grid(True)
+        plt.show()
+    else:
+        # File does not exist
+        print(f"The file '{filename_network}' does not exist.")
     return
 
 

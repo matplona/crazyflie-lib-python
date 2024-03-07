@@ -61,7 +61,7 @@ class ExtendedCrazyFlie(SyncCrazyflie):
         console.info("Created Battery module")
 
         # initialize state estimate module
-        self.state_estimate : StateEstimate = StateEstimate(self, True, False, False)
+        self.state_estimate : StateEstimate = StateEstimate(self, False, False, False)
 
         # return reference
         return self

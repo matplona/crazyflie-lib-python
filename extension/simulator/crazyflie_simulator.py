@@ -437,11 +437,11 @@ class CrazyflieSimulator():
             LogInternalStateElement('FLOAT','posEstAlt','velocityZ', 0, 380),
             LogInternalStateElement('UINT8_T','radio','rssi', 0, 381),
             LogInternalStateElement('UINT8_T','radio','isConnected', 0, 382),
-            LogInternalStateElement('UINT16_T','range','front', 0, 383),
-            LogInternalStateElement('UINT16_T','range','back', 0, 384),
-            LogInternalStateElement('UINT16_T','range','up', 0, 385),
-            LogInternalStateElement('UINT16_T','range','left', 0, 386),
-            LogInternalStateElement('UINT16_T','range','right', 0, 387),
+            LogInternalStateElement('UINT16_T','range','front', 5000, 383),
+            LogInternalStateElement('UINT16_T','range','back', 5000, 384),
+            LogInternalStateElement('UINT16_T','range','up', 5000, 385),
+            LogInternalStateElement('UINT16_T','range','left', 5000, 386),
+            LogInternalStateElement('UINT16_T','range','right', 5000, 387),
             LogInternalStateElement('UINT16_T','range','zrange', 0, 388),
             LogInternalStateElement('UINT16_T','ranging','state', 0, 389),
             LogInternalStateElement('FLOAT','ring','fadeTime', 0, 390),
@@ -917,7 +917,13 @@ class CrazyflieSimulator():
             return 0
         return errno.ENOENT
     
+    def stop_all_blocks(self):
+        for id in self._log_blocks:
+            self._log_blocks[id].stop()
+            
+    
     def set_hover_setpoint(self, vx, vy, yawrate, z):
+        logging.debug(f'(HOV) = [vx-{vx:.2f}, vy-{vy:.2f}, yawrate-{yawrate:.2f} -- z-{z:.5f}]')
         self._start_engine()
         self._setpoint_expire_timer.reset()
         actual_z = self._log_toc[420]._value
@@ -927,8 +933,10 @@ class CrazyflieSimulator():
         self._engine.vy = vy_rot
         self._engine.vz = self._position_to_velocity(z, actual_z, self.MAX_VELOCITY)
         self._engine.yawrate = yawrate
+        logging.debug(f'(ENGINE) = [{self._engine.vx:.2f}, {self._engine.vy:.2f}, {self._engine.vz:.5f}, {self._engine.yawrate:.2f}]')
 
     def set_position_setpoint(self, x, y, z, yaw):
+        logging.debug(f'(POS) = [x-{x:.2f}, y-{y:.2f}, z-{z:.2f} -- yaw-{yaw:.2f}]')
         self._start_engine()
         self._setpoint_expire_timer.reset()
         actual_x = self._log_toc[418]._value
@@ -946,6 +954,7 @@ class CrazyflieSimulator():
         self._engine.yawrate = self._position_to_velocity(yaw, actual_yaw, self.MAX_RATE)
     
     def set_velocity_world_setpoint(self, vx, vy, vz, yawrate):
+        logging.debug(f'(VEL) = [vx={vx:.2f}, vy={vy:.2f}, vz={vz:.2f}, yawrate={yawrate:.2f}]')
         self._start_engine()
         self._setpoint_expire_timer.reset()
         actual_yaw = self._log_toc[429]._value
@@ -956,6 +965,12 @@ class CrazyflieSimulator():
         self._engine.yawrate = yawrate
     
     def set_stop_setpoint(self):
+        self._start_engine()
+        self._engine.z = 0
+        self._engine.vx = 0
+        self._engine.vy = 0
+        self._engine.vz = 0
+        self._engine.yawrate = 0
         self._stop_engine()
     
     def _expire_setpoint(self):
@@ -978,10 +993,11 @@ class CrazyflieSimulator():
         if self._engine is not None:
             self._engine.stop()
         if self._position_logger is not None:
-            self._position_logger.stop()            
+            self._position_logger.stop()
+        self.stop_all_blocks()
 
     def _rotate_velocities(self, vx, vy, yaw_deg):
-        yaw_rad = math.radians(90-yaw_deg)
+        yaw_rad = math.radians(yaw_deg)
         vx_rot = vx * math.cos(yaw_rad) - vy * math.sin(yaw_rad)
         vy_rot = vx * math.sin(yaw_rad) + vy * math.cos(yaw_rad)
         return vx_rot, vy_rot
@@ -1048,24 +1064,24 @@ class LogBlock():
             self._addr = addr
             self._deamon = LogBlockDeamon(self)
             self._deamon.start()
-            logging.debug('Logging started for block {self._id}')
+            logging.warn(f'Logging started for block {self._id}')
         else:
-            logging.debug('Block {self._id} already started')
+            logging.debug(f'Block {self._id} already started')
 
     def stop(self):
         if self._started:
             self._deamon.stop()
             self._started = False
             self._deamon = None
-            self._socket = None
-            self._addr = None
-            logging.debug('Logging stopped for block {self._id}')
+            # self._socket = None
+            # self._addr = None
+            logging.warn(f'Logging stopped for block {self._id}')
         else:
-            logging.debug('Block {self._id} was not started')
+            logging.debug(f'Block {self._id} was not started')
 
     def send_log(self):
         if self._socket is not None and self._addr is not None:
-            logging.debug('Send LOG for block {self._id}')
+            logging.debug(f'Send LOG for block {self._id}')
             pk = CRTPPacket()
             pk.port = CRTPPort.LOGGING
             pk.channel = 2
@@ -1094,7 +1110,7 @@ class LogBlock():
                 pippo.append(f'{variable._name}:{round(variable._value, 3)}')
             data += variable.pack()
         if len(pippo) > 0:
-            pass # print(pippo)
+            pass
         return data
 
 class LogBlockDeamon(Thread):
@@ -1166,13 +1182,15 @@ class SimulatorEngine(Thread):
     def run(self):
         while not self._stop:
             cycle_start = time.time()
-            x = self.vx * self._clock + self._var_map['x']._value
-            y = self.vy * self._clock + self._var_map['y']._value
-            z = self.vz * self._clock + self._var_map['z']._value
-            yaw = self.yawrate * self._clock + self._var_map['yaw']._value 
-            ax = (self.vx - self._var_map['vx']._value) / self._clock
-            ay = (self.vy - self._var_map['vy']._value) / self._clock
-            az = (self.vz - self._var_map['vz']._value) / self._clock
+            time.sleep(self._clock)
+            cycle_delta = time.time() - cycle_start
+            x = self.vx * cycle_delta + self._var_map['x']._value
+            y = self.vy * cycle_delta + self._var_map['y']._value
+            z = self.vz * cycle_delta + self._var_map['z']._value
+            yaw = self.yawrate * cycle_delta + self._var_map['yaw']._value 
+            ax = (self.vx - self._var_map['vx']._value) / cycle_delta
+            ay = (self.vy - self._var_map['vy']._value) / cycle_delta
+            az = (self.vz - self._var_map['vz']._value) / cycle_delta
             self._var_map['x'].update_value(x)
             self._var_map['y'].update_value(y)
             self._var_map['z'].update_value(z)
@@ -1184,12 +1202,32 @@ class SimulatorEngine(Thread):
             self._var_map['az'].update_value(az)
             self._var_map['yaw'].update_value(yaw)
             if self._is_logging:
-                self._queue.put([x, y, z, self.vx, self.vy, self.vz, ax, ay, az, yaw])
-            cycle_delta = time.time() - cycle_start 
-            if cycle_delta < self._clock:
-                time.sleep(self._clock - cycle_delta)
-            else:
-                logging.warn(f'{WARNING}ENGINE clock overflow{ENDC}')
+                self._queue.put([x, y, z, self.vx, self.vy, self.vz, ax, ay, az, yaw, cycle_start, cycle_delta])
+            # cycle_start = time.time()
+            # x = self.vx * self._clock + self._var_map['x']._value
+            # y = self.vy * self._clock + self._var_map['y']._value
+            # z = self.vz * self._clock + self._var_map['z']._value
+            # yaw = self.yawrate * self._clock + self._var_map['yaw']._value 
+            # ax = (self.vx - self._var_map['vx']._value) / self._clock
+            # ay = (self.vy - self._var_map['vy']._value) / self._clock
+            # az = (self.vz - self._var_map['vz']._value) / self._clock
+            # self._var_map['x'].update_value(x)
+            # self._var_map['y'].update_value(y)
+            # self._var_map['z'].update_value(z)
+            # self._var_map['vx'].update_value(self.vx)
+            # self._var_map['vy'].update_value(self.vy)
+            # self._var_map['vz'].update_value(self.vz)
+            # self._var_map['ax'].update_value(ax)
+            # self._var_map['ay'].update_value(ay)
+            # self._var_map['az'].update_value(az)
+            # self._var_map['yaw'].update_value(yaw)
+            # if self._is_logging:
+            #     self._queue.put([x, y, z, self.vx, self.vy, self.vz, ax, ay, az, yaw])
+            # cycle_delta = time.time() - cycle_start 
+            # if cycle_delta < self._clock:
+            #     time.sleep(self._clock - cycle_delta)
+            # else:
+            #     logging.warn(f'{WARNING}ENGINE clock overflow{ENDC}')
     
     def stop(self):
         self._stop = True
@@ -1200,7 +1238,7 @@ class PositionLogger(Thread):
         self._queue = queue
         self._stop = False
         self._filename = filename
-        self._write_to_csv([['x','y','z','vx','vy','vz','ax','ay','az','yaw']])
+        self._write_to_csv([['x','y','z','vx','vy','vz','ax','ay','az','yaw','time', 'delta']])
 
     def run(self):
         while not self._stop:

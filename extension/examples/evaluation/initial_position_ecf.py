@@ -46,7 +46,7 @@ def should_update_current_target(state):
 
 if __name__ == '__main__':
     
-    uri = 'udp://127.0.0.1:1809'
+    uri = 'udp://127.0.0.1:1808'
     with ExtendedCrazyFlie(uri) as ecf:
         ecf.parameters_manager.set_value('kalman','initialX', base_x)
         ecf.parameters_manager.set_value('kalman','initialY', base_y)

@@ -1,3 +1,4 @@
+import csv
 import os
 import socket
 import struct
@@ -7,7 +8,7 @@ from cflib.crtp.crtpstack import CRTPPacket, CRTPPort
 from extension.simulator.crazyflie_simulator import CrazyflieSimulator, LogBlock
 from extension.simulator.analyze_data import analyze_data
 
-logging.basicConfig(level=logging.INFO, format='[%(levelname)s]: %(message)s')
+logging.basicConfig(level=logging.WARN, format='[%(levelname)s]: %(message)s')
 
 MAGENTA = '\033[95m'
 OKBLUE = '\033[94m'
@@ -43,6 +44,8 @@ class RequestMatch:
             raw = (pk.header,) + struct.unpack('B' * len(pk.data), pk.data)
             logging.info(f'{OKGREEN}Sending response for [{self._name}]:\n\tPORT: {pk.port}\tCHANNEL: {pk.channel}\tDATA: 0x{pk.data.hex()}{ENDC}')
             socket.sendto(bytes(raw), addr)
+            network_log([0,len(raw)])
+
 
     def name(self):
         return self._name
@@ -55,6 +58,7 @@ class RequestMapper:
         self._param_toc = cfSim.param_toc()
         self._simulator = cfSim
         self._socket = socket
+        self._network_filename = 'network'
         self._repo = {
             CRTPPort.PARAM : {
                 0 : [   
@@ -188,10 +192,31 @@ class RequestMapper:
         sim.set_stop_setpoint()
         return bytes()
 
+
+
+def write_to_csv(data):
+    global filename_network
+    with open(filename_network, 'a+', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerows(data)
+        
+def network_log(data):
+    global network_log_array
+    network_log_array.append(data)
+
+def get_log_data():
+    global network_log_array
+    load_in = 0 
+    load_out = 0
+    for data in network_log_array[1:]:
+        load_in += data[0]
+        load_out += data[1]
+    logging.warning(f"traffic: ({load_in})in ({load_out})out")
+
 if __name__ == '__main__':
     # Create a UDP socket
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    server_address = ('127.0.0.1', 1809)
+    server_address = ('127.0.0.1', 1808)
 
     # Bind the socket to the server address
     server_socket.bind(server_address)
@@ -200,10 +225,10 @@ if __name__ == '__main__':
 
     script_dir = os.path.dirname(__file__)
     rel_path =  f'data/data-{round(time.time())}.csv'
+    rel_path_network =  f'data/network-{round(time.time())}.csv'
     filename = os.path.join(script_dir, rel_path)
-
-
-
+    filename_network = os.path.join(script_dir, rel_path_network)
+    network_log_array = []
     # filename =None
 
 
@@ -211,8 +236,10 @@ if __name__ == '__main__':
     simulator = CrazyflieSimulator(log_file=filename)
     mapper = RequestMapper(simulator, server_socket)
     print(f'{OKGREEN + BOLD}CRAZYFLIE SIM READY{ENDC}')
-
     data, client_address = server_socket.recvfrom(1024)
+    network_log(['in', 'out'])
+    network_log([len(data), 0])
+
     if data == bytes(b'\xc3\xbf\x01\x01\x01'):
         print(f'{OKCYAN}Connection established with client {BOLD + UNDERLINE}{client_address}{ENDC}')
         mapper.set_client_address(client_address)
@@ -221,6 +248,8 @@ if __name__ == '__main__':
     while True:
         try:
             data, client_address = server_socket.recvfrom(1024)
+            network_log([len(data), 0])
+
         except ConnectionResetError as e:
             logging.critical(f'{ERROR}Connection Interrupted{ENDC}')
             error = True
@@ -228,10 +257,14 @@ if __name__ == '__main__':
         if data == bytes(b'\xc3\xbf\x01\x02\x02') or error:
             print(f'{RED}Connection closed with client {BOLD + UNDERLINE}{client_address}{ENDC}')
             time.sleep(3)
+            simulator.set_stop_setpoint()
             simulator = None
             mapper = None
             print(f'{OKBLUE}PROCESSING DATA... {ENDC}')
-            analyze_data(filename)
+            write_to_csv(network_log_array)
+            get_log_data()
+            analyze_data(filename, "")
+            
             # print(f'{WARNING + BOLD}REBOOT CRAZYFLIE SIM{ENDC}')
             # server_socket.bind(server_address)
             # print(f'{OKCYAN}Server restarted at {server_address[0]} on port {server_address[1]}{ENDC}')
@@ -248,6 +281,7 @@ if __name__ == '__main__':
         if mapper.has_response(pk):
             res = mapper.get_response(pk)
             res.send_response(server_socket, client_address, pk.data)
+
         else:
             logging.fatal(f'{ERROR}Unknown mapping for pk: HEADER {pk.header}:\n\tPORT: {pk.port}\tCHANNEL: {pk.channel}\tDATA: 0x{pk.data.hex()}{ENDC}')
             break

@@ -133,7 +133,6 @@ class LoggingManager:
         config.stop()
         config.delete()
         cf_log.log_blocks.remove(config) # remove from the general Log
-        cf_log._config_id_counter -= 1 # decrease by one the config counter TODO check
         # reset the config 
         config.added = False
         config.started = False

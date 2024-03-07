@@ -18,7 +18,7 @@ console = logging.getLogger(__name__)
 
 
 class MultiRanger(Deck):
-    def __init__(self, ecf : ExtendedCrazyFlie, update_period_ms = 11) -> None:
+    def __init__(self, ecf : ExtendedCrazyFlie, update_period_ms = 100) -> None:
         super().__init__(DeckType.bcMultiranger) #initialize super
         self.__front = MAX_RANGE+1
         self.__back = MAX_RANGE+1
@@ -109,7 +109,7 @@ class MultiRanger(Deck):
         }
     
     def _execute_behavior(self) -> None:
-        if self.behavior == Behavior.OBSTACLE_AVOIDANCE:
+        if self.__behavior == Behavior.OBSTACLE_AVOIDANCE:
             self._fly_away()
         elif self.__behavior == Behavior.OBJECT_TRACKING:
             self._follow_safe()
