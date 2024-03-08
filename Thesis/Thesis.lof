@@ -40,10 +40,10 @@
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Error distribution in the flight space while using the \textit {simple\_geometry\_estimation}}}}{61}{subfigure.3.1}%
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces { Error distribution in the flight space while using the \textit {multi\_bs\_geometry\_estimation}}}}{61}{subfigure.3.2}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {8.1}{\ignorespaces Structure of EasyFly simulation environment}}{66}{figure.caption.36}%
-\contentsline {figure}{\numberline {8.2}{\ignorespaces Application scenarios' trajectories}}{67}{figure.caption.37}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Frist application scenario: drone exhibition}}}{67}{subfigure.2.1}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Second application scenario: drone obstacle course}}}{67}{subfigure.2.2}%
+\contentsline {figure}{\numberline {8.1}{\ignorespaces Structure of EasyFly simulation environment}}{67}{figure.caption.36}%
+\contentsline {figure}{\numberline {8.2}{\ignorespaces Application scenarios' trajectories}}{68}{figure.caption.37}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Frist application scenario: drone exhibition}}}{68}{subfigure.2.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Second application scenario: drone obstacle course}}}{68}{subfigure.2.2}%
 \contentsline {figure}{\numberline {8.3}{\ignorespaces Lines of Code}}{70}{figure.caption.38}%
 \contentsline {figure}{\numberline {8.4}{\ignorespaces Cyclomatic Complexity}}{71}{figure.caption.39}%
 \contentsline {figure}{\numberline {8.5}{\ignorespaces Memory (RAM) usage}}{72}{figure.caption.42}%
@@ -51,4 +51,4 @@
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Scenario: exhibition with EasyFly}}}{72}{subfigure.5.2}%
 \contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Scenario: obstacle course with cflib}}}{72}{subfigure.5.3}%
 \contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Scenario: obstacle course with EasyFly}}}{72}{subfigure.5.4}%
-\contentsline {figure}{\numberline {8.6}{\ignorespaces Network load}}{72}{figure.caption.43}%
+\contentsline {figure}{\numberline {8.6}{\ignorespaces Network load}}{73}{figure.caption.43}%

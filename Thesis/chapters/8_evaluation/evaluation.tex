@@ -2,7 +2,9 @@ The evaluation of a drone programming system is crucial to assess its effectiven
 This chapter aims to provide a comprehensive evaluation of EasyFly. 
 The baseline used to compare our programming environment is the basic Crazyflie python library (cflib) 
 
-We divided the evaluation process into two main topics: we will give a qualitative analysis of EasyFly and an understanding of the strengths and leaks of our programming system.
+We divided the evaluation process into two main topics: qualitative and performance analysis.
+
+In the first step, we will give a qualitative analysis of EasyFly and an understanding of the strengths and leaks of our programming system.
 For this analysis, we participated in the challenges organized for the Digital Futures Drone Arena project~\cite{dronearena}.
 During this challenge, groups of students and enthusiasts were asked to complete an obstacle run using Crazyflie 2.1 nano drones.
 
@@ -30,9 +32,11 @@ The EasyFly programming environment was part of the inaugural challenge in Swede
 In this challenge, five groups of students and enthusiasts with knowledge of computer science were asked to program Crazyflie 2.1 nano drones to complete an obstacle course.
 There were two main alternatives to write the scripts: the standard cflib or the EasyFly programming environment. 
 
-The challenge was distributed over three days; the first two days were dedicated to development and testing, and the last day was dedicated to the final challenge, where the groups competed with each other with what they had produced in the days before.
+The challenge was distributed over three days; the first two days were dedicated to development and testing, and the last day was dedicated to the final challenge.%, where the groups competed with each other with what they had produced in the days before.
+
 On the first day, we gave the groups a brief presentation on the basic knowledge of the Crazyflie 2.1 platform. 
 We also described the main components and working principles of the EasyFly programming environment.
+
 Then, we provided the groups with a Python project, where inside was the original cflib, our EasyFly programming environment, and a folder of examples for both.
 From then on, the groups were free to develop and test the code with real Crazyflie 2.1 in a sample stage, with minimum support from the research team.
 
@@ -200,10 +204,21 @@ The complexity analysis represents the core part of the evaluation and is compos
     \item Halstead Metrics (HAL)
 \end{itemize}
 
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.6\textwidth]{evaluation/loc}
+    \caption{Lines of Code}\label{fig:loc_count}
+\end{figure}
 
 Looking at the results, it is crystal clear that our programming environment, EasyFly, is much less complex than the original cflib we selected as a baseline for comparison.
 Starting from the most straightforward metric, LOC, we can see in Figure~\ref{fig:loc_count} that the results are, in both scenarios, halving the count.
 EasyFly, with respect to cflib, allows you to write the same application with half of the code.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.6\textwidth]{evaluation/cc}
+    \caption{Cyclomatic Complexity}\label{fig:cc}
+\end{figure}
 
 By looking at the second metric, CC, we can see, also in this case, the same trend.
 Moreover, when comparing the CC across the two different scenarios, it is evident that the performance gap between cflib and EasyFly increases with complexity.
@@ -212,17 +227,8 @@ In Fact, in the second scenario, the obstacle course, the total CC computed is 5
 The last metric for complexity, HAL, by looking at the results in Table~\ref{table:HAL}, confirms what we previously said for LOC and CC. 
 In particular, in this case, it is much more evident that the performance gap between cflib and EasyFly increases with complexity.
 Here, for the Effort (\( E \)), we observed a gap of over 55\% for the second scenario.
-\begin{figure}[t]
-    \includegraphics[width=0.6\textwidth]{evaluation/loc}
-    \caption{Lines of Code}\label{fig:loc_count}
-\end{figure}
 
-\begin{figure}[t]
-    \includegraphics[width=0.6\textwidth]{evaluation/cc}
-    \caption{Cyclomatic Complexity}\label{fig:cc}
-\end{figure}
-
-\begin{table}[H]
+\begin{table}[b]
     \centering
         \begin{tabular}{*{6}{|c}|}
         \hline
@@ -242,11 +248,15 @@ Here, for the Effort (\( E \)), we observed a gap of over 55\% for the second sc
         \caption{Halstead Metrics}\label{table:HAL}
 \end{table}
 
+In the second part of the evaluation, the performance analysis, we expect a slight loss in performance due to the overhead introduced by the EasyFly main components.
+In fact, by looking at Table~\ref{table:cpu_consumption}, we can see that the CPU percentage utilization is generally less when using the standard cflib with respect to EasyFly.
 
+The reason for this increase in CPU utilization is that EasyFly handles most things automatically. 
+An important observation needs to be around the average CPU consumption. 
+In this measurement, we can see that the metrics for EasyFly are not so far from the standard cflib, and, in the first more straightforward scenario, it is also better.
+These metrics indicate that EsayFly is more flexible and better adapts resource utilization across different situations.
 
-
-
-\begin{table}[H]
+\begin{table}[t]
     \centering
         \begin{tabular}{*{3}{|c}|}
         \hline
@@ -266,6 +276,13 @@ Here, for the Effort (\( E \)), we observed a gap of over 55\% for the second sc
         \caption{CPU consumption}\label{table:cpu_consumption}
 \end{table}
 
+The memory consumption metric is a weakness for EasyFly. 
+In particular, it is clear from the results shown in Figure~\ref{fig:ram_usage} that the standard cflib is consuming less than 50\% of EasyFly for the same application scenario.
+Also in this case, the overhead is due to all the infrastructure needed to manage most of the tasks automatically.
+Even if the memory consumption metric is a weakness for EasyFly, we can anyway learn two important facts:
+The first is that memory consumption is in the order of hundreds of MiB; hence, any modern machine can handle such memory load with any problem.
+The second fact is that by increasing the complexity of the application scenario, the gap between the cflib and EasyFly is constant; 
+this suggests that the memory consumption will never drift from the performance of the standard cflib.
 
 \begin{figure}[t]
     \centering
@@ -288,16 +305,35 @@ Here, for the Effort (\( E \)), we observed a gap of over 55\% for the second sc
 \end{figure}
 
 
-
-
+The last metric for the performance evaluation is the network load. As previously described, the simulation environment helped greatly in retrieving such metrics. 
+In particular, the simulation execution automatically computes the incoming and outgoing network load. 
+In Figure~\ref{fig:network_load}, we can see the result of this computation, where we pointed out the outgoing and the incoming traffic load in KB for every application scenario.
+The point of view of the measurement is that of the ground station. Out-packages have the direction from the ground to the drone, and In-packages follow the other direction. 
+Thanks to the optimization made by the Communication Framework hosted on EasyFly, we can observe a slightly better result for the network load metric.
+In particular, Easyfly automatically optimizes the logging task, reducing the cost of communication.
 
 \begin{figure}[t]
+    \centering
     \includegraphics[width=0.6\textwidth]{evaluation/network}
     \caption{Network load}\label{fig:network_load}
 \end{figure}
 
-
-
+In conclusion, as expected, we have observed that our programming environment, EasyFly, is significantly reducing the complexity of its scripts; 
+On the other hand, the performance metrics are kept on the same level with respect to the standard cflib.
 
 \subsection{Future Developement}\label{subsec:future_developement}
+This thesis work mainly focused on drone application with a single drone deployment. 
+This limitation clearly does not fit modern HDI research's needs. 
 
+For this reason, a possible future development around the EasyFly programming environment is the possibility of deploying multiple drones without introducing useless complexity in the development phase.
+In the actual implementation of the standard cflib there is a possibility of running scripts for swarm of drones.
+
+EasyFly should extend this basic feature by integrating it within its Coordination Manager, allowing for inter-drone communication.
+
+Another key point of future development should be around the simulation environment. 
+For the purpose of this work, we used the simulation environment mainly to evaluate performance.
+In our opinion, allowing the user to leverage the potentiality of such a system should be critical.
+
+Testing with drones is costly; hence, having the possibility to rely on a solid simulation environment is essential.
+A future version of our simulation environment should include the possibility of utilizing all the available sensors inside the simulation. 
+Moreover, multiple drone deployments should be allowed inside the simulation to support swarm programming.
