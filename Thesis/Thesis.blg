@@ -55,8 +55,8 @@ Warning--to sort, need author or key in crazyflie
 Warning--to sort, need author or key in crazyflie-lib-python
 Warning--to sort, need author or key in crazyflie-firmware
 Warning--to sort, need author or key in dronearenaChallenge
-Warning--to sort, need author or key in memoryProfiler
 Warning--to sort, need author or key in radon
+Warning--to sort, need author or key in memoryProfiler
 Warning--empty year in 3DR
 Warning--empty year in DIJflightSimulator
 Warning--empty year in bitcraze
@@ -78,45 +78,45 @@ Warning--empty year in wingDrones
 Warning--there's a number but no series in bonabeau1999swarm
 Warning--empty publisher in graether2012joggobot
 Warning--can't use both volume and number fields in quigley2009ros
-You've used 42 entries,
+You've used 44 entries,
             2773 wiz_defined-function locations,
-            802 strings with 10591 characters,
-and the built_in function-call counts, 17900 in all, are:
-= -- 1646
-> -- 822
-< -- 24
-+ -- 298
-- -- 252
-* -- 1402
-:= -- 2350
-add.period$ -- 114
-call.type$ -- 42
-change.case$ -- 207
-chr.to.int$ -- 38
-cite$ -- 141
-duplicate$ -- 881
-empty$ -- 1691
-format.name$ -- 291
-if$ -- 3975
+            815 strings with 10929 characters,
+and the built_in function-call counts, 19015 in all, are:
+= -- 1755
+> -- 871
+< -- 26
++ -- 315
+- -- 267
+* -- 1486
+:= -- 2507
+add.period$ -- 121
+call.type$ -- 44
+change.case$ -- 218
+chr.to.int$ -- 40
+cite$ -- 145
+duplicate$ -- 936
+empty$ -- 1788
+format.name$ -- 308
+if$ -- 4222
 int.to.chr$ -- 5
 int.to.str$ -- 1
-missing$ -- 25
-newline$ -- 200
-num.names$ -- 96
-pop$ -- 564
+missing$ -- 27
+newline$ -- 210
+num.names$ -- 104
+pop$ -- 588
 preamble$ -- 1
-purify$ -- 166
+purify$ -- 175
 quote$ -- 0
-skip$ -- 744
+skip$ -- 787
 stack$ -- 0
-substring$ -- 651
-swap$ -- 149
-text.length$ -- 14
+substring$ -- 720
+swap$ -- 163
+text.length$ -- 15
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 457
+type$ -- 479
 warning$ -- 39
-while$ -- 122
+while$ -- 133
 width$ -- 0
-write$ -- 492
+write$ -- 519
 (There were 57 warnings)

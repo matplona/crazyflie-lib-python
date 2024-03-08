@@ -60,10 +60,13 @@
 \contentsline {section}{\numberline {8.1}Qualitative Analysis}{63}{section.8.1}%
 \contentsline {section}{\numberline {8.2}Performance Analysis}{65}{section.8.2}%
 \contentsline {subsection}{\numberline {8.2.1}EasyFly Simulation Environment}{65}{subsection.8.2.1}%
-\contentsline {subsection}{\numberline {8.2.2}Tools and Metrics for Measuring Performances}{66}{subsection.8.2.2}%
+\contentsline {subsection}{\numberline {8.2.2}Application Scenario Evaluated}{66}{subsection.8.2.2}%
+\contentsline {subsection}{\numberline {8.2.3}Tools and Metrics for Measuring Performances}{68}{subsection.8.2.3}%
+\contentsline {subsection}{\numberline {8.2.4}Results Analysis}{69}{subsection.8.2.4}%
+\contentsline {subsection}{\numberline {8.2.5}Future Developement}{71}{subsection.8.2.5}%
 \vspace {2em}
-\contentsline {chapter}{Bibliography\markboth {\MakeUppercase []{Bibliography}}{\MakeUppercase []{Bibliography}}}{69}{chapter*.38}%
+\contentsline {chapter}{Bibliography\markboth {\MakeUppercase []{Bibliography}}{\MakeUppercase []{Bibliography}}}{73}{chapter*.45}%
 \vspace {2em}
-\contentsline {chapter}{List of Figures}{73}{chapter*.40}%
-\contentsline {chapter}{List of Tables}{75}{chapter*.42}%
-\contentsline {chapter}{Acknowledgements}{77}{chapter*.44}%
+\contentsline {chapter}{List of Figures}{77}{chapter*.47}%
+\contentsline {chapter}{List of Tables}{79}{chapter*.49}%
+\contentsline {chapter}{Acknowledgements}{81}{chapter*.51}%

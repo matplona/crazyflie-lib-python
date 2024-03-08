@@ -1,4 +1,4 @@
-\begin{thebibliography}{42}
+\begin{thebibliography}{44}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -132,6 +132,11 @@ E.~Graether and F.~Mueller.
 \newblock Joggobot: a flying robot as jogging companion.
 \newblock In \emph{CHI'12 Extended Abstracts on Human Factors in Computing Systems}, pages 1063--1066. 2012.
 
+\bibitem[Hariprasad et~al.(2017)Hariprasad, Vidhyagaran, Seenu, and Thirumalai]{hariprasad2017software}
+T.~Hariprasad, G.~Vidhyagaran, K.~Seenu, and C.~Thirumalai.
+\newblock Software complexity analysis using halstead metrics.
+\newblock In \emph{2017 international conference on trends in electronics and informatics (ICEI)}, pages 1109--1113. IEEE, 2017.
+
 \bibitem[Hoppe et~al.(2019)Hoppe, Burger, Schmidt, and Kosch]{hoppe2019droneOS}
 M.~Hoppe, M.~Burger, A.~Schmidt, and T.~Kosch.
 \newblock Droneos: A flexible open-source prototyping framework for interactive drone routines.
@@ -141,6 +146,11 @@ M.~Hoppe, M.~Burger, A.~Schmidt, and T.~Kosch.
 K.~LaFleur, K.~Cassady, A.~Doud, K.~Shades, E.~Rogin, and B.~He.
 \newblock Quadcopter control in three-dimensional space using a noninvasive motor imagery-based brain--computer interface.
 \newblock \emph{Journal of neural engineering}, 10\penalty0 (4):\penalty0 046003, 2013.
+
+\bibitem[Mccabe(1996)]{mccabe1996cyclomatic}
+T.~Mccabe.
+\newblock Cyclomatic complexity and the year 2000.
+\newblock \emph{IEEE Software}, 13\penalty0 (3):\penalty0 115--117, 1996.
 
 \bibitem[Mottola et~al.(2014)Mottola, Moretta, Whitehouse, and Ghezzi]{mottola2014team}
 L.~Mottola, M.~Moretta, K.~Whitehouse, and C.~Ghezzi.
