@@ -1,4 +1,4 @@
-\begin{thebibliography}{48}
+\begin{thebibliography}{49}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -155,6 +155,11 @@ M.~Hoppe, M.~Burger, A.~Schmidt, and T.~Kosch.
 A.~Kawala-Sterniuk, N.~Browarska, A.~Al-Bakri, M.~Pelc, J.~Zygarlicki, M.~Sidikova, R.~Martinek, and E.~J. Gorzelanczyk.
 \newblock Summary of over fifty years with brain-computer interfaces—a review.
 \newblock \emph{Brain Sciences}, 11\penalty0 (1):\penalty0 43, 2021.
+
+\bibitem[Khan and Neustaedter(2019)]{khan2019exploratory}
+M.~N.~H. Khan and C.~Neustaedter.
+\newblock An exploratory study of the use of drones for assisting firefighters during emergency situations.
+\newblock In \emph{Proceedings of the 2019 CHI conference on human factors in computing systems}, pages 1--14, 2019.
 
 \bibitem[Kolling et~al.(2012)Kolling, Nunnally, and Lewis]{kolling2012towards}
 A.~Kolling, S.~Nunnally, and M.~Lewis.

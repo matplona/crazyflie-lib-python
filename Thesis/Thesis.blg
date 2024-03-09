@@ -8,39 +8,39 @@ Warning--entry type for "dronearena" isn't style-file defined
 Warning--entry type for "dronearenaChallenge" isn't style-file defined
 --line 12 of file Thesis_bibliography.bib
 Warning--entry type for "wingDrones" isn't style-file defined
---line 138 of file Thesis_bibliography.bib
+--line 146 of file Thesis_bibliography.bib
 Warning--entry type for "curiosity" isn't style-file defined
---line 209 of file Thesis_bibliography.bib
+--line 217 of file Thesis_bibliography.bib
 Warning--entry type for "parrot" isn't style-file defined
---line 215 of file Thesis_bibliography.bib
+--line 223 of file Thesis_bibliography.bib
 Warning--entry type for "dij" isn't style-file defined
---line 221 of file Thesis_bibliography.bib
+--line 229 of file Thesis_bibliography.bib
 Warning--entry type for "3DR" isn't style-file defined
---line 227 of file Thesis_bibliography.bib
+--line 235 of file Thesis_bibliography.bib
 Warning--entry type for "bitcraze" isn't style-file defined
---line 233 of file Thesis_bibliography.bib
+--line 241 of file Thesis_bibliography.bib
 Warning--entry type for "crazyflie" isn't style-file defined
---line 239 of file Thesis_bibliography.bib
+--line 247 of file Thesis_bibliography.bib
 Warning--entry type for "crazyflie-lib-python" isn't style-file defined
---line 245 of file Thesis_bibliography.bib
+--line 253 of file Thesis_bibliography.bib
 Warning--entry type for "crazyflie-firmware" isn't style-file defined
---line 251 of file Thesis_bibliography.bib
+--line 259 of file Thesis_bibliography.bib
 Warning--entry type for "pixhawk" isn't style-file defined
---line 257 of file Thesis_bibliography.bib
+--line 265 of file Thesis_bibliography.bib
 Warning--entry type for "px4" isn't style-file defined
---line 263 of file Thesis_bibliography.bib
+--line 271 of file Thesis_bibliography.bib
 Warning--entry type for "cube" isn't style-file defined
---line 269 of file Thesis_bibliography.bib
+--line 277 of file Thesis_bibliography.bib
 Warning--entry type for "navio2" isn't style-file defined
---line 275 of file Thesis_bibliography.bib
+--line 283 of file Thesis_bibliography.bib
 Warning--entry type for "sphinx" isn't style-file defined
---line 301 of file Thesis_bibliography.bib
+--line 309 of file Thesis_bibliography.bib
 Warning--entry type for "DIJFlightSimulator" isn't style-file defined
---line 307 of file Thesis_bibliography.bib
+--line 315 of file Thesis_bibliography.bib
 Warning--entry type for "memoryProfiler" isn't style-file defined
---line 359 of file Thesis_bibliography.bib
+--line 367 of file Thesis_bibliography.bib
 Warning--entry type for "radon" isn't style-file defined
---line 365 of file Thesis_bibliography.bib
+--line 373 of file Thesis_bibliography.bib
 Warning--to sort, need author or key in dronearena
 Warning--to sort, need author or key in curiosity
 Warning--to sort, need author or key in wingDrones
@@ -82,45 +82,45 @@ Warning--empty year in wingDrones
 Warning--there's a number but no series in bonabeau1999swarm
 Warning--empty publisher in graether2012joggobot
 Warning--can't use both volume and number fields in quigley2009ros
-You've used 48 entries,
+You've used 49 entries,
             2773 wiz_defined-function locations,
-            836 strings with 11694 characters,
-and the built_in function-call counts, 21247 in all, are:
-= -- 1949
-> -- 1015
-< -- 28
-+ -- 364
-- -- 312
-* -- 1672
-:= -- 2817
-add.period$ -- 132
-call.type$ -- 48
-change.case$ -- 245
-chr.to.int$ -- 44
-cite$ -- 156
-duplicate$ -- 1038
-empty$ -- 1967
-format.name$ -- 356
-if$ -- 4709
+            840 strings with 11929 characters,
+and the built_in function-call counts, 21752 in all, are:
+= -- 1996
+> -- 1036
+< -- 30
++ -- 371
+- -- 318
+* -- 1704
+:= -- 2886
+add.period$ -- 135
+call.type$ -- 49
+change.case$ -- 250
+chr.to.int$ -- 45
+cite$ -- 158
+duplicate$ -- 1066
+empty$ -- 2015
+format.name$ -- 365
+if$ -- 4824
 int.to.chr$ -- 5
 int.to.str$ -- 1
-missing$ -- 30
-newline$ -- 229
-num.names$ -- 116
-pop$ -- 654
+missing$ -- 31
+newline$ -- 234
+num.names$ -- 120
+pop$ -- 667
 preamble$ -- 1
-purify$ -- 198
+purify$ -- 202
 quote$ -- 0
-skip$ -- 878
+skip$ -- 901
 stack$ -- 0
-substring$ -- 799
-swap$ -- 187
-text.length$ -- 17
+substring$ -- 820
+swap$ -- 194
+text.length$ -- 18
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 523
+type$ -- 534
 warning$ -- 41
-while$ -- 149
+while$ -- 155
 width$ -- 0
-write$ -- 567
+write$ -- 580
 (There were 60 warnings)

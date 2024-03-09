@@ -17,9 +17,9 @@
 \contentsline {subsection}{\numberline {2.2.1}The Role of the Human During the Interaction}{12}{subsection.2.2.1}%
 \contentsline {subsection}{\numberline {2.2.2}The Drone's Control Modality}{13}{subsection.2.2.2}%
 \contentsline {subsection}{\numberline {2.2.3}Values and Ethics in HDI}{14}{subsection.2.2.3}%
-\contentsline {section}{\numberline {2.3}Programming Environments}{14}{section.2.3}%
+\contentsline {section}{\numberline {2.3}Programming Environments}{15}{section.2.3}%
 \contentsline {subsection}{\numberline {2.3.1}Single Drone Programming}{15}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Swarm Programming}{19}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.2}Swarm Programming}{20}{subsection.2.3.2}%
 \contentsline {chapter}{\numberline {3}Tools}{23}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Ecosystem Overview}{23}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Hardware}{24}{section.3.2}%
