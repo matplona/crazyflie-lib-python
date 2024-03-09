@@ -1,4 +1,4 @@
-\begin{thebibliography}{44}
+\begin{thebibliography}{46}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -127,6 +127,11 @@ D.~Feil-Seifer and M.~J. Mataric.
 \newblock Human robot interaction.
 \newblock \emph{Encyclopedia of complexity and systems science}, 80:\penalty0 4643--4659, 2009.
 
+\bibitem[Giusti et~al.(2012)Giusti, Nagi, Gambardella, and Di~Caro]{giusti2012distributed}
+A.~Giusti, J.~Nagi, L.~M. Gambardella, and G.~A. Di~Caro.
+\newblock Distributed consensus for interaction between humans and mobile robot swarms.
+\newblock In \emph{AAMAS}, pages 1503--1504, 2012.
+
 \bibitem[Graether and Mueller(2012)]{graether2012joggobot}
 E.~Graether and F.~Mueller.
 \newblock Joggobot: a flying robot as jogging companion.
@@ -141,6 +146,11 @@ T.~Hariprasad, G.~Vidhyagaran, K.~Seenu, and C.~Thirumalai.
 M.~Hoppe, M.~Burger, A.~Schmidt, and T.~Kosch.
 \newblock Droneos: A flexible open-source prototyping framework for interactive drone routines.
 \newblock In \emph{Proceedings of the 18th International Conference on Mobile and Ubiquitous Multimedia}, pages 1--7, 2019.
+
+\bibitem[Kolling et~al.(2012)Kolling, Nunnally, and Lewis]{kolling2012towards}
+A.~Kolling, S.~Nunnally, and M.~Lewis.
+\newblock Towards human control of robot swarms.
+\newblock In \emph{Proceedings of the seventh annual ACM/IEEE international conference on human-robot interaction}, pages 89--96, 2012.
 
 \bibitem[LaFleur et~al.(2013)LaFleur, Cassady, Doud, Shades, Rogin, and He]{lafleur2013quadcopterBCI}
 K.~LaFleur, K.~Cassady, A.~Doud, K.~Shades, E.~Rogin, and B.~He.
