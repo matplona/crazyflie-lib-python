@@ -1,54 +1,58 @@
 \babel@toc {english}{}\relax 
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Drone hardware components}}{14}{figure.caption.10}%
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Drone software components}}{15}{figure.caption.11}%
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Off-board ecosystem}}{16}{figure.caption.12}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Remote control}}}{16}{subfigure.3.1}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Smartphone}}}{16}{subfigure.3.2}%
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Base Station}}}{16}{subfigure.3.3}%
-\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Distributed ground network}}}{16}{subfigure.3.4}%
-\contentsline {subfigure}{\numberline {(e)}{\ignorespaces {Distributed with sensor network}}}{16}{subfigure.3.5}%
-\contentsline {figure}{\numberline {2.4}{\ignorespaces EasyFly off-board ecosystem}}{17}{figure.caption.14}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Robot morphology examples.}}{11}{figure.caption.9}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Anthropomorphic robot}}}{11}{subfigure.1.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Zoomorphic robot}}}{11}{subfigure.1.2}%
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Functional robot}}}{11}{subfigure.1.3}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Drone hardware components}}{15}{figure.caption.11}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Drone software components}}{16}{figure.caption.12}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Off-board ecosystem}}{17}{figure.caption.13}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Remote control}}}{17}{subfigure.4.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Smartphone}}}{17}{subfigure.4.2}%
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Base Station}}}{17}{subfigure.4.3}%
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Distributed ground network}}}{17}{subfigure.4.4}%
+\contentsline {subfigure}{\numberline {(e)}{\ignorespaces {Distributed ground network and sensor network}}}{17}{subfigure.4.5}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces EasyFly off-board ecosystem.}}{18}{figure.caption.15}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Bitcraze Ecosystem overview}}{22}{figure.caption.16}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Expansion decks of Crazyflie 2.1}}{23}{figure.caption.17}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Flow deck v2}}}{23}{subfigure.2.1}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Z-ranger deck v2}}}{23}{subfigure.2.2}%
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Multi-ranger deck}}}{23}{subfigure.2.3}%
-\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Lighthouse positioning deck}}}{23}{subfigure.2.4}%
-\contentsline {subfigure}{\numberline {(e)}{\ignorespaces {AI-deck 1.1}}}{23}{subfigure.2.5}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Software libraries integration}}{26}{figure.caption.18}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Craziflie's control loop}}{29}{figure.caption.19}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Bitcraze Ecosystem overview}}{24}{figure.caption.17}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Expansion decks of Crazyflie 2.1.}}{25}{figure.caption.18}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Flow deck v2}}}{25}{subfigure.2.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Z-ranger deck v2}}}{25}{subfigure.2.2}%
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Multi-ranger deck}}}{25}{subfigure.2.3}%
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Lighthouse positioning deck}}}{25}{subfigure.2.4}%
+\contentsline {subfigure}{\numberline {(e)}{\ignorespaces {AI-deck 1.1}}}{25}{subfigure.2.5}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Software libraries integration}}{28}{figure.caption.19}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Craziflie's control loop}}{31}{figure.caption.20}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces The Crazyflie communication stack}}{32}{figure.caption.21}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Logging Manager's workflows}}{35}{figure.caption.22}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Parameters Manager's workflows}}{36}{figure.caption.23}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces The Crazyflie communication stack}}{34}{figure.caption.22}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Logging Manager's workflows.}}{37}{figure.caption.23}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Parameters Manager's workflows.}}{38}{figure.caption.24}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces The architecture of the Coordination Framework}}{40}{figure.caption.26}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces The architecture of the Coordination Framework}}{42}{figure.caption.27}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Extended Craziflie component structure}}{47}{figure.caption.28}%
-\contentsline {figure}{\numberline {6.2}{\ignorespaces ECF initialization sequence diagram}}{48}{figure.caption.29}%
-\contentsline {figure}{\numberline {6.3}{\ignorespaces Extended Craziflie Module internal structure}}{50}{figure.caption.30}%
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Extended Craziflie component structure.}}{49}{figure.caption.29}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces ECF initialization sequence diagram}}{50}{figure.caption.30}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Extended Craziflie Module internal structure.}}{52}{figure.caption.31}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {7.1}{\ignorespaces Multiranger Object Tracking behavior}}{56}{figure.caption.32}%
-\contentsline {figure}{\numberline {7.2}{\ignorespaces Uneven floor problem}}{58}{figure.caption.33}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Flat ground}}}{58}{subfigure.2.1}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Stepped ground}}}{58}{subfigure.2.2}%
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {State estimator perspective of stepped ground}}}{58}{subfigure.2.3}%
-\contentsline {figure}{\numberline {7.3}{\ignorespaces Error distribution for Lighthouse}}{61}{figure.caption.34}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Error distribution in the flight space while using the \textit {simple\_geometry\_estimation}}}}{61}{subfigure.3.1}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces { Error distribution in the flight space while using the \textit {multi\_bs\_geometry\_estimation}}}}{61}{subfigure.3.2}%
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Multiranger Object Tracking behavior.}}{58}{figure.caption.33}%
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Uneven floor problem.}}{60}{figure.caption.34}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Flat ground}}}{60}{subfigure.2.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Stepped ground}}}{60}{subfigure.2.2}%
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {State estimator perspective of stepped ground}}}{60}{subfigure.2.3}%
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Error distribution for Lighthouse.}}{63}{figure.caption.35}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Error distribution in the flight space while using the \textit {simple\_geometry\_estimation}}}}{63}{subfigure.3.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces { Error distribution in the flight space while using the \textit {multi\_bs\_geometry\_estimation}}}}{63}{subfigure.3.2}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {8.1}{\ignorespaces Structure of EasyFly simulation environment}}{67}{figure.caption.36}%
-\contentsline {figure}{\numberline {8.2}{\ignorespaces Application scenarios' trajectories}}{68}{figure.caption.37}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Frist application scenario: drone exhibition}}}{68}{subfigure.2.1}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Second application scenario: drone obstacle course}}}{68}{subfigure.2.2}%
-\contentsline {figure}{\numberline {8.3}{\ignorespaces Lines of Code}}{70}{figure.caption.38}%
-\contentsline {figure}{\numberline {8.4}{\ignorespaces Cyclomatic Complexity}}{71}{figure.caption.39}%
-\contentsline {figure}{\numberline {8.5}{\ignorespaces Memory (RAM) usage}}{72}{figure.caption.42}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Scenario: exhibition with cflib}}}{72}{subfigure.5.1}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Scenario: exhibition with EasyFly}}}{72}{subfigure.5.2}%
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Scenario: obstacle course with cflib}}}{72}{subfigure.5.3}%
-\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Scenario: obstacle course with EasyFly}}}{72}{subfigure.5.4}%
-\contentsline {figure}{\numberline {8.6}{\ignorespaces Network load}}{73}{figure.caption.43}%
+\contentsline {figure}{\numberline {8.1}{\ignorespaces Structure of EasyFly simulation environment.}}{69}{figure.caption.37}%
+\contentsline {figure}{\numberline {8.2}{\ignorespaces Application scenarios' trajectories.}}{70}{figure.caption.38}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {First application scenario: drone exhibition}}}{70}{subfigure.2.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Second application scenario: drone obstacle course}}}{70}{subfigure.2.2}%
+\contentsline {figure}{\numberline {8.3}{\ignorespaces Lines of Code.}}{72}{figure.caption.39}%
+\contentsline {figure}{\numberline {8.4}{\ignorespaces Cyclomatic Complexity.}}{73}{figure.caption.40}%
+\contentsline {figure}{\numberline {8.5}{\ignorespaces Memory (RAM) usage.}}{74}{figure.caption.43}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Scenario: exhibition with cflib}}}{74}{subfigure.5.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Scenario: exhibition with EasyFly}}}{74}{subfigure.5.2}%
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Scenario: obstacle course with cflib}}}{74}{subfigure.5.3}%
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Scenario: obstacle course with EasyFly}}}{74}{subfigure.5.4}%
+\contentsline {figure}{\numberline {8.6}{\ignorespaces Network load.}}{75}{figure.caption.44}%

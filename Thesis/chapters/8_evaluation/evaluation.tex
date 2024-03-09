@@ -95,7 +95,7 @@ This separation guarantees that the performance measured with EasyFly's simulati
 \sidecaptionvpos{figure}{b}
 \begin{SCfigure}[\sidecaptionrelwidth][h]
     \includegraphics[width=0.5\textwidth]{evaluation/simulation_environment}
-    \caption{Structure of EasyFly simulation environment}\label{fig:simulation_environment}
+    \caption{Structure of EasyFly simulation environment.}\label{fig:simulation_environment}
 \end{SCfigure}
 
 
@@ -122,14 +122,14 @@ In Figure~\ref{fig:obstacle_course}, we can see the trajectory followed by the v
 
 \begin{figure}[t]
     \centering
-    \subfloat[Frist application scenario: drone exhibition\label{fig:exhibition}]{
+    \subfloat[First application scenario: drone exhibition\label{fig:exhibition}]{
         \includegraphics[width=0.45\textwidth]{evaluation/exhibition}
     }
     \quad
     \subfloat[Second application scenario: drone obstacle course\label{fig:obstacle_course}]{
         \includegraphics[width=0.45\textwidth]{evaluation/obstacle_course}
     }
-    \caption{Application scenarios' trajectories}\label{fig:application_traj}
+    \caption{Application scenarios' trajectories.}\label{fig:application_traj}
 \end{figure}
 
 \subsection{Tools and Metrics for Measuring Performances}\label{subsec:performance_metrics}
@@ -207,7 +207,7 @@ The complexity analysis represents the core part of the evaluation and is compos
 \begin{figure}[t]
     \centering
     \includegraphics[width=0.6\textwidth]{evaluation/loc}
-    \caption{Lines of Code}\label{fig:loc_count}
+    \caption{Lines of Code.}\label{fig:loc_count}
 \end{figure}
 
 Looking at the results, it is crystal clear that our programming environment, EasyFly, is much less complex than the original cflib we selected as a baseline for comparison.
@@ -217,7 +217,7 @@ EasyFly, with respect to cflib, allows you to write the same application with ha
 \begin{figure}[t]
     \centering
     \includegraphics[width=0.6\textwidth]{evaluation/cc}
-    \caption{Cyclomatic Complexity}\label{fig:cc}
+    \caption{Cyclomatic Complexity.}\label{fig:cc}
 \end{figure}
 
 By looking at the second metric, CC, we can see, also in this case, the same trend.
@@ -245,7 +245,7 @@ Here, for the Effort (\( E \)), we observed a gap of over 55\% for the second sc
         \hline
         \end{tabular}
         \\[10pt]
-        \caption{Halstead Metrics}\label{table:HAL}
+        \caption{Halstead Metrics.}\label{table:HAL}
 \end{table}
 
 In the second part of the evaluation, the performance analysis, we expect a slight loss in performance due to the overhead introduced by the EasyFly main components.
@@ -273,7 +273,7 @@ These metrics indicate that EsayFly is more flexible and better adapts resource 
         \hline
         \end{tabular}
         \\[10pt]
-        \caption{CPU consumption}\label{table:cpu_consumption}
+        \caption{CPU consumption.}\label{table:cpu_consumption}
 \end{table}
 
 The memory consumption metric is a weakness for EasyFly. 
@@ -301,7 +301,7 @@ this suggests that the memory consumption will never drift from the performance 
     \subfloat[Scenario: obstacle course with EasyFly\label{fig:mem_obs_ecf}]{
         \includegraphics[width=0.45\textwidth]{evaluation/obstacle_course_ecf_mem}
     }
-    \caption{Memory (RAM) usage}\label{fig:ram_usage}
+    \caption{Memory (RAM) usage.}\label{fig:ram_usage}
 \end{figure}
 
 
@@ -315,7 +315,7 @@ In particular, Easyfly automatically optimizes the logging task, reducing the co
 \begin{figure}[t]
     \centering
     \includegraphics[width=0.6\textwidth]{evaluation/network}
-    \caption{Network load}\label{fig:network_load}
+    \caption{Network load.}\label{fig:network_load}
 \end{figure}
 
 In conclusion, as expected, we have observed that our programming environment, EasyFly, is significantly reducing the complexity of its scripts; 

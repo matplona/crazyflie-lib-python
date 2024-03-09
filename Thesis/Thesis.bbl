@@ -1,4 +1,4 @@
-\begin{thebibliography}{46}
+\begin{thebibliography}{48}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -32,6 +32,10 @@ crazyflie-lib-python, {\natexlab{c}}.
 \bibitem[cub()]{cube}
 Cubepilot.
 \newblock URL \url{https://www.cubepilot.com/}.
+
+\bibitem[cur()]{curiosity}
+Mars curiosity rover.
+\newblock URL \url{https://mars.nasa.gov/msl/home/}.
 
 \bibitem[dij()]{dij}
 Dij.
@@ -146,6 +150,11 @@ T.~Hariprasad, G.~Vidhyagaran, K.~Seenu, and C.~Thirumalai.
 M.~Hoppe, M.~Burger, A.~Schmidt, and T.~Kosch.
 \newblock Droneos: A flexible open-source prototyping framework for interactive drone routines.
 \newblock In \emph{Proceedings of the 18th International Conference on Mobile and Ubiquitous Multimedia}, pages 1--7, 2019.
+
+\bibitem[Kawala-Sterniuk et~al.(2021)Kawala-Sterniuk, Browarska, Al-Bakri, Pelc, Zygarlicki, Sidikova, Martinek, and Gorzelanczyk]{kawala2021summary}
+A.~Kawala-Sterniuk, N.~Browarska, A.~Al-Bakri, M.~Pelc, J.~Zygarlicki, M.~Sidikova, R.~Martinek, and E.~J. Gorzelanczyk.
+\newblock Summary of over fifty years with brain-computer interfaces—a review.
+\newblock \emph{Brain Sciences}, 11\penalty0 (1):\penalty0 43, 2021.
 
 \bibitem[Kolling et~al.(2012)Kolling, Nunnally, and Lewis]{kolling2012towards}
 A.~Kolling, S.~Nunnally, and M.~Lewis.

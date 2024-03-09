@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.27)  9 MAR 2024 13:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.27)  9 MAR 2024 22:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1169,65 +1169,91 @@ Package pdftex.def Info: ./Images/./raggiera_polimi-eps-converted-to.pdf  used o
 Chapter 2.
 (./chapters/2_soa/state-of-the-atr.tex [7
 
-] [8] [9] [10] [11] [12] [13]
-<./Images/soa/drone_hw_components.png, id=531, 168.63pt x 168.63pt>
+] [8] [9]
+<./Images/soa/anthropomorphic.jpg, id=493, 319.94531pt x 249.93375pt>
+File: ./Images/soa/anthropomorphic.jpg Graphic file (type jpg)
+<use ./Images/soa/anthropomorphic.jpg>
+Package pdftex.def Info: ./Images/soa/anthropomorphic.jpg  used on input line 113.
+(pdftex.def)             Requested size: 136.57462pt x 106.6876pt.
+<./Images/soa/zoomorphic.jpg, id=494, 213.79875pt x 237.88875pt>
+File: ./Images/soa/zoomorphic.jpg Graphic file (type jpg)
+<use ./Images/soa/zoomorphic.jpg>
+Package pdftex.def Info: ./Images/soa/zoomorphic.jpg  used on input line 117.
+(pdftex.def)             Requested size: 136.57462pt x 151.9615pt.
+<./Images/soa/functional.jpg, id=495, 501.875pt x 501.875pt>
+File: ./Images/soa/functional.jpg Graphic file (type jpg)
+<use ./Images/soa/functional.jpg>
+Package pdftex.def Info: ./Images/soa/functional.jpg  used on input line 121.
+(pdftex.def)             Requested size: 136.57462pt x 136.57251pt.
+ [10{c:/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [11 <./Images/soa/anthropomorphic.jpg> <./Images/soa/zoomorphic.jpg> <./Images/soa/functional.jpg>] [12] [13] [14]
+<./Images/soa/drone_hw_components.png, id=552, 168.63pt x 168.63pt>
 File: ./Images/soa/drone_hw_components.png Graphic file (type png)
 <use ./Images/soa/drone_hw_components.png>
-Package pdftex.def Info: ./Images/soa/drone_hw_components.png  used on input line 238.
+Package pdftex.def Info: ./Images/soa/drone_hw_components.png  used on input line 267.
 (pdftex.def)             Requested size: 227.62206pt x 227.62779pt.
-<./Images/soa/drone_sw_components.png, id=533, 647.41875pt x 361.35pt>
+ [15 <./Images/soa/drone_hw_components.png>]
+<./Images/soa/drone_sw_components.png, id=561, 647.41875pt x 361.35pt>
 File: ./Images/soa/drone_sw_components.png Graphic file (type png)
 <use ./Images/soa/drone_sw_components.png>
-Package pdftex.def Info: ./Images/soa/drone_sw_components.png  used on input line 251.
+Package pdftex.def Info: ./Images/soa/drone_sw_components.png  used on input line 280.
 (pdftex.def)             Requested size: 318.66948pt x 177.86253pt.
 
-Underfull \hbox (badness 3623) in paragraph at lines 256--256
+Underfull \hbox (badness 3623) in paragraph at lines 285--285
 [][][][][]\T1/cmr/m/n/12 : []|The main
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[14 <./Images/soa/drone_hw_components.png>]
-<./Images/soa/ground_station_controller.png, id=556, 218.31563pt x 278.54062pt>
+[16 <./Images/soa/drone_sw_components.png>]
+<./Images/soa/ground_station_controller.png, id=588, 218.31563pt x 278.54062pt>
 File: ./Images/soa/ground_station_controller.png Graphic file (type png)
 <use ./Images/soa/ground_station_controller.png>
-Package pdftex.def Info: ./Images/soa/ground_station_controller.png  used on input line 293.
+Package pdftex.def Info: ./Images/soa/ground_station_controller.png  used on input line 320.
 (pdftex.def)             Requested size: 113.81102pt x 145.20746pt.
-<./Images/soa/ground_station_smartphone.png, id=557, 218.31563pt x 278.54062pt>
+<./Images/soa/ground_station_smartphone.png, id=589, 218.31563pt x 278.54062pt>
 File: ./Images/soa/ground_station_smartphone.png Graphic file (type png)
 <use ./Images/soa/ground_station_smartphone.png>
-Package pdftex.def Info: ./Images/soa/ground_station_smartphone.png  used on input line 297.
+Package pdftex.def Info: ./Images/soa/ground_station_smartphone.png  used on input line 324.
 (pdftex.def)             Requested size: 113.81102pt x 145.20746pt.
-<./Images/soa/ground_base_station.png, id=558, 218.31563pt x 278.54062pt>
+<./Images/soa/ground_base_station.png, id=590, 218.31563pt x 278.54062pt>
 File: ./Images/soa/ground_base_station.png Graphic file (type png)
 <use ./Images/soa/ground_base_station.png>
-Package pdftex.def Info: ./Images/soa/ground_base_station.png  used on input line 301.
+Package pdftex.def Info: ./Images/soa/ground_base_station.png  used on input line 328.
 (pdftex.def)             Requested size: 113.81102pt x 145.20746pt.
-<./Images/soa/ground_station_distributed.png, id=559, 301.125pt x 391.4625pt>
+<./Images/soa/ground_station_distributed.png, id=591, 301.125pt x 391.4625pt>
 File: ./Images/soa/ground_station_distributed.png Graphic file (type png)
 <use ./Images/soa/ground_station_distributed.png>
-Package pdftex.def Info: ./Images/soa/ground_station_distributed.png  used on input line 305.
+Package pdftex.def Info: ./Images/soa/ground_station_distributed.png  used on input line 332.
 (pdftex.def)             Requested size: 159.33821pt x 207.1456pt.
-<./Images/soa/ground_station_distributed_with_sensor.png, id=560, 301.125pt x 391.4625pt>
+<./Images/soa/ground_station_distributed_with_sensor.png, id=592, 301.125pt x 391.4625pt>
 File: ./Images/soa/ground_station_distributed_with_sensor.png Graphic file (type png)
 <use ./Images/soa/ground_station_distributed_with_sensor.png>
-Package pdftex.def Info: ./Images/soa/ground_station_distributed_with_sensor.png  used on input line 309.
+Package pdftex.def Info: ./Images/soa/ground_station_distributed_with_sensor.png  used on input line 336.
 (pdftex.def)             Requested size: 159.33821pt x 207.1456pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[15 <./Images/soa/drone_sw_components.png>] [16 <./Images/soa/ground_station_controller.png> <./Images/soa/ground_station_smartphone.png> <./Images/soa/ground_base_station.png> <./Images/soa/ground_station_distributed.png> <./Images/soa/ground_station_distributed_with_sensor.png>]
-<./Images/soa/easyfly_offboard_ecosystem.png, id=596, 251.43938pt x 276.28218pt>
+ [17 <./Images/soa/ground_station_controller.png> <./Images/soa/ground_station_smartphone.png> <./Images/soa/ground_base_station.png> <./Images/soa/ground_station_distributed.png> <./Images/soa/ground_station_distributed_with_sensor.png>]
+<./Images/soa/easyfly_offboard_ecosystem.png, id=616, 251.43938pt x 276.28218pt>
 File: ./Images/soa/easyfly_offboard_ecosystem.png Graphic file (type png)
 <use ./Images/soa/easyfly_offboard_ecosystem.png>
-Package pdftex.def Info: ./Images/soa/easyfly_offboard_ecosystem.png  used on input line 357.
+Package pdftex.def Info: ./Images/soa/easyfly_offboard_ecosystem.png  used on input line 386.
 (pdftex.def)             Requested size: 136.57462pt x 150.06702pt.
- [17 <./Images/soa/easyfly_offboard_ecosystem.png>] [18] [19]) [20]
+ [18 <./Images/soa/easyfly_offboard_ecosystem.png>] [19] [20]) [21]
+Package epstopdf Info: Source file: <./Images/./raggiera_polimi.eps>
+(epstopdf)                    date: 2023-10-26 23:34:52
+(epstopdf)                    size: 1813066 bytes
+(epstopdf)             Output file: <./Images/./raggiera_polimi-eps-converted-to.pdf>
+(epstopdf)                    date: 2023-10-26 23:36:50
+(epstopdf)                    size: 40517 bytes
+(epstopdf)             Command: <repstopdf --outfile=./Images/./raggiera_polimi-eps-converted-to.pdf ./Images/./raggiera_polimi.eps>
+(epstopdf)             \includegraphics on input line 202.
+Package epstopdf Info: Output file is already uptodate.
+File: ./Images/./raggiera_polimi-eps-converted-to.pdf Graphic file (type pdf)
+<use ./Images/./raggiera_polimi-eps-converted-to.pdf>
+Package pdftex.def Info: ./Images/./raggiera_polimi-eps-converted-to.pdf  used on input line 202.
+(pdftex.def)             Requested size: 507.88533pt x 507.88051pt.
+ [22
+
+]
 Chapter 3.
 (./chapters/3_tools/tools.tex
-<./Images/tools/system_overview.jpg, id=637, 337.26pt x 215.8464pt>
+<./Images/tools/system_overview.jpg, id=666, 337.26pt x 215.8464pt>
 File: ./Images/tools/system_overview.jpg Graphic file (type jpg)
 <use ./Images/tools/system_overview.jpg>
 Package pdftex.def Info: ./Images/tools/system_overview.jpg  used on input line 24.
@@ -1240,21 +1266,20 @@ Underfull \hbox (badness 3746) in paragraph at lines 27--27
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[21
+[23
 
-
-] [22 <./Images/tools/system_overview.jpg>]
-<./Images/tools/flow_deck_v2.jpg, id=655, 140.9265pt x 140.9265pt>
+] [24 <./Images/tools/system_overview.jpg>]
+<./Images/tools/flow_deck_v2.jpg, id=683, 140.9265pt x 140.9265pt>
 File: ./Images/tools/flow_deck_v2.jpg Graphic file (type jpg)
 <use ./Images/tools/flow_deck_v2.jpg>
 Package pdftex.def Info: ./Images/tools/flow_deck_v2.jpg  used on input line 77.
 (pdftex.def)             Requested size: 72.84071pt x 72.84137pt.
-<./Images/tools/z-ranger_v2.jpg, id=656, 140.9265pt x 140.9265pt>
+<./Images/tools/z-ranger_v2.jpg, id=684, 140.9265pt x 140.9265pt>
 File: ./Images/tools/z-ranger_v2.jpg Graphic file (type jpg)
 <use ./Images/tools/z-ranger_v2.jpg>
 Package pdftex.def Info: ./Images/tools/z-ranger_v2.jpg  used on input line 81.
 (pdftex.def)             Requested size: 72.84071pt x 72.84137pt.
-<./Images/tools/multi-ranger_deck.jpg, id=657, 140.9265pt x 140.9265pt>
+<./Images/tools/multi-ranger_deck.jpg, id=685, 140.9265pt x 140.9265pt>
 File: ./Images/tools/multi-ranger_deck.jpg Graphic file (type jpg)
 <use ./Images/tools/multi-ranger_deck.jpg>
 Package pdftex.def Info: ./Images/tools/multi-ranger_deck.jpg  used on input line 85.
@@ -1264,22 +1289,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 85--85
 [][]\T1/cmr/m/n/10 (c)[][] []|Multi-ranger
  []
 
-<./Images/tools/lighthouse_deck.jpg, id=658, 587.19376pt x 484.81125pt>
+<./Images/tools/lighthouse_deck.jpg, id=686, 587.19376pt x 484.81125pt>
 File: ./Images/tools/lighthouse_deck.jpg Graphic file (type jpg)
 <use ./Images/tools/lighthouse_deck.jpg>
 Package pdftex.def Info: ./Images/tools/lighthouse_deck.jpg  used on input line 89.
 (pdftex.def)             Requested size: 72.84071pt x 60.1352pt.
-<./Images/tools/ai-deck.jpg, id=659, 140.9265pt x 105.7551pt>
+<./Images/tools/ai-deck.jpg, id=687, 140.9265pt x 105.7551pt>
 File: ./Images/tools/ai-deck.jpg Graphic file (type jpg)
 <use ./Images/tools/ai-deck.jpg>
 Package pdftex.def Info: ./Images/tools/ai-deck.jpg  used on input line 93.
 (pdftex.def)             Requested size: 72.84071pt x 54.66216pt.
-[23 <./Images/tools/flow_deck_v2.jpg> <./Images/tools/z-ranger_v2.jpg> <./Images/tools/multi-ranger_deck.jpg> <./Images/tools/lighthouse_deck.jpg> <./Images/tools/ai-deck.jpg>] [24]
+[25 <./Images/tools/flow_deck_v2.jpg> <./Images/tools/z-ranger_v2.jpg> <./Images/tools/multi-ranger_deck.jpg> <./Images/tools/lighthouse_deck.jpg> <./Images/tools/ai-deck.jpg>] [26]
 Overfull \hbox (0.8709pt too wide) in paragraph at lines 157--159
 []\T1/cmr/m/n/12 The crazyflie-firmware [[]] is a soft-ware repos-i-tory that con-tains all the firmware of Crazyflie
  []
 
-<./Images/tools/software_libraries.png, id=686, 813.0375pt x 456.95718pt>
+<./Images/tools/software_libraries.png, id=714, 813.0375pt x 456.95718pt>
 File: ./Images/tools/software_libraries.png Graphic file (type png)
 <use ./Images/tools/software_libraries.png>
 Package pdftex.def Info: ./Images/tools/software_libraries.png  used on input line 163.
@@ -1287,8 +1312,8 @@ Package pdftex.def Info: ./Images/tools/software_libraries.png  used on input li
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[25] [26 <./Images/tools/software_libraries.png>] [27{c:/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-<./Images/tools/control_loop.png, id=709, 977.6525pt x 337.26pt>
+[27] [28 <./Images/tools/software_libraries.png>] [29]
+<./Images/tools/control_loop.png, id=736, 977.6525pt x 337.26pt>
 File: ./Images/tools/control_loop.png Graphic file (type png)
 <use ./Images/tools/control_loop.png>
 Package pdftex.def Info: ./Images/tools/control_loop.png  used on input line 244.
@@ -1297,19 +1322,19 @@ Package pdftex.def Info: ./Images/tools/control_loop.png  used on input line 244
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[28] [29 <./Images/tools/control_loop.png>]) [30]
+[30] [31 <./Images/tools/control_loop.png>]) [32]
 Chapter 4.
-(./chapters/4_communication/communication-framework.tex [31
+(./chapters/4_communication/communication-framework.tex [33
 
 
 ]
-<./Images/communication/communication_stack.jpg, id=733, 609.477pt x 446.8695pt>
+<./Images/communication/communication_stack.jpg, id=762, 609.477pt x 446.8695pt>
 File: ./Images/communication/communication_stack.jpg Graphic file (type jpg)
 <use ./Images/communication/communication_stack.jpg>
 Package pdftex.def Info: ./Images/communication/communication_stack.jpg  used on input line 37.
 (pdftex.def)             Requested size: 227.62206pt x 166.89378pt.
- [32 <./Images/communication/communication_stack.jpg>] [33]
-<./Images/communication/logging_manager.png, id=745, 742.57425pt x 410.7345pt>
+ [34 <./Images/communication/communication_stack.jpg>] [35]
+<./Images/communication/logging_manager.png, id=773, 742.57425pt x 410.7345pt>
 File: ./Images/communication/logging_manager.png Graphic file (type png)
 <use ./Images/communication/logging_manager.png>
 Package pdftex.def Info: ./Images/communication/logging_manager.png  used on input line 100.
@@ -1318,26 +1343,26 @@ Package pdftex.def Info: ./Images/communication/logging_manager.png  used on inp
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[34] [35 <./Images/communication/logging_manager.png>]
-<./Images/communication/parameters_manager.png, id=760, 804.606pt x 424.58624pt>
+[36] [37 <./Images/communication/logging_manager.png>]
+<./Images/communication/parameters_manager.png, id=787, 804.606pt x 424.58624pt>
 File: ./Images/communication/parameters_manager.png Graphic file (type png)
 <use ./Images/communication/parameters_manager.png>
 Package pdftex.def Info: ./Images/communication/parameters_manager.png  used on input line 136.
 (pdftex.def)             Requested size: 409.71692pt x 216.2057pt.
-) [36 <./Images/communication/parameters_manager.png>]
+) [38 <./Images/communication/parameters_manager.png>]
 Chapter 5.
-(./chapters/5_coordination/coordination-framework.tex [37
+(./chapters/5_coordination/coordination-framework.tex [39
 
 
-] [38] [39]
-<./Images/coordination/design_architecture.png, id=783, 855.195pt x 389.0535pt>
+] [40] [41]
+<./Images/coordination/design_architecture.png, id=809, 855.195pt x 389.0535pt>
 File: ./Images/coordination/design_architecture.png Graphic file (type png)
 <use ./Images/coordination/design_architecture.png>
 Package pdftex.def Info: ./Images/coordination/design_architecture.png  used on input line 107.
 (pdftex.def)             Requested size: 409.71692pt x 186.3933pt.
- [40 <./Images/coordination/design_architecture.png>] [41] (c:/texlive/2023/texmf-dist/tex/latex/listings/lstlang1.sty
+ [42 <./Images/coordination/design_architecture.png>] [43] (c:/texlive/2023/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2023/02/27 1.9 listings language file
-) [42]) [43]
+) [44]) [45]
 Package epstopdf Info: Source file: <./Images/./raggiera_polimi.eps>
 (epstopdf)                    date: 2023-10-26 23:34:52
 (epstopdf)                    size: 1813066 bytes
@@ -1351,14 +1376,14 @@ File: ./Images/./raggiera_polimi-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Images/./raggiera_polimi-eps-converted-to.pdf>
 Package pdftex.def Info: ./Images/./raggiera_polimi-eps-converted-to.pdf  used on input line 214.
 (pdftex.def)             Requested size: 507.88533pt x 507.88051pt.
- [44
+ [46
 
 ]
 Chapter 6.
-(./chapters/6_ecf/extended-crazyflie.tex [45
+(./chapters/6_ecf/extended-crazyflie.tex [47
 
 ]
-<./Images/ecf/ecf_structure.png, id=839, 202.7575pt x 176.15813pt>
+<./Images/ecf/ecf_structure.png, id=865, 202.7575pt x 176.15813pt>
 File: ./Images/ecf/ecf_structure.png Graphic file (type png)
 <use ./Images/ecf/ecf_structure.png>
 Package pdftex.def Info: ./Images/ecf/ecf_structure.png  used on input line 57.
@@ -1367,14 +1392,14 @@ Package pdftex.def Info: ./Images/ecf/ecf_structure.png  used on input line 57.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[46] [47 <./Images/ecf/ecf_structure.png>]
-<./Images/ecf/ecf_sequence.png, id=853, 609.477pt x 426.393pt>
+[48] [49 <./Images/ecf/ecf_structure.png>]
+<./Images/ecf/ecf_sequence.png, id=880, 609.477pt x 426.393pt>
 File: ./Images/ecf/ecf_sequence.png Graphic file (type png)
 <use ./Images/ecf/ecf_sequence.png>
 Package pdftex.def Info: ./Images/ecf/ecf_sequence.png  used on input line 83.
 (pdftex.def)             Requested size: 409.71692pt x 286.63823pt.
- [48 <./Images/ecf/ecf_sequence.png>]
-<./Images/ecf/ecf_module.png, id=862, 256.45813pt x 279.54437pt>
+ [50 <./Images/ecf/ecf_sequence.png>]
+<./Images/ecf/ecf_module.png, id=889, 256.45813pt x 279.54437pt>
 File: ./Images/ecf/ecf_module.png Graphic file (type png)
 <use ./Images/ecf/ecf_module.png>
 Package pdftex.def Info: ./Images/ecf/ecf_module.png  used on input line 125.
@@ -1383,7 +1408,7 @@ Package pdftex.def Info: ./Images/ecf/ecf_module.png  used on input line 125.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[49] [50 <./Images/ecf/ecf_module.png>]
+[51] [52 <./Images/ecf/ecf_module.png>]
 Overfull \hbox (9.94632pt too wide) in paragraph at lines 188--189
 [][][][][][][][][][][][][][][][][][][][] 
  []
@@ -1393,9 +1418,9 @@ Overfull \hbox (9.94632pt too wide) in paragraph at lines 201--202
 [][][][][][][][][][][][][][][] 
  []
 
-[51]) [52]
+[53]) [54]
 Chapter 7.
-(./chapters/7_modules/ecf-modules.tex [53
+(./chapters/7_modules/ecf-modules.tex [55
 
 
 ]
@@ -1403,7 +1428,7 @@ Overfull \hbox (9.94632pt too wide) in paragraph at lines 59--60
 [][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[54]
+[56]
 Overfull \hbox (73.38138pt too wide) in paragraph at lines 91--92
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -1423,24 +1448,24 @@ Overfull \hbox (52.23636pt too wide) in paragraph at lines 94--95
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[55]
-<./Images/modules/multiranger.png, id=960, 284.56313pt x 260.47313pt>
+[57]
+<./Images/modules/multiranger.png, id=988, 284.56313pt x 260.47313pt>
 File: ./Images/modules/multiranger.png Graphic file (type png)
 <use ./Images/modules/multiranger.png>
 Package pdftex.def Info: ./Images/modules/multiranger.png  used on input line 122.
 (pdftex.def)             Requested size: 227.62206pt x 208.36288pt.
- [56 <./Images/modules/multiranger.png>]
-<./Images/modules/uneven_a.png, id=972, 443.85825pt x 368.577pt>
+ [58 <./Images/modules/multiranger.png>]
+<./Images/modules/uneven_a.png, id=1000, 443.85825pt x 368.577pt>
 File: ./Images/modules/uneven_a.png Graphic file (type png)
 <use ./Images/modules/uneven_a.png>
 Package pdftex.def Info: ./Images/modules/uneven_a.png  used on input line 159.
 (pdftex.def)             Requested size: 136.57462pt x 113.41408pt.
-<./Images/modules/uneven_b.png, id=973, 479.99326pt x 369.17924pt>
+<./Images/modules/uneven_b.png, id=1001, 479.99326pt x 369.17924pt>
 File: ./Images/modules/uneven_b.png Graphic file (type png)
 <use ./Images/modules/uneven_b.png>
 Package pdftex.def Info: ./Images/modules/uneven_b.png  used on input line 163.
 (pdftex.def)             Requested size: 136.57462pt x 105.04254pt.
-<./Images/modules/uneven_c.png, id=974, 578.76225pt x 364.9635pt>
+<./Images/modules/uneven_c.png, id=1002, 578.76225pt x 364.9635pt>
 File: ./Images/modules/uneven_c.png Graphic file (type png)
 <use ./Images/modules/uneven_c.png>
 Package pdftex.def Info: ./Images/modules/uneven_c.png  used on input line 167.
@@ -1449,8 +1474,8 @@ Package pdftex.def Info: ./Images/modules/uneven_c.png  used on input line 167.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[57] [58 <./Images/modules/uneven_a.png> <./Images/modules/uneven_b.png> <./Images/modules/uneven_c.png>] [59]
-<./Images/modules/lighthouse_error_1.png, id=1005, 331.2375pt x 302.93175pt>
+[59] [60 <./Images/modules/uneven_a.png> <./Images/modules/uneven_b.png> <./Images/modules/uneven_c.png>] [61]
+<./Images/modules/lighthouse_error_1.png, id=1031, 331.2375pt x 302.93175pt>
 File: ./Images/modules/lighthouse_error_1.png Graphic file (type png)
 <use ./Images/modules/lighthouse_error_1.png>
 Package pdftex.def Info: ./Images/modules/lighthouse_error_1.png  used on input line 242.
@@ -1465,7 +1490,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 242--242
 \T1/cmr/m/n/10 flight space while us-ing the \T1/cmr/m/it/10 sim-
  []
 
-<./Images/modules/lighthouse_error_2.png, id=1006, 332.442pt x 242.70676pt>
+<./Images/modules/lighthouse_error_2.png, id=1032, 332.442pt x 242.70676pt>
 File: ./Images/modules/lighthouse_error_2.png Graphic file (type png)
 <use ./Images/modules/lighthouse_error_2.png>
 Package pdftex.def Info: ./Images/modules/lighthouse_error_2.png  used on input line 246.
@@ -1483,18 +1508,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 246--246
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[60]
+[62]
 Overfull \hbox (23.65858pt too wide) in paragraph at lines 272--275
 []\T1/cmr/m/n/12 The AI Deck is equipped with a pow-er-ful mi-cro-con-troller unit (MCU) and a field-programmable
  []
 
-[61 <./Images/modules/lighthouse_error_1.png> <./Images/modules/lighthouse_error_2.png>]) [62]
+[63 <./Images/modules/lighthouse_error_1.png> <./Images/modules/lighthouse_error_2.png>]) [64]
 Chapter 8.
-(./chapters/8_evaluation/evaluation.tex [63
+(./chapters/8_evaluation/evaluation.tex [65
 
 
-] [64] [65]
-<./Images/evaluation/simulation_environment.png, id=1046, 407.72325pt x 224.037pt>
+] [66] [67]
+<./Images/evaluation/simulation_environment.png, id=1072, 407.72325pt x 224.037pt>
 File: ./Images/evaluation/simulation_environment.png Graphic file (type png)
 <use ./Images/evaluation/simulation_environment.png>
 Package pdftex.def Info: ./Images/evaluation/simulation_environment.png  used on input line 97.
@@ -1503,68 +1528,68 @@ Package pdftex.def Info: ./Images/evaluation/simulation_environment.png  used on
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[66]
-<./Images/evaluation/exhibition.png, id=1056, 462.528pt x 346.896pt>
+[68]
+<./Images/evaluation/exhibition.png, id=1082, 462.528pt x 346.896pt>
 File: ./Images/evaluation/exhibition.png Graphic file (type png)
 <use ./Images/evaluation/exhibition.png>
 Package pdftex.def Info: ./Images/evaluation/exhibition.png  used on input line 127.
 (pdftex.def)             Requested size: 204.85846pt x 153.6457pt.
-<./Images/evaluation/obstacle_course.png, id=1057, 462.528pt x 346.896pt>
+<./Images/evaluation/obstacle_course.png, id=1083, 462.528pt x 346.896pt>
 File: ./Images/evaluation/obstacle_course.png Graphic file (type png)
 <use ./Images/evaluation/obstacle_course.png>
 Package pdftex.def Info: ./Images/evaluation/obstacle_course.png  used on input line 131.
 (pdftex.def)             Requested size: 204.85846pt x 153.6457pt.
- [67 <./Images/evaluation/simulation_environment.png>] [68 <./Images/evaluation/exhibition.png> <./Images/evaluation/obstacle_course.png>] [69]
-<./Images/evaluation/loc.png, id=1090, 361.788pt x 217.467pt>
+ [69 <./Images/evaluation/simulation_environment.png>] [70 <./Images/evaluation/exhibition.png> <./Images/evaluation/obstacle_course.png>] [71]
+<./Images/evaluation/loc.png, id=1116, 361.788pt x 217.467pt>
 File: ./Images/evaluation/loc.png Graphic file (type png)
 <use ./Images/evaluation/loc.png>
 Package pdftex.def Info: ./Images/evaluation/loc.png  used on input line 209.
 (pdftex.def)             Requested size: 273.14923pt x 164.18822pt.
-<./Images/evaluation/cc.png, id=1092, 389.82pt x 265.866pt>
+<./Images/evaluation/cc.png, id=1118, 389.82pt x 265.866pt>
 File: ./Images/evaluation/cc.png Graphic file (type png)
 <use ./Images/evaluation/cc.png>
 Package pdftex.def Info: ./Images/evaluation/cc.png  used on input line 219.
 (pdftex.def)             Requested size: 273.14923pt x 186.29558pt.
- [70 <./Images/evaluation/loc.png>] [71 <./Images/evaluation/cc.png>]
-<./Images/evaluation/exhibition_cflib_mem.png, id=1110, 647.218pt x 361.35pt>
+ [72 <./Images/evaluation/loc.png>] [73 <./Images/evaluation/cc.png>]
+<./Images/evaluation/exhibition_cflib_mem.png, id=1137, 647.218pt x 361.35pt>
 File: ./Images/evaluation/exhibition_cflib_mem.png Graphic file (type png)
 <use ./Images/evaluation/exhibition_cflib_mem.png>
 Package pdftex.def Info: ./Images/evaluation/exhibition_cflib_mem.png  used on input line 291.
 (pdftex.def)             Requested size: 204.85846pt x 114.37723pt.
-<./Images/evaluation/exhibition_ecf_mem.png, id=1111, 655.248pt x 362.956pt>
+<./Images/evaluation/exhibition_ecf_mem.png, id=1138, 655.248pt x 362.956pt>
 File: ./Images/evaluation/exhibition_ecf_mem.png Graphic file (type png)
 <use ./Images/evaluation/exhibition_ecf_mem.png>
 Package pdftex.def Info: ./Images/evaluation/exhibition_ecf_mem.png  used on input line 295.
 (pdftex.def)             Requested size: 204.85846pt x 113.4733pt.
-<./Images/evaluation/obstacle_course_cflib_mem.png, id=1112, 648.824pt x 358.941pt>
+<./Images/evaluation/obstacle_course_cflib_mem.png, id=1139, 648.824pt x 358.941pt>
 File: ./Images/evaluation/obstacle_course_cflib_mem.png Graphic file (type png)
 <use ./Images/evaluation/obstacle_course_cflib_mem.png>
 Package pdftex.def Info: ./Images/evaluation/obstacle_course_cflib_mem.png  used on input line 299.
 (pdftex.def)             Requested size: 204.85846pt x 113.3299pt.
-<./Images/evaluation/obstacle_course_ecf_mem.png, id=1113, 656.051pt x 363.759pt>
+<./Images/evaluation/obstacle_course_ecf_mem.png, id=1140, 656.051pt x 363.759pt>
 File: ./Images/evaluation/obstacle_course_ecf_mem.png Graphic file (type png)
 <use ./Images/evaluation/obstacle_course_ecf_mem.png>
 Package pdftex.def Info: ./Images/evaluation/obstacle_course_ecf_mem.png  used on input line 303.
 (pdftex.def)             Requested size: 204.85846pt x 113.5856pt.
- [72 <./Images/evaluation/exhibition_cflib_mem.png> <./Images/evaluation/exhibition_ecf_mem.png> <./Images/evaluation/obstacle_course_cflib_mem.png> <./Images/evaluation/obstacle_course_ecf_mem.png>]
-<./Images/evaluation/network.png, id=1129, 409.968pt x 259.515pt>
+ [74 <./Images/evaluation/exhibition_cflib_mem.png> <./Images/evaluation/exhibition_ecf_mem.png> <./Images/evaluation/obstacle_course_cflib_mem.png> <./Images/evaluation/obstacle_course_ecf_mem.png>]
+<./Images/evaluation/network.png, id=1155, 409.968pt x 259.515pt>
 File: ./Images/evaluation/network.png Graphic file (type png)
 <use ./Images/evaluation/network.png>
 Package pdftex.def Info: ./Images/evaluation/network.png  used on input line 317.
 (pdftex.def)             Requested size: 273.14923pt x 172.91583pt.
- [73 <./Images/evaluation/network.png>]) (./Thesis.bbl [74]
+ [75 <./Images/evaluation/network.png>]) (./Thesis.bbl [76]
 Underfull \hbox (badness 10000) in paragraph at lines 29--31
 []\T1/cmr/m/n/12 crazyflie-lib-python, .  URL [][]$\T1/cmtt/m/n/12 https : / / github . com / bitcraze /
  []
 
-[75
+[77
 
 
-] [76] [77]) [78] (./Thesis.lof)
+] [78] [79]) [80] (./Thesis.lof)
 \tf@lof=\write6
 \openout6 = `Thesis.lof'.
 
- [79
+ [81
 
 
 
@@ -1582,13 +1607,13 @@ File: ./Images/./raggiera_polimi-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Images/./raggiera_polimi-eps-converted-to.pdf>
 Package pdftex.def Info: ./Images/./raggiera_polimi-eps-converted-to.pdf  used on input line 253.
 (pdftex.def)             Requested size: 507.88533pt x 507.88051pt.
- [80
+ [82
 
 ] (./Thesis.lot)
 \tf@lot=\write7
 \openout7 = `Thesis.lot'.
 
- [81
+ [83
 
 ]
 Package epstopdf Info: Source file: <./Images/./raggiera_polimi.eps>
@@ -1604,9 +1629,9 @@ File: ./Images/./raggiera_polimi-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Images/./raggiera_polimi-eps-converted-to.pdf>
 Package pdftex.def Info: ./Images/./raggiera_polimi-eps-converted-to.pdf  used on input line 256.
 (pdftex.def)             Requested size: 507.88533pt x 507.88051pt.
- [82
+ [84
 
-] [83
+] [85
 
 ]
 Package epstopdf Info: Source file: <./Images/./raggiera_polimi.eps>
@@ -1622,7 +1647,7 @@ File: ./Images/./raggiera_polimi-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Images/./raggiera_polimi-eps-converted-to.pdf>
 Package pdftex.def Info: ./Images/./raggiera_polimi-eps-converted-to.pdf  used on input line 259.
 (pdftex.def)             Requested size: 507.88533pt x 507.88051pt.
- [84
+ [86
 
 ]
 
@@ -1635,21 +1660,21 @@ LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-10-23>
  ***********
 Package rerunfilecheck Info: File `Thesis.out' has not changed.
-(rerunfilecheck)             Checksum: AA010EAE4EDDC38B3431808AEBC4DB84;11751.
+(rerunfilecheck)             Checksum: A62F06AE3C324082D4D997F7A5CDDCBE;11751.
  ) 
 Here is how much of TeX's memory you used:
- 33929 strings out of 476306
- 630983 string characters out of 5798367
+ 33996 strings out of 476306
+ 632789 string characters out of 5798367
  1967036 words of memory out of 5000000
- 54764 multiletter control sequences out of 15000+600000
+ 54823 multiletter control sequences out of 15000+600000
  578405 words of font info for 82 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  84i,12n,93p,1246b,2099s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfcc1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc1200.pfb>
-Output written on Thesis.pdf (94 pages, 3232060 bytes).
+<c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfcc1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc1200.pfb>
+Output written on Thesis.pdf (96 pages, 3291895 bytes).
 PDF statistics:
- 1388 PDF objects out of 1440 (max. 8388607)
- 1167 compressed objects within 12 object streams
- 364 named destinations out of 1000 (max. 500000)
- 768 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1421 PDF objects out of 1440 (max. 8388607)
+ 1193 compressed objects within 12 object streams
+ 372 named destinations out of 1000 (max. 500000)
+ 783 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -120,7 +120,7 @@ The second range, the safety range, is used to prevent collision with the tracke
 \sidecaptionvpos{figure}{c}
 \begin{SCfigure}[\sidecaptionrelwidth][h]
     \includegraphics[width=0.5\textwidth]{modules/multiranger}
-    \caption{Multiranger Object Tracking behavior}\label{fig:multiranger_tracking}
+    \caption{Multiranger Object Tracking behavior.}\label{fig:multiranger_tracking}
 \end{SCfigure}
 
 The Obstacle Avoidance behavior is the opposite behavior with respect to object tracking. 
@@ -134,7 +134,7 @@ If the obstacle gets too close, the only thing the drone can do to avoid the col
 
 \section{Height Module}\label{sec:module_height}
 
-As we have seen in section\ref{deck:flow}, both the Flow deck V2 and the ZRanger deck V2 mount a sensor that allows the drone to measure its height from the ground.
+As we have seen in section~\ref{deck:flow}, both the Flow deck V2 and the ZRanger deck V2 mount a sensor that allows the drone to measure its height from the ground.
 Like the sensors equipped by the Multiranger deck, this sensor enables the height measurement of up to 4 meters, with very high precision.
 We designed the height module to manage the information provided by this sensor to simplify height-related tasks in drone applications.
 
@@ -165,7 +165,7 @@ To better understand the uneven floor problem, let's consider the example shown 
     \subfloat[State estimator perspective of stepped ground\label{fig:uneven_c}]{
         \includegraphics[width=0.30\textwidth]{modules/uneven_c}
     }
-    \caption{Uneven floor problem}\label{fig:uneven_floor}
+    \caption{Uneven floor problem.}\label{fig:uneven_floor}
 \end{figure}
 
 In the first Figure~\ref{fig:uneven_a}, the drone is flying over a flat ground, so the height sensor will contribute to the state estimate with the sensed value of 0.6 meters, which helps the State Estimator to provide a better estimate of the state (at least for the variable related with the height of the drone).
@@ -244,7 +244,7 @@ This estimation process is intended only for quick tests where the drone positio
     \subfloat[ Error distribution in the flight space while using the \textit{multi\_bs\_geometry\_estimation}\label{fig:lighthouse_error_2}]{
         \includegraphics[width=0.40\textwidth]{modules/lighthouse_error_2}
     }
-    \caption{Error distribution for Lighthouse}\label{fig:lighthouse_error}
+    \caption{Error distribution for Lighthouse.}\label{fig:lighthouse_error}
 \end{figure}
 
 To overcome this significant limitation, we developed a more accurate estimation process: \textit{multi\_bs\_geometry\_estimation}. 
