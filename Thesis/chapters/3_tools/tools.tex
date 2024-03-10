@@ -237,7 +237,7 @@ The role of these base stations is to lighten up the flight space with periodic 
 
 Onboard the Crazyflie 2.1, the Lighthouse expansion deck allows it to capture these IR beams thanks to four TS4231 IR receivers. 
 The signal captured is then passed to an ICE40UP5K FPGA that computes the angle of incidence of the IR rays with signal processing. 
-The position and the pose of the Craziflie are then finally computed from the main MCU of the Crazyflie 2.1
+The position and the pose of the Crazyflie are then finally computed from the main MCU of the Crazyflie 2.1
 By precisely capturing and processing periodic infrared beams, the system enables Crazyflie 2.1 to determine its coordinates with accuracy and efficiency.
 
 \section{State Estimate and Control}\label{sec:state_estimate_and_control}
@@ -246,13 +246,13 @@ to become useful, they need to be used cleverly to control the drone's stability
 
 This section will describe the principal software components that act in the control loop, enabling the drone to fly.
 In the Crazyflie platform, the control loop is managed inside the Crazyflie firmware (See~\ref{subsec:crazyflie-firmware}) from the sensor read to the motor thrust.
-In Figure~\ref{fig:control_loop}, we can see a representation of the control loop of the Craziflie 2.1. 
+In Figure~\ref{fig:control_loop}, we can see a representation of the control loop of the Crazyflie 2.1. 
 
 \begin{figure}[tb]
     \centering
     \includegraphics[width=0.9\textwidth]{tools/control_loop}
-    \caption[Craziflie's control loop]{
-        The control loop of the Craziflie 2.1~\cite{bitcraze}
+    \caption[Crazyflie's control loop]{
+        The control loop of the Crazyflie 2.1~\cite{bitcraze}
     }\label{fig:control_loop}
 \end{figure}
 
@@ -277,7 +277,7 @@ The choice of which state estimator to use can be forced by the user or automati
 By default, the firmware uses the lighter Complementary Filter and switches to the EKF if more sensors are available.
 
 The state control uses this estimate to elaborate the actions needed to change the current state to a target state.
-On the Craziflie's 2.1 firmware, we have three possible alternatives, ordered by complexity:
+On the Crazyflie's 2.1 firmware, we have three possible alternatives, ordered by complexity:
 \begin{itemize}
     \item Proportional Integral Derivative Controller (PID)
     \item Incremental Nonlinear Dynamic Inversion Controller (INDI)
@@ -298,7 +298,7 @@ The Commander Framework can be viewed as composed of two layers:
 
 The first layer provides low-level operations that allow writing setpoints and sending them with the custom CRTP protocol.
 
-The second layer, built upon the first, is more abstract and adds some general functionalities, e.g., take-off, land, and move-to.
+The second layer, built upon the first, is more abstract and adds some general functionality, e.g., take-off, land, and move-to.
 
 To better understand the difference between these two levels of control, we will show the implementation of a simple example for both.
 

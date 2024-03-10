@@ -83,13 +83,13 @@ A possible drawback of a poorly accurate simulation environment is that the perf
 
 In our simulation environment, we create a virtual Crazyflie 2.1 that emulates a real Crazyflie 2.1.
 Upon receiving the commands from the ground station, the virtual Crazyflie computes and updates its internal state (position, velocity, acceleration, and some sensor measures) and sends back data.
-In the current implementation of the EasyFly simulation environment, the virtual Craziflie emulates the control-related commands, logging, and parameter features.
+In the current implementation of the EasyFly simulation environment, the virtual Crazyflie emulates the control-related commands, logging, and parameter features.
 
 As shown in Figure~\ref{fig:simulation_environment}, the virtual Crazyflie communicates with the ground station's script using a UDP channel.
 Usually, the ground station script and the simulated Crazyflie run on the same machine, so the UDP communication is local.
 
 The script of the ground station is entirely independent of Crazyflie's software. 
-The execution and performance of the ground station's script are not affected by whether the Craziflie is virtual or not.
+The execution and performance of the ground station's script are not affected by whether the Crazyflie is virtual or not.
 This separation guarantees that the performance measured with EasyFly's simulation environment does not deviate from the real environment.
 
 \sidecaptionvpos{figure}{c}
