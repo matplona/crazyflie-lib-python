@@ -25,15 +25,15 @@
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Software libraries integration}}{28}{figure.caption.19}%
 \contentsline {figure}{\numberline {3.4}{\ignorespaces Craziflie's control loop}}{31}{figure.caption.20}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces The Crazyflie communication stack}}{38}{figure.caption.24}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Logging Manager's workflows.}}{41}{figure.caption.25}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Parameters Manager's workflows.}}{42}{figure.caption.26}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Extended Craziflie component structure.}}{39}{figure.caption.24}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces ECF initialization sequence diagram}}{40}{figure.caption.25}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Extended Craziflie Module internal structure.}}{42}{figure.caption.26}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces The architecture of the Coordination Framework}}{46}{figure.caption.29}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces The Crazyflie communication stack}}{46}{figure.caption.28}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Logging Manager's workflows.}}{49}{figure.caption.29}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Parameters Manager's workflows.}}{50}{figure.caption.30}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Extended Craziflie component structure.}}{53}{figure.caption.31}%
-\contentsline {figure}{\numberline {6.2}{\ignorespaces ECF initialization sequence diagram}}{54}{figure.caption.32}%
-\contentsline {figure}{\numberline {6.3}{\ignorespaces Extended Craziflie Module internal structure.}}{56}{figure.caption.33}%
+\contentsline {figure}{\numberline {6.1}{\ignorespaces The architecture of the Coordination Framework}}{54}{figure.caption.33}%
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {7.1}{\ignorespaces Multiranger Object Tracking behavior.}}{62}{figure.caption.35}%
 \contentsline {figure}{\numberline {7.2}{\ignorespaces Uneven floor problem.}}{64}{figure.caption.36}%

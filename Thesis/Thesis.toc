@@ -35,20 +35,20 @@
 \contentsline {subsection}{\numberline {3.4.3}Lighthouse Positioning System Hardware}{30}{subsection.3.4.3}%
 \contentsline {section}{\numberline {3.5}State Estimate and Control}{31}{section.3.5}%
 \contentsline {section}{\numberline {3.6}Flight Control}{32}{section.3.6}%
-\contentsline {chapter}{\numberline {4}Communication Framework}{37}{chapter.4}%
-\contentsline {section}{\numberline {4.1}The Communication Infrastructure}{37}{section.4.1}%
-\contentsline {section}{\numberline {4.2}The Design of the Communication Framework}{39}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}The Logging Manager}{39}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}The Parameters Manager}{41}{subsection.4.2.2}%
-\contentsline {chapter}{\numberline {5}Coordination Framework}{43}{chapter.5}%
-\contentsline {section}{\numberline {5.1}The Role of the Coordination Framework}{43}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Structure and Design Principles}{45}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}The Observable}{46}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}The Coordination Manager}{47}{subsection.5.2.2}%
-\contentsline {chapter}{\numberline {6}Extended Crazyflie}{51}{chapter.6}%
-\contentsline {section}{\numberline {6.1}The Structure and Design Principles of Exteded Crazyflie}{51}{section.6.1}%
-\contentsline {subsection}{\numberline {6.1.1}Extended Crazyflie Modules}{54}{subsection.6.1.1}%
-\contentsline {subsection}{\numberline {6.1.2}Use Case Scenario's Solution}{56}{subsection.6.1.2}%
+\contentsline {chapter}{\numberline {4}Extended Crazyflie}{37}{chapter.4}%
+\contentsline {section}{\numberline {4.1}The Structure and Design Principles of Exteded Crazyflie}{37}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Extended Crazyflie Modules}{40}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Use Case Scenario's Solution}{42}{subsection.4.1.2}%
+\contentsline {chapter}{\numberline {5}Communication Framework}{45}{chapter.5}%
+\contentsline {section}{\numberline {5.1}The Communication Infrastructure}{45}{section.5.1}%
+\contentsline {section}{\numberline {5.2}The Design of the Communication Framework}{47}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}The Logging Manager}{47}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}The Parameters Manager}{49}{subsection.5.2.2}%
+\contentsline {chapter}{\numberline {6}Coordination Framework}{51}{chapter.6}%
+\contentsline {section}{\numberline {6.1}The Role of the Coordination Framework}{51}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Structure and Design Principles}{53}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}The Observable}{54}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.2}The Coordination Manager}{55}{subsection.6.2.2}%
 \contentsline {chapter}{\numberline {7}ECF Modules}{59}{chapter.7}%
 \contentsline {section}{\numberline {7.1}State Estimate Module}{59}{section.7.1}%
 \contentsline {section}{\numberline {7.2}Battery Module Module}{60}{section.7.2}%

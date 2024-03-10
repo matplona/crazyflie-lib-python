@@ -22,8 +22,8 @@ In the basic settings, the drone has minimal sensors and actuators that allow it
 The platform makes available a set of expansion decks that give the drone additional sensors, making it possible to adapt it to many possible situations.
 
 
-\sidecaptionvpos{figure}{t}
-\begin{SCfigure}[\sidecaptionrelwidth][h]
+\sidecaptionvpos{figure}{c}
+\begin{SCfigure}[\sidecaptionrelwidth][t]
     \includegraphics[width=0.5\textwidth]{tools/system_overview}
     \caption[Bitcraze Ecosystem overview]{This picture represents an overview of the Bitcraze Ecosystem~\cite{bitcraze}}
     \label{fig:bitcraze_ecosystem}
@@ -33,7 +33,7 @@ The platform makes available a set of expansion decks that give the drone additi
 To coordinate the drone's operations, the platform needs a ground station that can be hosted on any computer 
 with a Python script interpreter or a mobile phone with a dedicated App installed. 
 
-The communication between the quadcopter and the ground station is handled using a dongle USB (CrazyRadio) or through Bluetooth when using the mobile App.
+The communication between the quadcopter and the ground station is handled using a dongle USB (CrazyRadio) or through Bluetooth when using the mobile app.
 
 The platform also offers multiple absolute positioning systems that allow the drone to estimate position in an absolute coordinate system.
 
@@ -300,7 +300,7 @@ The first layer provides low-level operations that allow writing setpoints and s
 
 The second layer, built upon the first, is more abstract and adds some general functionalities, e.g., take-off, land, and move-to.
 
-To bettter understand the differnce of these two level of control we will show the implementation of a simple example for both.
+To better understand the difference between these two levels of control, we will show the implementation of a simple example for both.
 
 
 The scenario is the following:
@@ -312,7 +312,7 @@ The scenario is the following:
 For the first implementation, using the low-level control mechanism (\textit{simple commander}), we have to consider that the Crazyflie needs a continuous flow of setpoints. 
 In other words, each setpoint sent from the ground station is executed only for a limited period of 0.5 seconds.
 The proposed solution must perform a timed loop to allow the Crazyflie to fly across the desired waypoints.
-In addition, we also need to manually control the takeoff phase using the same technique of the timed loop.
+In addition, we also need to manually control the takeoff phase using the same timed loop technique.
 
 In the Listing~\ref{example_simple_commander} is shown the resulting code for the simple implementation.
 
