@@ -118,7 +118,7 @@ The first range, which is the activation range, is used to determine what the tr
 The second range, the safety range, is used to prevent collision with the tracked object when it stands at a fixed point.
 
 \sidecaptionvpos{figure}{c}
-\begin{SCfigure}[\sidecaptionrelwidth][h]
+\begin{SCfigure}[\sidecaptionrelwidth][tb]
     \includegraphics[width=0.5\textwidth]{modules/multiranger}
     \caption{Multiranger Object Tracking behavior.}\label{fig:multiranger_tracking}
 \end{SCfigure}
@@ -152,7 +152,7 @@ When the ground surface is uneven, the measurement of the height sensor will act
 
 To better understand the uneven floor problem, let's consider the example shown in Figure~\ref{fig:uneven_floor}.
 
-\begin{figure}[h]
+\begin{figure}[tb]
     \centering
     \subfloat[Flat ground\label{fig:uneven_a}]{
         \includegraphics[width=0.30\textwidth]{modules/uneven_a}
@@ -235,7 +235,7 @@ In this case, the resulting position estimate in the 3D space around the origin 
 Still, as far as we move from the origin, the error in the drone position estimate will increase, possibly resulting in instabilities or even crashes.
 This estimation process is intended only for quick tests where the drone position does not deviate too much from the origin.
 
-\begin{figure}[h]
+\begin{figure}[tb]
     \centering
     \subfloat[Error distribution in the flight space while using the \textit{simple\_geometry\_estimation}\label{fig:lighthouse_error_1}]{
         \includegraphics[width=0.40\textwidth]{modules/lighthouse_error_1}

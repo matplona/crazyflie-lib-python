@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.27)  10 MAR 2024 12:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.27)  10 MAR 2024 12:24
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1193,11 +1193,7 @@ File: ./Images/soa/drone_hw_components.png Graphic file (type png)
 <use ./Images/soa/drone_hw_components.png>
 Package pdftex.def Info: ./Images/soa/drone_hw_components.png  used on input line 277.
 (pdftex.def)             Requested size: 227.62206pt x 227.62779pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[15]
+ [15]
 <./Images/soa/drone_sw_components.png, id=569, 647.41875pt x 361.35pt>
 File: ./Images/soa/drone_sw_components.png Graphic file (type png)
 <use ./Images/soa/drone_sw_components.png>
@@ -1234,12 +1230,8 @@ File: ./Images/soa/ground_station_distributed_with_sensor.png Graphic file (type
 <use ./Images/soa/ground_station_distributed_with_sensor.png>
 Package pdftex.def Info: ./Images/soa/ground_station_distributed_with_sensor.png  used on input line 346.
 (pdftex.def)             Requested size: 159.33821pt x 207.1456pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[17] [18 <./Images/soa/ground_station_controller.png> <./Images/soa/ground_station_smartphone.png> <./Images/soa/ground_base_station.png> <./Images/soa/ground_station_distributed.png> <./Images/soa/ground_station_distributed_with_sensor.png>]
-<./Images/soa/easyfly_offboard_ecosystem.png, id=631, 251.43938pt x 276.28218pt>
+ [17] [18 <./Images/soa/ground_station_controller.png> <./Images/soa/ground_station_smartphone.png> <./Images/soa/ground_base_station.png> <./Images/soa/ground_station_distributed.png> <./Images/soa/ground_station_distributed_with_sensor.png>]
+<./Images/soa/easyfly_offboard_ecosystem.png, id=632, 251.43938pt x 276.28218pt>
 File: ./Images/soa/easyfly_offboard_ecosystem.png Graphic file (type png)
 <use ./Images/soa/easyfly_offboard_ecosystem.png>
 Package pdftex.def Info: ./Images/soa/easyfly_offboard_ecosystem.png  used on input line 396.
@@ -1336,11 +1328,7 @@ File: ./Images/ecf/ecf_structure.png Graphic file (type png)
 <use ./Images/ecf/ecf_structure.png>
 Package pdftex.def Info: ./Images/ecf/ecf_structure.png  used on input line 57.
 (pdftex.def)             Requested size: 227.62206pt x 197.76613pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[38] [39 <./Images/ecf/ecf_structure.png>]
+ [38] [39 <./Images/ecf/ecf_structure.png>]
 <./Images/ecf/ecf_sequence.png, id=875, 609.477pt x 426.393pt>
 File: ./Images/ecf/ecf_sequence.png Graphic file (type png)
 <use ./Images/ecf/ecf_sequence.png>
@@ -1352,11 +1340,7 @@ File: ./Images/ecf/ecf_module.png Graphic file (type png)
 <use ./Images/ecf/ecf_module.png>
 Package pdftex.def Info: ./Images/ecf/ecf_module.png  used on input line 125.
 (pdftex.def)             Requested size: 227.62206pt x 248.11548pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[41] [42 <./Images/ecf/ecf_module.png>] [43]) [44]
+ [41] [42 <./Images/ecf/ecf_module.png>] [43]) [44]
 Chapter 5.
 (./chapters/5_communication/communication-framework.tex [45
 
@@ -1373,11 +1357,7 @@ File: ./Images/communication/logging_manager.png Graphic file (type png)
 <use ./Images/communication/logging_manager.png>
 Package pdftex.def Info: ./Images/communication/logging_manager.png  used on input line 100.
 (pdftex.def)             Requested size: 409.71692pt x 226.6254pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[48] [49 <./Images/communication/logging_manager.png>]
+ [48] [49 <./Images/communication/logging_manager.png>]
 <./Images/communication/parameters_manager.png, id=970, 804.606pt x 424.58624pt>
 File: ./Images/communication/parameters_manager.png Graphic file (type png)
 <use ./Images/communication/parameters_manager.png>
@@ -1388,13 +1368,13 @@ Chapter 6.
 (./chapters/6_coordination/coordination-framework.tex [51
 
 
-] [52] [53]
-<./Images/coordination/design_architecture.png, id=993, 855.195pt x 389.0535pt>
+] [52]
+<./Images/coordination/design_architecture.png, id=989, 855.195pt x 389.0535pt>
 File: ./Images/coordination/design_architecture.png Graphic file (type png)
 <use ./Images/coordination/design_architecture.png>
 Package pdftex.def Info: ./Images/coordination/design_architecture.png  used on input line 107.
 (pdftex.def)             Requested size: 409.71692pt x 186.3933pt.
- [54 <./Images/coordination/design_architecture.png>] [55] [56]) [57]
+ [53] [54 <./Images/coordination/design_architecture.png>] [55] [56]) [57]
 Package epstopdf Info: Source file: <./Images/./raggiera_polimi.eps>
 (epstopdf)                    date: 2023-10-26 23:34:52
 (epstopdf)                    size: 1813066 bytes
@@ -1436,11 +1416,7 @@ File: ./Images/modules/uneven_c.png Graphic file (type png)
 <use ./Images/modules/uneven_c.png>
 Package pdftex.def Info: ./Images/modules/uneven_c.png  used on input line 167.
 (pdftex.def)             Requested size: 136.57462pt x 86.12283pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[63] [64 <./Images/modules/uneven_a.png> <./Images/modules/uneven_b.png> <./Images/modules/uneven_c.png>] [65]
+ [63] [64 <./Images/modules/uneven_a.png> <./Images/modules/uneven_b.png> <./Images/modules/uneven_c.png>] [65]
 <./Images/modules/lighthouse_error_1.png, id=1129, 331.2375pt x 302.93175pt>
 File: ./Images/modules/lighthouse_error_1.png Graphic file (type png)
 <use ./Images/modules/lighthouse_error_1.png>
@@ -1530,13 +1506,12 @@ File: ./Images/evaluation/obstacle_course_ecf_mem.png Graphic file (type png)
 <use ./Images/evaluation/obstacle_course_ecf_mem.png>
 Package pdftex.def Info: ./Images/evaluation/obstacle_course_ecf_mem.png  used on input line 303.
 (pdftex.def)             Requested size: 204.85846pt x 113.5856pt.
- [78 <./Images/evaluation/exhibition_cflib_mem.png> <./Images/evaluation/exhibition_ecf_mem.png> <./Images/evaluation/obstacle_course_cflib_mem.png> <./Images/evaluation/obstacle_course_ecf_mem.png>]
-<./Images/evaluation/network.png, id=1253, 409.968pt x 259.515pt>
+<./Images/evaluation/network.png, id=1239, 409.968pt x 259.515pt>
 File: ./Images/evaluation/network.png Graphic file (type png)
 <use ./Images/evaluation/network.png>
 Package pdftex.def Info: ./Images/evaluation/network.png  used on input line 317.
 (pdftex.def)             Requested size: 273.14923pt x 172.91583pt.
- [79 <./Images/evaluation/network.png>]) (./Thesis.bbl [80]
+ [78]) (./Thesis.bbl [79 <./Images/evaluation/exhibition_cflib_mem.png> <./Images/evaluation/exhibition_ecf_mem.png> <./Images/evaluation/obstacle_course_cflib_mem.png> <./Images/evaluation/obstacle_course_ecf_mem.png>] [80 <./Images/evaluation/network.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 29--31
 []\T1/cmr/m/n/12 crazyflie-lib-python, .  URL [][]$\T1/cmtt/m/n/12 https : / / github . com / bitcraze /
  []
@@ -1644,15 +1619,15 @@ Package rerunfilecheck Info: File `Thesis.out' has not changed.
 (rerunfilecheck)             Checksum: 6D1B6E584B78A035219A42ECD9D7F7D2;11812.
  ) 
 Here is how much of TeX's memory you used:
- 34145 strings out of 476306
- 635297 string characters out of 5798367
+ 34144 strings out of 476306
+ 635288 string characters out of 5798367
  2028036 words of memory out of 5000000
- 54884 multiletter control sequences out of 15000+600000
+ 54883 multiletter control sequences out of 15000+600000
  579484 words of font info for 84 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  84i,12n,98p,1246b,2169s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfcc1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc1200.pfb>
-Output written on Thesis.pdf (102 pages, 3365806 bytes).
+Output written on Thesis.pdf (102 pages, 3365546 bytes).
 PDF statistics:
  1554 PDF objects out of 1728 (max. 8388607)
  1314 compressed objects within 14 object streams

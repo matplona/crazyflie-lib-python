@@ -50,9 +50,9 @@
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Second application scenario: drone obstacle course}}}{74}{subfigure.2.2}%
 \contentsline {figure}{\numberline {8.3}{\ignorespaces Lines of Code.}}{76}{figure.caption.41}%
 \contentsline {figure}{\numberline {8.4}{\ignorespaces Cyclomatic Complexity.}}{77}{figure.caption.42}%
-\contentsline {figure}{\numberline {8.5}{\ignorespaces Memory (RAM) usage.}}{78}{figure.caption.45}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Scenario: exhibition with cflib}}}{78}{subfigure.5.1}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Scenario: exhibition with EasyFly}}}{78}{subfigure.5.2}%
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Scenario: obstacle course with cflib}}}{78}{subfigure.5.3}%
-\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Scenario: obstacle course with EasyFly}}}{78}{subfigure.5.4}%
-\contentsline {figure}{\numberline {8.6}{\ignorespaces Network load.}}{79}{figure.caption.46}%
+\contentsline {figure}{\numberline {8.5}{\ignorespaces Memory (RAM) usage.}}{79}{figure.caption.45}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Scenario: exhibition with cflib}}}{79}{subfigure.5.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Scenario: exhibition with EasyFly}}}{79}{subfigure.5.2}%
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Scenario: obstacle course with cflib}}}{79}{subfigure.5.3}%
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Scenario: obstacle course with EasyFly}}}{79}{subfigure.5.4}%
+\contentsline {figure}{\numberline {8.6}{\ignorespaces Network load.}}{80}{figure.caption.46}%

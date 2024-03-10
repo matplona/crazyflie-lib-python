@@ -53,7 +53,7 @@ The type of modules instantiated is automatically determined by the ECF componen
 We will enter more in detail about such modules in the following sections; for now, let us consider these modules as an encapsulated set of functionalities.
  
 \sidecaptionvpos{figure}{c}
-\begin{SCfigure}[\sidecaptionrelwidth][h]
+\begin{SCfigure}[\sidecaptionrelwidth][tb]
     \includegraphics[width=0.5\textwidth]{ecf/ecf_structure}
     \caption{Extended Craziflie component structure.}\label{fig:ecf_structure}
 \end{SCfigure}
@@ -78,7 +78,7 @@ To do so, it uses the Parameters Managers; by reading some parameters, it can ea
 Each module can be viewed as a simple component, so for each module needed, the ECF creates a new instance of the module's component and stores it in its local storage. 
 The ECF stores its modules in a local repository so that each module's instance can be retrieved straightforwardly by knowing the module's type.
 
-\begin{figure}[h]
+\begin{figure}[tb]
     \centering
     \includegraphics[width=0.9\textwidth]{ecf/ecf_sequence} 
     \caption[ECF initialization sequence diagram]{The sequence diagram of the initialization of the Extended Craziflie shows the operations performed to have a working instance of the component}\label{fig:ecf_sequence}
@@ -121,7 +121,7 @@ As the last fundamental component, the ECF Module can include some utility funct
 In the next chapter (see Chapter~\ref{ch:modules}), we will better analyze ECF modules and their utility functions.
 
 \sidecaptionvpos{figure}{c}
-\begin{SCfigure}[\sidecaptionrelwidth][h]
+\begin{SCfigure}[\sidecaptionrelwidth][tb]
     \includegraphics[width=0.5\textwidth]{ecf/ecf_module}
     \caption{Extended Craziflie Module internal structure.}\label{fig:ecf_module_structure}
 \end{SCfigure}

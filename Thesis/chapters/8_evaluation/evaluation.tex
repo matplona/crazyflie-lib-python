@@ -93,7 +93,7 @@ The execution and performance of the ground station's script are not affected by
 This separation guarantees that the performance measured with EasyFly's simulation environment does not deviate from the real environment.
 
 \sidecaptionvpos{figure}{c}
-\begin{SCfigure}[\sidecaptionrelwidth][b]
+\begin{SCfigure}[\sidecaptionrelwidth][tb]
     \includegraphics[width=0.5\textwidth]{evaluation/simulation_environment}
     \caption{Structure of EasyFly simulation environment.}\label{fig:simulation_environment}
 \end{SCfigure}
@@ -120,7 +120,7 @@ We then implemented a script to navigate safely in the provided environment.
 We also adopted the obstacle avoidance mechanism in this application to avoid unpredicted crashes.
 In Figure~\ref{fig:obstacle_course}, we can see the trajectory followed by the virtual Crazyflie during the performance measurement of this application.
 
-\begin{figure}[t]
+\begin{figure}[tb]
     \centering
     \subfloat[First application scenario: drone exhibition\label{fig:exhibition}]{
         \includegraphics[width=0.45\textwidth]{evaluation/exhibition}
@@ -204,7 +204,7 @@ The complexity analysis represents the core part of the evaluation and is compos
     \item Halstead Metrics (HAL)
 \end{itemize}
 
-\begin{figure}[t]
+\begin{figure}[tb]
     \centering
     \includegraphics[width=0.6\textwidth]{evaluation/loc}
     \caption{Lines of Code.}\label{fig:loc_count}
@@ -214,7 +214,7 @@ Looking at the results, it is crystal clear that our programming environment, Ea
 Starting from the most straightforward metric, LOC, we can see in Figure~\ref{fig:loc_count} that the results are, in both scenarios, halving the count.
 EasyFly, with respect to cflib, allows you to write the same application with half of the code.
 
-\begin{figure}[t]
+\begin{figure}[tb]
     \centering
     \includegraphics[width=0.6\textwidth]{evaluation/cc}
     \caption{Cyclomatic Complexity.}\label{fig:cc}
@@ -228,7 +228,7 @@ The last metric for complexity, HAL, by looking at the results in Table~\ref{tab
 In particular, in this case, it is much more evident that the performance gap between cflib and EasyFly increases with complexity.
 Here, for the Effort (\( E \)), we observed a gap of over 55\% for the second scenario.
 
-\begin{table}[b]
+\begin{table}[tb]
     \centering
         \begin{tabular}{*{6}{|c}|}
         \hline
@@ -256,7 +256,7 @@ An important observation needs to be around the average CPU consumption.
 In this measurement, we can see that the metrics for EasyFly are not so far from the standard cflib, and, in the first more straightforward scenario, it is also better.
 These metrics indicate that EsayFly is more flexible and better adapts resource utilization across different situations.
 
-\begin{table}[t]
+\begin{table}[tb]
     \centering
         \begin{tabular}{*{3}{|c}|}
         \hline
@@ -284,7 +284,7 @@ The first is that memory consumption is in the order of hundreds of MiB; hence, 
 The second fact is that by increasing the complexity of the application scenario, the gap between the cflib and EasyFly is constant; 
 this suggests that the memory consumption will never drift from the performance of the standard cflib.
 
-\begin{figure}[t]
+\begin{figure}[tb]
     \centering
     \subfloat[Scenario: exhibition with cflib\label{fig:mem_ex_cflib}]{
         \includegraphics[width=0.45\textwidth]{evaluation/exhibition_cflib_mem}
@@ -312,7 +312,7 @@ The point of view of the measurement is that of the ground station. Out-packages
 Thanks to the optimization made by the Communication Framework hosted on EasyFly, we can observe a slightly better result for the network load metric.
 In particular, Easyfly automatically optimizes the logging task, reducing the cost of communication.
 
-\begin{figure}[t]
+\begin{figure}[tb]
     \centering
     \includegraphics[width=0.6\textwidth]{evaluation/network}
     \caption{Network load.}\label{fig:network_load}

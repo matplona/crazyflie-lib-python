@@ -33,7 +33,7 @@ The CRTP layer introduces the concept of a logical packet; each packet measures 
 The tuple \textit{port:channel} allows the packet to be delivered to the specialized subsystem that receives and processes the message.
 
 \sidecaptionvpos{figure}{c}
-\begin{SCfigure}[\sidecaptionrelwidth][h]
+\begin{SCfigure}[\sidecaptionrelwidth][tb]
     \includegraphics[width=0.5\textwidth]{communication/communication_stack}
     \caption[The Crazyflie communication stack]{The Crayzyflie communication stack is composed of 4 independent layers: Subsystems, CRTP, Link, Physical medium}
     \label{fig:communication_stack}
@@ -95,7 +95,7 @@ When the logging process starts, the Crazyflie sends periodic messages containin
 Each time an update occurs, the Logging Manager checks whether any subscriber is watching that variable. 
 If so, for each subscriber, it evaluates the predicate and eventually notifies the subscriber by calling the registered callback. 
 
-\begin{figure}[h]
+\begin{figure}[tb]
     \centering
     \includegraphics[width=0.9\textwidth]{communication/logging_manager}
     \caption{Logging Manager's workflows.}\label{fig:logging_manager}
@@ -131,7 +131,7 @@ then, when the Crayzyflie successfully completes the update, it notifies the gro
 
 Once the Parameters Manager receives a value, it uses the internal publish/subscribe system to notify subscribers.  
 
-\begin{figure}[h]
+\begin{figure}[tb]
     \centering
     \includegraphics[width=0.9\textwidth]{communication/parameters_manager}
     \caption{Parameters Manager's workflows.}\label{fig:parameters_manager}

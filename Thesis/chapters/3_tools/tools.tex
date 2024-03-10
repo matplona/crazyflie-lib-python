@@ -23,7 +23,7 @@ The platform makes available a set of expansion decks that give the drone additi
 
 
 \sidecaptionvpos{figure}{c}
-\begin{SCfigure}[\sidecaptionrelwidth][t]
+\begin{SCfigure}[\sidecaptionrelwidth][tb]
     \includegraphics[width=0.5\textwidth]{tools/system_overview}
     \caption[Bitcraze Ecosystem overview]{This picture represents an overview of the Bitcraze Ecosystem~\cite{bitcraze}}
     \label{fig:bitcraze_ecosystem}
@@ -73,7 +73,7 @@ To overcome this limitation, the drone can be equipped with additional decks tha
 The platform offers a variety of expansion decks, but for the purpose of our work, only a subset of them has been selected.
 Figure~\ref{fig:decks} shows the expansion decks selected, particularly those that can enable in some way the HDI.
 
-\begin{figure}[h]
+\begin{figure}[tb]
     \centering
     \subfloat[Flow deck v2\label{fig:flow_deck}]{
         \includegraphics[width=0.16\textwidth]{tools/flow_deck_v2}
@@ -158,7 +158,7 @@ The crazyflie-firmware~\cite{crazyflie-firmware} is a software repository that c
 The firmware is written in C++ and handles the main autopilot on the STM32F4; it contains the driver of each possible expansion deck and controls all the communication on the opposite side of the cflib.
 
 
-\begin{figure}[h]
+\begin{figure}[tb]
     \centering
     \includegraphics[width=0.9\textwidth]{tools/software_libraries}
     \caption[Software libraries integration]{
@@ -248,7 +248,7 @@ This section will describe the principal software components that act in the con
 In the Crazyflie platform, the control loop is managed inside the Crazyflie firmware (See~\ref{subsec:crazyflie-firmware}) from the sensor read to the motor thrust.
 In Figure~\ref{fig:control_loop}, we can see a representation of the control loop of the Craziflie 2.1. 
 
-\begin{figure}[t]
+\begin{figure}[tb]
     \centering
     \includegraphics[width=0.9\textwidth]{tools/control_loop}
     \caption[Craziflie's control loop]{
@@ -322,11 +322,11 @@ Moreover, it automatically executes the takeoff and landing by specifying the de
 
 The resulting script (Listing~\ref{example_motion_commander}) is more straightforward and readable.
 
-\begin{figure}[t]
+\begin{figure}[tb]
     \centering
     \lstinputlisting[language=Python, caption={Waypoint navigation implemented using \textit{simple commander}}, label=example_simple_commander]{Scripts/tools_simple_commander.py}
 \end{figure}
-\begin{figure}[b]
+\begin{figure}[tb]
     \centering
     \lstinputlisting[language=Python, caption={Waypoint navigation implemented using \textit{motion commander}}, label=example_motion_commander]{Scripts/tools_motion_commander.py}
 \end{figure}
