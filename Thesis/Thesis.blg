@@ -42,6 +42,7 @@ Warning--entry type for "memoryProfiler" isn't style-file defined
 Warning--entry type for "radon" isn't style-file defined
 --line 382 of file Thesis_bibliography.bib
 Warning--to sort, need author or key in dronearena
+Warning--to sort, need author or key in bitcraze
 Warning--to sort, need author or key in curiosity
 Warning--to sort, need author or key in wingDrones
 Warning--to sort, need author or key in parrot
@@ -53,7 +54,6 @@ Warning--to sort, need author or key in cube
 Warning--to sort, need author or key in navio2
 Warning--to sort, need author or key in sphinx
 Warning--to sort, need author or key in DIJflightSimulator
-Warning--to sort, need author or key in bitcraze
 Warning--to sort, need author or key in crazyflie
 Warning--to sort, need author or key in crazyflie-lib-python
 Warning--to sort, need author or key in crazyflie-firmware

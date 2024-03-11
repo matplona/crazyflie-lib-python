@@ -500,15 +500,6 @@ INPUT ./chapters/1_intro/introduction.tex
 INPUT ./chapters/1_intro/introduction.tex
 INPUT ./chapters/1_intro/introduction.tex
 INPUT chapters/1_intro/introduction.tex
-INPUT ./Images/./raggiera_polimi.eps
-INPUT ./Images/./raggiera_polimi.eps
-INPUT ./Images/./raggiera_polimi.eps
-INPUT ./Images/./raggiera_polimi.eps
-INPUT ./Images/./raggiera_polimi-eps-converted-to.pdf
-INPUT ./Images/./raggiera_polimi-eps-converted-to.pdf
-INPUT ./Images/./raggiera_polimi.eps
-INPUT ./Images/./raggiera_polimi-eps-converted-to.pdf
-INPUT ./Images/./raggiera_polimi-eps-converted-to.pdf
 INPUT ./chapters/2_soa/state-of-the-atr.tex
 INPUT ./chapters/2_soa/state-of-the-atr.tex
 INPUT chapters/2_soa/state-of-the-atr.tex

@@ -9,6 +9,10 @@
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {6.1}{\ignorespaces Use case scenario of inter-drone communication.}}{53}{table.caption.31}%
 \addvspace {10\p@ }
+\contentsline {table}{\numberline {7.1}{\ignorespaces ECF State Estimate Module's state.}}{63}{table.caption.35}%
+\contentsline {table}{\numberline {7.2}{\ignorespaces ECF Battery Module's state.}}{64}{table.caption.36}%
+\contentsline {table}{\numberline {7.3}{\ignorespaces ECF Multiranger Module's state.}}{65}{table.caption.37}%
+\contentsline {table}{\numberline {7.4}{\ignorespaces ECF Height Module's state.}}{66}{table.caption.39}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {8.1}{\ignorespaces Halstead Metrics.}}{79}{table.caption.43}%
-\contentsline {table}{\numberline {8.2}{\ignorespaces CPU consumption.}}{80}{table.caption.44}%
+\contentsline {table}{\numberline {8.1}{\ignorespaces Halstead Metrics.}}{81}{table.caption.47}%
+\contentsline {table}{\numberline {8.2}{\ignorespaces CPU consumption.}}{82}{table.caption.48}%

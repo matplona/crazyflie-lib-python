@@ -133,5 +133,30 @@ EasyFly tries to overcome all the issues related to this phase by creating a sim
 Moreover, it tries to offer a new perspective in the investigation of human-drone interactions where the user plays the role of the programmer.
 
 \section{Overview}\label{sec:intro_overview}
+This section aims to provide a guideline for our thesis work.
 
-TODO at the end
+In Chapter~\ref{ch:soa}, we will start by giving a global picture of the current state of the art.
+To better understand the background of our work, we divided the literature analysis into two main sections. 
+The first part is mainly related to the human-drone interaction research, while the second part focuses on the programming environments for drone applications.
+
+In Chapter~\ref{ch:tools}, we give an overview of the set of tools used as a baseline for this work. 
+In particular, we will see the fundamentals of the CrazyFlie platform produced by Bitcraze~\cite{bitcraze}.
+
+The Chapter~\ref{ch:ecf} sings the beginning of our contribution. 
+In this chapter, we will present the main component of our programming environment: the Extended Crazyflie (ECF).
+The ECF acts as a parent container for all the other parts of EasyFly.
+
+We then move on to describe the various parts of the programming environment more in detail. 
+In particular, in Chapter~\ref{ch:communication}, we will present the Communication Framework that is the main component to handle the communication flow to and from the Crazyflie.
+This Framework is split into two specific implementations, each of which handles a specific direction of the flow of communication. 
+The Logging Managers handle the communication from Crazyflie, such as telemetry data.
+The Parameters Managers, on the other hand, handle the communication directed to the CrazyFlie, such as configuration parameters.
+
+In Chapter~\ref{ch:coordination}, we will describe the other frameworks of the EasyFly programming environment: the Coordination Framework.
+This Framework is an event-based system that allows the developer to solve their application by specifying how to react upon receiving events.
+This framework's role is central and allows developers to write simpler solutions with less effort.
+
+In Chapter~\ref{ch:modules}, we present the last part of EasyFly, which is a set of Modules (ECF Modules) that enrich the programming environment capabilities by adding specific functionality that developers can use to implement more clean and faster solutions.
+These Modules give the EasyFly programming environment a modularized design suitable for highly dynamic applications. 
+
+We conclude our work in Chapter~\ref{ch:conclusions} with a detailed evaluation of our programming environment.
