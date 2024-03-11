@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.27)  10 MAR 2024 19:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.27)  11 MAR 2024 04:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1361,32 +1361,51 @@ Chapter 5.
 <./Images/communication/communication_stack.jpg, id=896, 609.477pt x 446.8695pt>
 File: ./Images/communication/communication_stack.jpg Graphic file (type jpg)
 <use ./Images/communication/communication_stack.jpg>
-Package pdftex.def Info: ./Images/communication/communication_stack.jpg  used on input line 37.
+Package pdftex.def Info: ./Images/communication/communication_stack.jpg  used on input line 40.
 (pdftex.def)             Requested size: 227.62206pt x 166.89378pt.
- [44 <./Images/communication/communication_stack.jpg>] [45]
-<./Images/communication/logging_manager.png, id=908, 742.57425pt x 410.7345pt>
+ [44 <./Images/communication/communication_stack.jpg>] [45] [46]
+<./Images/communication/logging_manager.png, id=912, 742.57425pt x 410.7345pt>
 File: ./Images/communication/logging_manager.png Graphic file (type png)
 <use ./Images/communication/logging_manager.png>
-Package pdftex.def Info: ./Images/communication/logging_manager.png  used on input line 100.
+Package pdftex.def Info: ./Images/communication/logging_manager.png  used on input line 132.
 (pdftex.def)             Requested size: 409.71692pt x 226.6254pt.
- [46] [47 <./Images/communication/logging_manager.png>]
-<./Images/communication/parameters_manager.png, id=922, 804.606pt x 424.58624pt>
+ [47]
+<./Images/communication/parameters_manager.png, id=921, 804.606pt x 424.58624pt>
 File: ./Images/communication/parameters_manager.png Graphic file (type png)
 <use ./Images/communication/parameters_manager.png>
-Package pdftex.def Info: ./Images/communication/parameters_manager.png  used on input line 136.
+Package pdftex.def Info: ./Images/communication/parameters_manager.png  used on input line 160.
 (pdftex.def)             Requested size: 409.71692pt x 216.2057pt.
-) [48 <./Images/communication/parameters_manager.png>]
+) [48 <./Images/communication/logging_manager.png>] [49 <./Images/communication/parameters_manager.png>]
+Package epstopdf Info: Source file: <./Images/./raggiera_polimi.eps>
+(epstopdf)                    date: 2023-10-26 23:34:52
+(epstopdf)                    size: 1813066 bytes
+(epstopdf)             Output file: <./Images/./raggiera_polimi-eps-converted-to.pdf>
+(epstopdf)                    date: 2023-10-26 23:36:50
+(epstopdf)                    size: 40517 bytes
+(epstopdf)             Command: <repstopdf --outfile=./Images/./raggiera_polimi-eps-converted-to.pdf ./Images/./raggiera_polimi.eps>
+(epstopdf)             \includegraphics on input line 213.
+Package epstopdf Info: Output file is already uptodate.
+File: ./Images/./raggiera_polimi-eps-converted-to.pdf Graphic file (type pdf)
+<use ./Images/./raggiera_polimi-eps-converted-to.pdf>
+Package pdftex.def Info: ./Images/./raggiera_polimi-eps-converted-to.pdf  used on input line 213.
+(pdftex.def)             Requested size: 507.88533pt x 507.88051pt.
+ [50
+
+]
 Chapter 6.
-(./chapters/6_coordination/coordination-framework.tex [49
+(./chapters/6_coordination/coordination-framework.tex [51
 
-
-] [50]
-<./Images/coordination/design_architecture.png, id=939, 855.195pt x 389.0535pt>
+] [52] [53]
+<./Images/coordination/design_architecture.png, id=964, 855.195pt x 389.0535pt>
 File: ./Images/coordination/design_architecture.png Graphic file (type png)
 <use ./Images/coordination/design_architecture.png>
-Package pdftex.def Info: ./Images/coordination/design_architecture.png  used on input line 107.
+Package pdftex.def Info: ./Images/coordination/design_architecture.png  used on input line 135.
 (pdftex.def)             Requested size: 409.71692pt x 186.3933pt.
- [51] [52 <./Images/coordination/design_architecture.png>] [53] [54]) [55]
+ [54] [55 <./Images/coordination/design_architecture.png>] [56] [57] (./Scripts/coordination_example.py)
+
+LaTeX Warning: Float too large for page by 36.35143pt on input line 226.
+
+) [58] [59]
 Package epstopdf Info: Source file: <./Images/./raggiera_polimi.eps>
 (epstopdf)                    date: 2023-10-26 23:34:52
 (epstopdf)                    size: 1813066 bytes
@@ -1400,36 +1419,36 @@ File: ./Images/./raggiera_polimi-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Images/./raggiera_polimi-eps-converted-to.pdf>
 Package pdftex.def Info: ./Images/./raggiera_polimi-eps-converted-to.pdf  used on input line 217.
 (pdftex.def)             Requested size: 507.88533pt x 507.88051pt.
- [56
+ [60
 
 ]
 Chapter 7.
-(./chapters/7_modules/ecf-modules.tex [57
+(./chapters/7_modules/ecf-modules.tex [61
 
-] [58] [59]
-<./Images/modules/multiranger.png, id=1038, 284.56313pt x 260.47313pt>
+] [62] [63]
+<./Images/modules/multiranger.png, id=1105, 284.56313pt x 260.47313pt>
 File: ./Images/modules/multiranger.png Graphic file (type png)
 <use ./Images/modules/multiranger.png>
 Package pdftex.def Info: ./Images/modules/multiranger.png  used on input line 122.
 (pdftex.def)             Requested size: 227.62206pt x 208.36288pt.
- [60 <./Images/modules/multiranger.png>]
-<./Images/modules/uneven_a.png, id=1048, 443.85825pt x 368.577pt>
+ [64 <./Images/modules/multiranger.png>]
+<./Images/modules/uneven_a.png, id=1115, 443.85825pt x 368.577pt>
 File: ./Images/modules/uneven_a.png Graphic file (type png)
 <use ./Images/modules/uneven_a.png>
 Package pdftex.def Info: ./Images/modules/uneven_a.png  used on input line 159.
 (pdftex.def)             Requested size: 136.57462pt x 113.41408pt.
-<./Images/modules/uneven_b.png, id=1049, 479.99326pt x 369.17924pt>
+<./Images/modules/uneven_b.png, id=1116, 479.99326pt x 369.17924pt>
 File: ./Images/modules/uneven_b.png Graphic file (type png)
 <use ./Images/modules/uneven_b.png>
 Package pdftex.def Info: ./Images/modules/uneven_b.png  used on input line 163.
 (pdftex.def)             Requested size: 136.57462pt x 105.04254pt.
-<./Images/modules/uneven_c.png, id=1050, 578.76225pt x 364.9635pt>
+<./Images/modules/uneven_c.png, id=1117, 578.76225pt x 364.9635pt>
 File: ./Images/modules/uneven_c.png Graphic file (type png)
 <use ./Images/modules/uneven_c.png>
 Package pdftex.def Info: ./Images/modules/uneven_c.png  used on input line 167.
 (pdftex.def)             Requested size: 136.57462pt x 86.12283pt.
- [61] [62 <./Images/modules/uneven_a.png> <./Images/modules/uneven_b.png> <./Images/modules/uneven_c.png>] [63]
-<./Images/modules/lighthouse_error_1.png, id=1080, 331.2375pt x 302.93175pt>
+ [65] [66 <./Images/modules/uneven_a.png> <./Images/modules/uneven_b.png> <./Images/modules/uneven_c.png>] [67]
+<./Images/modules/lighthouse_error_1.png, id=1146, 331.2375pt x 302.93175pt>
 File: ./Images/modules/lighthouse_error_1.png Graphic file (type png)
 <use ./Images/modules/lighthouse_error_1.png>
 Package pdftex.def Info: ./Images/modules/lighthouse_error_1.png  used on input line 242.
@@ -1444,7 +1463,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 242--242
 \T1/cmr/m/n/10 flight space while us-ing the \T1/cmr/m/it/10 sim-
  []
 
-<./Images/modules/lighthouse_error_2.png, id=1081, 332.442pt x 242.70676pt>
+<./Images/modules/lighthouse_error_2.png, id=1147, 332.442pt x 242.70676pt>
 File: ./Images/modules/lighthouse_error_2.png Graphic file (type png)
 <use ./Images/modules/lighthouse_error_2.png>
 Package pdftex.def Info: ./Images/modules/lighthouse_error_2.png  used on input line 246.
@@ -1459,83 +1478,83 @@ Underfull \hbox (badness 10000) in paragraph at lines 246--246
 \T1/cmr/m/n/10 flight space while us-ing the
  []
 
-[64 <./Images/modules/lighthouse_error_1.png> <./Images/modules/lighthouse_error_2.png>]
+[68 <./Images/modules/lighthouse_error_1.png> <./Images/modules/lighthouse_error_2.png>]
 Overfull \hbox (23.65858pt too wide) in paragraph at lines 272--275
 []\T1/cmr/m/n/12 The AI Deck is equipped with a pow-er-ful mi-cro-con-troller unit (MCU) and a field-programmable
  []
 
-[65]) [66]
+[69]) [70]
 Chapter 8.
-(./chapters/8_evaluation/evaluation.tex [67
+(./chapters/8_evaluation/evaluation.tex [71
 
 
-] [68] [69]
-<./Images/evaluation/simulation_environment.png, id=1122, 407.72325pt x 224.037pt>
+] [72] [73]
+<./Images/evaluation/simulation_environment.png, id=1187, 407.72325pt x 224.037pt>
 File: ./Images/evaluation/simulation_environment.png Graphic file (type png)
 <use ./Images/evaluation/simulation_environment.png>
 Package pdftex.def Info: ./Images/evaluation/simulation_environment.png  used on input line 97.
 (pdftex.def)             Requested size: 227.62206pt x 125.07356pt.
- [70]
-<./Images/evaluation/exhibition.png, id=1132, 462.528pt x 346.896pt>
+ [74]
+<./Images/evaluation/exhibition.png, id=1197, 462.528pt x 346.896pt>
 File: ./Images/evaluation/exhibition.png Graphic file (type png)
 <use ./Images/evaluation/exhibition.png>
 Package pdftex.def Info: ./Images/evaluation/exhibition.png  used on input line 127.
 (pdftex.def)             Requested size: 204.85846pt x 153.6457pt.
-<./Images/evaluation/obstacle_course.png, id=1133, 462.528pt x 346.896pt>
+<./Images/evaluation/obstacle_course.png, id=1198, 462.528pt x 346.896pt>
 File: ./Images/evaluation/obstacle_course.png Graphic file (type png)
 <use ./Images/evaluation/obstacle_course.png>
 Package pdftex.def Info: ./Images/evaluation/obstacle_course.png  used on input line 131.
 (pdftex.def)             Requested size: 204.85846pt x 153.6457pt.
- [71 <./Images/evaluation/simulation_environment.png>] [72 <./Images/evaluation/exhibition.png> <./Images/evaluation/obstacle_course.png>] [73]
-<./Images/evaluation/loc.png, id=1165, 361.788pt x 217.467pt>
+ [75 <./Images/evaluation/simulation_environment.png>] [76 <./Images/evaluation/exhibition.png> <./Images/evaluation/obstacle_course.png>] [77]
+<./Images/evaluation/loc.png, id=1231, 361.788pt x 217.467pt>
 File: ./Images/evaluation/loc.png Graphic file (type png)
 <use ./Images/evaluation/loc.png>
 Package pdftex.def Info: ./Images/evaluation/loc.png  used on input line 209.
 (pdftex.def)             Requested size: 273.14923pt x 164.18822pt.
-<./Images/evaluation/cc.png, id=1167, 389.82pt x 265.866pt>
+<./Images/evaluation/cc.png, id=1233, 389.82pt x 265.866pt>
 File: ./Images/evaluation/cc.png Graphic file (type png)
 <use ./Images/evaluation/cc.png>
 Package pdftex.def Info: ./Images/evaluation/cc.png  used on input line 219.
 (pdftex.def)             Requested size: 273.14923pt x 186.29558pt.
- [74 <./Images/evaluation/loc.png>] [75 <./Images/evaluation/cc.png>]
-<./Images/evaluation/exhibition_cflib_mem.png, id=1186, 647.218pt x 361.35pt>
+ [78 <./Images/evaluation/loc.png>] [79 <./Images/evaluation/cc.png>]
+<./Images/evaluation/exhibition_cflib_mem.png, id=1251, 647.218pt x 361.35pt>
 File: ./Images/evaluation/exhibition_cflib_mem.png Graphic file (type png)
 <use ./Images/evaluation/exhibition_cflib_mem.png>
 Package pdftex.def Info: ./Images/evaluation/exhibition_cflib_mem.png  used on input line 291.
 (pdftex.def)             Requested size: 204.85846pt x 114.37723pt.
-<./Images/evaluation/exhibition_ecf_mem.png, id=1187, 655.248pt x 362.956pt>
+<./Images/evaluation/exhibition_ecf_mem.png, id=1252, 655.248pt x 362.956pt>
 File: ./Images/evaluation/exhibition_ecf_mem.png Graphic file (type png)
 <use ./Images/evaluation/exhibition_ecf_mem.png>
 Package pdftex.def Info: ./Images/evaluation/exhibition_ecf_mem.png  used on input line 295.
 (pdftex.def)             Requested size: 204.85846pt x 113.4733pt.
-<./Images/evaluation/obstacle_course_cflib_mem.png, id=1188, 648.824pt x 358.941pt>
+<./Images/evaluation/obstacle_course_cflib_mem.png, id=1253, 648.824pt x 358.941pt>
 File: ./Images/evaluation/obstacle_course_cflib_mem.png Graphic file (type png)
 <use ./Images/evaluation/obstacle_course_cflib_mem.png>
 Package pdftex.def Info: ./Images/evaluation/obstacle_course_cflib_mem.png  used on input line 299.
 (pdftex.def)             Requested size: 204.85846pt x 113.3299pt.
-<./Images/evaluation/obstacle_course_ecf_mem.png, id=1189, 656.051pt x 363.759pt>
+<./Images/evaluation/obstacle_course_ecf_mem.png, id=1254, 656.051pt x 363.759pt>
 File: ./Images/evaluation/obstacle_course_ecf_mem.png Graphic file (type png)
 <use ./Images/evaluation/obstacle_course_ecf_mem.png>
 Package pdftex.def Info: ./Images/evaluation/obstacle_course_ecf_mem.png  used on input line 303.
 (pdftex.def)             Requested size: 204.85846pt x 113.5856pt.
-<./Images/evaluation/network.png, id=1191, 409.968pt x 259.515pt>
+<./Images/evaluation/network.png, id=1256, 409.968pt x 259.515pt>
 File: ./Images/evaluation/network.png Graphic file (type png)
 <use ./Images/evaluation/network.png>
 Package pdftex.def Info: ./Images/evaluation/network.png  used on input line 317.
 (pdftex.def)             Requested size: 273.14923pt x 172.91583pt.
- [76]) (./Thesis.bbl [77 <./Images/evaluation/exhibition_cflib_mem.png> <./Images/evaluation/exhibition_ecf_mem.png> <./Images/evaluation/obstacle_course_cflib_mem.png> <./Images/evaluation/obstacle_course_ecf_mem.png>] [78 <./Images/evaluation/network.png>]
+ [80]) (./Thesis.bbl [81 <./Images/evaluation/exhibition_cflib_mem.png> <./Images/evaluation/exhibition_ecf_mem.png> <./Images/evaluation/obstacle_course_cflib_mem.png> <./Images/evaluation/obstacle_course_ecf_mem.png>] [82 <./Images/evaluation/network.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 29--31
 []\T1/cmr/m/n/12 crazyflie-lib-python, .  URL [][]$\T1/cmtt/m/n/12 https : / / github . com / bitcraze /
  []
 
-[79
+[83
 
 
-] [80] [81]) [82] (./Thesis.lof)
+] [84] [85]) [86] (./Thesis.lof)
 \tf@lof=\write6
 \openout6 = `Thesis.lof'.
 
- [83
+ [87
 
 
 
@@ -1553,13 +1572,13 @@ File: ./Images/./raggiera_polimi-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Images/./raggiera_polimi-eps-converted-to.pdf>
 Package pdftex.def Info: ./Images/./raggiera_polimi-eps-converted-to.pdf  used on input line 252.
 (pdftex.def)             Requested size: 507.88533pt x 507.88051pt.
- [84
+ [88
 
 ] (./Thesis.lot)
 \tf@lot=\write7
 \openout7 = `Thesis.lot'.
 
- [85
+ [89
 
 ]
 Package epstopdf Info: Source file: <./Images/./raggiera_polimi.eps>
@@ -1575,13 +1594,13 @@ File: ./Images/./raggiera_polimi-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Images/./raggiera_polimi-eps-converted-to.pdf>
 Package pdftex.def Info: ./Images/./raggiera_polimi-eps-converted-to.pdf  used on input line 255.
 (pdftex.def)             Requested size: 507.88533pt x 507.88051pt.
- [86
+ [90
 
 ] (./Thesis.lol)
 \tf@lol=\write8
 \openout8 = `Thesis.lol'.
 
- [87
+ [91
 
 ]
 Package epstopdf Info: Source file: <./Images/./raggiera_polimi.eps>
@@ -1597,9 +1616,9 @@ File: ./Images/./raggiera_polimi-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Images/./raggiera_polimi-eps-converted-to.pdf>
 Package pdftex.def Info: ./Images/./raggiera_polimi-eps-converted-to.pdf  used on input line 258.
 (pdftex.def)             Requested size: 507.88533pt x 507.88051pt.
- [88
+ [92
 
-] [89
+] [93
 
 ]
 Package epstopdf Info: Source file: <./Images/./raggiera_polimi.eps>
@@ -1615,7 +1634,7 @@ File: ./Images/./raggiera_polimi-eps-converted-to.pdf Graphic file (type pdf)
 <use ./Images/./raggiera_polimi-eps-converted-to.pdf>
 Package pdftex.def Info: ./Images/./raggiera_polimi-eps-converted-to.pdf  used on input line 261.
 (pdftex.def)             Requested size: 507.88533pt x 507.88051pt.
- [90
+ [94
 
 ]
 
@@ -1632,21 +1651,21 @@ L3 programming layer <2023-10-23>
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `Thesis.out' has not changed.
-(rerunfilecheck)             Checksum: BF86C1F43939BE14007BE2DB912A47DF;11435.
+(rerunfilecheck)             Checksum: B875B44496F143FF1421548E4B0D120E;11245.
  ) 
 Here is how much of TeX's memory you used:
- 34076 strings out of 476306
- 634040 string characters out of 5798367
- 2027036 words of memory out of 5000000
- 54850 multiletter control sequences out of 15000+600000
+ 34149 strings out of 476306
+ 635173 string characters out of 5798367
+ 2067036 words of memory out of 5000000
+ 54872 multiletter control sequences out of 15000+600000
  579484 words of font info for 84 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  84i,12n,98p,1246b,2169s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfcc1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc1200.pfb>
-Output written on Thesis.pdf (100 pages, 3316846 bytes).
+Output written on Thesis.pdf (104 pages, 3332995 bytes).
 PDF statistics:
- 1496 PDF objects out of 1728 (max. 8388607)
- 1261 compressed objects within 13 object streams
- 412 named destinations out of 1000 (max. 500000)
+ 1574 PDF objects out of 1728 (max. 8388607)
+ 1334 compressed objects within 14 object streams
+ 460 named destinations out of 1000 (max. 500000)
  778 words of extra memory for PDF output out of 10000 (max. 10000000)
 

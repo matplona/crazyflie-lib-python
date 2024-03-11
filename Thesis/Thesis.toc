@@ -39,34 +39,34 @@
 \contentsline {section}{\numberline {4.1}Structure and Design Principles}{37}{section.4.1}%
 \contentsline {section}{\numberline {4.2}The ECF Setup Process}{39}{section.4.2}%
 \contentsline {chapter}{\numberline {5}Communication Framework}{43}{chapter.5}%
-\contentsline {section}{\numberline {5.1}The Communication Infrastructure}{43}{section.5.1}%
-\contentsline {section}{\numberline {5.2}The Design of the Communication Framework}{45}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}The Logging Manager}{45}{subsection.5.2.1}%
+\contentsline {section}{\numberline {5.1}The Communication Infrastructure}{44}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Design}{46}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}The Logging Manager}{46}{subsection.5.2.1}%
 \contentsline {subsection}{\numberline {5.2.2}The Parameters Manager}{47}{subsection.5.2.2}%
-\contentsline {chapter}{\numberline {6}Coordination Framework}{49}{chapter.6}%
-\contentsline {section}{\numberline {6.1}The Role of the Coordination Framework}{49}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Structure and Design Principles}{51}{section.6.2}%
-\contentsline {subsection}{\numberline {6.2.1}The Observable}{52}{subsection.6.2.1}%
-\contentsline {subsection}{\numberline {6.2.2}The Coordination Manager}{53}{subsection.6.2.2}%
-\contentsline {chapter}{\numberline {7}ECF Modules}{57}{chapter.7}%
-\contentsline {section}{\numberline {7.1}State Estimate Module}{57}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Battery Module Module}{58}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Multiranger Module}{59}{section.7.3}%
-\contentsline {section}{\numberline {7.4}Height Module}{61}{section.7.4}%
-\contentsline {section}{\numberline {7.5}Lighthouse Module}{63}{section.7.5}%
-\contentsline {section}{\numberline {7.6}AI deck Module}{65}{section.7.6}%
-\contentsline {chapter}{\numberline {8}Conclusions and future developments}{67}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Qualitative Analysis}{68}{section.8.1}%
-\contentsline {section}{\numberline {8.2}Performance Analysis}{69}{section.8.2}%
-\contentsline {subsection}{\numberline {8.2.1}EasyFly Simulation Environment}{70}{subsection.8.2.1}%
-\contentsline {subsection}{\numberline {8.2.2}Application Scenario Evaluated}{70}{subsection.8.2.2}%
-\contentsline {subsection}{\numberline {8.2.3}Tools and Metrics for Measuring Performances}{71}{subsection.8.2.3}%
-\contentsline {subsection}{\numberline {8.2.4}Results Analysis}{73}{subsection.8.2.4}%
-\contentsline {subsection}{\numberline {8.2.5}Future Developement}{76}{subsection.8.2.5}%
+\contentsline {chapter}{\numberline {6}Coordination Framework}{51}{chapter.6}%
+\contentsline {section}{\numberline {6.1}The Role of the Coordination Framework}{51}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Structure and Design Principles}{54}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}The Observable}{55}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.2}The Coordination Manager}{56}{subsection.6.2.2}%
+\contentsline {chapter}{\numberline {7}ECF Modules}{61}{chapter.7}%
+\contentsline {section}{\numberline {7.1}State Estimate Module}{61}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Battery Module Module}{62}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Multiranger Module}{63}{section.7.3}%
+\contentsline {section}{\numberline {7.4}Height Module}{65}{section.7.4}%
+\contentsline {section}{\numberline {7.5}Lighthouse Module}{67}{section.7.5}%
+\contentsline {section}{\numberline {7.6}AI deck Module}{69}{section.7.6}%
+\contentsline {chapter}{\numberline {8}Conclusions and future developments}{71}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Qualitative Analysis}{72}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Performance Analysis}{73}{section.8.2}%
+\contentsline {subsection}{\numberline {8.2.1}EasyFly Simulation Environment}{74}{subsection.8.2.1}%
+\contentsline {subsection}{\numberline {8.2.2}Application Scenario Evaluated}{74}{subsection.8.2.2}%
+\contentsline {subsection}{\numberline {8.2.3}Tools and Metrics for Measuring Performances}{75}{subsection.8.2.3}%
+\contentsline {subsection}{\numberline {8.2.4}Results Analysis}{77}{subsection.8.2.4}%
+\contentsline {subsection}{\numberline {8.2.5}Future Developement}{80}{subsection.8.2.5}%
 \vspace {2em}
-\contentsline {chapter}{Bibliography\markboth {\MakeUppercase []{Bibliography}}{\MakeUppercase []{Bibliography}}}{79}{chapter*.47}%
+\contentsline {chapter}{Bibliography\markboth {\MakeUppercase []{Bibliography}}{\MakeUppercase []{Bibliography}}}{83}{chapter*.48}%
 \vspace {2em}
-\contentsline {chapter}{List of Figures}{83}{chapter*.49}%
-\contentsline {chapter}{List of Tables}{85}{chapter*.51}%
-\contentsline {chapter}{Listings\markboth {\MakeUppercase []{Listings}}{\MakeUppercase []{Listings}}}{87}{chapter*.53}%
-\contentsline {chapter}{Acknowledgements}{89}{chapter*.55}%
+\contentsline {chapter}{List of Figures}{87}{chapter*.50}%
+\contentsline {chapter}{List of Tables}{89}{chapter*.52}%
+\contentsline {chapter}{Listings\markboth {\MakeUppercase []{Listings}}{\MakeUppercase []{Listings}}}{91}{chapter*.54}%
+\contentsline {chapter}{Acknowledgements}{93}{chapter*.56}%

@@ -1,44 +1,55 @@
 In the domain of drone systems, effective communication stands as a central pillar for operational success.
 Communication with drones refers to the process of transmitting and receiving information between a drone and a remote control device or computer system. 
-It involves the use of various technologies, including Wi-Fi, Bluetooth, and radio frequency (RF) signals, to control the drone and receive real-time data and feedback.
+It involves the use of various technologies, including Wi-Fi, Bluetooth, and cellular, to control the drone and receive real-time data and feedback.
+
+One of the most essential features of an ideal communication infrastructure for drone applications is the possibility of handling all the data in real-time settings.
+In other words, it must guarantee a low-latency and reliable channel of communication.
+
+Having an efficient communication channel is only a part of the success of the communication infrastructure. 
+To provide a robust and efficient communication infrastructure, we need an organized structure for routing the data specifically to the target component in charge of processing the information.
+
+The last important characteristic of an ideal communication infrastructure is having a simple and intuitive interface.
+This feature is of primary interest in our programming environment because it allows beginners to use it without effort.
 
 This chapter focuses on a crucial element of our drone programming environment: the Communication Framework. 
-Its purpose is to handle all the communication between the ground station and the flying drone. 
+Its purpose is to handle all the communication between the ground station and the flying drone, providing all the characteristics of the ideal communication infrastructure.
+
 More in detail, the Communication Framework is a software component hosted on the ground station 
 that allows the user to establish effective communication between the script running on the ground station and the drone.
 
 The Communication Framework manages the communication stream into two separate flows: parameter setting and telemetry logging.
 The former is the flow of communication that is directed from the ground station to the drone; it is used to set configuration parameters onboard the drone.
-The latter is the opposite flow of communication, from the drone to the ground station, and it is used to receive all the telemetry data of the drone, allowing for better control.
+The latter is the opposite flow of communication, from the drone to the ground station, and it is used to receive the telemetry data of the drone, allowing for better control.
 
 
 \section{The Communication Infrastructure}\label{sec:communication_infrastructure}
-Before diving into the details of our Communication Framework, it is crucial to understand the underlying communication infrastructure. 
+Before diving into the details of our Communication Framework, it is crucial to understand the underlying communication infrastructure of the native Crazyflie platform.
 
-As described in Chapter~\ref{ch:tools}, our programming environment is spread into two main devices: the ground station and the drone.
+As described in Section~\ref{sec:ecosystem_oveerview}, our programming environment is spread into two main devices: the ground station and the drone.
 The drone's firmware is written in C++ and runs on a small board with limited resources. On the other side, the ground station runs Python scripts
 that control the drone's behavior. The heterogeneity between these two subsystems increases the complexity of the communication process.
 
 The platform uses a custom network protocol called CRTP to overcome all these challenges. 
-CRTP was designed to allow packet prioritization to help real-time control of the Crazyflie; in the current implementation, the link guarantees strict packet ordering within a port.
+CRTP was designed to allow packet prioritization to help real-time control of the Crazyflie; in the current implementation, the link guarantees strict packet ordering.
 
-As shown in figure~\ref{fig:communication_stack}, the Crayzyflie communication is implemented as a stack of independent layers.
+As shown in Figure~\ref{fig:communication_stack}, the Crazyflie communication is implemented as a stack of independent layers.
 Every layer of the communication stack has two parallel implementations, one hosted in the firmware onboard and the other on the ground station's software.
-
-The physical layer is responsible for transmitting packets to and from the Crazyflie. 
-
-The link implements safe and ordered packet channels to and from the Crazyflie. This layer abstracts the physical medium and implements one transmitting and receiving packet channel to and from the Crazyflie.
-
-The CRTP layer introduces the concept of a logical packet; each packet measures 32 Bytes and is composed of three parts: port, channel, and payload.
-The tuple \textit{port:channel} allows the packet to be delivered to the specialized subsystem that receives and processes the message.
 
 \sidecaptionvpos{figure}{c}
 \begin{SCfigure}[\sidecaptionrelwidth][tb]
     \includegraphics[width=0.5\textwidth]{communication/communication_stack}
-    \caption[The Crazyflie communication stack]{The Crayzyflie communication stack is composed of 4 independent layers: Subsystems, CRTP, Link, Physical medium}
+    \caption[The Crazyflie communication stack]{The Crazyflie communication stack is composed of 4 independent layers: Subsystems, CRTP, Link, Physical medium}
     \label{fig:communication_stack}
 \end{SCfigure}
 
+The physical layer is responsible for transmitting packets to and from the Crazyflie. 
+
+The link layer implements safe and ordered packet channels to and from the Crazyflie. This layer abstracts the physical medium and implements one transmitting and receiving packet channel to and from the Crazyflie.
+
+The CRTP layer introduces the concept of a logical packet; each packet measures 32 Bytes and is composed of three parts: port, channel, and payload.
+The tuple \textit{port:channel} allows the packet to be delivered to the specialized subsystem that receives and processes the message.
+
+The Subsystem layer is the final part of the communication process. It represents the part of the system (Crazyflie firmware or ground station software) that elaborates the information.
 In the higher-order layer, we can identify four principal subsystems:
 \begin{itemize}
     \item \textbf{Memory access} -- that manages memory operation on the Crazyflie's physical memories, e.g., trajectory uploading.
@@ -54,12 +65,19 @@ On the other side, the same subsystem receives the packet, unpacks the data, and
 Conversely, the parameters and data logging subsystems have some peculiarities that make them more complex. 
 In particular, the parameters subsystem allows performing read/write operations with acknowledgments of the successful operation.
 The data logging subsystem, instead, must support periodical updates of telemetry data.
-Moreover, both the two subsystems must handle a variety of variables with different types.
+Moreover, both subsystems must handle a variety of variables with different types.
 
-The Communication Framework that we designed and developed is meant to wrap the functionality of these two complex subsystems and offer the user a more usable and efficient way to handle data logging and parameters.
+The communication infrastructure of the Crazyflie platform guarantees an efficient communication channel with a structured routing mechanism over the custom protocol CRTP.
+This basic infrastructure allows a developer to communicate with Crazyflie at a very low level.
+The problem is the absence of an accessible interface; the developer must profoundly understand the underlying structure and communication mechanism to use it.
 
+The Communication Framework that we designed and developed is meant to wrap basic infrastructure to offer the developer an easier and more accessible communication interface.
+Moreover, we managed all the low-level control mechanisms automatically. 
+In this way, the developer does not need to worry about low-level operation but still preserves performance.
 
-\section{The Design of the Communication Framework}\label{sec:communication_frameworks_design}
+In particular, we decided to simplify the interface of the two complex subsystems and offer the user a more usable and efficient way to handle data logging and parameters.
+
+\section{Design}\label{sec:communication_frameworks_design}
 
 The Communication Framework is a software component that provides an easy and accessible way to set parameters onboard the Crazyflie and to log telemetry data.
 This component is part of the ground station's software and has been designed as a publish/subscribe system.
@@ -74,26 +92,40 @@ shares the publish/subscribe design structure, but they slightly differ in the m
 \subsection{The Logging Manager}\label{subsec:logging_manager}
 
 As described above, the Logging Manager is one of the two implementations of the Communication Framework. 
-In particular, the role of the Logging Manager is to handle the setup and the periodic updates of telemetry data sent from the Crayzyflie.
+In particular, the role of the Logging Manager is to handle the setup and the periodic updates of telemetry data sent from the Crazyflie.
 
-The internal structure of this component is represented by a values repository where key-value pairs are stored to maintain the telemetry state.
+Given the asynchronous nature of telemetry data, we designed the Logging Manager as a publish/subscribe system.
+
+In particular, the internal structure of this component is composed of two main parts: a values repository to store telemetry data and a notification system.
+
+The value repository is used to hold on the ground station the telemetry data sent by the Crazyflie.
+It is implemented with a dictionary of key-value pairs to guarantee immediate access to the information held.
 More in detail, each variable, identified by a unique key, represents an entry inside the values repository; the value of the entry is the last updated value of the logged variable.
 
-In a separate repository, the Logging Manager stores the subscribers interested in the variables updates. 
-In this second repository, the component stores a list of references to subscribers for each single variable or set of variables. 
+The second part of the Logging Manager is the notification system that follows the publish/subscribe design pattern.
+The publish/subscribe design pattern establishes a communication model where components (subscribers) express interest in specific events or messages, and other components (publishers) broadcast relevant information to all interested subscribers.
+
+To implement such a pattern, the notification system inside the Logging Managers stores the reference of subscribers interested in the variables updates in a separate repository.
 Each reference consists of a predicate function to allow filtering updates and a callback function to effectively notify the subscriber when the predicate is satisfied with the new value.
 
-To better understand the working principle behind the Logging Manager, we illustrated the complete workflow in Figure~\ref{fig:logging_manager}.
+To better understand the working principle behind the Logging Manager, we will present an example of utilizing the Logging Manager, focusing on what occurs behind the scenes.
+To guide the understanding of the example, we have illustrated in Figure~\ref{fig:logging_manager} the Logging Manager's workflow.
 
-Whenever the script running on the ground stations needs to start tracking a variable, the Logging Manager creates or updates a log configuration and sends it to the Crazyflie.
-The configuration contains information regarding the variable name, the type, and the desired period of updates. 
+Let us consider a developer implementing a drone application to navigate the drone through an obstacle course using EasyFly.
+To implement its solution, they will surely need to use the estimated position in the environment. 
+To do so, after creating the main ECF component, they can use the Logging Manager to request the desired telemetry data.
+In particular, they will request three state variables: \( position_x \), \( position_y \), and \( position_y \).
 
-At some point, when the script is interested in reading and getting updated on the variable's values, it creates a callback function, i.e., an action to be executed with the new updated value, and, optionally, a predicate function for receiving updates only when the values satisfy certain constraints.
+Upon receiving this request, the Logging Manager will prepare a log configuration and send it to the Crazyflie.
+When the Crazyflie receives the log configuration, it can send telemetry data at periodic intervals.
+Every time new data is available, the Logging Manager can store it inside its values repository.
 
-Then, the script registers these functions to the Logging Manager, specifying the single variable or set of variables of interest.
-When the logging process starts, the Crazyflie sends periodic messages containing the variable updates; the Logging Manager intercepts those messages and updates its internal values repository.
-Each time an update occurs, the Logging Manager checks whether any subscriber is watching that variable. 
-If so, for each subscriber, it evaluates the predicate and eventually notifies the subscriber by calling the registered callback. 
+The simple request for position data does not automatically activate the notification system.
+The developer must subscribe to the notification system to receive notifications when the values are updated.
+To do so, they can define a callback function and, optionally, a predicate function that filters only the valuable notification.
+
+Suppose the developer needs to add other telemetry data, for example, the Multiranger front sensor readings \( range_front \). 
+In that case, the Logging Manager will optimize the number of logging configurations used, allowing for the best possible log performance.
 
 \begin{figure}[tb]
     \centering
@@ -101,17 +133,10 @@ If so, for each subscriber, it evaluates the predicate and eventually notifies t
     \caption{Logging Manager's workflows.}\label{fig:logging_manager}
 \end{figure}
 
-Given that each variable can have its own size (given the type) and period, the Logging Manager needs to handle different log configurations.
-Moreover, the single configuration has a size constraint of 26 Bytes given by the size of the CRTP packet, increasing the complexity of the configuration management.
-
-To optimize the number of log configurations created, each time the Logging Manager needs to add a variable, 
-it searches for a suitable existing configuration with enough space to fit it. 
-The Logging Manager only adds a new configuration when strictly necessary, ensuring maximum optimization.
-
 \subsection{The Parameters Manager}\label{subsec:parameter_manager}
 
-The other implementation of the Communication Framework, the Parameters Manager, manages the configuration operations of the Crayzyflie.
-The Crayzyflie 2.1 allows the users to set parameter values to configure the desired setup. 
+The other implementation of the Communication Framework, the Parameters Manager, manages the configuration operations of the Crazyflie.
+The Crazyflie 2.1 allows the users to set parameter values to configure the desired setup. 
 An example of a parameter could be the selected state estimator, i.e., Extended Kalman Filter or Complementary Filter (See Section~\ref{sec:state_estimate_and_control}).
 
 Following the same structure as the Logging Manager, also the Parameters Manager has one value and one subscriber repository where it stores, respectively, the current value for tracked parameters and the references of subscrbers for each variable.
@@ -123,13 +148,12 @@ In other words, the Parameters Manager only receives and processes an update whe
 Figure~\ref{fig:parameters_manager} represents the operations workflow inside the Parameters Manager. When needed, usually before the takeoff,
 the script can use the Parameters Manager to read or write configuration values. 
 
-Read operations are processed straightforwardly with a synchronous request-response messages exchange. 
-The request contains the name of the variable, and the Crazyflie's response contains the current value of the requested parameter.
+Read and write operations are processed straightforwardly with a request-response messages exchange.
+For read operations, the request contains the variable's name, and the Crazyflie's response contains the current value of the requested parameter.
+For write operations, the request contains the variable's name and the new value, and the Crazyflie's response includes the newly updated value. 
+The response is usually used to acknowledges the success of the write operation.
 
-Write operations, on the other side, are processed asynchronously; first, a request message is sent from the Parameters Manager to the Crazyflie,
-then, when the Crayzyflie successfully completes the update, it notifies the ground station's Parameters Manager.
-
-Once the Parameters Manager receives a value, it uses the internal publish/subscribe system to notify subscribers.  
+As for the Logging Manager, once the Parameters Manager receives a value from the Crazyflie, the internal notification system is used to notify subscribers.
 
 \begin{figure}[tb]
     \centering
