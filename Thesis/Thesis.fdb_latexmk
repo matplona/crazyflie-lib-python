@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex Thesis"] 1710278884 "Thesis.aux" "Thesis.bbl" "Thesis" 1710278892 0
+["bibtex Thesis"] 1710278884 "Thesis.aux" "Thesis.bbl" "Thesis" 1710281535 0
   "./Thesis_bibliography.bib" 1710027075 11814 56918e696049fe6ff3bcdaa33b71d232 ""
-  "Thesis.aux" 1710278890 48512 236de484f381f82f06aee39acb6773a6 "pdflatex"
+  "Thesis.aux" 1710281533 48512 236de484f381f82f06aee39acb6773a6 "pdflatex"
   "c:/texlive/2023/texmf-dist/bibtex/bst/natbib/abbrvnat.bst" 1698356710 26532 66bed5cc59495faaa3f9ae9af9fa5e42 ""
   (generated)
   "Thesis.bbl"
   "Thesis.blg"
   (rewritten before read)
-["pdflatex"] 1710278884 "c:/Users/plona/PC/TESI/crazyflie-lib-python/Thesis/Thesis.tex" "Thesis.pdf" "Thesis" 1710278892 0
+["pdflatex"] 1710281524 "c:/Users/plona/PC/TESI/crazyflie-lib-python/Thesis/Thesis.tex" "Thesis.pdf" "Thesis" 1710281535 0
   "Configuration_Files/PoliMi3i_thesis.cls" 1698359692 5204 48f0c5053337af60bb557c4bc0ef9980 ""
   "Configuration_Files/config.tex" 1698359692 2205 5d2bad9fb593108f48a04f2df8a0320e ""
   "Configuration_Files/custom_commands.tex" 1710069510 722 5f24e38d3eebd1331e1c8abe45eca5d9 ""
@@ -18,7 +18,7 @@
   "Images/communication/parameters_manager.png" 1710276186 31158 22db49d55398f6be3fcf7635d9fc3fa8 ""
   "Images/coordination/design_architecture.png" 1707429689 101888 6385ceb25336525a9cfc6b9b58c536f7 ""
   "Images/ecf/ecf_sequence.png" 1710094485 53472 913f96987de4bdcc2946a549eed1c655 ""
-  "Images/ecf/ecf_structure.png" 1710194926 18893 90a43a66241d2e086c7692cfda3e7c97 ""
+  "Images/ecf/ecf_structure.png" 1710281521 36375 662f45baa720f38544d8ace0bcd060d7 ""
   "Images/evaluation/cc.png" 1709868473 33121 eb57e16c1eaddd9a5b13c9c2d49d07bb ""
   "Images/evaluation/exhibition.png" 1710277032 48179 b538ff58822ef3e209643a736f0731fd ""
   "Images/evaluation/exhibition_cflib_mem.png" 1709866362 16205 2ab2bce7c8bcfb161c3ad4312d1735a2 ""
@@ -57,14 +57,14 @@
   "Scripts/coordination_example.py" 1710277970 2109 d12c2a74056837f6dddcc4e494f51668 ""
   "Scripts/tools_motion_commander.py" 1710124285 666 52453f4b2d68e01f965a7168a16c61c1 ""
   "Scripts/tools_simple_commander.py" 1710031033 934 f123ffd587835420013be3bdfc5770b7 ""
-  "Thesis.aux" 1710278890 48512 236de484f381f82f06aee39acb6773a6 "pdflatex"
+  "Thesis.aux" 1710281533 48512 236de484f381f82f06aee39acb6773a6 "pdflatex"
   "Thesis.bbl" 1710278884 11538 be9c3c430da2712f999e5e61f1125694 "bibtex Thesis"
-  "Thesis.lof" 1710278890 5573 bebe2e76d3ae3008456feb81eb00d6d3 "pdflatex"
-  "Thesis.lol" 1710278890 472 0d4b5f60961843b247d4c4de6d44917b "pdflatex"
-  "Thesis.lot" 1710278890 1181 a681719c5bd85aedfc71a6e2a7d03bd6 "pdflatex"
-  "Thesis.out" 1710278890 11361 fa08031815781cff63c7162881296282 "pdflatex"
+  "Thesis.lof" 1710281533 5573 bebe2e76d3ae3008456feb81eb00d6d3 "pdflatex"
+  "Thesis.lol" 1710281533 472 0d4b5f60961843b247d4c4de6d44917b "pdflatex"
+  "Thesis.lot" 1710281533 1181 a681719c5bd85aedfc71a6e2a7d03bd6 "pdflatex"
+  "Thesis.out" 1710281533 11361 fa08031815781cff63c7162881296282 "pdflatex"
   "Thesis.tex" 1710272426 13411 fe7f93e02f94d12fa1525c8d76d99f4f ""
-  "Thesis.toc" 1710278890 5985 0d72a3ab7a6bca266af46dcd744ec4c5 "pdflatex"
+  "Thesis.toc" 1710281533 5985 0d72a3ab7a6bca266af46dcd744ec4c5 "pdflatex"
   "c:/Users/plona/PC/TESI/crazyflie-lib-python/Thesis/Thesis.tex" 1710272426 13411 fe7f93e02f94d12fa1525c8d76d99f4f ""
   "c:/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1698354689 2971 def0b6c1f0b107b3b936def894055589 ""
   "c:/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1698354689 2900 1537cc8184ad1792082cd229ecc269f4 ""
@@ -324,7 +324,7 @@
   "chapters/4_ecf/extended-crazyflie.tex" 1710274083 19744 26d72c02de91320c56abc11e69202932 ""
   "chapters/5_communication/communication-framework.tex" 1710275109 13878 a006ef094d3c031196a750733c355c11 ""
   "chapters/6_coordination/coordination-framework.tex" 1710278290 17927 c21f0c51c512811ba04557ee6053c259 ""
-  "chapters/7_modules/ecf-modules.tex" 1710278539 26037 9cd95aa303951e246bbb8a296691cbb1 ""
+  "chapters/7_modules/ecf-modules.tex" 1710281528 26037 9cd95aa303951e246bbb8a296691cbb1 ""
   "chapters/8_evaluation/evaluation.tex" 1710278874 25082 f8530b8c9284051c16661a1a5e5a64d1 ""
   (generated)
   "Thesis.aux"
