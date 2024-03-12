@@ -630,10 +630,10 @@ INPUT ./Images/./raggiera_polimi-eps-converted-to.pdf
 INPUT ./chapters/5_communication/communication-framework.tex
 INPUT ./chapters/5_communication/communication-framework.tex
 INPUT chapters/5_communication/communication-framework.tex
-INPUT ./Images/communication/communication_stack.jpg
-INPUT ./Images/communication/communication_stack.jpg
-INPUT ./Images/communication/communication_stack.jpg
-INPUT ./Images/communication/communication_stack.jpg
+INPUT ./Images/communication/communication_stack.png
+INPUT ./Images/communication/communication_stack.png
+INPUT ./Images/communication/communication_stack.png
+INPUT ./Images/communication/communication_stack.png
 INPUT ./Images/communication/logging_manager.png
 INPUT ./Images/communication/logging_manager.png
 INPUT ./Images/communication/logging_manager.png
