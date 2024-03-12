@@ -14,12 +14,12 @@
 \contentsline {subsection}{\numberline {2.1.1}The Interaction Between Human and Robot}{8}{subsection.2.1.1}%
 \contentsline {subsection}{\numberline {2.1.2}HRI Taxonomy}{9}{subsection.2.1.2}%
 \contentsline {section}{\numberline {2.2}Human-Drone Interaction}{11}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}The Role of the Human During the Interaction}{12}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}The Drone's Control Modality}{13}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}The Role of the Human During the Interaction}{11}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}The Drone's Control Modality}{12}{subsection.2.2.2}%
 \contentsline {subsection}{\numberline {2.2.3}Values and Ethics in HDI}{14}{subsection.2.2.3}%
-\contentsline {section}{\numberline {2.3}Programming Environments}{15}{section.2.3}%
+\contentsline {section}{\numberline {2.3}Programming Environments}{14}{section.2.3}%
 \contentsline {subsection}{\numberline {2.3.1}Single Drone Programming}{15}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Swarm Programming}{20}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.2}Swarm Programming}{19}{subsection.2.3.2}%
 \contentsline {chapter}{\numberline {3}Tools}{23}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Ecosystem Overview}{23}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Hardware}{24}{section.3.2}%
@@ -34,36 +34,36 @@
 \contentsline {subsection}{\numberline {3.4.2}Absolute Positioning Systems}{29}{subsection.3.4.2}%
 \contentsline {subsection}{\numberline {3.4.3}Lighthouse Positioning System Hardware}{30}{subsection.3.4.3}%
 \contentsline {section}{\numberline {3.5}State Estimate and Control}{31}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Flight Control}{32}{section.3.6}%
+\contentsline {section}{\numberline {3.6}Flight Control}{33}{section.3.6}%
 \contentsline {chapter}{\numberline {4}Extended Crazyflie}{37}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Structure and Design Principles}{37}{section.4.1}%
-\contentsline {section}{\numberline {4.2}The ECF Setup Process}{39}{section.4.2}%
+\contentsline {section}{\numberline {4.2}The ECF Setup Process}{40}{section.4.2}%
 \contentsline {chapter}{\numberline {5}Communication Framework}{43}{chapter.5}%
 \contentsline {section}{\numberline {5.1}The Communication Infrastructure}{44}{section.5.1}%
 \contentsline {section}{\numberline {5.2}Design}{46}{section.5.2}%
 \contentsline {subsection}{\numberline {5.2.1}The Logging Manager}{46}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}The Parameters Manager}{47}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.2}The Parameters Manager}{48}{subsection.5.2.2}%
 \contentsline {chapter}{\numberline {6}Coordination Framework}{51}{chapter.6}%
-\contentsline {section}{\numberline {6.1}The Role of the Coordination Framework}{51}{section.6.1}%
+\contentsline {section}{\numberline {6.1}The Role of the Coordination Framework}{52}{section.6.1}%
 \contentsline {section}{\numberline {6.2}Structure and Design Principles}{54}{section.6.2}%
 \contentsline {subsection}{\numberline {6.2.1}The Observable}{55}{subsection.6.2.1}%
-\contentsline {subsection}{\numberline {6.2.2}The Coordination Manager}{56}{subsection.6.2.2}%
+\contentsline {subsection}{\numberline {6.2.2}The Coordination Manager}{57}{subsection.6.2.2}%
 \contentsline {chapter}{\numberline {7}ECF Modules}{61}{chapter.7}%
 \contentsline {section}{\numberline {7.1}ECF Modules Overview}{61}{section.7.1}%
 \contentsline {section}{\numberline {7.2}State Estimate Module}{62}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Battery Module}{63}{section.7.3}%
-\contentsline {section}{\numberline {7.4}Multiranger Module}{64}{section.7.4}%
+\contentsline {section}{\numberline {7.3}Battery Module}{64}{section.7.3}%
+\contentsline {section}{\numberline {7.4}Multiranger Module}{65}{section.7.4}%
 \contentsline {section}{\numberline {7.5}Height Module}{66}{section.7.5}%
 \contentsline {section}{\numberline {7.6}Lighthouse Module}{68}{section.7.6}%
-\contentsline {section}{\numberline {7.7}AI deck Module}{70}{section.7.7}%
+\contentsline {section}{\numberline {7.7}AI deck Module}{71}{section.7.7}%
 \contentsline {chapter}{\numberline {8}Conclusions and future developments}{73}{chapter.8}%
 \contentsline {section}{\numberline {8.1}Qualitative Analysis}{74}{section.8.1}%
 \contentsline {section}{\numberline {8.2}Performance Analysis}{75}{section.8.2}%
 \contentsline {subsection}{\numberline {8.2.1}EasyFly Simulation Environment}{76}{subsection.8.2.1}%
-\contentsline {subsection}{\numberline {8.2.2}Application Scenario Evaluated}{76}{subsection.8.2.2}%
+\contentsline {subsection}{\numberline {8.2.2}Application Scenario Evaluated}{77}{subsection.8.2.2}%
 \contentsline {subsection}{\numberline {8.2.3}Tools and Metrics for Measuring Performances}{77}{subsection.8.2.3}%
 \contentsline {subsection}{\numberline {8.2.4}Results Analysis}{79}{subsection.8.2.4}%
-\contentsline {section}{\numberline {8.3}Future Developement}{82}{section.8.3}%
+\contentsline {section}{\numberline {8.3}Future Developement}{83}{section.8.3}%
 \vspace {2em}
 \contentsline {chapter}{Bibliography\markboth {\MakeUppercase []{Bibliography}}{\MakeUppercase []{Bibliography}}}{85}{chapter*.52}%
 \vspace {2em}

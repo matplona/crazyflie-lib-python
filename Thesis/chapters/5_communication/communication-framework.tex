@@ -35,12 +35,12 @@ CRTP was designed to allow packet prioritization to help real-time control of th
 As shown in Figure~\ref{fig:communication_stack}, the Crazyflie communication is implemented as a stack of independent layers.
 Every layer of the communication stack has two parallel implementations, one hosted in the firmware onboard and the other on the ground station's software.
 
-\sidecaptionvpos{figure}{c}
-\begin{SCfigure}[\sidecaptionrelwidth][tb]
-    \includegraphics[width=0.5\textwidth]{communication/communication_stack}
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=0.9\textwidth]{communication/communication_stack}
     \caption[The Crazyflie communication stack]{The Crazyflie communication stack is composed of 4 independent layers: Subsystems, CRTP, Link, Physical medium}
     \label{fig:communication_stack}
-\end{SCfigure}
+\end{figure}
 
 The physical layer is responsible for transmitting packets to and from the Crazyflie. 
 
@@ -132,6 +132,8 @@ In that case, the Logging Manager will optimize the number of logging configurat
     \includegraphics[width=0.9\textwidth]{communication/logging_manager}
     \caption{Logging Manager's workflows.}\label{fig:logging_manager}
 \end{figure}
+
+\pagebreak% REASON FORMAT 
 
 \subsection{The Parameters Manager}\label{subsec:parameter_manager}
 

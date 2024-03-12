@@ -160,7 +160,7 @@ The firmware is written in C++ and handles the main autopilot on the STM32F4; it
 
 \begin{figure}[tb]
     \centering
-    \includegraphics[width=0.9\textwidth]{tools/software_libraries}
+    \includegraphics[width=0.8\textwidth]{tools/software_libraries}
     \caption[Software libraries integration]{
         The two main software libraries are \textit{crazyflie-firmware} and \textit{crazyflie-lib-python}. 
         The former, written in C++, runs on the drone; the latter, written in Python, runs on the base station. 
@@ -234,7 +234,7 @@ The knowledge of the position and the orientation of the BS is called system geo
 The Lighthouse positioning system is one of the possible solutions that Bitcraze offers to obtain an absolute positioning system for understanding the drone's coordinates inside the flight space. 
 The hardware of this system is composed of 2 or more HTC-Vive/SteamVR Base Station 2.0. 
 The role of these base stations is to lighten up the flight space with periodic infrared (IR) beams.
-
+\pagebreak% REASON FORMAT 
 Onboard the Crazyflie 2.1, the Lighthouse expansion deck allows it to capture these IR beams thanks to four TS4231 IR receivers. 
 The signal captured is then passed to an ICE40UP5K FPGA that computes the angle of incidence of the IR rays with signal processing. 
 The position and the pose of the Crazyflie are then finally computed from the main MCU of the Crazyflie 2.1
@@ -258,7 +258,7 @@ In Figure~\ref{fig:control_loop}, we can see a representation of the control loo
 
 As in any feedback control system, also for the Crazyflie control loop, we can identify two principal components in Crazyflie 2.1: the state estimator and the state control. 
 The synergy between the state estimate and the state control in a control loop is fundamental for achieving accurate and effective system control. 
-
+\pagebreak% REASON FORMAT 
 The state estimator is responsible for computing the best possible estimate of the system's current status.
 This component inside the Crazyflie 2.1 firmware has two concrete implementations with different performance and accuracy:
 \begin{itemize}
@@ -292,11 +292,15 @@ Meanwhile, the Mellinger Controller prioritizes agility and responsiveness, maki
 \section{Flight Control}\label{sec:flight_control}
 On the other side of the communication channel, the ground station needs a way to interact with the drone and give information on which actions to take to fly in the desired way.
 
-
 Inside the cflib the one responsible for controlling the flight is a module named Commander Framework.
 The Commander Framework can be viewed as composed of two layers:
 
 The first layer provides low-level operations that allow writing setpoints and sending them with the custom CRTP protocol.
+
+\begin{figure}[h]% REASON FORMAT 
+    \centering
+    \lstinputlisting[language=Python, caption={Waypoint navigation implemented using \textit{simple commander}}, label=example_simple_commander]{Scripts/tools_simple_commander.py}
+\end{figure}
 
 The second layer, built upon the first, is more abstract and adds some general functionality, e.g., take-off, land, and move-to.
 
@@ -314,6 +318,11 @@ In other words, each setpoint sent from the ground station is executed only for 
 The proposed solution must perform a timed loop to allow the Crazyflie to fly across the desired waypoints.
 In addition, we also need to manually control the takeoff phase using the same timed loop technique.
 
+\begin{figure}[h]% REASON FORMAT 
+    \centering
+    \lstinputlisting[language=Python, caption={Waypoint navigation implemented using \textit{motion commander}}, label=example_motion_commander]{Scripts/tools_motion_commander.py}
+\end{figure}
+
 In the Listing~\ref{example_simple_commander} is shown the resulting code for the simple implementation.
 
 In the second implementation, using the more abstract layer (\textit{motion commander}), we can use the function \verb|move_distance| to perform the planned path.
@@ -321,12 +330,3 @@ In this example, the motion commander layer handles all the low-level issues and
 Moreover, it automatically executes the takeoff and landing by specifying the default height.
 
 The resulting script (Listing~\ref{example_motion_commander}) is more straightforward and readable.
-
-\begin{figure}[tb]
-    \centering
-    \lstinputlisting[language=Python, caption={Waypoint navigation implemented using \textit{simple commander}}, label=example_simple_commander]{Scripts/tools_simple_commander.py}
-\end{figure}
-\begin{figure}[tb]
-    \centering
-    \lstinputlisting[language=Python, caption={Waypoint navigation implemented using \textit{motion commander}}, label=example_motion_commander]{Scripts/tools_motion_commander.py}
-\end{figure}

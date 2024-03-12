@@ -36,16 +36,12 @@ if __name__ == '__main__':
         with MotionCommander() as mc:
             # observables setup
             add_observables(ecf, ['left', 'right', 'front', 'back'])
-
             # communication setup 
             add_variables(ecf, ['left', 'right', 'front', 'back'])
-            
             # watch updates for left range and updates the relative observable
             set_watchers(ecf, ['left', 'right', 'front', 'back'])
-            
             # observe the state and act accordingly
             observe(ecf, mc, 
                     [['left', 'right'], ['right', 'left'],
                      ['front', 'back'], ['back', 'front']])
-            
             time.sleep(100) # wait end of execution

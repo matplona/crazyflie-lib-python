@@ -16,6 +16,7 @@ Moreover, using the Coordination Framework, as we will see in the example at the
 In the following sections, we first present the role of this framework and its use cases, providing some concrete examples of possible applications. 
 Then, we analyze its structure and design principles in detail.
 
+\pagebreak% REASON FORMAT 
 \section{The Role of the Coordination Framework}\label{sec:coordination_framework_role}
 
 Coordination plays a crucial role in the successful implementation of drone applications. 
@@ -178,6 +179,11 @@ To decide whether to use synchronous or asynchronous subscriptions, a general ru
 
 \subsection{The Coordination Manager}\label{subsec:coordination_manager}
 
+\begin{figure}[tb]
+    \centering
+    \lstinputlisting[language=Python, caption={Wall avoidance navigation implemented using \textit{Communication and Coordination Frameworks}}, label=example_coordination]{Scripts/coordination_example.py}
+\end{figure}
+
 The Coordination Manager is the orchestrator of the entire Coordination Framework. 
 Its role is to manage the whole application's Observables, creating and updating them when requested by some external Producer.
 
@@ -188,9 +194,7 @@ As shown in Figure~\ref{fig:coordination_design_architecture}, the Coordination 
 This constraint allows centralized control, avoiding any possibility of an inconsistent state that may happen when different entities update the same portion of the state concurrently.
 
 To better understand the working principle of the Coordination Framework, we can show in action the Coordination Manager explaining more in detail how the use case scenario described at the beginning of the chapter can be easily solved with this approach.
-Listing~\ref{example_coordination} shows the script code that implements this solution.
-
-The scenario is the following:
+Listing~\ref{example_coordination} shows the script code that implements this solution. The scenario is the following:
 \begin{displayquote}
     For the drone application that we are developing, we need the drone to be maintained not too close to the walls of the flight area. 
     Specifically, it must maintain a safe distance of 0,5 meters from the walls.
@@ -219,11 +223,6 @@ After that, we can use the logging manager's notification system to add a watche
 Once we have defined the state and managed the update of such a state, then we can define the second part of the Coordination Manager.
 To do this, we can set up 4 Observers(\textit{lines 26--32}), one for each Observable, to move the drone in the opposite direction of the wall (\textit{lines 8--9}).
 Moreover, since we want to act only if the distance from one wall is less than 0.5 meters, we can specify for all the Observer a Condition function (\textit{lines 5--6}).
-
-\begin{figure}[tb]
-    \centering
-    \lstinputlisting[language=Python, caption={Wall avoidance navigation implemented using \textit{Communication and Coordination Frameworks}}, label=example_coordination]{Scripts/coordination_example.py}
-\end{figure}
 
 
 With this approach, the main advantage is that the entire business logic of the application is defined inside the Coordination Framework.

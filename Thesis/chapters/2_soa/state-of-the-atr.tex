@@ -80,7 +80,7 @@ When humans interact with a robot, they can act in 5 different roles: \textit{su
 (needs to understand the robot's behavior to be in the same space).
 For example, a firefighter who uses a drone for urban search and rescue assumes the role of \textit{operator} because they need to guide it to the rescue area. 
 In the hospital delivery robot, the people in the hospital have the role of \textit{bystander}; they need to understand the drone behavior since they share the same space.
-
+\\\\ % REASON FORMAT 
 {\bfseries \scshape Type of Human-Robot Physical Proximity}:\\*
 When interacting with the robot, a human can act at different levels of physical proximity: \textit{none} (the robot and the human are in different places), 
 \textit{avoiding} (the robot is aware and avoids the user when approaching), \textit{passing} (the robot is not aware of the user, so the user needs to pass by), 
@@ -109,15 +109,15 @@ the amount of intervention required measures the percentage of time that a human
 \begin{figure}[tb]
     \centering
     \subfloat[Anthropomorphic robot\label{fig:anthropomorphic_robot}]{
-        \includegraphics[width=0.3\textwidth]{soa/anthropomorphic}
+        \includegraphics[width=0.28\textwidth]{soa/anthropomorphic}
     }
     \quad
     \subfloat[Zoomorphic robot\label{fig:zoomorphic_robot}]{
-        \includegraphics[width=0.3\textwidth]{soa/zoomorphic}
+        \includegraphics[width=0.28\textwidth]{soa/zoomorphic}
     }
     \quad
     \subfloat[Functional robot\label{fig:functional_robot}]{
-        \includegraphics[width=0.3\textwidth]{soa/functional}
+        \includegraphics[width=0.28\textwidth]{soa/functional}
     }
     \caption{Robot morphology examples.}\label{fig:robot_morphology}
 \end{figure}
@@ -198,26 +198,26 @@ ranging from standard remote controllers to very complex and advanced Brain Cont
 
 Drone's control interfaces can be classified as follows~\cite{tezza2019hdi}:
 
-\textit{Remote Controller} is the standard and most commonly used interface, where the user directly controls the drone movements.
+\textbf{\textit{Remote Controller}} is the standard and most commonly used interface, where the user directly controls the drone movements.
 This control modality provides low latency and precise control, but on the other hand, it is less intuitive and usable 
 than natural user interfaces. The usability and easiness of this interface strongly depend on the drone's level of autonomy.
 
-\textit{Gesture-based interface} is a control modality where the user pilots the drone with body movements.
+\textbf{\textit{Gesture-based interface}} is a control modality where the user pilots the drone with body movements.
 Usually, the drone uses a camera or a Kinect device to extract spatial information and recognize postures. 
 When users are asked to interact with a drone without any instruction, gesture interaction is the primary choice of most users, 
 and this indicates that the training period of this interface is almost close to zero~\cite{cauchard2015droneAndMe}. 
 Gesture-based controls have a high latency and lower control precision compared to other control modalities. 
 The flight space for drones that use this control method is sensibly reduced since the pilot needs to be close to the drone during the flight.
 
-\textit{Speech-based interface} is a control modality where the user pilots the drone using vocal commands. 
+\textbf{\textit{Speech-based interface}} is a control modality where the user pilots the drone using vocal commands. 
 As for gesture-based, this interface is also a natural user interface with a low training period and high usability.
 They also share the problems of user proximity and high latency of commands.  
 
-\textit{Touch-based interface} is a control modality where the user is requested to control the drone using his hands. 
+\textbf{\textit{Touch-based interface}} is a control modality where the user is requested to control the drone using his hands. 
 The drone usually carries proximity sensors that allow it to receive inputs from the user. 
 It is a natural user interface, and, like the others, it has the same pros and cons: high command latency and limited operativity distance.
 
-\textit{Brain-computer interfaces} allows the user to pilot the drone using brain signals~\cite{lafleur2013quadcopterBCI}.
+\textbf{\textit{Brain-computer interfaces}} allows the user to pilot the drone using brain signals~\cite{lafleur2013quadcopterBCI}.
 To enable this type of interface, the pilot must wear some form of BCI headset, the most common being 
 Electroencephalography (EEG) headsets. These devices measure the brain's electrical activity on a human's scalp, 
 which is decoded using machine learning algorithms to control physical systems using brain waves. 
@@ -225,7 +225,7 @@ Compared to the others, it is the most complex control interface and has the hig
 The problems in using BCI are the poor control quality and higher training period~\cite{kawala2021summary}. 
 Further research in this field will probably lead to more usable and better interfaces.
 
-Interactions can also be combined into \textit{multimodal interfaces}. 
+Interactions can also be combined into \textbf{\textit{multimodal interfaces}}. 
 Integrating different interaction methods can combine the advantages of each; however, it can increase complexity and costs.
 
 \subsection{Values and Ethics in HDI}\label{subsec:hdi_ethics}
@@ -392,7 +392,7 @@ Figure~\ref{fig:easyfly_offboard_ecosystem} shows the off-board environment used
 It consists of a single base station with a USB dongle radio operating in a 2.4GHz band using a custom communication protocol named CRTP (see Section~\ref{subsec:crazyradio}). 
 In substitution of a sensor network, we have an external positioning system (Lighthouse positioning system) composed of two base stations that beam the flight space with infrared, enabling the drone to measure its position by knowing the direction of infrared rays (see Section~\ref{subsec:lighthouse_hardware}).
 
-\begin{wrapfigure}{o}{0.3\textwidth}
+\begin{wrapfigure}{H}{0.3\textwidth}
     \includegraphics[width=0.3\textwidth]{soa/easyfly_offboard_ecosystem}
     \caption{EasyFly off-board ecosystem.}\label{fig:easyfly_offboard_ecosystem}
 \end{wrapfigure}
