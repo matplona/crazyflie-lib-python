@@ -42,7 +42,7 @@ These parameters are vital for ensuring the drone's stability and safe navigatio
 Accurate knowledge of the drone's position and speed enables its operator to control its movements and avoid obstacles or hazards in its path. 
 Furthermore, understanding acceleration is crucial in achieving precision and accurate control of the drone's movements.
 State estimate accuracy depends on how much information the control loop can use. 
-In particular, the decks that contribute more to the estimation process are the Lighthouse positioning Deck and the Flow Deck V2. 
+In particular, the decks that contribute more to the estimation process are the Lighthouse positioning Deck and the Flow Deck. 
 
 As the name suggests, the State Estimate Module is an ECF Module that manages the estimated variables of the Crazyflie 2.1.
 The role of this module is to keep the information relative to the estimated variables inside the Coordination Framework updated.
@@ -197,11 +197,11 @@ In summary, as we can see in Figure~\ref{fig:multiranger_tracking}, the drone wi
 The first range, which is the activation range, is used to determine what the tracked object is.
 The second range, the safety range, is used to prevent collision with the tracked object when it stands at a fixed point.
 
-\sidecaptionvpos{figure}{c}
-\begin{SCfigure}[\sidecaptionrelwidth][tb]
-    \includegraphics[width=0.5\textwidth]{modules/multiranger}
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=0.9\textwidth]{modules/multiranger}
     \caption{Multiranger Object Tracking behavior.}\label{fig:multiranger_tracking}
-\end{SCfigure}
+\end{figure}
 
 The Obstacle Avoidance behavior is the opposite behavior with respect to object tracking. 
 In this case, the activation range is used to determine an obstacle to fly away from.

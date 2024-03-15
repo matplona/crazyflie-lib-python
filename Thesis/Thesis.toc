@@ -52,22 +52,22 @@
 \contentsline {section}{\numberline {7.1}ECF Modules Overview}{61}{section.7.1}%
 \contentsline {section}{\numberline {7.2}State Estimate Module}{62}{section.7.2}%
 \contentsline {section}{\numberline {7.3}Battery Module}{64}{section.7.3}%
-\contentsline {section}{\numberline {7.4}Multiranger Module}{65}{section.7.4}%
+\contentsline {section}{\numberline {7.4}Multiranger Module}{64}{section.7.4}%
 \contentsline {section}{\numberline {7.5}Height Module}{66}{section.7.5}%
 \contentsline {section}{\numberline {7.6}Lighthouse Module}{68}{section.7.6}%
 \contentsline {section}{\numberline {7.7}AI deck Module}{71}{section.7.7}%
-\contentsline {chapter}{\numberline {8}Conclusions and future developments}{73}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Qualitative Analysis}{74}{section.8.1}%
-\contentsline {section}{\numberline {8.2}Performance Analysis}{75}{section.8.2}%
+\contentsline {chapter}{\numberline {8}Evaluation}{73}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Qualitative Analysis}{73}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Ground Station Performance Analysis}{75}{section.8.2}%
 \contentsline {subsection}{\numberline {8.2.1}EasyFly Simulation Environment}{76}{subsection.8.2.1}%
 \contentsline {subsection}{\numberline {8.2.2}Application Scenario Evaluated}{77}{subsection.8.2.2}%
-\contentsline {subsection}{\numberline {8.2.3}Tools and Metrics for Measuring Performances}{77}{subsection.8.2.3}%
-\contentsline {subsection}{\numberline {8.2.4}Results Analysis}{79}{subsection.8.2.4}%
-\contentsline {section}{\numberline {8.3}Future Developement}{83}{section.8.3}%
+\contentsline {subsection}{\numberline {8.2.3}Tools and Metrics}{78}{subsection.8.2.3}%
+\contentsline {subsection}{\numberline {8.2.4}Results}{80}{subsection.8.2.4}%
+\contentsline {chapter}{\numberline {9}Conclusions and future developments}{85}{chapter.9}%
 \vspace {2em}
-\contentsline {chapter}{Bibliography\markboth {\MakeUppercase []{Bibliography}}{\MakeUppercase []{Bibliography}}}{85}{chapter*.52}%
+\contentsline {chapter}{Bibliography\markboth {\MakeUppercase []{Bibliography}}{\MakeUppercase []{Bibliography}}}{87}{chapter*.53}%
 \vspace {2em}
-\contentsline {chapter}{List of Figures}{89}{chapter*.54}%
-\contentsline {chapter}{List of Tables}{91}{chapter*.56}%
-\contentsline {chapter}{Listings\markboth {\MakeUppercase []{Listings}}{\MakeUppercase []{Listings}}}{93}{chapter*.58}%
-\contentsline {chapter}{Acknowledgements}{95}{chapter*.60}%
+\contentsline {chapter}{List of Figures}{91}{chapter*.55}%
+\contentsline {chapter}{List of Tables}{93}{chapter*.57}%
+\contentsline {chapter}{Listings\markboth {\MakeUppercase []{Listings}}{\MakeUppercase []{Listings}}}{95}{chapter*.59}%
+\contentsline {chapter}{Acknowledgements}{97}{chapter*.61}%

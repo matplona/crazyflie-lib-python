@@ -43,7 +43,7 @@
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Error distribution in the flight space while using the \textit {simple\_geometry\_estimation}}}}{70}{subfigure.3.1}%
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces { Error distribution in the flight space while using the \textit {multi\_bs\_geometry\_estimation}}}}{70}{subfigure.3.2}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {8.1}{\ignorespaces Structure of EasyFly simulation environment.}}{76}{figure.caption.43}%
+\contentsline {figure}{\numberline {8.1}{\ignorespaces Structure of EasyFly simulation environment.}}{77}{figure.caption.43}%
 \contentsline {figure}{\numberline {8.2}{\ignorespaces Application scenarios' trajectories.}}{78}{figure.caption.44}%
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {First application scenario: drone exhibition}}}{78}{subfigure.2.1}%
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Second application scenario: drone obstacle course}}}{78}{subfigure.2.2}%
@@ -54,4 +54,5 @@
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Scenario: exhibition with EasyFly}}}{83}{subfigure.5.2}%
 \contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Scenario: obstacle course with cflib}}}{83}{subfigure.5.3}%
 \contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Scenario: obstacle course with EasyFly}}}{83}{subfigure.5.4}%
-\contentsline {figure}{\numberline {8.6}{\ignorespaces Network load.}}{84}{figure.caption.50}%
+\contentsline {figure}{\numberline {8.6}{\ignorespaces Network load.}}{83}{figure.caption.50}%
+\addvspace {10\p@ }

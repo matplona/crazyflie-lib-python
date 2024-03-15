@@ -1,4 +1,4 @@
-\begin{thebibliography}{50}
+\begin{thebibliography}{51}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -80,6 +80,11 @@ Sphinx.
 \bibitem[win()]{wingDrones}
 Wing drones.
 \newblock URL \url{https://wing.com/}.
+
+\bibitem[Afanasov et~al.(2019)Afanasov, Djordjevic, Lui, and Mottola]{afanasov2019flyzone}
+M.~Afanasov, A.~Djordjevic, F.~Lui, and L.~Mottola.
+\newblock Flyzone: A testbed for experimenting with aerial drone applications.
+\newblock In \emph{Proceedings of the 17th annual international conference on mobile systems, applications, and services}, pages 67--78, 2019.
 
 \bibitem[Anderson(2012)]{anderson2012accidentally}
 C.~Anderson.
