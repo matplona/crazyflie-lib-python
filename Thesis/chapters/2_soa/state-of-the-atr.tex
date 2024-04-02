@@ -93,8 +93,8 @@ This taxonomy category has four subcategories:
 \begin{itemize}
     \item \textit{Available sensor information}: the full list of sensors available on the robot, e.g., an urban search and rescue robot could have: \textit{sonar}, \textit{LIDAR}, \textit{camera}
     \item \textit{Sensor information provided}: the partial list of sensors useful for decision support, e.g., the robot may use its sonar and LIDAR to navigate, but only a video image is provided in the interface.
-    \item \textit{Type of sensor fusion}: is specified as a list of functions that combines multiple sensors available, e.g., if sonar and LIDAR values were used to build a map that was displayed, the sensor fusion list would contain \( {{sonar, lidar} \square map } \).
-    \item \textit{Pre-processing}: is a list of functions that preprocess the values of the sensors before displaying them in the interface, e.g., if a video stream is processed before display to highlight regions of a particular color, say red, the list would include \( {video \square highlight red regions } \).
+    \item \textit{Type of sensor fusion}: is specified as a list of functions that combines multiple sensors available, e.g., if sonar and LIDAR values were used to build a map that was displayed, the sensor fusion list would contain \( \{\{sonar, LIDAR\} ~\square~ map \} \).
+    \item \textit{Pre-processing}: is a list of functions that preprocess the values of the sensors before displaying them in the interface, e.g., if a video stream is processed before display to highlight regions of a particular color, say red, the list would include \( \{video ~\square~ highlight red regions \} \).
 \end{itemize}
 
 {\bfseries \scshape Time and Space}:\\*
